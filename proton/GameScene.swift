@@ -21,6 +21,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     //ゲームオーバーフラグ
     var gameoverflg = false
+    //敵作成フラグ
+    var makeenemyflg = false
+    
     //敵を倒した数
     var killcount = 0
     
@@ -67,10 +70,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
         
         //剣配置用ノード
+        swordsNode.position = CGPoint(x:0, y:0)
+        //swordsNode.anchorPoint = CGPoint(x:0, y:0) //中央に合わせる
         self.addChild(swordsNode)
+        //swordsNode.size = self.size
         swordsNode.zPosition = 2
         
         //敵配置用ノード
+        enemysNode.position = CGPoint(x:0, y:0)
         self.addChild(enemysNode)
         enemysNode.zPosition = 2
         
@@ -79,6 +86,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //敵を作成する
         makeEnemySample()
+        //makeEnemySample()
         
         //BGMを鳴らす
         let bgSoundRepeat = SKAction.repeatActionForever(bgSound)
@@ -88,7 +96,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //敵のサンプルを作る
     func makeEnemySample() {
-        enemysNode.removeAllChildren()
+        //enemysNode.removeAllChildren()
         for i in 0..<10 {
             makeEnemy1()
         }
@@ -107,6 +115,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        if makeenemyflg {
+            makeenemyflg = false
+            makeEnemySample()
+        }
     }
     
     //プレイヤー作成
@@ -207,12 +219,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 contact.bodyA.node?.removeFromParent()
                 contact.bodyA.node?.removeAllActions()
                 killcount++
+                if killcount % 10 == 0 {
+                    makeenemyflg = true
+                }
             } else if (contact.bodyB.categoryBitMask & enemyType == enemyType) {
                 contact.bodyA.categoryBitMask = ColliderType.None
                 makeColliParticle(contact.bodyB.node?.position)
                 contact.bodyB.node?.removeFromParent()
                 contact.bodyB.node?.removeAllActions()
                 killcount++
+                if killcount % 10 == 0 {
+                    makeenemyflg = true
+                }
             } else if contact.bodyA.categoryBitMask & ColliderType.None == ColliderType.None ||
                 contact.bodyB.categoryBitMask & ColliderType.None == ColliderType.None {
                 //剣と剣の衝突
