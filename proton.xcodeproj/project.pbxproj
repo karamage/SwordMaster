@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9356C1DC1B4D00410073EBF8 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DA1B4D00410073EBF8 /* MyParticle.sks */; };
+		9356C1DD1B4D00410073EBF8 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DB1B4D00410073EBF8 /* spark.png */; };
+		9356C1DF1B4D05000073EBF8 /* ice1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DE1B4D05000073EBF8 /* ice1.png */; };
+		93E9A0681B4D228A00B44478 /* magicParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A0671B4D228A00B44478 /* magicParticle.sks */; };
+		93E9A06D1B4D4D9300B44478 /* fade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A0691B4D4D9300B44478 /* fade.mp3 */; };
+		93E9A06E1B4D4D9300B44478 /* shot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A06A1B4D4D9300B44478 /* shot.mp3 */; };
+		93E9A06F1B4D4D9300B44478 /* sword.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A06B1B4D4D9300B44478 /* sword.mp3 */; };
+		93E9A0701B4D4D9300B44478 /* sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A06C1B4D4D9300B44478 /* sound.mp3 */; };
+		93E9A0721B4D549E00B44478 /* scrollParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A0711B4D549E00B44478 /* scrollParticle.sks */; };
 		93EF1AB01B4BC01800B1FC93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF1AAF1B4BC01800B1FC93 /* AppDelegate.swift */; };
 		93EF1AB41B4BC01800B1FC93 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF1AB31B4BC01800B1FC93 /* GameScene.swift */; };
 		93EF1AB61B4BC01800B1FC93 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF1AB51B4BC01800B1FC93 /* GameViewController.swift */; };
@@ -27,6 +36,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9356C1DA1B4D00410073EBF8 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
+		9356C1DB1B4D00410073EBF8 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		9356C1DE1B4D05000073EBF8 /* ice1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ice1.png; sourceTree = "<group>"; };
+		93E9A0671B4D228A00B44478 /* magicParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = magicParticle.sks; sourceTree = "<group>"; };
+		93E9A0691B4D4D9300B44478 /* fade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fade.mp3; sourceTree = "<group>"; };
+		93E9A06A1B4D4D9300B44478 /* shot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shot.mp3; sourceTree = "<group>"; };
+		93E9A06B1B4D4D9300B44478 /* sword.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sword.mp3; sourceTree = "<group>"; };
+		93E9A06C1B4D4D9300B44478 /* sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound.mp3; sourceTree = "<group>"; };
+		93E9A0711B4D549E00B44478 /* scrollParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = scrollParticle.sks; sourceTree = "<group>"; };
 		93EF1AAA1B4BC01800B1FC93 /* proton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = proton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93EF1AAE1B4BC01800B1FC93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93EF1AAF1B4BC01800B1FC93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +97,11 @@
 		93EF1AAC1B4BC01800B1FC93 /* proton */ = {
 			isa = PBXGroup;
 			children = (
+				93E9A0691B4D4D9300B44478 /* fade.mp3 */,
+				93E9A06A1B4D4D9300B44478 /* shot.mp3 */,
+				93E9A06B1B4D4D9300B44478 /* sword.mp3 */,
+				93E9A06C1B4D4D9300B44478 /* sound.mp3 */,
+				9356C1DE1B4D05000073EBF8 /* ice1.png */,
 				93EF1AAF1B4BC01800B1FC93 /* AppDelegate.swift */,
 				93EF1AB31B4BC01800B1FC93 /* GameScene.swift */,
 				93EF1AB51B4BC01800B1FC93 /* GameViewController.swift */,
@@ -86,6 +109,10 @@
 				93EF1ABA1B4BC01800B1FC93 /* Images.xcassets */,
 				93EF1ABC1B4BC01800B1FC93 /* LaunchScreen.xib */,
 				93EF1AAD1B4BC01800B1FC93 /* Supporting Files */,
+				9356C1DA1B4D00410073EBF8 /* MyParticle.sks */,
+				9356C1DB1B4D00410073EBF8 /* spark.png */,
+				93E9A0671B4D228A00B44478 /* magicParticle.sks */,
+				93E9A0711B4D549E00B44478 /* scrollParticle.sks */,
 			);
 			path = proton;
 			sourceTree = "<group>";
@@ -195,9 +222,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93E9A0721B4D549E00B44478 /* scrollParticle.sks in Resources */,
+				9356C1DD1B4D00410073EBF8 /* spark.png in Resources */,
 				93EF1ABE1B4BC01800B1FC93 /* LaunchScreen.xib in Resources */,
+				93E9A06E1B4D4D9300B44478 /* shot.mp3 in Resources */,
+				93E9A0681B4D228A00B44478 /* magicParticle.sks in Resources */,
+				93E9A0701B4D4D9300B44478 /* sound.mp3 in Resources */,
+				93E9A06F1B4D4D9300B44478 /* sword.mp3 in Resources */,
 				93EF1ABB1B4BC01800B1FC93 /* Images.xcassets in Resources */,
 				93EF1AB91B4BC01800B1FC93 /* Main.storyboard in Resources */,
+				9356C1DC1B4D00410073EBF8 /* MyParticle.sks in Resources */,
+				93E9A06D1B4D4D9300B44478 /* fade.mp3 in Resources */,
+				9356C1DF1B4D05000073EBF8 /* ice1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +449,7 @@
 				93EF1ACF1B4BC01800B1FC93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		93EF1AD01B4BC01800B1FC93 /* Build configuration list for PBXNativeTarget "protonTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +458,7 @@
 				93EF1AD21B4BC01800B1FC93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

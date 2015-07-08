@@ -8,9 +8,11 @@
 
 import UIKit
 import SpriteKit
+import AVFoundation
 
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, AVAudioPlayerDelegate{
+    var audioPlayer:AVAudioPlayer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,19 +33,34 @@ class GameViewController: UIViewController {
         
         skView.presentScene(scene)
         
+        // 再生する audio ファイルのパスを取得
+        let audioPath = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("sound", ofType: "mp3")!)
+        
+        // auido を再生するプレイヤーを作成する
+        var audioError:NSError?
+        audioPlayer = AVAudioPlayer(contentsOfURL: audioPath, error:&audioError)
+        
+        // エラーが起きたとき
+        if let error = audioError {
+            println("Error \(error.localizedDescription)")
+        }
+        
+        audioPlayer!.delegate = self
+        audioPlayer!.prepareToPlay()
+        audioPlayer!.play()
     }
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     override func shouldAutorotate() -> Bool {
         return true
     }
 
     override func supportedInterfaceOrientations() -> Int {
         return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
     }
 
     override func prefersStatusBarHidden() -> Bool {
