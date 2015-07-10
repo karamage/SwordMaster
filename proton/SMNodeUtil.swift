@@ -9,8 +9,9 @@
 import Foundation
 import SpriteKit
 
-//パーティクルを管理するクラス
+//NodeUtilクラス
 class SMNodeUtil {
+    //パーティクル作成
     class func makeParticleNode(position:CGPoint?, filename: String, hide: Bool = true, node: SKNode) {
         var particle = SKEmitterNode(fileNamed: filename)
         node.addChild(particle)
@@ -25,7 +26,14 @@ class SMNodeUtil {
         }
         fadeRemoveNode(particle)
     }
-    
+    //火花のパーティクル作る
+    class func makeSparkParticle(position:CGPoint?, node: SKNode) {
+        SMNodeUtil.makeParticleNode(position, filename:"sparkParticle.sks", node: node)
+    }
+    //魔法のパーティクルを作る
+    class func makeMagicParticle(position:CGPoint?, node: SKNode) {
+        SMNodeUtil.makeParticleNode(position, filename:"magicParticle.sks", node: node)
+    }
     
     //一秒後にフェードしながらノードを消す
     class func fadeRemoveNode(removenode: SKNode!) {

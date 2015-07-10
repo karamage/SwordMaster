@@ -16,6 +16,10 @@
 		937056D01B4F7F56009BBAC2 /* ColliderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937056CF1B4F7F56009BBAC2 /* ColliderType.swift */; };
 		937056D21B4F8398009BBAC2 /* SwordType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937056D11B4F8398009BBAC2 /* SwordType.swift */; };
 		937056D41B4F8A1F009BBAC2 /* SMNodeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937056D31B4F8A1F009BBAC2 /* SMNodeUtil.swift */; };
+		937056D61B4FA28E009BBAC2 /* SMAnimationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937056D51B4FA28E009BBAC2 /* SMAnimationUtil.swift */; };
+		937056D81B4FA89B009BBAC2 /* EnemyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937056D71B4FA89B009BBAC2 /* EnemyType.swift */; };
+		937056DA1B4FA933009BBAC2 /* SMSwordNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937056D91B4FA933009BBAC2 /* SMSwordNode.swift */; };
+		937056DC1B4FB750009BBAC2 /* hitParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 937056DB1B4FB750009BBAC2 /* hitParticle.sks */; };
 		93E9A0681B4D228A00B44478 /* magicParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A0671B4D228A00B44478 /* magicParticle.sks */; };
 		93E9A06D1B4D4D9300B44478 /* fade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A0691B4D4D9300B44478 /* fade.mp3 */; };
 		93E9A06E1B4D4D9300B44478 /* shot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A06A1B4D4D9300B44478 /* shot.mp3 */; };
@@ -51,6 +55,10 @@
 		937056CF1B4F7F56009BBAC2 /* ColliderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColliderType.swift; sourceTree = "<group>"; };
 		937056D11B4F8398009BBAC2 /* SwordType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwordType.swift; sourceTree = "<group>"; };
 		937056D31B4F8A1F009BBAC2 /* SMNodeUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMNodeUtil.swift; sourceTree = "<group>"; };
+		937056D51B4FA28E009BBAC2 /* SMAnimationUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMAnimationUtil.swift; sourceTree = "<group>"; };
+		937056D71B4FA89B009BBAC2 /* EnemyType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyType.swift; sourceTree = "<group>"; };
+		937056D91B4FA933009BBAC2 /* SMSwordNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSwordNode.swift; sourceTree = "<group>"; };
+		937056DB1B4FB750009BBAC2 /* hitParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hitParticle.sks; sourceTree = "<group>"; };
 		93E9A0671B4D228A00B44478 /* magicParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = magicParticle.sks; sourceTree = "<group>"; };
 		93E9A0691B4D4D9300B44478 /* fade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fade.mp3; sourceTree = "<group>"; };
 		93E9A06A1B4D4D9300B44478 /* shot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shot.mp3; sourceTree = "<group>"; };
@@ -116,7 +124,11 @@
 				9356C1DE1B4D05000073EBF8 /* ice1.png */,
 				93EF1AAF1B4BC01800B1FC93 /* AppDelegate.swift */,
 				93EF1AB31B4BC01800B1FC93 /* GameScene.swift */,
+				937056DB1B4FB750009BBAC2 /* hitParticle.sks */,
+				937056D71B4FA89B009BBAC2 /* EnemyType.swift */,
+				937056D51B4FA28E009BBAC2 /* SMAnimationUtil.swift */,
 				937056D11B4F8398009BBAC2 /* SwordType.swift */,
+				937056D91B4FA933009BBAC2 /* SMSwordNode.swift */,
 				937056CF1B4F7F56009BBAC2 /* ColliderType.swift */,
 				93EF1AB51B4BC01800B1FC93 /* GameViewController.swift */,
 				93EF1AB71B4BC01800B1FC93 /* Main.storyboard */,
@@ -246,6 +258,7 @@
 				937056CA1B4E0991009BBAC2 /* playerParticle.sks in Resources */,
 				93E9A06E1B4D4D9300B44478 /* shot.mp3 in Resources */,
 				93E9A0681B4D228A00B44478 /* magicParticle.sks in Resources */,
+				937056DC1B4FB750009BBAC2 /* hitParticle.sks in Resources */,
 				93E9A0701B4D4D9300B44478 /* sound.mp3 in Resources */,
 				93E9A06F1B4D4D9300B44478 /* sword.mp3 in Resources */,
 				93EF1ABB1B4BC01800B1FC93 /* Images.xcassets in Resources */,
@@ -274,10 +287,13 @@
 				93EF1AB41B4BC01800B1FC93 /* GameScene.swift in Sources */,
 				937056D41B4F8A1F009BBAC2 /* SMNodeUtil.swift in Sources */,
 				937056D21B4F8398009BBAC2 /* SwordType.swift in Sources */,
+				937056DA1B4FA933009BBAC2 /* SMSwordNode.swift in Sources */,
 				937056D01B4F7F56009BBAC2 /* ColliderType.swift in Sources */,
 				93EF1AB61B4BC01800B1FC93 /* GameViewController.swift in Sources */,
 				937056CE1B4F75D9009BBAC2 /* SMPlayerNode.swift in Sources */,
+				937056D61B4FA28E009BBAC2 /* SMAnimationUtil.swift in Sources */,
 				93EF1AB01B4BC01800B1FC93 /* AppDelegate.swift in Sources */,
+				937056D81B4FA89B009BBAC2 /* EnemyType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
