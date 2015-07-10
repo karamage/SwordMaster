@@ -9,16 +9,6 @@
 import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    //当たり判定用
-    struct ColliderType {
-        static let Player: UInt32 = (1<<0)
-        static let Enemy: UInt32 = (1<<1)
-        static let Sword: UInt32 = (1<<2)
-        static let Item: UInt32 = (1<<3)
-        static let Wall: UInt32 = (1<<4)
-        static let Enegy: UInt32 = (1<<5)
-        static let None: UInt32 = (1<<9)
-    }
     //ラベル
     let gameoverLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
     let scoreLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
@@ -45,9 +35,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //背景
     var bg = SKSpriteNode(imageNamed: "background2")
     //プレイヤー
-    var player: SKSpriteNode!
+    var player: SMPlayerNode!
     var playerTexture = SKTexture(imageNamed: "player1")
     var playerTexture2 = SKTexture(imageNamed: "player2")
+    var hane: SKSpriteNode!
+    var warp: SKSpriteNode!
+    var dead: SKSpriteNode!
+    var haneAim: [SKTexture]!
+    var haneAim1: [SKTexture]!
+    var haneAim2: [SKTexture]!
+    var warpAim: [SKTexture]!
+    var warpAim2: [SKTexture]!
     
     //敵配置用ノード
     var enemysNode = SKNode()
@@ -74,8 +72,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         makeBgParticle()
         
         //背景を徐々に下にスクロールする
-        var bgScrollAction = SKAction.moveToY(-60.0, duration: 20)
-        var bgScrollRevAction = SKAction.moveToY(15.0, duration: 10)
+        var bgScrollAction = SKAction.moveToY(-60.0, duration: 20) //指定座標まで移動
+        var bgScrollRevAction = SKAction.moveToY(0, duration: 20)
         var bgScroll = SKAction.repeatActionForever(SKAction.sequence([bgScrollAction,bgScrollRevAction]))
         bg.runAction(bgScroll)
         
@@ -103,38 +101,48 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(enemysNode)
         enemysNode.zPosition = 2
         
-        //プレイヤーを作成
-        makePlayer()
-        
         //羽のアニメーションを切り出す
-        var haneAim: [SKTexture] = explodeAnime("wing", xFrame: 5, yFrame: 6)
-        var haneAim2: [SKTexture] = [SKTexture](haneAim[7...22])
-        var hane = SKSpriteNode(texture: haneAim[0], size: haneAim[0].size())
-        self.addChild(hane)
-        hane.position = CGPoint(x: self.frame.size.width/2, y: 50)
+        haneAim = explodeAnime("wing", xFrame: 5, yFrame: 6)
+        haneAim1 = [SKTexture](haneAim[3...6])
+        haneAim2 = [SKTexture](haneAim[7...22])
+        //ワープのアニメーションを切り出す
+        warpAim = explodeAnime("warp", xFrame: 2, yFrame: 13)
+        warpAim2 = [SKTexture](warpAim[0...14])
         
-        var haneAnimAction = SKAction.animateWithTextures(haneAim, timePerFrame: 0.1, resize:false, restore:true)
-        var haneAnimAction2 = SKAction.animateWithTextures(haneAim2, timePerFrame: 0.1, resize:false, restore:true)
-        var repeatHaneAction = SKAction.repeatActionForever(haneAnimAction2)
-        hane.runAction(SKAction.sequence([haneAnimAction,repeatHaneAction]))
-        
-        //ワープのアニメーション
-        var warpAim: [SKTexture] = explodeAnime("warp", xFrame: 2, yFrame: 13)
-        var warpAim2: [SKTexture] = [SKTexture](warpAim[0...14])
-        var warp = SKSpriteNode(texture: warpAim[0], size: warpAim[0].size())
-        self.addChild(warp)
-        warp.position = CGPoint(x: self.frame.size.width/2, y: 50)
-        var warpAnimAction = SKAction.animateWithTextures(warpAim2, timePerFrame: 0.1, resize:false, restore:true)
-        var warpRemoveAction = SKAction.removeFromParent()
-        warp.runAction(SKAction.sequence([warpAnimAction,warpRemoveAction]))
+        //プレイヤーを作成
+        player = SMPlayerNode(texture: playerTexture)
+        player.makePlayer(self,textures:[playerTexture,playerTexture2])
+        makePlayerAnimation()
         
         //敵を作成する
         makeEnemySample()
         
         //BGMを鳴らす
-        let bgSoundRepeat = SKAction.repeatActionForever(bgSound)
+        //let bgSoundRepeat = SKAction.repeatActionForever(bgSound)
         //self.runAction(bgSoundRepeat)
         
+    }
+    
+    //プレイヤーのアニメーションを作成する
+    func makePlayerAnimation() {
+        //羽のアニメーションを作成
+        hane = SKSpriteNode(texture: haneAim[0], size: haneAim[0].size())
+        player.addChild(hane!)
+        //hane.position = CGPoint(x: self.frame.size.width/2, y: 50)
+        
+        var haneAnimAction = SKAction.animateWithTextures(haneAim, timePerFrame: 0.1, resize:false, restore:true)
+        var haneAnimAction1 = SKAction.animateWithTextures(haneAim1, timePerFrame: 0.1, resize:false, restore:true)
+        var haneAnimAction2 = SKAction.animateWithTextures(haneAim2, timePerFrame: 0.1, resize:false, restore:true)
+        var repeatHaneAction = SKAction.repeatActionForever(haneAnimAction2)
+        hane.runAction(SKAction.sequence([haneAnimAction,haneAnimAction1,repeatHaneAction]))
+        
+        //ワープのアニメーションを作成
+        warp = SKSpriteNode(texture: warpAim[0], size: warpAim[0].size())
+        player.addChild(warp!)
+        //warp.position = CGPoint(x: self.frame.size.width/2, y: 50)
+        var warpAnimAction = SKAction.animateWithTextures(warpAim2, timePerFrame: 0.1, resize:false, restore:true)
+        var warpRemoveAction = SKAction.removeFromParent()
+        warp.runAction(SKAction.sequence([warpAnimAction,warpRemoveAction]))
     }
     
     //敵のサンプルを作る
@@ -148,12 +156,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //タッチした時に呼び出される
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
+        if gameoverflg {
+            //ゲームオーバの場合リスタート処理
+            restart()
+            return
+        }
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
             //剣を作成する
             makeSword(location)
         }
+    }
+    
+    //ゲームのリスタート処理
+    func restart() {
+        //スコアを0にする
+        score = 0
+        scoreLabel.text = "\(score)"
         
+        //ゲームオーバラベルを消す
+        
+        //フラグを戻す
+        gameoverflg = false
     }
    
     override func update(currentTime: CFTimeInterval) {
@@ -164,35 +188,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    //プレイヤー作成
-    func makePlayer() {
-        player = SKSpriteNode(texture: playerTexture)
-        player.position = CGPoint(x: self.frame.size.width * 0.5, y: 0)
-        
-        //物理シミュレーション設定
-        player.physicsBody = SKPhysicsBody(texture: playerTexture, size: playerTexture.size())
-        player.physicsBody?.dynamic = false
-        player.physicsBody?.allowsRotation = false
-        player.physicsBody?.categoryBitMask = ColliderType.Player
-        player.physicsBody?.collisionBitMask = ColliderType.Enemy | ColliderType.Enegy
-        player.physicsBody?.contactTestBitMask = ColliderType.Enemy | ColliderType.Enegy
-        
-        self.addChild(player)
-        player.zPosition = 2
-        
-        //パラパラアニメーション
-        let paraAction = SKAction.animateWithTextures([playerTexture,playerTexture2], timePerFrame: 0.2)
-        let repeatParaAction = SKAction.repeatActionForever(paraAction)
-        player.runAction(repeatParaAction)
-        
-        //画面下から登場
-        var playerAction = SKAction.moveToY(50, duration: 2)
-        player.runAction(playerAction)
-        
-        //パーティクル作成
-        let particlePosition = CGPoint(x: self.frame.size.width * 0.5, y: 50)
-        makeParticle(particlePosition, filename:"playerParticle.sks", hide:false)
-    }
     
     //敵1の作成
     func makeEnemy1() {
@@ -260,7 +255,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         sword.runAction(fadeAction)
         
         //パーティクル作成
-        makeMagicParticle(location)
+        var point = CGPoint(x:0, y:-30)
+        makeMagicParticle(location, node:self)
+        makeSparkParticle(point, node: sword)
     }
     
     //衝突判定
@@ -271,6 +268,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         let swordType = ColliderType.Sword
         let enemyType = ColliderType.Enemy
+        let playerType = ColliderType.Player
         if (contact.bodyA.categoryBitMask & swordType == swordType ||
             contact.bodyB.categoryBitMask & swordType == swordType ) {
             //剣の衝突
@@ -288,7 +286,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 //contact.bodyB.categoryBitMask = ColliderType.None
                 self.runAction(swordSound)
             }
+        } else if contact.bodyA.categoryBitMask & playerType == playerType ||
+            contact.bodyB.categoryBitMask & playerType == playerType {
+            //プレイヤーとの衝突
+            
+            //敵とプレイヤーが衝突したらゲームオーバー
+            if contact.bodyA.categoryBitMask & enemyType == enemyType {
+                gameover()
+            } else if contact.bodyB.categoryBitMask & enemyType == enemyType {
+                gameover()
+            }
         }
+    }
+    
+    //ゲームオーバーの処理
+    func gameover() {
+        //フラグをtrueにする
+        gameoverflg = true
+        
+        //敵の停止
+        enemysNode.speed = 0.0
+        
+        //ラベル表示
+        gameoverLabel.text = "Gameover"
+        gameoverLabel.fontSize = 25
+        gameoverLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        gameoverLabel.zPosition = 1000
+        self.addChild(gameoverLabel)
+        gameoverLabel.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.size.height/2)
+        
+        //やられた効果音再生
+        
+        //やられたアニメーション作成
+        
+        //プレイヤーのアニメーション削除
+        
+        //プレイヤー削除
+        fadeRemoveNode(player)
     }
     
     //敵を倒した時の処理
@@ -311,9 +345,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         particle.position = CGPoint(x: CGFloat(self.frame.size.width / 2), y: CGFloat(self.frame.height))
     }
+    //火花のパーティクル作る
+    func makeSparkParticle(position:CGPoint?, node: SKNode) {
+        makeParticleNode(position, filename:"sparkParticle.sks", node: node)
+    }
     //魔法のパーティクルを作る
-    func makeMagicParticle(position:CGPoint?) {
-        makeParticle(position, filename:"magicParticle.sks")
+    func makeMagicParticle(position:CGPoint?, node: SKNode) {
+        makeParticleNode(position, filename:"magicParticle.sks", node: node)
     }
     //衝突のパーティクルを作る
     func makeColliParticle(position:CGPoint?) {
@@ -323,32 +361,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //パーティクル発生
     func makeParticle(position:CGPoint?, filename: String, hide: Bool = true) {
-        let particle = SKEmitterNode(fileNamed: filename)
-        self.addChild(particle)
-        
-        if let tmp = position {
-            particle.position = tmp
-        }
-        
-        //消さないんだったらリターン
-        if !hide {
-            return
-        }
-        fadeRemoveNode(particle)
+        makeParticleNode(position, filename: filename, hide: hide, node: self)
     }
+    func makeParticleNode(position:CGPoint?, filename: String, hide: Bool = true, node: SKNode) {
+        SMNodeUtil.makeParticleNode(position, filename: filename, hide: hide, node: node)
+    }
+    
     
     //一秒後にフェードしながらノードを消す
     func fadeRemoveNode(removenode: SKNode!) {
-        //１秒後に消す
-        var removeAction = SKAction.removeFromParent()
-        var durationAction = SKAction.waitForDuration(1.50)
-        var sequenceAction = SKAction.sequence([durationAction,removeAction])
-        removenode.runAction(sequenceAction)
-        
-        removenode.alpha = 1
-        
-        var fadeAction = SKAction.fadeAlphaTo(0, duration: 1.0)
-        removenode.runAction(fadeAction)
+        SMNodeUtil.fadeRemoveNode(removenode)
     }
     
     //一枚の画像からアニメーションを切り出す
