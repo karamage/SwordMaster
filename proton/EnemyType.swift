@@ -9,5 +9,5 @@
 import Foundation
 
 enum EnemyType {
-    case CUBE
+    case CUBE //最初の敵
 }

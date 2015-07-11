@@ -8,7 +8,20 @@
 
 import SpriteKit
 
+extension SKScene{
+    
+    /*
+    度数からラジアンに変換するメソッド.
+    */
+    func degreeToRadian(degree : Double!) -> CGFloat{
+        
+        return CGFloat(degree) / CGFloat(180.0 * M_1_PI)
+        
+    }
+}
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    //タッチ開始ポイント
+    var touchStartPoint: CGPoint! = nil
     //ラベル
     let gameoverLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
     let scoreLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
@@ -38,6 +51,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var player: SMPlayerNode!
     var playerTexture = SKTexture(imageNamed: "player1")
     var playerTexture2 = SKTexture(imageNamed: "player2")
+    
+    //剣
+    var sword: SMSwordNode!
     
     //敵配置用ノード
     var enemysNode = SKNode()
@@ -130,11 +146,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             restart()
             return
         }
+        //すでにタッチが開始されているなら何もしない
+        if let tmp = touchStartPoint {
+            return
+        }
+        for touch: AnyObject in touches {
+            touchStartPoint = touch.locationInNode(self)
+            //剣を作成する
+            sword = SMSwordNode(texture:swordTexture, type:player.swordType, shotSound:shotSound, location:touchStartPoint, parentnode:swordsNode)
+            sword.makeSword()
+        }
+    }
+    
+    //スワイプした時に呼び出される
+    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+        //タッチが開始されていないのなら即リターン
+        if touchStartPoint == nil {
+            return
+        }
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
-            //剣を作成する
-            var sword = SMSwordNode(texture:swordTexture, type:player.swordType)
-            sword.makeSword(location, node:swordsNode, shotSound:shotSound)
+            sword.swipeSword(location)
+        }
+    }
+    
+    //タッチして指を離したときに呼び出される
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        //タッチが開始されていないのなら即リターン
+        if touchStartPoint == nil {
+            return
+        }
+        for touch: AnyObject in touches {
+            //let location = touch.locationInNode(self)
+            //剣を発射する
+            sword.shotSword()
+            sword = nil
+            touchStartPoint = nil
         }
     }
     
@@ -186,8 +233,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemy1.position = CGPoint(x:x,y:y)
         
         //プレイヤーに迫って移動してくるようにする
-        var action = SKAction.moveTo(player.position, duration: 10)
+        var action = SKAction.moveTo(player.position, duration: 20)
         enemy1.runAction(action)
+        
+        //ずっとプレイヤーの方向を向くようにする
+        // 姿勢へのConstraintsを作成.
+        //let cons = SKConstraint.orientToPoint(player.position,offset: SKRange(constantValue: degreeToRadian(-90)))
+        //enemy1.constraints = [cons]
         
         //回転のアニメーションをランダム時間で付ける
         var rotateAction = SKAction.rotateByAngle(CGFloat(360*M_PI/180), duration: 0.5)
