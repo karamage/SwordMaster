@@ -20,6 +20,13 @@
 		937056D81B4FA89B009BBAC2 /* EnemyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937056D71B4FA89B009BBAC2 /* EnemyType.swift */; };
 		937056DA1B4FA933009BBAC2 /* SMSwordNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937056D91B4FA933009BBAC2 /* SMSwordNode.swift */; };
 		937056DC1B4FB750009BBAC2 /* hitParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 937056DB1B4FB750009BBAC2 /* hitParticle.sks */; };
+		93D1D79C1B513933000EC266 /* magic_circle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7961B513933000EC266 /* magic_circle.mp3 */; };
+		93D1D79D1B513933000EC266 /* nagarebosi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7971B513933000EC266 /* nagarebosi.mp3 */; };
+		93D1D79E1B513933000EC266 /* hit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7981B513933000EC266 /* hit.mp3 */; };
+		93D1D79F1B513933000EC266 /* kiru.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7991B513933000EC266 /* kiru.mp3 */; };
+		93D1D7A01B513933000EC266 /* sasaru.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D79A1B513933000EC266 /* sasaru.mp3 */; };
+		93D1D7A11B513933000EC266 /* explode.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D79B1B513933000EC266 /* explode.mp3 */; };
+		93D1D7A31B522AB4000EC266 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93D1D7A21B522AB4000EC266 /* CoreMotion.framework */; };
 		93E9A0681B4D228A00B44478 /* magicParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A0671B4D228A00B44478 /* magicParticle.sks */; };
 		93E9A06D1B4D4D9300B44478 /* fade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A0691B4D4D9300B44478 /* fade.mp3 */; };
 		93E9A06E1B4D4D9300B44478 /* shot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A06A1B4D4D9300B44478 /* shot.mp3 */; };
@@ -59,6 +66,13 @@
 		937056D71B4FA89B009BBAC2 /* EnemyType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyType.swift; sourceTree = "<group>"; };
 		937056D91B4FA933009BBAC2 /* SMSwordNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSwordNode.swift; sourceTree = "<group>"; };
 		937056DB1B4FB750009BBAC2 /* hitParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hitParticle.sks; sourceTree = "<group>"; };
+		93D1D7961B513933000EC266 /* magic_circle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = magic_circle.mp3; sourceTree = "<group>"; };
+		93D1D7971B513933000EC266 /* nagarebosi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = nagarebosi.mp3; sourceTree = "<group>"; };
+		93D1D7981B513933000EC266 /* hit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hit.mp3; sourceTree = "<group>"; };
+		93D1D7991B513933000EC266 /* kiru.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kiru.mp3; sourceTree = "<group>"; };
+		93D1D79A1B513933000EC266 /* sasaru.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sasaru.mp3; sourceTree = "<group>"; };
+		93D1D79B1B513933000EC266 /* explode.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explode.mp3; sourceTree = "<group>"; };
+		93D1D7A21B522AB4000EC266 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		93E9A0671B4D228A00B44478 /* magicParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = magicParticle.sks; sourceTree = "<group>"; };
 		93E9A0691B4D4D9300B44478 /* fade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fade.mp3; sourceTree = "<group>"; };
 		93E9A06A1B4D4D9300B44478 /* shot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shot.mp3; sourceTree = "<group>"; };
@@ -83,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93D1D7A31B522AB4000EC266 /* CoreMotion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +114,7 @@
 		93EF1AA11B4BC01800B1FC93 = {
 			isa = PBXGroup;
 			children = (
+				93D1D7A21B522AB4000EC266 /* CoreMotion.framework */,
 				93EF1AAC1B4BC01800B1FC93 /* proton */,
 				93EF1AC61B4BC01800B1FC93 /* protonTests */,
 				93EF1AAB1B4BC01800B1FC93 /* Products */,
@@ -117,6 +133,12 @@
 		93EF1AAC1B4BC01800B1FC93 /* proton */ = {
 			isa = PBXGroup;
 			children = (
+				93D1D7961B513933000EC266 /* magic_circle.mp3 */,
+				93D1D7971B513933000EC266 /* nagarebosi.mp3 */,
+				93D1D7981B513933000EC266 /* hit.mp3 */,
+				93D1D7991B513933000EC266 /* kiru.mp3 */,
+				93D1D79A1B513933000EC266 /* sasaru.mp3 */,
+				93D1D79B1B513933000EC266 /* explode.mp3 */,
 				93E9A0691B4D4D9300B44478 /* fade.mp3 */,
 				93E9A06A1B4D4D9300B44478 /* shot.mp3 */,
 				93E9A06B1B4D4D9300B44478 /* sword.mp3 */,
@@ -252,6 +274,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93D1D79E1B513933000EC266 /* hit.mp3 in Resources */,
+				93D1D79C1B513933000EC266 /* magic_circle.mp3 in Resources */,
+				93D1D7A11B513933000EC266 /* explode.mp3 in Resources */,
 				93E9A0721B4D549E00B44478 /* scrollParticle.sks in Resources */,
 				9356C1DD1B4D00410073EBF8 /* spark.png in Resources */,
 				93EF1ABE1B4BC01800B1FC93 /* LaunchScreen.xib in Resources */,
@@ -265,8 +290,11 @@
 				937056CC1B4F63A0009BBAC2 /* sparkParticle.sks in Resources */,
 				93EF1AB91B4BC01800B1FC93 /* Main.storyboard in Resources */,
 				9356C1DC1B4D00410073EBF8 /* MyParticle.sks in Resources */,
+				93D1D79D1B513933000EC266 /* nagarebosi.mp3 in Resources */,
 				93E9A06D1B4D4D9300B44478 /* fade.mp3 in Resources */,
+				93D1D79F1B513933000EC266 /* kiru.mp3 in Resources */,
 				9356C1DF1B4D05000073EBF8 /* ice1.png in Resources */,
+				93D1D7A01B513933000EC266 /* sasaru.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

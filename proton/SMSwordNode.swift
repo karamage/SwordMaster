@@ -73,7 +73,7 @@ class SMSwordNode: SKSpriteNode {
         
         //少し前に移動
         let frontMoveAction = SKAction.moveToY(self.startPoint.y + 10, duration: 0.5)
-        self.runAction(frontMoveAction)
+        self.runAction(SKAction.sequence([frontMoveAction]))
         
     }
     
@@ -86,7 +86,7 @@ class SMSwordNode: SKSpriteNode {
         //回転のアニメーション
         //var rotateAction = SKAction.rotateByAngle(1, duration: 0)
         var rotateAction = SKAction.rotateToAngle(angle, duration: 0)
-        self.runAction(rotateAction)
+        self.runAction(SKAction.sequence([rotateAction]))
     }
     
     //剣の発射

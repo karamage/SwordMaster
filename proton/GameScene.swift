@@ -7,6 +7,20 @@
 //
 
 import SpriteKit
+import CoreMotion
+
+//BGM
+let bgSound = SKAction.playSoundFileNamed("sound.mp3", waitForCompletion: false)
+
+//効果音
+var shotSound = SKAction.playSoundFileNamed("shot.mp3", waitForCompletion: false)
+var hitSound = SKAction.playSoundFileNamed("hit.mp3", waitForCompletion: false)
+var sasaruSound = SKAction.playSoundFileNamed("sasaru.mp3", waitForCompletion: false)
+var swordSound = SKAction.playSoundFileNamed("sword.mp3", waitForCompletion: false)
+var nagarebosiSound = SKAction.playSoundFileNamed("nagarebosi.mp3", waitForCompletion: false)
+var explodeSound = SKAction.playSoundFileNamed("explode.mp3", waitForCompletion: false)
+var magicSound = SKAction.playSoundFileNamed("magic_circle.mp3", waitForCompletion: false)
+var kiruSound = SKAction.playSoundFileNamed("kiru.mp3", waitForCompletion: false)
 
 extension SKScene{
     
@@ -20,6 +34,8 @@ extension SKScene{
     }
 }
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    //モーション管理
+    var motionManager: CMMotionManager!
     //タッチ開始ポイント
     var touchStartPoint: CGPoint! = nil
     //ラベル
@@ -37,13 +53,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //敵を倒した数
     var killcount = 0
     
-    //BGM
-    let bgSound = SKAction.playSoundFileNamed("sound.mp3", waitForCompletion: false)
-    
-    //効果音
-    var shotSound = SKAction.playSoundFileNamed("shot.mp3", waitForCompletion: false)
-    var hitSound = SKAction.playSoundFileNamed("fade.mp3", waitForCompletion: false)
-    var swordSound = SKAction.playSoundFileNamed("sword.mp3", waitForCompletion: false)
     
     //背景
     var bg = SKSpriteNode(imageNamed: "background2")
@@ -127,6 +136,59 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //let bgSoundRepeat = SKAction.repeatActionForever(bgSound)
         //self.runAction(bgSoundRepeat)
         
+        //モーションセンサーを初期化する
+        motionInit()
+        
+    }
+    
+    //モーションセンサーの初期化
+    func motionInit() {
+        //モーション管理を生成
+        motionManager = CMMotionManager()
+        
+        //加速度の値を0.1秒ごとに取得する
+        motionManager.accelerometerUpdateInterval = 0.1
+        
+        //ハンドラを設定する
+        let accelerometerHandler: CMAccelerometerHandler = {
+            (data:CMAccelerometerData!, error:NSError!) -> Void in
+            
+            //ログにx,y,zの加速度を表示する
+            //println("x:\(data.acceleration.x),y:\(data.acceleration.y),z:\(data.acceleration.z)")
+            
+            if self.player == nil {
+                return
+            }
+            
+            //画面の範囲ならば
+            //自機を移動する
+            var positionx: CGFloat = 0.0
+            var moveAction: SKAction!
+            var tmpx: CGFloat = 0.0
+            if self.player.position.x >= 0 && self.player.position.x <= self.frame.width {
+                positionx = CGFloat(data.acceleration.x * 50)
+                moveAction = SKAction.moveByX(positionx, y:self.player.position.y, duration: 0.1)
+            } else {
+                //画面端の場合はそれ以上進めないようにする
+                if self.player.position.x <= 0 {
+                    tmpx = 0
+                } else if self.player.position.x >= self.frame.width {
+                    tmpx = self.frame.width
+                }
+                moveAction = SKAction.moveToX(tmpx, duration: 0)
+            }
+            self.player.runAction(moveAction)
+            
+            //自機を傾ける
+            var angle: CGFloat = CGFloat(positionx * -1) / CGFloat(180.0) * CGFloat(M_PI) ;
+            //回転のアニメーション
+            var rotateAction = SKAction.rotateToAngle(angle, duration: 0.1)
+            self.player.runAction(SKAction.sequence([rotateAction]))
+        }
+        
+        //センサー取得開始
+        motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(),
+        withHandler: accelerometerHandler)
     }
     
     
@@ -263,9 +325,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //敵に剣が当たったら消す
             if (contact.bodyA.categoryBitMask & enemyType == enemyType) {
                 contact.bodyB.categoryBitMask = ColliderType.None
+                self.runAction(sasaruSound)
                 killEnemy(contact.bodyA.node)
             } else if (contact.bodyB.categoryBitMask & enemyType == enemyType) {
                 contact.bodyA.categoryBitMask = ColliderType.None
+                self.runAction(sasaruSound)
                 killEnemy(contact.bodyB.node)
             } else if contact.bodyA.categoryBitMask & ColliderType.None == ColliderType.None ||
                 contact.bodyB.categoryBitMask & ColliderType.None == ColliderType.None {
@@ -304,6 +368,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameoverLabel.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.size.height/2)
         
         //やられた効果音再生
+        self.runAction(explodeSound)
         
         //やられたアニメーション作成
         
@@ -318,7 +383,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemynode.physicsBody?.categoryBitMask = ColliderType.None
         enemynode.removeAllActions()
         makeHitParticle(enemynode.position,node:self)
-        //makeKillParticle(enemynode)
+        //self.runAction(hitSound)
         killcount++
         score += 10
         scoreLabel.text = "\(score)"
