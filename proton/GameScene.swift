@@ -9,6 +9,12 @@
 import SpriteKit
 import CoreMotion
 
+//プレイヤー
+var player: SMPlayerNode!
+
+//敵配置用ノード
+var enemysNode = SKNode()
+
 //BGM
 let bgSound = SKAction.playSoundFileNamed("sound.mp3", waitForCompletion: false)
 
@@ -53,22 +59,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //敵を倒した数
     var killcount = 0
     
-    
     //背景
     var bg = SKSpriteNode(imageNamed: "background2")
-    //プレイヤー
-    var player: SMPlayerNode!
+    
+    //プレイヤーテクスチャ
     var playerTexture = SKTexture(imageNamed: "player1")
     var playerTexture2 = SKTexture(imageNamed: "player2")
     
     //剣
     var sword: SMSwordNode!
     
-    //敵配置用ノード
-    var enemysNode = SKNode()
     //敵１のテクスチャ
     var enemy1Texture = SKTexture(imageNamed: "enemy1")
-    
     
     //剣配置用ノード
     var swordsNode = SKNode()
@@ -156,7 +158,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //ログにx,y,zの加速度を表示する
             //println("x:\(data.acceleration.x),y:\(data.acceleration.y),z:\(data.acceleration.z)")
             
-            if self.player == nil {
+            if player == nil {
                 return
             }
             
@@ -165,25 +167,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             var positionx: CGFloat = 0.0
             var moveAction: SKAction!
             var tmpx: CGFloat = 0.0
-            if self.player.position.x >= 0 && self.player.position.x <= self.frame.width {
+            if player.position.x >= 0 && player.position.x <= self.frame.width {
                 positionx = CGFloat(data.acceleration.x * 50)
-                moveAction = SKAction.moveByX(positionx, y:self.player.position.y, duration: 0.1)
+                moveAction = SKAction.moveByX(positionx, y:player.position.y, duration: 0.1)
             } else {
                 //画面端の場合はそれ以上進めないようにする
-                if self.player.position.x <= 0 {
+                if player.position.x <= 0 {
                     tmpx = 0
-                } else if self.player.position.x >= self.frame.width {
+                } else if player.position.x >= self.frame.width {
                     tmpx = self.frame.width
                 }
                 moveAction = SKAction.moveToX(tmpx, duration: 0)
             }
-            self.player.runAction(moveAction)
+            player.runAction(moveAction)
             
             //自機を傾ける
             var angle: CGFloat = CGFloat(positionx * -1) / CGFloat(180.0) * CGFloat(M_PI) ;
             //回転のアニメーション
             var rotateAction = SKAction.rotateToAngle(angle, duration: 0.1)
-            self.player.runAction(SKAction.sequence([rotateAction]))
+            player.runAction(SKAction.sequence([rotateAction]))
         }
         
         //センサー取得開始
@@ -194,9 +196,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //敵のサンプルを作る
     func makeEnemySample() {
-        //enemysNode.removeAllChildren()
         for i in 0..<5 {
-            makeEnemy1()
+            let enemy = SMEnemyCube(texture: enemy1Texture)
+            enemy.makeEnemy()
         }
     }
     
@@ -268,47 +270,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
-    //敵1の作成
-    func makeEnemy1() {
-        let enemy1 = SKSpriteNode(texture: enemy1Texture)
-        
-        //物理シミュレーションを設定
-        enemy1.physicsBody = SKPhysicsBody(texture: enemy1Texture, size: enemy1Texture.size())
-        enemy1.physicsBody?.dynamic = true
-        enemy1.physicsBody?.allowsRotation = true
-        enemy1.physicsBody?.restitution = 0.5
-        enemy1.physicsBody?.categoryBitMask = ColliderType.Enemy
-        enemy1.physicsBody?.collisionBitMask = ColliderType.Player | ColliderType.Sword
-        enemy1.physicsBody?.contactTestBitMask = ColliderType.Player | ColliderType.Sword
-        
-        //位置をランダムに作成する
-        var x:CGFloat = 0
-        var y:CGFloat = 0
-        
-        var randX = arc4random_uniform(320)
-        var randY = arc4random_uniform(100)
-        x = CGFloat(randX)
-        y = CGFloat(self.frame.size.height - CGFloat(randY))
-        //println("x:\(x) y:\(y)")
-        
-        enemysNode.addChild(enemy1)
-        enemy1.position = CGPoint(x:x,y:y)
-        
-        //プレイヤーに迫って移動してくるようにする
-        var action = SKAction.moveTo(player.position, duration: 20)
-        enemy1.runAction(action)
-        
-        //ずっとプレイヤーの方向を向くようにする
-        // 姿勢へのConstraintsを作成.
-        //let cons = SKConstraint.orientToPoint(player.position,offset: SKRange(constantValue: degreeToRadian(-90)))
-        //enemy1.constraints = [cons]
-        
-        //回転のアニメーションをランダム時間で付ける
-        var rotateAction = SKAction.rotateByAngle(CGFloat(360*M_PI/180), duration: 0.5)
-        var rotateWaitAction = SKAction.waitForDuration(NSTimeInterval(CGFloat(randY) * 0.05))
-        var rotate = SKAction.repeatActionForever(SKAction.sequence([rotateAction,rotateWaitAction]))
-        enemy1.runAction(rotate)
-    }
     
     //衝突判定
     func didBeginContact(contact: SKPhysicsContact) {

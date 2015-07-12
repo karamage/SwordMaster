@@ -52,7 +52,8 @@ class SMSwordNode: SKSpriteNode {
         
         // ShapeNodeの座標を指定.
         circle.position = startPoint
-        circle.alpha = 0.25
+        circle.blendMode = SKBlendMode.Add
+        circle.alpha = 0.8
         
         // ShapeNodeの塗りつぶしの色を指定.
         //Circle.fillColor = UIColor.redColor()

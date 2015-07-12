@@ -75,6 +75,7 @@ class SMPlayerNode: SKSpriteNode {
         
         //羽のアニメーションを作成
         hane = SKSpriteNode(texture: haneAim[0], size: haneAim[0].size())
+        hane.blendMode = SKBlendMode.Add
         hane.alpha = 0.9
         self.addChild(hane!)
         //hane.position = CGPoint(x: self.frame.size.width/2, y: 50)
@@ -87,6 +88,7 @@ class SMPlayerNode: SKSpriteNode {
         
         //ワープのアニメーションを作成
         warp = SKSpriteNode(texture: warpAim[0], size: warpAim[0].size())
+        warp.blendMode = SKBlendMode.Add
         warp.alpha = 0.8
         self.addChild(warp!)
         //warp.position = CGPoint(x: self.frame.size.width/2, y: 50)
