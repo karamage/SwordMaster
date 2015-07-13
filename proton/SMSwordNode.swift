@@ -18,6 +18,11 @@ class SMSwordNode: SKSpriteNode {
     var circle: SKSpriteNode
     var swipex: Int = 0
     
+    //攻撃力
+    var attack: Int = 1
+    //耐久力
+    var hitpoint: Int = 1
+    
     init(texture: SKTexture, type: SwordType, shotSound:SKAction, location: CGPoint,parentnode:SKNode){
         self.type = type
         self.shotSound = shotSound

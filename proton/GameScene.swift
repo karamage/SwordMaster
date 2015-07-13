@@ -12,11 +12,17 @@ import CoreMotion
 //プレイヤー
 var player: SMPlayerNode!
 
+//背景用ノード
+var bgNode: SKNode = SKNode()
+
 //敵配置用ノード
 var enemysNode = SKNode()
 
 //BGM
-let bgSound = SKAction.playSoundFileNamed("sound.mp3", waitForCompletion: false)
+let stage1BgSound = SKAction.playSoundFileNamed("sound.mp3", waitForCompletion: false)
+
+//背景
+var stage1Background = SKSpriteNode(imageNamed: "background2")
 
 //効果音
 var shotSound = SKAction.playSoundFileNamed("shot.mp3", waitForCompletion: false)
@@ -27,6 +33,18 @@ var nagarebosiSound = SKAction.playSoundFileNamed("nagarebosi.mp3", waitForCompl
 var explodeSound = SKAction.playSoundFileNamed("explode.mp3", waitForCompletion: false)
 var magicSound = SKAction.playSoundFileNamed("magic_circle.mp3", waitForCompletion: false)
 var kiruSound = SKAction.playSoundFileNamed("kiru.mp3", waitForCompletion: false)
+
+//ステージファクトリ
+let stageFactory: SMStageFactory = SMStageFactory()
+//敵ファクトリ
+let enemyFactory: SMEnemyFactory = SMEnemyFactory()
+//剣ファクトリ
+let swordFactory: SMSwordFactory = SMSwordFactory()
+
+//フレーム幅
+var frameWidth: CGFloat!
+//フレーム高さ
+var frameHeight: CGFloat!
 
 extension SKScene{
     
@@ -40,6 +58,9 @@ extension SKScene{
     }
 }
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    //ステージ管理
+    var stageManager: SMStageManage = SMStageManage()
+    
     //モーション管理
     var motionManager: CMMotionManager!
     //タッチ開始ポイント
@@ -59,9 +80,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //敵を倒した数
     var killcount = 0
     
-    //背景
-    var bg = SKSpriteNode(imageNamed: "background2")
-    
     //プレイヤーテクスチャ
     var playerTexture = SKTexture(imageNamed: "player1")
     var playerTexture2 = SKTexture(imageNamed: "player2")
@@ -69,8 +87,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //剣
     var sword: SMSwordNode!
     
-    //敵１のテクスチャ
-    var enemy1Texture = SKTexture(imageNamed: "enemy1")
     
     //剣配置用ノード
     var swordsNode = SKNode()
@@ -81,26 +97,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-        //背景表示
-        bg.position = CGPoint(x:0, y:0)
-        bg.texture?.filteringMode = SKTextureFilteringMode.Nearest
-        bg.anchorPoint = CGPoint(x:0.5, y:0) //中央に合わせる
-        bg.zPosition = -100
-        self.addChild(bg)
-        //self.size = CGSize(width: 320, height: 568)
-        //bg.size = self.size
-        makeBgParticle()
-        
-        //背景を徐々に下にスクロールする
-        var bgScrollAction = SKAction.moveToY(-60.0, duration: 10) //指定座標まで移動
-        var bgScrollRevAction = SKAction.moveToY(0, duration: 10)
-        var bgScroll = SKAction.repeatActionForever(SKAction.sequence([bgScrollAction,bgScrollRevAction]))
-        bg.runAction(bgScroll)
-        var scaleAction1 = SKAction.scaleTo(0.97, duration: 2)
-        var scaleAction2 = SKAction.scaleTo(1.0, duration: 2)
-        var scaleAction3 = SKAction.scaleTo(1.03, duration: 2)
-        var scaleRepeat = SKAction.repeatActionForever(SKAction.sequence([scaleAction1,scaleAction2,scaleAction3]))
-        bg.runAction(scaleRepeat)
+        frameWidth = self.frame.width
+        frameHeight = self.frame.height
         
         //重力の設定
         self.physicsWorld.gravity = CGVector(dx:0.0, dy:-0.10)
@@ -114,11 +112,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(scoreLabel)
         scoreLabel.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.size.height - 30)
         
+        //背景管理用ノード
+        bgNode.position = CGPoint(x:0, y:0)
+        self.addChild(bgNode)
+        bgNode.zPosition = -100
         //剣配置用ノード
         swordsNode.position = CGPoint(x:0, y:0)
-        //swordsNode.anchorPoint = CGPoint(x:0, y:0) //中央に合わせる
         self.addChild(swordsNode)
-        //swordsNode.size = self.size
         swordsNode.zPosition = 2
         
         //敵配置用ノード
@@ -132,7 +132,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.makePlayer(self,textures:[playerTexture,playerTexture2])
         
         //敵を作成する
-        makeEnemySample()
+        //makeEnemySample()
         
         //BGMを鳴らす
         //let bgSoundRepeat = SKAction.repeatActionForever(bgSound)
@@ -141,6 +141,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //モーションセンサーを初期化する
         motionInit()
         
+        //ステージの作成処理
+        stageManager.makeStage()
     }
     
     //モーションセンサーの初期化
@@ -195,12 +197,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     //敵のサンプルを作る
+    /*
     func makeEnemySample() {
         for i in 0..<5 {
             let enemy = SMEnemyCube(texture: enemy1Texture)
             enemy.makeEnemy()
         }
     }
+*/
     
     //タッチした時に呼び出される
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -263,10 +267,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        
+        /*
         if makeenemyflg {
             makeenemyflg = false
             makeEnemySample()
         }
+*/
     }
     
     
@@ -354,13 +361,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         fadeRemoveNode(enemynode)
     }
     
-    //背景用パーティクル作成
-    func makeBgParticle() {
-        let particle = SKEmitterNode(fileNamed: "scrollParticle.sks")
-        bg.addChild(particle)
-        
-        particle.position = CGPoint(x: CGFloat(self.frame.size.width / 2), y: CGFloat(self.frame.height))
-    }
     //攻撃ヒットのパーティクルを作る
     func makeHitParticle(point:CGPoint,node:SKNode) {
         makeParticleNode(point, filename:"hitParticle.sks", node:node)
