@@ -120,4 +120,9 @@ class SMSwordNode: SKSpriteNode {
         SMNodeUtil.makeMagicParticle(startPoint, node: parentnode)
         SMNodeUtil.makeSparkParticle(point, node: self)
     }
+    
+    //デイニシャライザ
+    deinit {
+        println("sword deinit")
+    }
 }

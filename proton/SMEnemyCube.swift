@@ -18,9 +18,12 @@ class SMEnemyCube: SMEnemyNode {
         var randX = arc4random_uniform(320)
         var randY = arc4random_uniform(100)
         x = CGFloat(randX)
-        y = CGFloat(728 - CGFloat(randY))
+        y = CGFloat(frameHeight - CGFloat(randY) + 50)
         let location = CGPoint(x:x, y:y)
         super.init(texture: texture, type: EnemyType.CUBE, location: location, parentnode: enemysNode)
+        self.hitpoint = 1
+        self.diffence = 0
+        self.score = 10
     }
     required override init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -34,6 +34,13 @@ var explodeSound = SKAction.playSoundFileNamed("explode.mp3", waitForCompletion:
 var magicSound = SKAction.playSoundFileNamed("magic_circle.mp3", waitForCompletion: false)
 var kiruSound = SKAction.playSoundFileNamed("kiru.mp3", waitForCompletion: false)
 
+//ラベル
+let gameoverLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
+let scoreLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
+
+//スコア
+var totalScore: Int = 0
+
 //ステージファクトリ
 let stageFactory: SMStageFactory = SMStageFactory()
 //敵ファクトリ
@@ -46,32 +53,26 @@ var frameWidth: CGFloat!
 //フレーム高さ
 var frameHeight: CGFloat!
 
+//ステージ管理
+var stageManager: SMStageManage = SMStageManage()
+
 extension SKScene{
     
     /*
     度数からラジアンに変換するメソッド.
     */
-    func degreeToRadian(degree : Double!) -> CGFloat{
+    class func degreeToRadian(degree : Double!) -> CGFloat{
         
         return CGFloat(degree) / CGFloat(180.0 * M_1_PI)
         
     }
 }
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    //ステージ管理
-    var stageManager: SMStageManage = SMStageManage()
-    
     //モーション管理
     var motionManager: CMMotionManager!
     //タッチ開始ポイント
     var touchStartPoint: CGPoint! = nil
-    //ラベル
-    let gameoverLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
-    let scoreLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
     
-    //スコア
-    var score: UInt = 0
-
     //ゲームオーバーフラグ
     var gameoverflg = false
     //敵作成フラグ
@@ -86,7 +87,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //剣
     var sword: SMSwordNode!
-    
     
     //剣配置用ノード
     var swordsNode = SKNode()
@@ -105,7 +105,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
         
         //ラベルの表示
-        scoreLabel.text = "\(score)"
+        scoreLabel.text = "\(totalScore)"
         scoreLabel.fontSize = 25
         scoreLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         scoreLabel.zPosition = 1000
@@ -256,8 +256,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //ゲームのリスタート処理
     func restart() {
         //スコアを0にする
-        score = 0
-        scoreLabel.text = "\(score)"
+        totalScore = 0
+        scoreLabel.text = "\(totalScore)"
         
         //ゲームオーバラベルを消す
         
@@ -292,18 +292,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //剣の衝突
             //敵に剣が当たったら消す
             if (contact.bodyA.categoryBitMask & enemyType == enemyType) {
-                contact.bodyB.categoryBitMask = ColliderType.None
-                self.runAction(sasaruSound)
-                killEnemy(contact.bodyA.node)
+                let enemy: SMEnemyNode = contact.bodyA.node as! SMEnemyNode
+                let sword: SMSwordNode = contact.bodyB.node as! SMSwordNode
+                enemy.hitSword(sword)
             } else if (contact.bodyB.categoryBitMask & enemyType == enemyType) {
-                contact.bodyA.categoryBitMask = ColliderType.None
-                self.runAction(sasaruSound)
-                killEnemy(contact.bodyB.node)
+                //contact.bodyA.categoryBitMask = ColliderType.None
+                //self.runAction(sasaruSound)
+                //killEnemy(contact.bodyB.node)
+                let enemy: SMEnemyNode = contact.bodyB.node as! SMEnemyNode
+                let sword: SMSwordNode = contact.bodyA.node as! SMSwordNode
+                enemy.hitSword(sword)
             } else if contact.bodyA.categoryBitMask & ColliderType.None == ColliderType.None ||
                 contact.bodyB.categoryBitMask & ColliderType.None == ColliderType.None {
-                //剣と剣の衝突
-                //contact.bodyA.categoryBitMask = ColliderType.None
-                //contact.bodyB.categoryBitMask = ColliderType.None
+                //剣とNoneの衝突
                 self.runAction(swordSound)
             }
         } else if contact.bodyA.categoryBitMask & playerType == playerType ||
@@ -346,6 +347,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         fadeRemoveNode(player)
     }
     
+    /*
     //敵を倒した時の処理
     func killEnemy(enemynode: SKNode!) {
         enemynode.physicsBody?.categoryBitMask = ColliderType.None
@@ -365,6 +367,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func makeHitParticle(point:CGPoint,node:SKNode) {
         makeParticleNode(point, filename:"hitParticle.sks", node:node)
     }
+*/
     //敵消滅のパーティクルを作る
     func makeKillParticle(node:SKNode) {
         let point: CGPoint = CGPoint(x:0, y:0)

@@ -13,13 +13,15 @@ import SpriteKit
 class SMEnemyFactory {
     //敵１のテクスチャ
     var enemy1Texture = SKTexture(imageNamed: "enemy1")
+    var enemy2Texture = SKTexture(imageNamed: "enemy2")
     
     func create(type:EnemyType) -> SMEnemyNode? {
         var enemy:SMEnemyNode? = nil
         switch type {
         case .CUBE:
             enemy = SMEnemyCube(texture: enemy1Texture) as SMEnemyNode?
-            break
+        case .FLY:
+            enemy = SMEnemyFly(texture: enemy2Texture) as SMEnemyNode?
         default:
             break
         }

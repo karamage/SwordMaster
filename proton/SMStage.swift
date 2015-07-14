@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 //ステージ情報
-class SMStage {
+class SMStage: SMEnemyGroupDelegate {
     //背景
     var background: SKSpriteNode!
     //背景音楽
@@ -34,6 +34,10 @@ class SMStage {
         self.boss = boss
         self.bossEnemyGroups = bossEnemyGroups
         self.bossSound = bossSound
+        //通知用
+        for enemyGroup in enemyGroups! {
+            enemyGroup.delegate = self
+        }
     }
     
     //ステージの作成
@@ -78,6 +82,16 @@ class SMStage {
     //次の敵へ
     func nextEnemyGroup() {
         currentEnemyGroupNum++
+    }
+    
+    func nextEnemyGroupDelegate() {
+        nextEnemyGroup()
+        if currentEnemyGroupNum < enemyGroups.count {
+            makeEnemyGroup()
+        } else {
+            //ボスへ
+            println("make boss")
+        }
     }
     
 }

@@ -35,6 +35,10 @@
 		93D1D7AF1B538DC6000EC266 /* SMSwordFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7AE1B538DC6000EC266 /* SMSwordFactory.swift */; };
 		93D1D7B11B538FE3000EC266 /* SMEnemyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7B01B538FE3000EC266 /* SMEnemyFactory.swift */; };
 		93D1D7B31B539097000EC266 /* SMStageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7B21B539097000EC266 /* SMStageFactory.swift */; };
+		93D1D7B51B54B450000EC266 /* SMEnemyGroupDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7B41B54B450000EC266 /* SMEnemyGroupDelegate.swift */; };
+		93D1D7B71B54BCD7000EC266 /* EnemyGroupType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7B61B54BCD7000EC266 /* EnemyGroupType.swift */; };
+		93D1D7B91B54C57A000EC266 /* SMEnemyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7B81B54C57A000EC266 /* SMEnemyDelegate.swift */; };
+		93D1D7BB1B54E240000EC266 /* SMEnemyFly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7BA1B54E240000EC266 /* SMEnemyFly.swift */; };
 		93E9A0681B4D228A00B44478 /* magicParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A0671B4D228A00B44478 /* magicParticle.sks */; };
 		93E9A06D1B4D4D9300B44478 /* fade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A0691B4D4D9300B44478 /* fade.mp3 */; };
 		93E9A06E1B4D4D9300B44478 /* shot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A06A1B4D4D9300B44478 /* shot.mp3 */; };
@@ -89,6 +93,10 @@
 		93D1D7AE1B538DC6000EC266 /* SMSwordFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSwordFactory.swift; sourceTree = "<group>"; };
 		93D1D7B01B538FE3000EC266 /* SMEnemyFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMEnemyFactory.swift; path = ../SMEnemyFactory.swift; sourceTree = "<group>"; };
 		93D1D7B21B539097000EC266 /* SMStageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMStageFactory.swift; sourceTree = "<group>"; };
+		93D1D7B41B54B450000EC266 /* SMEnemyGroupDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyGroupDelegate.swift; sourceTree = "<group>"; };
+		93D1D7B61B54BCD7000EC266 /* EnemyGroupType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnemyGroupType.swift; path = ../EnemyGroupType.swift; sourceTree = "<group>"; };
+		93D1D7B81B54C57A000EC266 /* SMEnemyDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyDelegate.swift; sourceTree = "<group>"; };
+		93D1D7BA1B54E240000EC266 /* SMEnemyFly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyFly.swift; sourceTree = "<group>"; };
 		93E9A0671B4D228A00B44478 /* magicParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = magicParticle.sks; sourceTree = "<group>"; };
 		93E9A0691B4D4D9300B44478 /* fade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fade.mp3; sourceTree = "<group>"; };
 		93E9A06A1B4D4D9300B44478 /* shot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shot.mp3; sourceTree = "<group>"; };
@@ -149,6 +157,7 @@
 		93EF1AAC1B4BC01800B1FC93 /* proton */ = {
 			isa = PBXGroup;
 			children = (
+				93D1D7B61B54BCD7000EC266 /* EnemyGroupType.swift */,
 				93D1D7B01B538FE3000EC266 /* SMEnemyFactory.swift */,
 				93D1D7B21B539097000EC266 /* SMStageFactory.swift */,
 				93D1D7961B513933000EC266 /* magic_circle.mp3 */,
@@ -166,9 +175,12 @@
 				93EF1AB31B4BC01800B1FC93 /* GameScene.swift */,
 				93D1D7AA1B534BA4000EC266 /* SMEnemyGroup.swift */,
 				93D1D7A81B5345F5000EC266 /* SMStage.swift */,
+				93D1D7B81B54C57A000EC266 /* SMEnemyDelegate.swift */,
 				93D1D7AC1B534F5D000EC266 /* SMStageManage.swift */,
+				93D1D7B41B54B450000EC266 /* SMEnemyGroupDelegate.swift */,
 				93D1D7A41B523CCF000EC266 /* SMEnemyNode.swift */,
 				93D1D7A61B525250000EC266 /* SMEnemyCube.swift */,
+				93D1D7BA1B54E240000EC266 /* SMEnemyFly.swift */,
 				937056DB1B4FB750009BBAC2 /* hitParticle.sks */,
 				937056D71B4FA89B009BBAC2 /* EnemyType.swift */,
 				937056D51B4FA28E009BBAC2 /* SMAnimationUtil.swift */,
@@ -338,12 +350,16 @@
 			files = (
 				93EF1AB41B4BC01800B1FC93 /* GameScene.swift in Sources */,
 				937056D41B4F8A1F009BBAC2 /* SMNodeUtil.swift in Sources */,
+				93D1D7BB1B54E240000EC266 /* SMEnemyFly.swift in Sources */,
 				937056D21B4F8398009BBAC2 /* SwordType.swift in Sources */,
 				937056DA1B4FA933009BBAC2 /* SMSwordNode.swift in Sources */,
 				93D1D7AB1B534BA4000EC266 /* SMEnemyGroup.swift in Sources */,
+				93D1D7B91B54C57A000EC266 /* SMEnemyDelegate.swift in Sources */,
 				937056D01B4F7F56009BBAC2 /* ColliderType.swift in Sources */,
 				93D1D7AF1B538DC6000EC266 /* SMSwordFactory.swift in Sources */,
 				93D1D7A71B525250000EC266 /* SMEnemyCube.swift in Sources */,
+				93D1D7B71B54BCD7000EC266 /* EnemyGroupType.swift in Sources */,
+				93D1D7B51B54B450000EC266 /* SMEnemyGroupDelegate.swift in Sources */,
 				93D1D7B11B538FE3000EC266 /* SMEnemyFactory.swift in Sources */,
 				93EF1AB61B4BC01800B1FC93 /* GameViewController.swift in Sources */,
 				937056CE1B4F75D9009BBAC2 /* SMPlayerNode.swift in Sources */,
