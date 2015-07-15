@@ -13,4 +13,6 @@ enum EnemyGroupType {
     case ALLDEAD
     //一定時間立つまで次に進まない
     case INTERVAL
+    //ボス
+    case BOSS
 }

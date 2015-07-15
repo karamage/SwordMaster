@@ -25,7 +25,6 @@ let stage1BgSound = SKAction.playSoundFileNamed("sound.mp3", waitForCompletion: 
 var stage1Background = SKSpriteNode(imageNamed: "background2")
 
 //効果音
-var shotSound = SKAction.playSoundFileNamed("shot.mp3", waitForCompletion: false)
 var hitSound = SKAction.playSoundFileNamed("hit.mp3", waitForCompletion: false)
 var sasaruSound = SKAction.playSoundFileNamed("sasaru.mp3", waitForCompletion: false)
 var swordSound = SKAction.playSoundFileNamed("sword.mp3", waitForCompletion: false)
@@ -55,6 +54,9 @@ var frameHeight: CGFloat!
 
 //ステージ管理
 var stageManager: SMStageManage = SMStageManage()
+
+//剣配置用ノード
+var swordsNode = SKNode()
 
 extension SKScene{
     
@@ -88,10 +90,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //剣
     var sword: SMSwordNode!
     
-    //剣配置用ノード
-    var swordsNode = SKNode()
-    //剣のテクスチャ
-    var swordTexture = SKTexture(imageNamed: "swordex")
     
     //画面の初期化処理
     override func didMoveToView(view: SKView) {
@@ -221,7 +219,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for touch: AnyObject in touches {
             touchStartPoint = touch.locationInNode(self)
             //剣を作成する
-            sword = SMSwordNode(texture:swordTexture, type:player.swordType, shotSound:shotSound, location:touchStartPoint, parentnode:swordsNode)
+            let randtype = randomSwordType()
+            sword = swordFactory.create(randtype, position: touchStartPoint)
+            //sword = SMSwordNode(texture:swordTexture, type: player.swordType, shotSound:shotSound, location:touchStartPoint, parentnode:swordsNode)
             sword.makeSword()
         }
     }
@@ -305,7 +305,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             } else if contact.bodyA.categoryBitMask & ColliderType.None == ColliderType.None ||
                 contact.bodyB.categoryBitMask & ColliderType.None == ColliderType.None {
                 //剣とNoneの衝突
-                self.runAction(swordSound)
+                //self.runAction(swordSound)
             }
         } else if contact.bodyA.categoryBitMask & playerType == playerType ||
             contact.bodyB.categoryBitMask & playerType == playerType {

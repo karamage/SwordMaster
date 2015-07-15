@@ -8,11 +8,10 @@
 
 import UIKit
 import SpriteKit
-import AVFoundation
 
 
-class GameViewController: UIViewController, AVAudioPlayerDelegate{
-    var audioPlayer:AVAudioPlayer?
+class GameViewController: UIViewController{
+    //var audioPlayer:AVAudioPlayer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +32,7 @@ class GameViewController: UIViewController, AVAudioPlayerDelegate{
         
         skView.presentScene(scene)
         
+        /*
         // 再生する audio ファイルのパスを取得
         let audioPath = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("sound", ofType: "mp3")!)
         
@@ -46,8 +46,10 @@ class GameViewController: UIViewController, AVAudioPlayerDelegate{
         }
         
         audioPlayer!.delegate = self
+        audioPlayer?.numberOfLoops = -1
         audioPlayer!.prepareToPlay()
         audioPlayer!.play()
+*/
     }
 
     override func didReceiveMemoryWarning() {

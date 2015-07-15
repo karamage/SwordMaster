@@ -37,6 +37,7 @@ class SMEnemyNode: SKSpriteNode {
 */
         super.init(texture: texture, color:color, size:texture.size())
         self.position = CGPoint(x:location.x, y:location.y)
+        self.zPosition = 2
     }
     required override init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -62,6 +63,7 @@ class SMEnemyNode: SKSpriteNode {
     func hitSword(sword: SMSwordNode) {
         sword.physicsBody?.categoryBitMask = ColliderType.None
         self.runAction(sasaruSound)
+        SMNodeUtil.makeParticleNode(self.position, filename:"hitParticle.sks", node:bgNode)
         hitpoint -= (sword.attack - diffence)
         if hitpoint <= 0 {
             //敵が死んだ時の処理
@@ -71,7 +73,6 @@ class SMEnemyNode: SKSpriteNode {
     func dead() {
         self.physicsBody?.categoryBitMask = ColliderType.None
         self.removeAllActions()
-        SMNodeUtil.makeParticleNode(self.position, filename:"hitParticle.sks", node:bgNode)
         totalScore = totalScore + self.score
         scoreLabel.text = "\(totalScore)"
         SMNodeUtil.fadeRemoveNode(self)

@@ -14,6 +14,7 @@ class SMNodeUtil {
     //パーティクル作成
     class func makeParticleNode(position:CGPoint?, filename: String, hide: Bool = true, node: SKNode) {
         var particle = SKEmitterNode(fileNamed: filename)
+        particle.zPosition = 100
         node.addChild(particle)
         
         if let tmp = position {

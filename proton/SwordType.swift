@@ -9,6 +9,25 @@
 import Foundation
 
 //剣の種類
-enum SwordType {
-    case EXCALIBUR
+enum SwordType: Int {
+    case EXCALIBUR = 0
+    case KATANA
+    case ZWEIHANDER
+    case PANZERSTECHER
+}
+
+func randomSwordType() -> SwordType {
+    var rand = arc4random_uniform(3)
+    switch rand {
+    case 0:
+        return SwordType.EXCALIBUR
+    case 1:
+        return SwordType.KATANA
+    case 2:
+        return SwordType.ZWEIHANDER
+    case 3:
+        return SwordType.PANZERSTECHER
+    default:
+        return SwordType.EXCALIBUR
+    }
 }

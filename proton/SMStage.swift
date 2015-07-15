@@ -8,31 +8,35 @@
 
 import Foundation
 import SpriteKit
+import AVFoundation
 
+//, AVAudioPlayerDelegate
 //ステージ情報
 class SMStage: SMEnemyGroupDelegate {
+    //音楽プレイヤー
+    var audioPlayer:AVAudioPlayer?
     //背景
     var background: SKSpriteNode!
     //背景音楽
-    var bgSound: SKAction!
+    var bgSound: String!
     //敵グループの配列
     var enemyGroups: [SMEnemyGroup]!
     var currentEnemyGroupNum: Int = 0
     
     //ボス
-    var boss: SMEnemyNode!
+    //var boss: SMEnemyNode!
     //ボスと同時に出現する雑魚敵
-    var bossEnemyGroups: [SMEnemyGroup]!
+    var bossEnemyGroup: SMEnemyGroup!
     
     //ボス音楽
-    var bossSound: SKAction!
+    var bossSound: String!
     
-    init(background: SKSpriteNode, bgSound: SKAction, enemyGroups: [SMEnemyGroup]?, boss: SMEnemyNode?, bossEnemyGroups: [SMEnemyGroup]?, bossSound: SKAction?) {
+    init(background: SKSpriteNode, bgSound: String, enemyGroups: [SMEnemyGroup]?,  bossEnemyGroup: SMEnemyGroup?, bossSound: String?) {
         self.background = background
         self.bgSound = bgSound
         self.enemyGroups = enemyGroups
-        self.boss = boss
-        self.bossEnemyGroups = bossEnemyGroups
+        //self.boss = boss
+        self.bossEnemyGroup = bossEnemyGroup
         self.bossSound = bossSound
         //通知用
         for enemyGroup in enemyGroups! {
@@ -64,6 +68,27 @@ class SMStage: SMEnemyGroupDelegate {
         
         //敵の集団を作成
         makeEnemyGroup()
+        
+        startBgm(self.bgSound)
+    }
+    
+    func startBgm(filename: String) {
+        // 再生する audio ファイルのパスを取得
+        let audioPath = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(filename, ofType: "mp3")!)
+        
+        // auido を再生するプレイヤーを作成する
+        var audioError:NSError?
+        audioPlayer = AVAudioPlayer(contentsOfURL: audioPath, error:&audioError)
+        
+        // エラーが起きたとき
+        if let error = audioError {
+            println("Error \(error.localizedDescription)")
+        }
+        
+        //audioPlayer!.delegate = self
+        audioPlayer?.numberOfLoops = -1
+        audioPlayer!.prepareToPlay()
+        audioPlayer!.play()
     }
     
     //背景用パーティクル作成
@@ -90,8 +115,15 @@ class SMStage: SMEnemyGroupDelegate {
             makeEnemyGroup()
         } else {
             //ボスへ
-            println("make boss")
+            makeBoss()
         }
+    }
+    
+    func makeBoss() {
+        //BGM一旦停止
+        audioPlayer!.stop()
+        startBgm(bossSound)
+        bossEnemyGroup.makeEnemyGroup()
     }
     
 }
