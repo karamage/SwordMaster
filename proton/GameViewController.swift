@@ -16,12 +16,13 @@ class GameViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let scene = GameScene()
+        //タイトル画面表示
+        let scene = GameTitleScene()
         
         // Configure the view.
         let skView = self.view as! SKView
-        skView.showsFPS = true
-        skView.showsNodeCount = true
+        //skView.showsFPS = true
+        //skView.showsNodeCount = true
         
         /* Sprite Kit applies additional optimizations to improve rendering performance */
         skView.ignoresSiblingOrder = true
@@ -31,25 +32,6 @@ class GameViewController: UIViewController{
         scene.size = skView.frame.size
         
         skView.presentScene(scene)
-        
-        /*
-        // 再生する audio ファイルのパスを取得
-        let audioPath = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("sound", ofType: "mp3")!)
-        
-        // auido を再生するプレイヤーを作成する
-        var audioError:NSError?
-        audioPlayer = AVAudioPlayer(contentsOfURL: audioPath, error:&audioError)
-        
-        // エラーが起きたとき
-        if let error = audioError {
-            println("Error \(error.localizedDescription)")
-        }
-        
-        audioPlayer!.delegate = self
-        audioPlayer?.numberOfLoops = -1
-        audioPlayer!.prepareToPlay()
-        audioPlayer!.play()
-*/
     }
 
     override func didReceiveMemoryWarning() {

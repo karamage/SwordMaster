@@ -49,4 +49,19 @@ class SMNodeUtil {
         var fadeAction = SKAction.fadeAlphaTo(0, duration: 1.0)
         removenode.runAction(fadeAction)
     }
+    //10秒後にフェードしながらノードを消す
+    class func fadeRemoveNode10(removenode: SKNode!) {
+        //１秒後に消す
+        var removeAction = SKAction.removeFromParent()
+        var durationAction = SKAction.waitForDuration(5.50)
+        var sequenceAction = SKAction.sequence([durationAction,removeAction])
+        removenode.runAction(sequenceAction)
+        
+        removenode.alpha = 1
+        
+        /*
+        var fadeAction = SKAction.fadeAlphaTo(0, duration: 20.0)
+        removenode.runAction(fadeAction)
+*/
+    }
 }

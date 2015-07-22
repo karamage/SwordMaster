@@ -59,18 +59,33 @@ class SMEnemyNode: SKSpriteNode {
         }
         
     }
+    func makeEnegy(num: Int) {
+        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode!, elapsedTime: CGFloat) -> Void in
+            //弾発射
+            var point = CGPoint(x: self.position.x , y: self.position.y)
+            for i in 0..<num {
+                var enegy = enegyFactory.create(point)
+                enegy.makeEnegy()
+                enegy.shotEnegyRandom()
+            }
+        })
+        let waitAction = SKAction.waitForDuration(2.0)
+        self.runAction(SKAction.repeatActionForever(SKAction.sequence([waitAction,custumAction])))
+    }
     //剣が当たった時の処理
     func hitSword(sword: SMSwordNode) {
         sword.physicsBody?.categoryBitMask = ColliderType.None
         self.runAction(sasaruSound)
-        SMNodeUtil.makeParticleNode(self.position, filename:"hitParticle.sks", node:bgNode)
         hitpoint -= (sword.attack - diffence)
         if hitpoint <= 0 {
             //敵が死んだ時の処理
             dead()
+        } else {
+            SMNodeUtil.makeParticleNode(self.position, filename:"hitParticle.sks", node:bgNode)
         }
     }
     func dead() {
+        SMNodeUtil.makeParticleNode(self.position, filename:"deadParticle.sks", node:bgNode)
         self.physicsBody?.categoryBitMask = ColliderType.None
         self.removeAllActions()
         totalScore = totalScore + self.score

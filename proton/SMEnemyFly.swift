@@ -22,7 +22,7 @@ class SMEnemyFly: SMEnemyNode {
         y = CGFloat(frameHeight - CGFloat(randY) + 50)
         let location = CGPoint(x:x, y:y)
         super.init(texture: texture, type: EnemyType.FLY, location: location, parentnode: enemysNode)
-        self.hitpoint = 3
+        self.hitpoint = 2
         self.diffence = 0
         self.score = 20
     }
@@ -32,9 +32,9 @@ class SMEnemyFly: SMEnemyNode {
     
     override func makeEnemy() {
         super.makeEnemy()
-        //self.physicsBody?.dynamic = false
+        self.physicsBody?.dynamic = true
         self.physicsBody?.restitution = 0.1
-        self.physicsBody?.density = 100.0
+        self.physicsBody?.density = 10.0
         
         var rand1 = Double(arc4random_uniform(100)) * 0.01
         var rand2 = Double(arc4random_uniform(100)) * 0.01
@@ -45,7 +45,8 @@ class SMEnemyFly: SMEnemyNode {
         let wait2 = SKAction.waitForDuration(rand2)
         let action2 = SKAction.moveBy(CGVector(dx: -100, dy: 0), duration: 0.5)
         
-        self.runAction(SKAction.sequence([wait1,action1,wait2,action2,wait2,action2,wait1,action1]))
+        self.runAction(SKAction.repeatActionForever(SKAction.sequence([wait1,action1,wait2,action2,wait2,action2,wait1,action1])))
         
+        makeEnegy(3)
     }
 }

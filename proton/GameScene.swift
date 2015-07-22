@@ -12,11 +12,20 @@ import CoreMotion
 //プレイヤー
 var player: SMPlayerNode!
 
+//ステータス欄
+var statusNode: SKNode = SKNode()
+
+//すべてのベースノード
+var world: SKNode = SKNode()
+
 //背景用ノード
 var bgNode: SKNode = SKNode()
 
 //敵配置用ノード
 var enemysNode = SKNode()
+
+//剣配置用ノード
+var swordsNode = SKNode()
 
 //BGM
 let stage1BgSound = SKAction.playSoundFileNamed("sound.mp3", waitForCompletion: false)
@@ -33,6 +42,9 @@ var explodeSound = SKAction.playSoundFileNamed("explode.mp3", waitForCompletion:
 var magicSound = SKAction.playSoundFileNamed("magic_circle.mp3", waitForCompletion: false)
 var kiruSound = SKAction.playSoundFileNamed("kiru.mp3", waitForCompletion: false)
 
+//テクスチャ
+var swordIconTexture = SKTexture(imageNamed: "sword_icon")
+
 //ラベル
 let gameoverLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
 let scoreLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
@@ -44,6 +56,7 @@ var totalScore: Int = 0
 let stageFactory: SMStageFactory = SMStageFactory()
 //敵ファクトリ
 let enemyFactory: SMEnemyFactory = SMEnemyFactory()
+let enegyFactory: SMEnegyFactory = SMEnegyFactory()
 //剣ファクトリ
 let swordFactory: SMSwordFactory = SMSwordFactory()
 
@@ -55,8 +68,6 @@ var frameHeight: CGFloat!
 //ステージ管理
 var stageManager: SMStageManage = SMStageManage()
 
-//剣配置用ノード
-var swordsNode = SKNode()
 
 extension SKScene{
     
@@ -90,10 +101,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //剣
     var sword: SMSwordNode!
     
+    //カメラ
+    var camera: SKNode = SKNode()
     
     //画面の初期化処理
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+        
+        //self.anchorPoint = CGPointMake(0.5, 0.5)
+        //大本のノード
+        world.name = "world"
+        self.addChild(world)
+        
+        //カメラを設定する
+        camera.name = "camera"
+        world.addChild(camera)
         
         frameWidth = self.frame.width
         frameHeight = self.frame.height
@@ -112,8 +134,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //背景管理用ノード
         bgNode.position = CGPoint(x:0, y:0)
-        self.addChild(bgNode)
+        world.addChild(bgNode)
         bgNode.zPosition = -100
+        
         //剣配置用ノード
         swordsNode.position = CGPoint(x:0, y:0)
         self.addChild(swordsNode)
@@ -121,13 +144,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //敵配置用ノード
         enemysNode.position = CGPoint(x:0, y:0)
-        self.addChild(enemysNode)
+        world.addChild(enemysNode)
         enemysNode.zPosition = 2
         
         
         //プレイヤーを作成
         player = SMPlayerNode(texture: playerTexture)
         player.makePlayer(self,textures:[playerTexture,playerTexture2])
+        
+        //ステータス
+        statusNode.zPosition = 1000
+        statusNode.position = CGPoint(x: 10, y: 10)
+        self.addChild(statusNode)
         
         //敵を作成する
         //makeEnemySample()
@@ -141,6 +169,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //ステージの作成処理
         stageManager.makeStage()
+    }
+    
+    //カメラの移動処理
+    override func didSimulatePhysics(){
+        var camera:SKNode = self.childNodeWithName("//camera")!
+        camera.position = CGPointMake(player.position.x - self.frame.width/2, camera.position.y)
+        self.centerOnNode(camera)
+    }
+    func centerOnNode(node:SKNode) {
+        if let scene:SKScene = node.scene
+        {
+            var cameraPositionInScene:CGPoint = scene.convertPoint(node.position, fromNode: node.parent!)
+            node.parent!.position = CGPointMake(node.parent!.position.x - cameraPositionInScene.x,                                       node.parent!.position.y - cameraPositionInScene.y);
+        }
     }
     
     //モーションセンサーの初期化
@@ -168,7 +210,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             var moveAction: SKAction!
             var tmpx: CGFloat = 0.0
             if player.position.x >= 0 && player.position.x <= self.frame.width {
-                positionx = CGFloat(data.acceleration.x * 50)
+                positionx = CGFloat(data.acceleration.x * 20)
                 moveAction = SKAction.moveByX(positionx, y:player.position.y, duration: 0.1)
             } else {
                 //画面端の場合はそれ以上進めないようにする
@@ -177,7 +219,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 } else if player.position.x >= self.frame.width {
                     tmpx = self.frame.width
                 }
-                moveAction = SKAction.moveToX(tmpx, duration: 0)
+                moveAction = SKAction.moveToX(tmpx, duration: 0.1)
             }
             player.runAction(moveAction)
             
@@ -193,17 +235,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         withHandler: accelerometerHandler)
     }
     
-    
-    //敵のサンプルを作る
-    /*
-    func makeEnemySample() {
-        for i in 0..<5 {
-            let enemy = SMEnemyCube(texture: enemy1Texture)
-            enemy.makeEnemy()
-        }
-    }
-*/
-    
     //タッチした時に呼び出される
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
@@ -216,8 +247,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let tmp = touchStartPoint {
             return
         }
+        if player.swordNum <= 0 {
+            return
+        }
         for touch: AnyObject in touches {
-            touchStartPoint = touch.locationInNode(self)
+            var touchPoint = touch.locationInNode(self)
+            if touchPoint.y > 300 {
+                continue
+            }
+            player.countDownSword()
+            touchStartPoint = touchPoint
             //剣を作成する
             let randtype = randomSwordType()
             sword = swordFactory.create(randtype, position: touchStartPoint)
@@ -255,6 +294,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //ゲームのリスタート処理
     func restart() {
+        /*
         //スコアを0にする
         totalScore = 0
         scoreLabel.text = "\(totalScore)"
@@ -263,6 +303,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //フラグを戻す
         gameoverflg = false
+*/
+        scoreLabel.removeAllActions()
+        scoreLabel.removeAllChildren()
+        scoreLabel.removeFromParent()
+        bgNode.removeAllActions()
+        bgNode.removeAllChildren()
+        bgNode.removeFromParent()
+        enemysNode.removeAllActions()
+        enemysNode.removeAllChildren()
+        enemysNode.removeFromParent()
+        swordsNode.removeAllActions()
+        swordsNode.removeAllChildren()
+        swordsNode.removeFromParent()
+        world.removeAllActions()
+        world.removeAllChildren()
+        world.removeFromParent()
+        statusNode.removeAllActions()
+        statusNode.removeAllChildren()
+        statusNode.removeFromParent()
+        
+        enemysNode.speed = 1.0
+        
+        //タイトル画面表示
+        let scene = GameTitleScene()
+        
+        // Configure the view.
+        let skView = self.view! as! SKView
+        
+        /* Sprite Kit applies additional optimizations to improve rendering performance */
+        skView.ignoresSiblingOrder = true
+        
+        /* Set the scale mode to scale to fit the window */
+        scene.scaleMode = .AspectFill
+        scene.size = skView.frame.size
+        
+        skView.presentScene(scene)
     }
    
     override func update(currentTime: CFTimeInterval) {
@@ -296,9 +372,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let sword: SMSwordNode = contact.bodyB.node as! SMSwordNode
                 enemy.hitSword(sword)
             } else if (contact.bodyB.categoryBitMask & enemyType == enemyType) {
-                //contact.bodyA.categoryBitMask = ColliderType.None
-                //self.runAction(sasaruSound)
-                //killEnemy(contact.bodyB.node)
                 let enemy: SMEnemyNode = contact.bodyB.node as! SMEnemyNode
                 let sword: SMSwordNode = contact.bodyA.node as! SMSwordNode
                 enemy.hitSword(sword)
@@ -322,6 +395,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //ゲームオーバーの処理
     func gameover() {
+        stageManager.currentStage.audioPlayer?.stop()
+        
         //フラグをtrueにする
         gameoverflg = true
         
@@ -340,8 +415,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.runAction(explodeSound)
         
         //やられたアニメーション作成
-        
-        //プレイヤーのアニメーション削除
+        SMNodeUtil.makeParticleNode(player.position, filename: "deadParticle.sks", hide: true, node: bgNode)
         
         //プレイヤー削除
         fadeRemoveNode(player)

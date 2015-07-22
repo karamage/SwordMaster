@@ -33,7 +33,7 @@ class SMEnemyCube: SMEnemyNode {
         super.makeEnemy()
         
         //プレイヤーに迫って移動してくるようにする
-        var action = SKAction.moveTo(player.position, duration: 20)
+        var action = SKAction.moveTo(player.position, duration: 10)
         self.runAction(action)
         
         var randY = arc4random_uniform(100)

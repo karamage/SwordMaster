@@ -14,7 +14,7 @@ class SMSwordNode: SKSpriteNode {
     var type: SwordType
     var shotSound: SKAction
     var startPoint: CGPoint
-    var parentnode: SKNode
+    weak var parentnode: SKNode!
     var circle: SKSpriteNode
     var swipex: Int = 0
     
@@ -106,12 +106,18 @@ class SMSwordNode: SKSpriteNode {
         
         //2秒後に消す
         var removeAction = SKAction.removeFromParent()
-        var durationAction = SKAction.waitForDuration(1.50)
-        var sequenceAction = SKAction.sequence([shotSound,durationAction,removeAction])
+        var durationAction = SKAction.waitForDuration(2.00)
+        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode!, elapsedTime: CGFloat) -> Void in
+            if player.swordNum < player.swordMaxNum {
+                player.countUpSword()
+            }
+        })
+        var sequenceAction = SKAction.sequence([shotSound,durationAction,custumAction,removeAction])
+        var sequenceAction2 = SKAction.sequence([shotSound,durationAction,removeAction])
         self.runAction(sequenceAction)
-        circle.runAction(sequenceAction)
+        circle.runAction(sequenceAction2)
         
-        var fadeAction = SKAction.fadeAlphaTo(0, duration: 1.0)
+        var fadeAction = SKAction.fadeAlphaTo(0, duration: 2.0)
         self.runAction(fadeAction)
         circle.runAction(fadeAction)
         

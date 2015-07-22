@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		931943181B58BD240002F1BD /* deadParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 931943171B58BD240002F1BD /* deadParticle.sks */; };
+		9319431A1B58DB740002F1BD /* SMItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931943191B58DB740002F1BD /* SMItemNode.swift */; };
 		9356C1DC1B4D00410073EBF8 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DA1B4D00410073EBF8 /* MyParticle.sks */; };
 		9356C1DD1B4D00410073EBF8 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DB1B4D00410073EBF8 /* spark.png */; };
 		9356C1DF1B4D05000073EBF8 /* ice1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DE1B4D05000073EBF8 /* ice1.png */; };
@@ -43,6 +45,11 @@
 		93D1D7BF1B55F37E000EC266 /* SMEnemyBoss1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7BE1B55F37E000EC266 /* SMEnemyBoss1.swift */; };
 		93D1D7C11B563B01000EC266 /* swordmaster.png in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7C01B563B01000EC266 /* swordmaster.png */; };
 		93D1D7C31B56467E000EC266 /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7C21B56467E000EC266 /* Images-2.xcassets */; };
+		93D1D7C51B57458E000EC266 /* GameTitleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7C41B57458E000EC266 /* GameTitleScene.swift */; };
+		93D1D7CA1B57558B000EC266 /* titleParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7C81B57558B000EC266 /* titleParticle.sks */; };
+		93D1D7CB1B57558B000EC266 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7C91B57558B000EC266 /* spark.png */; };
+		93D1D7CD1B5782B8000EC266 /* SMEnegyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7CC1B5782B8000EC266 /* SMEnegyNode.swift */; };
+		93D1D7CF1B578526000EC266 /* SMEnegyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7CE1B578526000EC266 /* SMEnegyFactory.swift */; };
 		93E9A0681B4D228A00B44478 /* magicParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A0671B4D228A00B44478 /* magicParticle.sks */; };
 		93E9A06D1B4D4D9300B44478 /* fade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A0691B4D4D9300B44478 /* fade.mp3 */; };
 		93E9A06E1B4D4D9300B44478 /* shot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A06A1B4D4D9300B44478 /* shot.mp3 */; };
@@ -69,6 +76,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		931943171B58BD240002F1BD /* deadParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = deadParticle.sks; sourceTree = "<group>"; };
+		931943191B58DB740002F1BD /* SMItemNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMItemNode.swift; sourceTree = "<group>"; };
 		9356C1DA1B4D00410073EBF8 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		9356C1DB1B4D00410073EBF8 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		9356C1DE1B4D05000073EBF8 /* ice1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ice1.png; sourceTree = "<group>"; };
@@ -105,6 +114,11 @@
 		93D1D7BE1B55F37E000EC266 /* SMEnemyBoss1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyBoss1.swift; sourceTree = "<group>"; };
 		93D1D7C01B563B01000EC266 /* swordmaster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swordmaster.png; sourceTree = "<group>"; };
 		93D1D7C21B56467E000EC266 /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-2.xcassets"; sourceTree = "<group>"; };
+		93D1D7C41B57458E000EC266 /* GameTitleScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTitleScene.swift; sourceTree = "<group>"; };
+		93D1D7C81B57558B000EC266 /* titleParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = titleParticle.sks; sourceTree = "<group>"; };
+		93D1D7C91B57558B000EC266 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		93D1D7CC1B5782B8000EC266 /* SMEnegyNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnegyNode.swift; sourceTree = "<group>"; };
+		93D1D7CE1B578526000EC266 /* SMEnegyFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnegyFactory.swift; sourceTree = "<group>"; };
 		93E9A0671B4D228A00B44478 /* magicParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = magicParticle.sks; sourceTree = "<group>"; };
 		93E9A0691B4D4D9300B44478 /* fade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fade.mp3; sourceTree = "<group>"; };
 		93E9A06A1B4D4D9300B44478 /* shot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shot.mp3; sourceTree = "<group>"; };
@@ -146,6 +160,9 @@
 		93EF1AA11B4BC01800B1FC93 = {
 			isa = PBXGroup;
 			children = (
+				93D1D7CE1B578526000EC266 /* SMEnegyFactory.swift */,
+				93D1D7C81B57558B000EC266 /* titleParticle.sks */,
+				93D1D7C91B57558B000EC266 /* spark.png */,
 				93D1D7A21B522AB4000EC266 /* CoreMotion.framework */,
 				93EF1AAC1B4BC01800B1FC93 /* proton */,
 				93EF1AC61B4BC01800B1FC93 /* protonTests */,
@@ -184,6 +201,7 @@
 				9356C1DE1B4D05000073EBF8 /* ice1.png */,
 				93EF1AAF1B4BC01800B1FC93 /* AppDelegate.swift */,
 				93EF1AB31B4BC01800B1FC93 /* GameScene.swift */,
+				93D1D7C41B57458E000EC266 /* GameTitleScene.swift */,
 				93D1D7AA1B534BA4000EC266 /* SMEnemyGroup.swift */,
 				93D1D7A81B5345F5000EC266 /* SMStage.swift */,
 				93D1D7B81B54C57A000EC266 /* SMEnemyDelegate.swift */,
@@ -191,13 +209,16 @@
 				93D1D7B41B54B450000EC266 /* SMEnemyGroupDelegate.swift */,
 				93D1D7A41B523CCF000EC266 /* SMEnemyNode.swift */,
 				93D1D7A61B525250000EC266 /* SMEnemyCube.swift */,
+				931943191B58DB740002F1BD /* SMItemNode.swift */,
 				93D1D7BA1B54E240000EC266 /* SMEnemyFly.swift */,
 				937056DB1B4FB750009BBAC2 /* hitParticle.sks */,
 				937056D71B4FA89B009BBAC2 /* EnemyType.swift */,
 				937056D51B4FA28E009BBAC2 /* SMAnimationUtil.swift */,
 				937056D11B4F8398009BBAC2 /* SwordType.swift */,
 				937056D91B4FA933009BBAC2 /* SMSwordNode.swift */,
+				93D1D7CC1B5782B8000EC266 /* SMEnegyNode.swift */,
 				93D1D7AE1B538DC6000EC266 /* SMSwordFactory.swift */,
+				931943171B58BD240002F1BD /* deadParticle.sks */,
 				937056CF1B4F7F56009BBAC2 /* ColliderType.swift */,
 				93EF1AB51B4BC01800B1FC93 /* GameViewController.swift */,
 				93EF1AB71B4BC01800B1FC93 /* Main.storyboard */,
@@ -327,6 +348,7 @@
 				93D1D7A11B513933000EC266 /* explode.mp3 in Resources */,
 				93E9A0721B4D549E00B44478 /* scrollParticle.sks in Resources */,
 				9356C1DD1B4D00410073EBF8 /* spark.png in Resources */,
+				93D1D7CB1B57558B000EC266 /* spark.png in Resources */,
 				93EF1ABE1B4BC01800B1FC93 /* LaunchScreen.xib in Resources */,
 				937056CA1B4E0991009BBAC2 /* playerParticle.sks in Resources */,
 				93E9A06E1B4D4D9300B44478 /* shot.mp3 in Resources */,
@@ -335,10 +357,12 @@
 				93E9A0701B4D4D9300B44478 /* sound.mp3 in Resources */,
 				93D1D7C11B563B01000EC266 /* swordmaster.png in Resources */,
 				93E9A06F1B4D4D9300B44478 /* sword.mp3 in Resources */,
+				93D1D7CA1B57558B000EC266 /* titleParticle.sks in Resources */,
 				93EF1ABB1B4BC01800B1FC93 /* Images.xcassets in Resources */,
 				937056CC1B4F63A0009BBAC2 /* sparkParticle.sks in Resources */,
 				93EF1AB91B4BC01800B1FC93 /* Main.storyboard in Resources */,
 				9356C1DC1B4D00410073EBF8 /* MyParticle.sks in Resources */,
+				931943181B58BD240002F1BD /* deadParticle.sks in Resources */,
 				93D1D79D1B513933000EC266 /* nagarebosi.mp3 in Resources */,
 				93D1D7C31B56467E000EC266 /* Images-2.xcassets in Resources */,
 				93E9A06D1B4D4D9300B44478 /* fade.mp3 in Resources */,
@@ -376,11 +400,15 @@
 				93D1D7B71B54BCD7000EC266 /* EnemyGroupType.swift in Sources */,
 				93D1D7B51B54B450000EC266 /* SMEnemyGroupDelegate.swift in Sources */,
 				93D1D7B11B538FE3000EC266 /* SMEnemyFactory.swift in Sources */,
+				9319431A1B58DB740002F1BD /* SMItemNode.swift in Sources */,
 				93EF1AB61B4BC01800B1FC93 /* GameViewController.swift in Sources */,
 				937056CE1B4F75D9009BBAC2 /* SMPlayerNode.swift in Sources */,
 				93D1D7AD1B534F5D000EC266 /* SMStageManage.swift in Sources */,
 				937056D61B4FA28E009BBAC2 /* SMAnimationUtil.swift in Sources */,
+				93D1D7C51B57458E000EC266 /* GameTitleScene.swift in Sources */,
 				93D1D7B31B539097000EC266 /* SMStageFactory.swift in Sources */,
+				93D1D7CF1B578526000EC266 /* SMEnegyFactory.swift in Sources */,
+				93D1D7CD1B5782B8000EC266 /* SMEnegyNode.swift in Sources */,
 				93EF1AB01B4BC01800B1FC93 /* AppDelegate.swift in Sources */,
 				937056D81B4FA89B009BBAC2 /* EnemyType.swift in Sources */,
 				93D1D7BF1B55F37E000EC266 /* SMEnemyBoss1.swift in Sources */,

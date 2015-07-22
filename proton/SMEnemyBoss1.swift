@@ -32,5 +32,6 @@ class SMEnemyBoss1: SMEnemyNode {
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.restitution = 0.1
         self.physicsBody?.density = 1000.0
+        makeEnegy(10)
     }
 }

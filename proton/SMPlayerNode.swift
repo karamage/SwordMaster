@@ -13,6 +13,12 @@ import SpriteKit
 class SMPlayerNode: SKSpriteNode {
     //装備している剣の種類
     var swordType: SwordType = SwordType.EXCALIBUR
+    //剣の最大値
+    var swordMaxNum: Int = 3
+    //剣の残りの弾
+    var swordNum: Int = 3
+    //剣のアイコンの配列
+    var swordIcons: [SKSpriteNode] = [SKSpriteNode]()
     
     //アニメーション用ノード
     var hane: SKSpriteNode!
@@ -27,13 +33,15 @@ class SMPlayerNode: SKSpriteNode {
     //プレイヤー作成
     func makePlayer(node: SKNode, textures: [SKTexture]) {
         self.position = CGPoint(x: node.frame.size.width * 0.5, y: 0)
+        //self.colorBlendFactor = 1.0
+        //self.color = SKColor(red: 1.0, green: 0, blue: 0, alpha: 1.0)
         
         //物理シミュレーション設定
         self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
         self.physicsBody?.dynamic = false
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.categoryBitMask = ColliderType.Player
-        self.physicsBody?.collisionBitMask = ColliderType.Enemy | ColliderType.Enegy
+        //self.physicsBody?.collisionBitMask = ColliderType.Enemy | ColliderType.Enegy
         self.physicsBody?.contactTestBitMask = ColliderType.Enemy | ColliderType.Enegy
         
         node.addChild(self)
@@ -61,6 +69,36 @@ class SMPlayerNode: SKSpriteNode {
         
         //アニメーション作成
         makePlayerAnimation()
+        
+        //剣のアイコンを作成
+        makeSwordIcon()
+    }
+    
+    //剣のアイコンを作成
+    func makeSwordIcon() {
+        for i in 0..<swordMaxNum {
+            makeSwordIcon(i)
+        }
+    }
+    func makeSwordIcon(index: Int) {
+        let icon = SKSpriteNode(texture: swordIconTexture)
+        let width:CGFloat! = icon.texture?.size().width
+        icon.position = CGPoint(x: width * CGFloat(index), y:CGFloat(0.0))
+        swordIcons.append(icon)
+        statusNode.addChild(icon)
+    }
+    
+    //剣をカウントダウン
+    func countDownSword() {
+        swordNum--
+        swordIcons[swordNum].removeFromParent()
+        swordIcons.removeAtIndex(swordNum)
+    }
+    
+    //剣をカウントアップ
+    func countUpSword() {
+        makeSwordIcon(swordNum)
+        swordNum++
     }
     
     //プレイヤーのアニメーションを作成する

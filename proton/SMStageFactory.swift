@@ -35,7 +35,7 @@ class SMStageFactory {
                 enemyArray.append(enemy!)
             }
             //全滅させるまで次に進めない
-            enemyGroup = SMEnemyGroup(enemys:enemyArray, type:EnemyGroupType.ALLDEAD)
+            enemyGroup = SMEnemyGroup(enemys:enemyArray, type:EnemyGroupType.INTERVAL)
             
             //次５匹
             for i in 0..<5 {
@@ -43,7 +43,7 @@ class SMStageFactory {
                 enemyArray2.append(enemy!)
             }
             //全滅させるまで次に進めない
-            enemyGroup2 = SMEnemyGroup(enemys:enemyArray2, type:EnemyGroupType.ALLDEAD)
+            enemyGroup2 = SMEnemyGroup(enemys:enemyArray2, type:EnemyGroupType.INTERVAL)
             
             //次10匹
             for i in 0..<10 {
@@ -51,7 +51,7 @@ class SMStageFactory {
                 enemyArray3.append(enemy!)
             }
             //全滅させるまで次に進めない
-            enemyGroup3 = SMEnemyGroup(enemys:enemyArray3, type:EnemyGroupType.ALLDEAD)
+            enemyGroup3 = SMEnemyGroup(enemys:enemyArray3, type:EnemyGroupType.INTERVAL)
             
             //次の敵、３匹
             for i in 0..<3 {
