@@ -18,7 +18,7 @@ class SMEnemyCube: SMEnemyNode {
         var randX = arc4random_uniform(320)
         var randY = arc4random_uniform(100)
         x = CGFloat(randX)
-        y = CGFloat(frameHeight - CGFloat(randY) + 50)
+        y = CGFloat(frameHeight - CGFloat(randY) + 100)
         let location = CGPoint(x:x, y:y)
         super.init(texture: texture, type: EnemyType.CUBE, location: location, parentnode: enemysNode)
         self.hitpoint = 1
@@ -33,8 +33,9 @@ class SMEnemyCube: SMEnemyNode {
         super.makeEnemy()
         
         //プレイヤーに迫って移動してくるようにする
-        var action = SKAction.moveTo(player.position, duration: 10)
-        self.runAction(action)
+        var vector = SMNodeUtil.makePlayerVector(self.position, player: player)
+        self.physicsBody?.velocity = CGVector.zeroVector
+        self.physicsBody?.applyImpulse(CGVector(dx:vector.dx / 100, dy:vector.dy / 500))
         
         var randY = arc4random_uniform(100)
         

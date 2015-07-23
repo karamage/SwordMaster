@@ -11,6 +11,13 @@ import SpriteKit
 
 //NodeUtilクラス
 class SMNodeUtil {
+    //主人公を追尾するベクトルを作成する
+    class func makePlayerVector(position: CGPoint, player: SMPlayerNode?) -> CGVector {
+        if player == nil {
+            return CGVector(dx: 0.0, dy: 0.0)
+        }
+        return CGVector(dx:player!.position.x - position.x, dy:player!.position.y - position.y)
+    }
     //パーティクル作成
     class func makeParticleNode(position:CGPoint?, filename: String, hide: Bool = true, node: SKNode) {
         var particle = SKEmitterNode(fileNamed: filename)

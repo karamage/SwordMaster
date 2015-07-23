@@ -33,8 +33,8 @@ class SMEnemyFly: SMEnemyNode {
     override func makeEnemy() {
         super.makeEnemy()
         self.physicsBody?.dynamic = true
-        self.physicsBody?.restitution = 0.1
-        self.physicsBody?.density = 10.0
+        self.physicsBody?.restitution = 0.5
+        self.physicsBody?.density = 5.0
         
         var rand1 = Double(arc4random_uniform(100)) * 0.01
         var rand2 = Double(arc4random_uniform(100)) * 0.01

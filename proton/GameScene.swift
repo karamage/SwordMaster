@@ -59,6 +59,8 @@ let enemyFactory: SMEnemyFactory = SMEnemyFactory()
 let enegyFactory: SMEnegyFactory = SMEnegyFactory()
 //剣ファクトリ
 let swordFactory: SMSwordFactory = SMSwordFactory()
+//アイテムファクトリ
+let itemFactory: SMItemFactory = SMItemFactory()
 
 //フレーム幅
 var frameWidth: CGFloat!
@@ -294,16 +296,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //ゲームのリスタート処理
     func restart() {
-        /*
-        //スコアを0にする
-        totalScore = 0
-        scoreLabel.text = "\(totalScore)"
-        
-        //ゲームオーバラベルを消す
-        
-        //フラグを戻す
-        gameoverflg = false
-*/
         scoreLabel.removeAllActions()
         scoreLabel.removeAllChildren()
         scoreLabel.removeFromParent()
@@ -343,13 +335,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
-        
-        /*
-        if makeenemyflg {
-            makeenemyflg = false
-            makeEnemySample()
-        }
-*/
     }
     
     
@@ -363,6 +348,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let swordType = ColliderType.Sword
         let enemyType = ColliderType.Enemy
         let playerType = ColliderType.Player
+        let enegyType = ColliderType.Enegy
+        let itemType = ColliderType.Item
         if (contact.bodyA.categoryBitMask & swordType == swordType ||
             contact.bodyB.categoryBitMask & swordType == swordType ) {
             //剣の衝突
@@ -377,18 +364,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 enemy.hitSword(sword)
             } else if contact.bodyA.categoryBitMask & ColliderType.None == ColliderType.None ||
                 contact.bodyB.categoryBitMask & ColliderType.None == ColliderType.None {
-                //剣とNoneの衝突
-                //self.runAction(swordSound)
             }
         } else if contact.bodyA.categoryBitMask & playerType == playerType ||
             contact.bodyB.categoryBitMask & playerType == playerType {
             //プレイヤーとの衝突
             
-            //敵とプレイヤーが衝突したらゲームオーバー
-            if contact.bodyA.categoryBitMask & enemyType == enemyType {
+            if contact.bodyA.categoryBitMask & enemyType == enemyType ||
+               contact.bodyB.categoryBitMask & enemyType == enemyType {
+                //敵とプレイヤーが衝突したらゲームオーバー
+                player.deadPlayer()
                 gameover()
-            } else if contact.bodyB.categoryBitMask & enemyType == enemyType {
-                gameover()
+            } else if contact.bodyA.categoryBitMask & enegyType == enegyType ||
+                contact.bodyB.categoryBitMask & enegyType == enegyType {
+                //敵の弾を被弾した場合
+                var enegy: SMEnegyNode!
+                if contact.bodyA.categoryBitMask & enegyType == enegyType {
+                    enegy = contact.bodyA.node as! SMEnegyNode
+                } else if contact.bodyB.categoryBitMask & enegyType == enegyType {
+                    enegy = contact.bodyB.node as! SMEnegyNode
+                }
+                player.damegedEnegy(enegy)
+                if player.hitpoint <= 0 {
+                    player.deadPlayer()
+                    gameover()
+                }
+            } else if contact.bodyA.categoryBitMask & itemType == itemType ||
+                contact.bodyB.categoryBitMask & itemType == itemType {
+                    var item: SMItemNode!
+                if contact.bodyA.categoryBitMask & itemType == itemType {
+                    item = contact.bodyA.node as! SMItemNode
+                } else if contact.bodyB.categoryBitMask & itemType == itemType {
+                    item = contact.bodyB.node as! SMItemNode
+                }
+                player.contactItem(item)
             }
         }
     }
@@ -411,37 +419,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(gameoverLabel)
         gameoverLabel.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.size.height/2)
         
-        //やられた効果音再生
-        self.runAction(explodeSound)
-        
-        //やられたアニメーション作成
-        SMNodeUtil.makeParticleNode(player.position, filename: "deadParticle.sks", hide: true, node: bgNode)
-        
-        //プレイヤー削除
-        fadeRemoveNode(player)
     }
     
-    /*
-    //敵を倒した時の処理
-    func killEnemy(enemynode: SKNode!) {
-        enemynode.physicsBody?.categoryBitMask = ColliderType.None
-        enemynode.removeAllActions()
-        makeHitParticle(enemynode.position,node:self)
-        //self.runAction(hitSound)
-        killcount++
-        score += 10
-        scoreLabel.text = "\(score)"
-        if killcount % 5 == 0 {
-            makeenemyflg = true
-        }
-        fadeRemoveNode(enemynode)
-    }
-    
-    //攻撃ヒットのパーティクルを作る
-    func makeHitParticle(point:CGPoint,node:SKNode) {
-        makeParticleNode(point, filename:"hitParticle.sks", node:node)
-    }
-*/
     //敵消滅のパーティクルを作る
     func makeKillParticle(node:SKNode) {
         let point: CGPoint = CGPoint(x:0, y:0)

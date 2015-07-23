@@ -29,12 +29,6 @@ class SMEnemyNode: SKSpriteNode {
         self.type = type
         self.parentnode = parentnode
         var color = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-        /*
-        switch type {
-            case .CUBE:
-                self.hitpoint = 1
-        }
-*/
         super.init(texture: texture, color:color, size:texture.size())
         self.position = CGPoint(x:location.x, y:location.y)
         self.zPosition = 2
@@ -88,6 +82,11 @@ class SMEnemyNode: SKSpriteNode {
         SMNodeUtil.makeParticleNode(self.position, filename:"deadParticle.sks", node:bgNode)
         self.physicsBody?.categoryBitMask = ColliderType.None
         self.removeAllActions()
+        
+        //アイテムを出現させる
+        var item = itemFactory.createRandom(self.position)
+        item?.makeItem()
+        
         totalScore = totalScore + self.score
         scoreLabel.text = "\(totalScore)"
         SMNodeUtil.fadeRemoveNode(self)

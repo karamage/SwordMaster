@@ -20,6 +20,9 @@ class SMPlayerNode: SKSpriteNode {
     //剣のアイコンの配列
     var swordIcons: [SKSpriteNode] = [SKSpriteNode]()
     
+    //被弾できるヒットポイント
+    var hitpoint: Int = 1
+    
     //アニメーション用ノード
     var hane: SKSpriteNode!
     var warp: SKSpriteNode!
@@ -29,6 +32,38 @@ class SMPlayerNode: SKSpriteNode {
     var haneAim2: [SKTexture]!
     var warpAim: [SKTexture]!
     var warpAim2: [SKTexture]!
+    
+    //アイテムを取得した時の処理
+    func contactItem(item: SMItemNode) {
+        item.physicsBody?.categoryBitMask = ColliderType.None
+        switch item.type {
+        case .COIN:
+            totalScore += 10
+            scoreLabel.text = "\(totalScore)"
+        default:
+            break
+        }
+        SMNodeUtil.fadeRemoveNode(item)
+    }
+    
+    //相手の弾を被弾したときの処理
+    func damegedEnegy(enegy: SMEnegyNode) {
+        enegy.physicsBody?.categoryBitMask = ColliderType.None
+        hitpoint--
+        SMNodeUtil.fadeRemoveNode(enegy)
+    }
+    
+    //プレイヤーが死んだ時の処理
+    func deadPlayer() {
+        //やられた効果音再生
+        self.runAction(explodeSound)
+        
+        //やられたアニメーション作成
+        SMNodeUtil.makeParticleNode(self.position, filename: "deadParticle.sks", hide: true, node: bgNode)
+        
+        //プレイヤー削除
+        SMNodeUtil.fadeRemoveNode(self)
+    }
     
     //プレイヤー作成
     func makePlayer(node: SKNode, textures: [SKTexture]) {
@@ -121,8 +156,9 @@ class SMPlayerNode: SKSpriteNode {
         var haneAnimAction = SKAction.animateWithTextures(haneAim, timePerFrame: 0.1, resize:false, restore:true)
         var haneAnimAction1 = SKAction.animateWithTextures(haneAim1, timePerFrame: 0.1, resize:false, restore:true)
         var haneAnimAction2 = SKAction.animateWithTextures(haneAim2, timePerFrame: 0.1, resize:false, restore:true)
+        var scaleHaneAction = SKAction.scaleTo(0.5, duration: 0.5)
         var repeatHaneAction = SKAction.repeatActionForever(haneAnimAction2)
-        hane.runAction(SKAction.sequence([haneAnimAction,haneAnimAction1,repeatHaneAction]))
+        hane.runAction(SKAction.sequence([haneAnimAction,haneAnimAction1,scaleHaneAction, repeatHaneAction]))
         
         //ワープのアニメーションを作成
         warp = SKSpriteNode(texture: warpAim[0], size: warpAim[0].size())
