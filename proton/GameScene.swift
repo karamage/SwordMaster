@@ -54,6 +54,7 @@ var swordIconTexture = SKTexture(imageNamed: "sword_icon")
 //ラベル
 let gameoverLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
 let scoreLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
+let returnLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
 
 //スコア
 var totalScore: Int = 0
@@ -244,8 +245,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
         if gameoverflg {
-            //ゲームオーバの場合リスタート処理
-            restart()
+            for touch: AnyObject in touches {
+                var touchPoint = touch.locationInNode(self)
+                let node: SKNode! =  self.nodeAtPoint(touchPoint)
+                if let tmpnode = node {
+                    if tmpnode.name == "returnLabel" {
+                        //ゲームオーバの場合リスタート処理
+                        restart()
+                        return
+                    }
+                }
+            }
             return
         }
         //すでにタッチが開始されているなら何もしない
@@ -308,6 +318,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.removeAllActions()
         scoreLabel.removeAllChildren()
         scoreLabel.removeFromParent()
+        gameoverLabel.removeAllActions()
+        gameoverLabel.removeAllChildren()
+        gameoverLabel.removeFromParent()
+        returnLabel.removeAllActions()
+        returnLabel.removeAllChildren()
+        returnLabel.removeFromParent()
         bgNode.removeAllActions()
         bgNode.removeAllChildren()
         bgNode.removeFromParent()
@@ -385,6 +401,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     let sword: SMSwordNode = contact.bodyA.node as! SMSwordNode
                     item.contactSword(sword)
                 }
+            } else if contact.bodyA.categoryBitMask & enegyType == enegyType ||
+                contact.bodyB.categoryBitMask & enegyType == enegyType {
+                if contact.bodyA.categoryBitMask & enegyType == enegyType {
+                    let enegy: SMEnegyNode = contact.bodyA.node as! SMEnegyNode
+                    let sword: SMSwordNode = contact.bodyB.node as! SMSwordNode
+                    enegy.contactSword(sword)
+                } else if contact.bodyB.categoryBitMask & enegyType == enegyType {
+                    let enegy: SMEnegyNode = contact.bodyB.node as! SMEnegyNode
+                    let sword: SMSwordNode = contact.bodyA.node as! SMSwordNode
+                    enegy.contactSword(sword)
+                }
             }
         } else if contact.bodyA.categoryBitMask & playerType == playerType ||
             contact.bodyB.categoryBitMask & playerType == playerType {
@@ -439,21 +466,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemysNode.speed = 0.0
         
         //ラベル表示
-        gameoverLabel.text = "Gameover"
-        gameoverLabel.fontSize = 25
-        gameoverLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        gameoverLabel.text = "GAMEOVER"
+        gameoverLabel.fontSize = 30
+        gameoverLabel.fontColor = UIColor(red: 1.0, green: 0.5, blue: 1.0, alpha: 0.9)
         gameoverLabel.zPosition = 1000
         self.addChild(gameoverLabel)
         gameoverLabel.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.size.height/2)
         
+        //ラベル表示
+        returnLabel.text = "タイトル画面に戻る"
+        returnLabel.name = "returnLabel"
+        returnLabel.fontSize = 25
+        //returnLabel.color = UIColor(red: 1.0, green: 0.5, blue: 1.0, alpha: 1.0)
+        //returnLabel.colorBlendFactor = 1.0
+        returnLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        returnLabel.zPosition = 1000
+        self.addChild(returnLabel)
+        returnLabel.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.size.height/2 - 100)
     }
     
+    /*
     //敵消滅のパーティクルを作る
     func makeKillParticle(node:SKNode) {
         let point: CGPoint = CGPoint(x:0, y:0)
         makeParticleNode(point, filename:"MyParticle.sks", node:node)
         self.runAction(hitSound) //消滅の効果音を鳴らす
     }
+*/
     
     //パーティクル発生
     func makeParticle(position:CGPoint?, filename: String, hide: Bool = true) {

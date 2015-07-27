@@ -37,9 +37,12 @@ class SMEnegyNode: SKSpriteNode {
         
         self.physicsBody?.categoryBitMask = ColliderType.Enegy
         self.physicsBody?.collisionBitMask = ColliderType.Sword
-        self.physicsBody?.contactTestBitMask = ColliderType.Player
+        self.physicsBody?.contactTestBitMask = ColliderType.Player | ColliderType.Enegy
         
         parentnode.addChild(self)
+    }
+    func contactSword(sword:SMSwordNode) {
+        SMNodeUtil.makeParticleNode(CGPoint(x: self.position.x, y: self.position.y), filename: "MyParticle.sks", node: parentnode)
     }
     func shotEnegy(dx: CGFloat, dy: CGFloat) {
         self.physicsBody?.velocity = CGVector.zeroVector

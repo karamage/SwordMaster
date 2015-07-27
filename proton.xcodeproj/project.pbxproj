@@ -11,6 +11,7 @@
 		9319431A1B58DB740002F1BD /* SMItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931943191B58DB740002F1BD /* SMItemNode.swift */; };
 		9319431C1B5F5C790002F1BD /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9319431B1B5F5C790002F1BD /* ItemType.swift */; };
 		9319431E1B5F724E0002F1BD /* SMItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9319431D1B5F724E0002F1BD /* SMItemFactory.swift */; };
+		931943201B661B690002F1BD /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9319431F1B661B690002F1BD /* iAd.framework */; };
 		9356C1DC1B4D00410073EBF8 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DA1B4D00410073EBF8 /* MyParticle.sks */; };
 		9356C1DD1B4D00410073EBF8 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DB1B4D00410073EBF8 /* spark.png */; };
 		9356C1DF1B4D05000073EBF8 /* ice1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DE1B4D05000073EBF8 /* ice1.png */; };
@@ -82,6 +83,7 @@
 		931943191B58DB740002F1BD /* SMItemNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMItemNode.swift; sourceTree = "<group>"; };
 		9319431B1B5F5C790002F1BD /* ItemType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		9319431D1B5F724E0002F1BD /* SMItemFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMItemFactory.swift; sourceTree = "<group>"; };
+		9319431F1B661B690002F1BD /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		9356C1DA1B4D00410073EBF8 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		9356C1DB1B4D00410073EBF8 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		9356C1DE1B4D05000073EBF8 /* ice1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ice1.png; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				931943201B661B690002F1BD /* iAd.framework in Frameworks */,
 				93D1D7A31B522AB4000EC266 /* CoreMotion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -164,6 +167,7 @@
 		93EF1AA11B4BC01800B1FC93 = {
 			isa = PBXGroup;
 			children = (
+				9319431F1B661B690002F1BD /* iAd.framework */,
 				9319431D1B5F724E0002F1BD /* SMItemFactory.swift */,
 				93D1D7CE1B578526000EC266 /* SMEnegyFactory.swift */,
 				93D1D7C81B57558B000EC266 /* titleParticle.sks */,

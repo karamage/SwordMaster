@@ -31,7 +31,7 @@ class GameTitleScene: SKScene {
         title.zPosition = 1
         bgNode.addChild(title)
         
-        let scaleAction = SKAction.scaleBy(1.2, duration: 0.3)
+        let scaleAction = SKAction.scaleBy(1.2, duration: 0.8)
         title.runAction(scaleAction)
         let fadeinAction = SKAction.fadeInWithDuration(0.5)
         title.runAction(fadeinAction)
@@ -41,19 +41,35 @@ class GameTitleScene: SKScene {
         let logo = SKSpriteNode(texture: logoTexture, size: logoTexture.size())
         logo.position = CGPoint(x: self.frame.width/2 - 20, y: self.frame.height - 90)
         logo.zPosition = 100
+        logo.alpha = 0.0
+        logo.color = UIColor(red: 1.0, green: 0.7, blue: 0.7, alpha: 0.8)
+        logo.colorBlendFactor = 0.7
+        logo.blendMode =  SKBlendMode.Add
+        let fadeinAction2 = SKAction.fadeInWithDuration(2.0)
         bgNode.addChild(logo)
+        logo.runAction(fadeinAction2)
         
         //ロゴ2
         let logo2 = SKSpriteNode(texture: logoTexture2, size: logoTexture2.size())
         logo2.position = CGPoint(x: self.frame.width/2, y: self.frame.height - 180)
         logo2.zPosition = 110
+        logo2.alpha = 0.0
+        logo2.color = UIColor(red: 0.9, green: 0.7, blue: 1.0, alpha: 0.8)
+        logo2.colorBlendFactor = 0.7
+        logo2.blendMode =  SKBlendMode.Add
+        let fadeinAction3 = SKAction.fadeInWithDuration(3.5)
         bgNode.addChild(logo2)
+        logo2.runAction(fadeinAction3)
         
         //スタートボタン
         let start = SKSpriteNode(texture: startTexture, size: startTexture.size())
+        start.name = "start"
         start.position = CGPoint(x: self.frame.width/2, y:60)
         start.zPosition = 120
         start.alpha = 0.8
+        start.color = UIColor(red: 0.4, green: 0.1, blue: 0.1, alpha: 0.7)
+        start.colorBlendFactor = 0.65
+        start.blendMode =  SKBlendMode.Add
         bgNode.addChild(start)
         let fadeoutAction = SKAction.fadeOutWithDuration(0.5)
         let waitAction = SKAction.waitForDuration(0.5)
@@ -83,6 +99,19 @@ class GameTitleScene: SKScene {
     }
     //タッチした時に呼び出される
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        for touch: AnyObject in touches {
+            var touchPoint = touch.locationInNode(self)
+            let node: SKNode! =  self.nodeAtPoint(touchPoint)
+            if let tmpnode = node {
+                if tmpnode.name == "start" {
+                    gamestart()
+                    return
+                }
+            }
+        }
+    }
+    //ゲームスタート
+    func gamestart() {
         //ゲーム画面表示
         let scene = GameScene()
         

@@ -15,6 +15,9 @@ class GameViewController: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //iAd表示
+        //self.canDisplayBannerAds = true
 
         //タイトル画面表示
         let scene = GameTitleScene()

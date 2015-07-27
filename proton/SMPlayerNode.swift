@@ -44,6 +44,7 @@ class SMPlayerNode: SKSpriteNode {
             break
         }
         item.removeFromParent()
+        SMNodeUtil.makeParticleNode(CGPoint(x: self.position.x, y: self.position.y + 30), filename: "MyParticle.sks", node: bgNode)
     }
     
     //相手の弾を被弾したときの処理
@@ -67,6 +68,8 @@ class SMPlayerNode: SKSpriteNode {
     
     //プレイヤー作成
     func makePlayer(node: SKNode, textures: [SKTexture]) {
+        self.blendMode = SKBlendMode.Add
+        self.alpha = 0.9
         self.position = CGPoint(x: node.frame.size.width * 0.5, y: 0)
         //self.colorBlendFactor = 1.0
         //self.color = SKColor(red: 1.0, green: 0, blue: 0, alpha: 1.0)

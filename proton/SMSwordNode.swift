@@ -47,7 +47,7 @@ class SMSwordNode: SKSpriteNode {
         
         self.physicsBody?.categoryBitMask = ColliderType.Sword
         self.physicsBody?.collisionBitMask = ColliderType.Enemy | ColliderType.Sword | ColliderType.Enegy
-        self.physicsBody?.contactTestBitMask = ColliderType.Enemy | ColliderType.Sword | ColliderType.Item
+        self.physicsBody?.contactTestBitMask = ColliderType.Enemy | ColliderType.Sword | ColliderType.Item | ColliderType.Enegy
         
         self.alpha = 0.0
         self.anchorPoint = CGPoint(x:0.5,y:0)
@@ -126,7 +126,7 @@ class SMSwordNode: SKSpriteNode {
         removeCircle()
         
         //パーティクル作成
-        var point = CGPoint(x:0, y:-30)
+        var point = CGPoint(x:0, y:30)
         SMNodeUtil.makeMagicParticle(startPoint, node: parentnode)
         SMNodeUtil.makeSparkParticle(point, node: self)
     }

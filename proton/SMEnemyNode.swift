@@ -61,7 +61,8 @@ class SMEnemyNode: SKSpriteNode {
         //アニメーションを作成
         hit = SKSpriteNode(texture: hitAim[0], size: hitAim[0].size())
         hit.blendMode = SKBlendMode.Add
-        hit.alpha = 0.7
+        hit.alpha = 0.5
+        hit.zPosition = 3
         self.addChild(hit!)
     }
     func makeEnegy(num: Int) {
@@ -87,8 +88,11 @@ class SMEnemyNode: SKSpriteNode {
             dead()
         } else {
             SMNodeUtil.makeParticleNode(self.position, filename:"hitParticle.sks", node:bgNode)
-            var hitAnimAction = SKAction.animateWithTextures(hitAim, timePerFrame: 0.02, resize:false, restore:true)
+            var hitAnimAction = SKAction.animateWithTextures(hitAim, timePerFrame: 0.03, resize:false, restore:true)
             hit.runAction(hitAnimAction)
+            hit.alpha = 0.8
+            let fadeout = SKAction.fadeOutWithDuration(1.0)
+            hit.runAction(fadeout)
         }
     }
     func dead() {

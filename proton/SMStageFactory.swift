@@ -26,6 +26,8 @@ class SMStageFactory {
             var enemyArray3: [SMEnemyNode] = [SMEnemyNode]()
             var enemyGroup4: SMEnemyGroup!
             var enemyArray4: [SMEnemyNode] = [SMEnemyNode]()
+            var enemyGroup4_1: SMEnemyGroup!
+            var enemyArray4_1: [SMEnemyNode] = [SMEnemyNode]()
             var enemyGroup5: SMEnemyGroup!
             var enemyArray5: [SMEnemyNode] = [SMEnemyNode]()
             var bossGroup: SMEnemyGroup!
@@ -55,28 +57,36 @@ class SMStageFactory {
             //全滅させるまで次に進めない
             enemyGroup2 = SMEnemyGroup(enemys:enemyArray2, type:EnemyGroupType.INTERVAL)
             
-            //次10匹
-            for i in 0..<10 {
+            //次8匹
+            for i in 0..<8 {
                 let enemy = enemyFactory.create(EnemyType.CUBE)
                 enemyArray3.append(enemy!)
             }
             //全滅させるまで次に進めない
             enemyGroup3 = SMEnemyGroup(enemys:enemyArray3, type:EnemyGroupType.INTERVAL)
             
-            //次の敵、３匹
-            for i in 0..<3 {
+            //次の敵、2匹
+            for i in 0..<2 {
                 let enemy = enemyFactory.create(EnemyType.FLY)
                 enemyArray4.append(enemy!)
             }
             //時間が経つと次に進む
             enemyGroup4 = SMEnemyGroup(enemys:enemyArray4, type:EnemyGroupType.INTERVAL)
             
+            //次の敵、３匹
+            for i in 0..<3 {
+                let enemy = enemyFactory.create(EnemyType.FLY)
+                enemyArray4_1.append(enemy!)
+            }
+            //時間が経つと次に進む
+            enemyGroup4_1 = SMEnemyGroup(enemys:enemyArray4_1, type:EnemyGroupType.INTERVAL)
+            
             //次の敵
-            for i in 0..<5 {
+            for i in 0..<2 {
                 let enemy = enemyFactory.create(EnemyType.FLY)
                 enemyArray5.append(enemy!)
             }
-            for i in 0..<10 {
+            for i in 0..<3 {
                 let enemy = enemyFactory.create(EnemyType.CUBE)
                 enemyArray5.append(enemy!)
             }
@@ -85,7 +95,7 @@ class SMStageFactory {
             enemyGroup5 = SMEnemyGroup(enemys:enemyArray5, type:EnemyGroupType.INTERVAL)
             enemyGroup5.interval = 13.0
             
-            enemyGroups = [enemyGroup,enemyGroup1,enemyGroup2,enemyGroup3,enemyGroup4,enemyGroup5]
+            enemyGroups = [enemyGroup,enemyGroup1,enemyGroup2,enemyGroup3,enemyGroup4,enemyGroup4_1,enemyGroup5]
             //enemyGroups = [enemyGroup]
             
             //ボス作成
