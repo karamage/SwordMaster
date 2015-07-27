@@ -41,12 +41,13 @@ class SMSwordNode: SKSpriteNode {
     func makeSword(){
         //物理シミュレーション設定
         self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
-        self.physicsBody?.dynamic = false
+        self.physicsBody?.dynamic = true
         self.physicsBody?.allowsRotation = true
+        self.physicsBody?.affectedByGravity = false
         
         self.physicsBody?.categoryBitMask = ColliderType.Sword
-        self.physicsBody?.collisionBitMask = ColliderType.Enemy | ColliderType.Sword
-        self.physicsBody?.contactTestBitMask = ColliderType.Enemy | ColliderType.Sword
+        self.physicsBody?.collisionBitMask = ColliderType.Enemy | ColliderType.Sword | ColliderType.Enegy
+        self.physicsBody?.contactTestBitMask = ColliderType.Enemy | ColliderType.Sword | ColliderType.Item
         
         self.alpha = 0.0
         self.anchorPoint = CGPoint(x:0.5,y:0)
@@ -54,9 +55,22 @@ class SMSwordNode: SKSpriteNode {
         parentnode.addChild(self)
         
         // 円を描画.
+        makeCircle(startPoint)
         
+        //透明度を徐々に上げて登場
+        let fadeInAction = SKAction.fadeInWithDuration(0.5)
+        self.runAction(fadeInAction)
+        
+        //少し前に移動
+        let frontMoveAction = SKAction.moveToY(self.startPoint.y + 10, duration: 0.5)
+        self.runAction(SKAction.sequence([frontMoveAction]))
+        
+    }
+    
+    //魔法陣を作成する
+    func makeCircle(position:CGPoint) {
         // ShapeNodeの座標を指定.
-        circle.position = startPoint
+        circle.position = position
         circle.blendMode = SKBlendMode.Add
         circle.alpha = 0.8
         
@@ -72,15 +86,6 @@ class SMSwordNode: SKSpriteNode {
         //回転のアニメーション
         var rotateAction = SKAction.rotateByAngle(CGFloat(360*M_PI/180), duration: 10)
         circle.runAction(rotateAction)
-        
-        //透明度を徐々に上げて登場
-        let fadeInAction = SKAction.fadeInWithDuration(0.5)
-        self.runAction(fadeInAction)
-        
-        //少し前に移動
-        let frontMoveAction = SKAction.moveToY(self.startPoint.y + 10, duration: 0.5)
-        self.runAction(SKAction.sequence([frontMoveAction]))
-        
     }
     
     //剣をスワイプする
@@ -113,18 +118,21 @@ class SMSwordNode: SKSpriteNode {
             }
         })
         var sequenceAction = SKAction.sequence([shotSound,durationAction,custumAction,removeAction])
-        var sequenceAction2 = SKAction.sequence([shotSound,durationAction,removeAction])
         self.runAction(sequenceAction)
-        circle.runAction(sequenceAction2)
         
         var fadeAction = SKAction.fadeAlphaTo(0, duration: 2.0)
         self.runAction(fadeAction)
-        circle.runAction(fadeAction)
+        
+        removeCircle()
         
         //パーティクル作成
         var point = CGPoint(x:0, y:-30)
         SMNodeUtil.makeMagicParticle(startPoint, node: parentnode)
         SMNodeUtil.makeSparkParticle(point, node: self)
+    }
+    
+    func removeCircle() {
+        SMNodeUtil.fadeRemoveNode(circle)
     }
     
     //デイニシャライザ

@@ -36,5 +36,15 @@ class SMItemNode: SKSpriteNode {
         if let parentnode = self.parentnode {
             parentnode.addChild(self)
         }
+        //フェードインする
+        self.alpha = 0.0
+        let fadeIn = SKAction.fadeInWithDuration(0.5)
+        self.runAction(fadeIn)
+    }
+    //剣と衝突したときの処理
+    func contactSword(sword: SMSwordNode) {
+        var vector = SMNodeUtil.makePlayerVector(self.position, player: player)
+        self.physicsBody?.velocity = CGVector.zeroVector
+        self.physicsBody?.applyImpulse(CGVector(dx: vector.dx/20, dy:vector.dy/20))
     }
 }

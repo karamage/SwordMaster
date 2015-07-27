@@ -24,6 +24,9 @@ class SMEnemyNode: SKSpriteNode {
     //死んだ時の通知用
     weak var delegate: SMEnemyGroup?
     
+    //ヒットエフェクト
+    var hit: SKSpriteNode!
+    
     //初期化
     init(texture: SKTexture, type: EnemyType, location: CGPoint, parentnode:SKNode){
         self.type = type
@@ -51,7 +54,15 @@ class SMEnemyNode: SKSpriteNode {
         if let parentnode = self.parentnode {
             parentnode.addChild(self)
         }
-        
+        //フェードインする
+        self.alpha = 0.0
+        let fadeIn = SKAction.fadeInWithDuration(0.5)
+        self.runAction(fadeIn)
+        //アニメーションを作成
+        hit = SKSpriteNode(texture: hitAim[0], size: hitAim[0].size())
+        hit.blendMode = SKBlendMode.Add
+        hit.alpha = 0.7
+        self.addChild(hit!)
     }
     func makeEnegy(num: Int) {
         let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode!, elapsedTime: CGFloat) -> Void in
@@ -76,6 +87,8 @@ class SMEnemyNode: SKSpriteNode {
             dead()
         } else {
             SMNodeUtil.makeParticleNode(self.position, filename:"hitParticle.sks", node:bgNode)
+            var hitAnimAction = SKAction.animateWithTextures(hitAim, timePerFrame: 0.02, resize:false, restore:true)
+            hit.runAction(hitAnimAction)
         }
     }
     func dead() {

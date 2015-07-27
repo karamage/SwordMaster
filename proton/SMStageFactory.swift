@@ -18,6 +18,8 @@ class SMStageFactory {
             var enemyGroups: [SMEnemyGroup]!
             var enemyGroup: SMEnemyGroup!
             var enemyArray: [SMEnemyNode] = [SMEnemyNode]()
+            var enemyGroup1: SMEnemyGroup!
+            var enemyArray1: [SMEnemyNode] = [SMEnemyNode]()
             var enemyGroup2: SMEnemyGroup!
             var enemyArray2: [SMEnemyNode] = [SMEnemyNode]()
             var enemyGroup3: SMEnemyGroup!
@@ -36,6 +38,14 @@ class SMStageFactory {
             }
             //全滅させるまで次に進めない
             enemyGroup = SMEnemyGroup(enemys:enemyArray, type:EnemyGroupType.INTERVAL)
+            
+            //最初、敵CUBEが3匹
+            for i in 0..<3 {
+                let enemy = enemyFactory.create(EnemyType.CUBE)
+                enemyArray1.append(enemy!)
+            }
+            //全滅させるまで次に進めない
+            enemyGroup1 = SMEnemyGroup(enemys:enemyArray1, type:EnemyGroupType.INTERVAL)
             
             //次５匹
             for i in 0..<5 {
@@ -75,7 +85,7 @@ class SMStageFactory {
             enemyGroup5 = SMEnemyGroup(enemys:enemyArray5, type:EnemyGroupType.INTERVAL)
             enemyGroup5.interval = 13.0
             
-            enemyGroups = [enemyGroup,enemyGroup2,enemyGroup3,enemyGroup4,enemyGroup5]
+            enemyGroups = [enemyGroup,enemyGroup1,enemyGroup2,enemyGroup3,enemyGroup4,enemyGroup5]
             //enemyGroups = [enemyGroup]
             
             //ボス作成

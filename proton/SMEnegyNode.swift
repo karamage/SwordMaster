@@ -36,7 +36,7 @@ class SMEnegyNode: SKSpriteNode {
         self.physicsBody?.density = 10.0
         
         self.physicsBody?.categoryBitMask = ColliderType.Enegy
-        self.physicsBody?.collisionBitMask = ColliderType.Player
+        self.physicsBody?.collisionBitMask = ColliderType.Sword
         self.physicsBody?.contactTestBitMask = ColliderType.Player
         
         parentnode.addChild(self)

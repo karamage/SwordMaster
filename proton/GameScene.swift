@@ -9,6 +9,9 @@
 import SpriteKit
 import CoreMotion
 
+//デバッグモード
+var debugflg: Bool = true
+
 //プレイヤー
 var player: SMPlayerNode!
 
@@ -32,6 +35,9 @@ let stage1BgSound = SKAction.playSoundFileNamed("sound.mp3", waitForCompletion: 
 
 //背景
 var stage1Background = SKSpriteNode(imageNamed: "background2")
+
+//ヒットアニメーション
+var hitAim: [SKTexture]!
 
 //効果音
 var hitSound = SKAction.playSoundFileNamed("hit.mp3", waitForCompletion: false)
@@ -132,7 +138,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         scoreLabel.zPosition = 1000
         self.addChild(scoreLabel)
-        scoreLabel.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.size.height - 30)
+        scoreLabel.position = CGPoint(x: (self.frame.size.width/2) - 100, y: self.frame.size.height - 30)
         
         //背景管理用ノード
         bgNode.position = CGPoint(x:0, y:0)
@@ -159,18 +165,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         statusNode.position = CGPoint(x: 10, y: 10)
         self.addChild(statusNode)
         
-        //敵を作成する
-        //makeEnemySample()
-        
-        //BGMを鳴らす
-        //let bgSoundRepeat = SKAction.repeatActionForever(bgSound)
-        //self.runAction(bgSoundRepeat)
+        //hitのアニメーションを切り出す
+        hitAim = SMAnimationUtil.explodeAnime("hiteffect", xFrame: 5, yFrame: 6)
         
         //モーションセンサーを初期化する
         motionInit()
         
         //ステージの作成処理
         stageManager.makeStage()
+        
     }
     
     //カメラの移動処理
@@ -249,20 +252,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let tmp = touchStartPoint {
             return
         }
-        if player.swordNum <= 0 {
-            return
-        }
         for touch: AnyObject in touches {
             var touchPoint = touch.locationInNode(self)
             if touchPoint.y > 300 {
                 continue
+            }
+            if player.swordNum <= 0 {
+                //魔法陣が開いてすぐ閉じる演出
+                let randtype = randomSwordType()
+                let tmpsword = swordFactory.create(randtype, position: touchPoint)
+                tmpsword?.circle.color = UIColor.redColor()
+                tmpsword?.circle.colorBlendFactor = 0.5
+                tmpsword!.makeCircle(touchPoint)
+                tmpsword!.removeCircle()
+                return
             }
             player.countDownSword()
             touchStartPoint = touchPoint
             //剣を作成する
             let randtype = randomSwordType()
             sword = swordFactory.create(randtype, position: touchStartPoint)
-            //sword = SMSwordNode(texture:swordTexture, type: player.swordType, shotSound:shotSound, location:touchStartPoint, parentnode:swordsNode)
             sword.makeSword()
         }
     }
@@ -364,6 +373,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 enemy.hitSword(sword)
             } else if contact.bodyA.categoryBitMask & ColliderType.None == ColliderType.None ||
                 contact.bodyB.categoryBitMask & ColliderType.None == ColliderType.None {
+                //なにもしない
+            } else if contact.bodyA.categoryBitMask & itemType == itemType ||
+                contact.bodyB.categoryBitMask & itemType == itemType {
+                if contact.bodyA.categoryBitMask & itemType == itemType {
+                    let item: SMItemNode = contact.bodyA.node as! SMItemNode
+                    let sword: SMSwordNode = contact.bodyB.node as! SMSwordNode
+                    item.contactSword(sword)
+                } else if contact.bodyB.categoryBitMask & itemType == itemType {
+                    let item: SMItemNode = contact.bodyB.node as! SMItemNode
+                    let sword: SMSwordNode = contact.bodyA.node as! SMSwordNode
+                    item.contactSword(sword)
+                }
             }
         } else if contact.bodyA.categoryBitMask & playerType == playerType ||
             contact.bodyB.categoryBitMask & playerType == playerType {
@@ -371,11 +392,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if contact.bodyA.categoryBitMask & enemyType == enemyType ||
                contact.bodyB.categoryBitMask & enemyType == enemyType {
+                if debugflg {
+                    return
+                }
                 //敵とプレイヤーが衝突したらゲームオーバー
                 player.deadPlayer()
                 gameover()
             } else if contact.bodyA.categoryBitMask & enegyType == enegyType ||
                 contact.bodyB.categoryBitMask & enegyType == enegyType {
+                if debugflg {
+                    return
+                }
                 //敵の弾を被弾した場合
                 var enegy: SMEnegyNode!
                 if contact.bodyA.categoryBitMask & enegyType == enegyType {

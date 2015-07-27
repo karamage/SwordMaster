@@ -43,7 +43,7 @@ class SMPlayerNode: SKSpriteNode {
         default:
             break
         }
-        SMNodeUtil.fadeRemoveNode(item)
+        item.removeFromParent()
     }
     
     //相手の弾を被弾したときの処理
