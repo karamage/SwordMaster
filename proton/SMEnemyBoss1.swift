@@ -15,10 +15,10 @@ class SMEnemyBoss1: SMEnemyNode {
         var x:CGFloat = 0
         var y:CGFloat = 0
         x = frameWidth/2
-        y = CGFloat(frameHeight - 100)
+        y = CGFloat(frameHeight)
         let location = CGPoint(x:x, y:y)
         super.init(texture: texture, type: EnemyType.FLY, location: location, parentnode: enemysNode)
-        self.hitpoint = 10
+        self.hitpoint = 20
         self.diffence = 0
         self.score = 1000
     }
@@ -32,6 +32,8 @@ class SMEnemyBoss1: SMEnemyNode {
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.restitution = 0.1
         self.physicsBody?.density = 1000.0
-        makeEnegy(10)
+        makeEnegy(15)
+        let move = SKAction.moveToY(frameHeight - 100, duration: 3.0)
+        self.runAction(move)
     }
 }

@@ -31,13 +31,14 @@ class SMEnemyGroup: SMEnemyDelegate {
             enemy.makeEnemy()
         }
         if self.type == EnemyGroupType.INTERVAL {
+            weak var tmpself = self
             let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode!, elapsedTime: CGFloat) -> Void in
                 //指定秒後に次のグループへ
-                for enemy in self.enemys {
+                for enemy in tmpself!.enemys {
                     SMNodeUtil.fadeRemoveNode(enemy)
                 }
-                self.enemys.removeAll() //配列から全削除
-                self.delegate?.nextEnemyGroupDelegate()
+                tmpself!.enemys.removeAll() //配列から全削除
+                tmpself!.delegate?.nextEnemyGroupDelegate()
             })
             let waitAction = SKAction.waitForDuration(interval)
             enemysNode.runAction(SKAction.sequence([waitAction,custumAction]))

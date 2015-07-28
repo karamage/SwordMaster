@@ -101,6 +101,10 @@ class SMStageFactory {
             //ボス作成
             var boss1: SMEnemyNode? = enemyFactory.create(EnemyType.BOSS1)
             bossArray.append(boss1!)
+            for i in 0..<5 {
+                let enemy = enemyFactory.create(EnemyType.CUBE)
+                bossArray.append(enemy!)
+            }
             bossGroup = SMEnemyGroup(enemys:bossArray, type:EnemyGroupType.BOSS)
             
             //ステージ1作成

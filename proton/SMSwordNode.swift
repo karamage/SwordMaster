@@ -17,6 +17,7 @@ class SMSwordNode: SKSpriteNode {
     weak var parentnode: SKNode!
     var circle: SKSpriteNode
     var swipex: Int = 0
+    var isShot: Bool = false
     
     //攻撃力
     var attack: Int = 1
@@ -41,7 +42,7 @@ class SMSwordNode: SKSpriteNode {
     func makeSword(){
         //物理シミュレーション設定
         self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
-        self.physicsBody?.dynamic = true
+        self.physicsBody?.dynamic = false
         self.physicsBody?.allowsRotation = true
         self.physicsBody?.affectedByGravity = false
         
@@ -108,6 +109,7 @@ class SMSwordNode: SKSpriteNode {
         self.physicsBody?.dynamic = true
         self.physicsBody?.velocity = CGVector.zeroVector
         self.physicsBody?.applyImpulse(CGVector(dx:CGFloat(swipex), dy:50.0))
+        self.isShot = true
         
         //2秒後に消す
         var removeAction = SKAction.removeFromParent()

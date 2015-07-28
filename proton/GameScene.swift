@@ -15,6 +15,8 @@ var debugflg: Bool = true
 //プレイヤー
 var player: SMPlayerNode!
 
+var combo: Int = 0 //コンボ数
+
 //ステータス欄
 var statusNode: SKNode = SKNode()
 
@@ -54,6 +56,7 @@ var swordIconTexture = SKTexture(imageNamed: "sword_icon")
 //ラベル
 let gameoverLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
 let scoreLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
+let comboLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
 let returnLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
 
 //スコア
@@ -133,13 +136,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.gravity = CGVector(dx:0.0, dy:-0.10)
         self.physicsWorld.contactDelegate = self
         
-        //ラベルの表示
+        //スコアラベルの表示
         scoreLabel.text = "\(totalScore)"
         scoreLabel.fontSize = 25
-        scoreLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        scoreLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
         scoreLabel.zPosition = 1000
         self.addChild(scoreLabel)
         scoreLabel.position = CGPoint(x: (self.frame.size.width/2) - 100, y: self.frame.size.height - 30)
+        
+        //コンボラベルの表示
+        comboLabel.text = "\(combo) Combo!"
+        comboLabel.fontSize = 25
+        comboLabel.alpha = 0.0
+        comboLabel.fontColor = UIColor(red: 1.0, green: 0.2, blue: 0.3, alpha: 0.9)
+        comboLabel.zPosition = 1000
+        self.addChild(comboLabel)
+        comboLabel.position = CGPoint(x: self.frame.size.width - 100, y: self.frame.size.height - 30)
         
         //背景管理用ノード
         bgNode.position = CGPoint(x:0, y:0)
@@ -318,6 +330,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.removeAllActions()
         scoreLabel.removeAllChildren()
         scoreLabel.removeFromParent()
+        comboLabel.removeAllActions()
+        comboLabel.removeAllChildren()
+        comboLabel.removeFromParent()
         gameoverLabel.removeAllActions()
         gameoverLabel.removeAllChildren()
         gameoverLabel.removeFromParent()

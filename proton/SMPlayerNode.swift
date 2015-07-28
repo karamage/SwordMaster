@@ -40,6 +40,12 @@ class SMPlayerNode: SKSpriteNode {
         case .COIN:
             totalScore += 10
             scoreLabel.text = "\(totalScore)"
+        case .DAIYA:
+            totalScore += 100
+            scoreLabel.text = "\(totalScore)"
+        case .SWORDNUMUP:
+            self.swordMaxNum++
+            self.countUpSword()
         default:
             break
         }
@@ -121,6 +127,8 @@ class SMPlayerNode: SKSpriteNode {
     func makeSwordIcon(index: Int) {
         let icon = SKSpriteNode(texture: swordIconTexture)
         let width:CGFloat! = icon.texture?.size().width
+        icon.blendMode = SKBlendMode.Add
+        icon.alpha = 0.9
         icon.position = CGPoint(x: width * CGFloat(index), y:CGFloat(0.0))
         swordIcons.append(icon)
         statusNode.addChild(icon)

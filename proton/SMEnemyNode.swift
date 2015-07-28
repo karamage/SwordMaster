@@ -80,6 +80,32 @@ class SMEnemyNode: SKSpriteNode {
     }
     //剣が当たった時の処理
     func hitSword(sword: SMSwordNode) {
+        //コンボの処理
+        let waitAction = SKAction.waitForDuration(1.0)
+        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode!, elapsedTime: CGFloat) -> Void in
+            combo = 0
+            comboLabel.alpha = 0.0
+        })
+        comboLabel.removeAllActions()
+        comboLabel.runAction(SKAction.sequence([waitAction, custumAction]))
+        combo++
+        if combo > 1 {
+            comboLabel.text = "\(combo) Combo!"
+            //comboLabel.alpha = 1.0
+            if comboLabel.alpha == 0.0 {
+                let fadeInAction = SKAction.fadeInWithDuration(0.5)
+                comboLabel.runAction(fadeInAction)
+                //let x = comboLabel.position.x
+                let move1 = SKAction.moveToX(self.scene!.frame.width + 10.0, duration: 0.0)
+                let move2 = SKAction.moveToX(self.scene!.frame.width - 100.0, duration: 0.5)
+                comboLabel.runAction(SKAction.sequence([move1,move2]))
+            } else {
+                comboLabel.alpha = 1.0
+                let move2 = SKAction.moveToX(self.scene!.frame.width - 100.0, duration: 0.0)
+                comboLabel.runAction(SKAction.sequence([move2]))
+            }
+        }
+        
         sword.physicsBody?.categoryBitMask = ColliderType.None
         self.runAction(sasaruSound)
         hitpoint -= (sword.attack - diffence)
@@ -95,6 +121,7 @@ class SMEnemyNode: SKSpriteNode {
             hit.runAction(fadeout)
         }
     }
+    //敵が死んだ時の処理
     func dead() {
         SMNodeUtil.makeParticleNode(self.position, filename:"deadParticle.sks", node:bgNode)
         self.physicsBody?.categoryBitMask = ColliderType.None
@@ -104,7 +131,11 @@ class SMEnemyNode: SKSpriteNode {
         var item = itemFactory.createRandom(self.position)
         item?.makeItem()
         
-        totalScore = totalScore + self.score
+        var combop = 1.0
+        if combo > 1 {
+            combop = 1.0 * Double(combo)
+        }
+        totalScore = totalScore + Int(Double(self.score) * combop)
         scoreLabel.text = "\(totalScore)"
         SMNodeUtil.fadeRemoveNode(self)
         if let delegate = self.delegate {
