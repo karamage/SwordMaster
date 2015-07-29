@@ -16,9 +16,14 @@ class GameTitleScene: SKScene {
     var logoTexture2 = SKTexture(imageNamed: "logo2")
     var startTexture = SKTexture(imageNamed: "start")
     var bgNode :SKNode = SKNode()
+    //オープニング曲
+    var openingSound = SKAction.playSoundFileNamed("short_song_minami_kirakira.mp3", waitForCompletion: false)
     
     //画面の初期化処理
     override func didMoveToView(view: SKView) {
+        //音楽再生
+        self.runAction(openingSound)
+        
         //背景管理用ノード
         bgNode.position = CGPoint(x:0, y:0)
         self.addChild(bgNode)

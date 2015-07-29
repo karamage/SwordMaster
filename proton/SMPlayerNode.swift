@@ -23,6 +23,9 @@ class SMPlayerNode: SKSpriteNode {
     //被弾できるヒットポイント
     var hitpoint: Int = 1
     
+    //自機のスピード
+    var speedup: Int = 1
+    
     //アニメーション用ノード
     var hane: SKSpriteNode!
     var warp: SKSpriteNode!
@@ -35,22 +38,38 @@ class SMPlayerNode: SKSpriteNode {
     
     //アイテムを取得した時の処理
     func contactItem(item: SMItemNode) {
+        let scene = self.scene as! GameScene
         item.physicsBody?.categoryBitMask = ColliderType.None
         switch item.type {
         case .COIN:
+            bgNode.runAction(itemgetSound)
             totalScore += 10
             scoreLabel.text = "\(totalScore)"
         case .DAIYA:
+            bgNode.runAction(itemgetSound)
             totalScore += 100
             scoreLabel.text = "\(totalScore)"
         case .SWORDNUMUP:
+            bgNode.runAction(powerupSound)
             self.swordMaxNum++
             self.countUpSword()
+            scene.cutin()
+        case .SPEEDUP:
+            bgNode.runAction(powerupSound)
+            self.speedUp()
+            scene.cutin()
         default:
             break
         }
         item.removeFromParent()
         SMNodeUtil.makeParticleNode(CGPoint(x: self.position.x, y: self.position.y + 30), filename: "MyParticle.sks", node: bgNode)
+    }
+    
+    //スピードアップの処理
+    func speedUp() {
+        self.speedup++
+        let scaleAction = SKAction.scaleBy(1.1, duration: 0.5)
+        hane.runAction(scaleAction)
     }
     
     //相手の弾を被弾したときの処理

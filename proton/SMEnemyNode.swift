@@ -107,7 +107,7 @@ class SMEnemyNode: SKSpriteNode {
         }
         
         sword.physicsBody?.categoryBitMask = ColliderType.None
-        self.runAction(sasaruSound)
+        bgNode.runAction(explodeSound2)
         hitpoint -= (sword.attack - diffence)
         if hitpoint <= 0 {
             //敵が死んだ時の処理
@@ -141,6 +141,7 @@ class SMEnemyNode: SKSpriteNode {
         if let delegate = self.delegate {
             delegate.enemyDeadDelegate(self)
         }
+        bgNode.runAction(explodeSound)
     }
     //デイニシャライザ
     deinit {

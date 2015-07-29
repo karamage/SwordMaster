@@ -18,20 +18,20 @@ class SMSwordFactory {
     var swordTexture4 = SKTexture(imageNamed: "zweihander")
     var shotSound = SKAction.playSoundFileNamed("shot.mp3", waitForCompletion: false)
     
-    func create(type:SwordType, position: CGPoint) -> SMSwordNode? {
+    func create(type:SwordType, position: CGPoint, startPoint: CGPoint) -> SMSwordNode? {
         var sword:SMSwordNode? = nil
         switch type {
         case .EXCALIBUR:
-            sword = SMSwordNode(texture:swordTexture1, type: type, shotSound:shotSound, location:position, parentnode:swordsNode)
+            sword = SMSwordNode(texture:swordTexture1, type: type, shotSound:shotSound, location:position, parentnode:swordsNode, startPoint:startPoint)
             break
         case .KATANA:
-            sword = SMSwordNode(texture:swordTexture2, type: type, shotSound:shotSound, location:position, parentnode:swordsNode)
+            sword = SMSwordNode(texture:swordTexture2, type: type, shotSound:shotSound, location:position, parentnode:swordsNode, startPoint:startPoint)
             break
         case .PANZERSTECHER:
-            sword = SMSwordNode(texture:swordTexture3, type: type, shotSound:shotSound, location:position, parentnode:swordsNode)
+            sword = SMSwordNode(texture:swordTexture3, type: type, shotSound:shotSound, location:position, parentnode:swordsNode, startPoint:startPoint)
             break
         case .ZWEIHANDER:
-            sword = SMSwordNode(texture:swordTexture4, type: type, shotSound:shotSound, location:position, parentnode:swordsNode)
+            sword = SMSwordNode(texture:swordTexture4, type: type, shotSound:shotSound, location:position, parentnode:swordsNode, startPoint:startPoint)
             break
         default:
             break

@@ -10,18 +10,14 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="swordmaster.png" translatesAutoresizingMaskIntoConstraints="NO" id="7jB-99-pIk">
-                    <rect key="frame" x="87" y="32" width="319" height="421"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="421" id="Zdc-1L-4RK"/>
-                        <constraint firstAttribute="width" constant="319" id="lnl-Qe-7i5"/>
-                    </constraints>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="swordmaster2.png" translatesAutoresizingMaskIntoConstraints="NO" id="FJG-iY-gKg">
+                    <rect key="frame" x="8" y="0.0" width="480" height="480"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="7jB-99-pIk" secondAttribute="centerX" id="2K3-Bg-ksO"/>
-                <constraint firstAttribute="centerY" secondItem="7jB-99-pIk" secondAttribute="centerY" id="IQU-GO-P2P"/>
+                <constraint firstAttribute="centerY" secondItem="FJG-iY-gKg" secondAttribute="centerY" id="5gJ-ym-ipA"/>
+                <constraint firstAttribute="centerX" secondItem="FJG-iY-gKg" secondAttribute="centerX" id="Jbi-iL-iyM"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -29,6 +25,6 @@
         </view>
     </objects>
     <resources>
-        <image name="swordmaster.png" width="600" height="800"/>
+        <image name="swordmaster2.png" width="600" height="800"/>
     </resources>
 </document>

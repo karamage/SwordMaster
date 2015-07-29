@@ -24,10 +24,10 @@ class SMSwordNode: SKSpriteNode {
     //耐久力
     var hitpoint: Int = 1
     
-    init(texture: SKTexture, type: SwordType, shotSound:SKAction, location: CGPoint,parentnode:SKNode){
+    init(texture: SKTexture, type: SwordType, shotSound:SKAction, location: CGPoint,parentnode:SKNode, startPoint: CGPoint){
         self.type = type
         self.shotSound = shotSound
-        self.startPoint = location
+        self.startPoint = startPoint
         self.parentnode = parentnode
         //self.circle = SKShapeNode(circleOfRadius: 15)
         self.circle = SKSpriteNode(imageNamed: "magic_circle")
@@ -56,7 +56,7 @@ class SMSwordNode: SKSpriteNode {
         parentnode.addChild(self)
         
         // 円を描画.
-        makeCircle(startPoint)
+        makeCircle(self.position)
         
         //透明度を徐々に上げて登場
         let fadeInAction = SKAction.fadeInWithDuration(0.5)
@@ -73,17 +73,22 @@ class SMSwordNode: SKSpriteNode {
         // ShapeNodeの座標を指定.
         circle.position = position
         circle.blendMode = SKBlendMode.Add
-        circle.alpha = 0.8
+        circle.alpha = 0.0
         
         // ShapeNodeの塗りつぶしの色を指定.
         //Circle.fillColor = UIColor.redColor()
         
-        // sceneにShapeNodeを追加.
-        parentnode.addChild(circle)
-        
         let scaleZeroAction = SKAction.scaleTo(0, duration: 0)
         let scaleAction = SKAction.scaleXTo(0.4, y: 0.4, duration: 0.5)
         circle.runAction(SKAction.sequence([scaleZeroAction,scaleAction]))
+        
+        // sceneにShapeNodeを追加.
+        parentnode.addChild(circle)
+        
+        let fadeIn = SKAction.fadeAlphaTo(0.8, duration: 1.0)
+        circle.runAction(fadeIn)
+        
+        
         //回転のアニメーション
         var rotateAction = SKAction.rotateByAngle(CGFloat(360*M_PI/180), duration: 10)
         circle.runAction(rotateAction)
@@ -121,6 +126,16 @@ class SMSwordNode: SKSpriteNode {
         })
         var sequenceAction = SKAction.sequence([shotSound,durationAction,custumAction,removeAction])
         self.runAction(sequenceAction)
+        switch self.type {
+        case .EXCALIBUR:
+            self.runAction(kuraeSound)
+        case .KATANA:
+            self.runAction(sokodaSound)
+        case .PANZERSTECHER:
+            self.runAction(yaaSound)
+        case .ZWEIHANDER:
+            self.runAction(eiSound)
+        }
         
         var fadeAction = SKAction.fadeAlphaTo(0, duration: 2.0)
         self.runAction(fadeAction)

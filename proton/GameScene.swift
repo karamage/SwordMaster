@@ -10,7 +10,7 @@ import SpriteKit
 import CoreMotion
 
 //デバッグモード
-var debugflg: Bool = true
+var debugflg: Bool = false
 
 //プレイヤー
 var player: SMPlayerNode!
@@ -47,8 +47,17 @@ var sasaruSound = SKAction.playSoundFileNamed("sasaru.mp3", waitForCompletion: f
 var swordSound = SKAction.playSoundFileNamed("sword.mp3", waitForCompletion: false)
 var nagarebosiSound = SKAction.playSoundFileNamed("nagarebosi.mp3", waitForCompletion: false)
 var explodeSound = SKAction.playSoundFileNamed("explode.mp3", waitForCompletion: false)
+var explodeSound2 = SKAction.playSoundFileNamed("explode2.mp3", waitForCompletion: false)
 var magicSound = SKAction.playSoundFileNamed("magic_circle.mp3", waitForCompletion: false)
 var kiruSound = SKAction.playSoundFileNamed("kiru.mp3", waitForCompletion: false)
+var kuraeSound = SKAction.playSoundFileNamed("kurae_01.wav", waitForCompletion: false)
+var konoSound = SKAction.playSoundFileNamed("kono_01.wav", waitForCompletion: false)
+var sokodaSound = SKAction.playSoundFileNamed("sokoda_01.wav", waitForCompletion: false)
+var toryaSound = SKAction.playSoundFileNamed("torya_01.wav", waitForCompletion: false)
+var eiSound = SKAction.playSoundFileNamed("ei_01.wav", waitForCompletion: false)
+var yaaSound = SKAction.playSoundFileNamed("yaa_01.wav", waitForCompletion: false)
+var powerupSound = SKAction.playSoundFileNamed("powerup_01.wav", waitForCompletion: false)
+var itemgetSound = SKAction.playSoundFileNamed("itemget_01.wav", waitForCompletion: false)
 
 //テクスチャ
 var swordIconTexture = SKTexture(imageNamed: "sword_icon")
@@ -97,6 +106,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var motionManager: CMMotionManager!
     //タッチ開始ポイント
     var touchStartPoint: CGPoint! = nil
+    //がんばります
+    var ganbarimasuSound = SKAction.playSoundFileNamed("ganbarimasu_01.wav", waitForCompletion: false)
+    //カットイン
+    var cutin1 = SKSpriteNode(imageNamed: "cutin1")
+    
     
     //ゲームオーバーフラグ
     var gameoverflg = false
@@ -112,9 +126,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //剣
     var sword: SMSwordNode!
+    var optionSwords: [SMSwordNode] = [SMSwordNode]()
     
     //カメラ
     var camera: SKNode = SKNode()
+    
+    func cutin() {
+        cutin1.removeFromParent()
+        cutin1.removeAllActions()
+        cutin1.position = CGPoint(x: self.frame.width + 10, y: self.frame.height / 2)
+        cutin1.alpha = 0.0
+        cutin1.zPosition = 10
+        self.addChild(cutin1)
+        let resetScale = SKAction.scaleTo(1.2, duration: 0.0)
+        let moveAction1 = SKAction.moveToX(self.frame.width / 2, duration: 0.5)
+        let scaleAction = SKAction.scaleBy(1.5, duration: 0.5)
+        let waitAction = SKAction.waitForDuration(0.5)
+        let moveAction2 = SKAction.moveToX(0.0, duration: 0.5)
+        cutin1.runAction(SKAction.sequence([resetScale, moveAction1, scaleAction, waitAction, moveAction2]))
+        let fadeIn = SKAction.fadeInWithDuration(0.5)
+        let fadeOut = SKAction.fadeOutWithDuration(0.5)
+        let removeAction = SKAction.removeFromParent()
+        cutin1.runAction(SKAction.sequence([fadeIn,waitAction,fadeOut,removeAction]))
+        SMNodeUtil.makeParticleNode(CGPoint(x: 0.0, y: 0.0), filename: "cutinParticle.sks", hide: true, node: cutin1)
+    }
     
     //画面の初期化処理
     override func didMoveToView(view: SKView) {
@@ -187,6 +222,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //ステージの作成処理
         stageManager.makeStage()
         
+        self.runAction(ganbarimasuSound)
+        cutin()
     }
     
     //カメラの移動処理
@@ -227,8 +264,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             var positionx: CGFloat = 0.0
             var moveAction: SKAction!
             var tmpx: CGFloat = 0.0
+            var speed: CGFloat = 1.0 + (0.1 * CGFloat(player.speedup))
             if player.position.x >= 0 && player.position.x <= self.frame.width {
-                positionx = CGFloat(data.acceleration.x * 20)
+                positionx = CGFloat(CGFloat(data.acceleration.x) * CGFloat(20.0) * speed)
                 moveAction = SKAction.moveByX(positionx, y:player.position.y, duration: 0.1)
             } else {
                 //画面端の場合はそれ以上進めないようにする
@@ -282,7 +320,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if player.swordNum <= 0 {
                 //魔法陣が開いてすぐ閉じる演出
                 let randtype = randomSwordType()
-                let tmpsword = swordFactory.create(randtype, position: touchPoint)
+                let tmpsword = swordFactory.create(randtype, position: touchPoint, startPoint:touchPoint)
                 tmpsword?.circle.color = UIColor.redColor()
                 tmpsword?.circle.colorBlendFactor = 0.5
                 tmpsword!.makeCircle(touchPoint)
@@ -293,8 +331,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             touchStartPoint = touchPoint
             //剣を作成する
             let randtype = randomSwordType()
-            sword = swordFactory.create(randtype, position: touchStartPoint)
+            sword = swordFactory.create(randtype, position: touchStartPoint, startPoint: touchStartPoint)
             sword.makeSword()
+            
+            //オプションの剣の作成を行う
+            let waitAction = SKAction.waitForDuration(0.5)
+            weak var tmpself = self
+            let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode!, elapsedTime: CGFloat) -> Void in
+                if player.swordNum <= 0 || tmpself!.sword == nil {
+                    return
+                }
+                player.countDownSword()
+                //剣を作成する
+                let optrandtype = randomSwordType()
+                var positionx = tmpself!.sword.position.x
+                var appendx: Int = 50 + 50 * ((tmpself!.optionSwords.count)/2)
+                if (tmpself!.optionSwords.count+1) % 2 == 0 {
+                    appendx = appendx * -1
+                }
+                positionx = positionx + CGFloat(appendx)
+                let position = CGPoint(x: positionx, y: tmpself!.sword.position.y - 20)
+                let optsword = swordFactory.create(optrandtype, position: position, startPoint: tmpself!.touchStartPoint)
+                optsword!.makeSword()
+                tmpself!.optionSwords.append(optsword!)
+            })
+            let repeatSwordAction = SKAction.repeatActionForever(SKAction.sequence([waitAction,custumAction]))
+            sword.runAction(repeatSwordAction)
         }
     }
     
@@ -307,6 +369,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
             sword.swipeSword(location)
+            for optsword: SMSwordNode in optionSwords {
+                optsword.swipeSword(location)
+            }
         }
     }
     
@@ -320,7 +385,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //let location = touch.locationInNode(self)
             //剣を発射する
             sword.shotSword()
+            if optionSwords.count > 0 {
+                cutin()
+            }
+            for optsword: SMSwordNode in optionSwords {
+                optsword.shotSword()
+            }
             sword = nil
+            optionSwords.removeAll()
             touchStartPoint = nil
         }
     }

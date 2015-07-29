@@ -17,7 +17,8 @@ enum SwordType: Int {
 }
 
 func randomSwordType() -> SwordType {
-    var rand = arc4random_uniform(3)
+    var rand = arc4random_uniform(100)
+    rand = rand % 4
     switch rand {
     case 0:
         return SwordType.EXCALIBUR
