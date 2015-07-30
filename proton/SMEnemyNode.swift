@@ -91,14 +91,31 @@ class SMEnemyNode: SKSpriteNode {
         combo++
         if combo > 1 {
             comboLabel.text = "\(combo) Combo!"
+            bgNode.runAction(comboSound)
+            bgNode.runAction(comboSound)
+            bgNode.runAction(comboSound)
             //comboLabel.alpha = 1.0
             if comboLabel.alpha == 0.0 {
                 let fadeInAction = SKAction.fadeInWithDuration(0.5)
+                let fadeOutAction = SKAction.fadeOutWithDuration(0.5)
+                
                 comboLabel.runAction(fadeInAction)
                 //let x = comboLabel.position.x
                 let move1 = SKAction.moveToX(self.scene!.frame.width + 10.0, duration: 0.0)
                 let move2 = SKAction.moveToX(self.scene!.frame.width - 100.0, duration: 0.5)
                 comboLabel.runAction(SKAction.sequence([move1,move2]))
+                killAimNode.runAction(koredeSound)
+                killAimNode.runAction(koredeSound)
+                killAimNode.runAction(koredeSound)
+                killAimNode.runAction(kiruSound)
+                killAimNode.runAction(kiruSound)
+                killAimNode.runAction(kiruSound)
+                var killAnimAction = SKAction.animateWithTextures(killAim, timePerFrame: 0.1, resize:false, restore:true)
+                killAimNode.runAction(killAnimAction)
+                killAimNode.runAction(SKAction.sequence([fadeInAction,fadeOutAction]) )
+                let scale1 = SKAction.scaleTo(1.0, duration: 0.0)
+                let scale2 = SKAction.scaleTo(1.5, duration: 1.0)
+                killAimNode.runAction(SKAction.sequence([scale1,scale2]))
             } else {
                 comboLabel.alpha = 1.0
                 let move2 = SKAction.moveToX(self.scene!.frame.width - 100.0, duration: 0.0)

@@ -122,7 +122,7 @@ class SMStageFactory {
             bossGroup = SMEnemyGroup(enemys:bossArray, type:EnemyGroupType.BOSS)
             
             //ステージ1作成
-            stage = SMStage(background: stage1Background, bgSound: "sound", enemyGroups: enemyGroups, bossEnemyGroup: bossGroup, bossSound: "bosssound1")
+            stage = SMStage(background: stage1Background, bgSound: "bgm_maoudamashii_neorock33", enemyGroups: enemyGroups, bossEnemyGroup: bossGroup, bossSound: "bosssound1")
             break
         default:
             break

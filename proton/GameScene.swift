@@ -41,6 +41,13 @@ var stage1Background = SKSpriteNode(imageNamed: "background2")
 //ヒットアニメーション
 var hitAim: [SKTexture]!
 
+//切るアニメーション
+var killAim: [SKTexture]!
+var killAimNode: SKSpriteNode!
+
+//操作アニメーション
+var moveAim: [SKTexture]!
+
 //効果音
 var hitSound = SKAction.playSoundFileNamed("hit.mp3", waitForCompletion: false)
 var sasaruSound = SKAction.playSoundFileNamed("sasaru.mp3", waitForCompletion: false)
@@ -58,15 +65,30 @@ var eiSound = SKAction.playSoundFileNamed("ei_01.wav", waitForCompletion: false)
 var yaaSound = SKAction.playSoundFileNamed("yaa_01.wav", waitForCompletion: false)
 var powerupSound = SKAction.playSoundFileNamed("powerup_01.wav", waitForCompletion: false)
 var itemgetSound = SKAction.playSoundFileNamed("itemget_01.wav", waitForCompletion: false)
+var comboSound = SKAction.playSoundFileNamed("combo_01.wav", waitForCompletion: false)
+var hawawaSound = SKAction.playSoundFileNamed("hawawa_01.wav", waitForCompletion: false)
+var mataSound = SKAction.playSoundFileNamed("mataaeruyone_01.wav", waitForCompletion: false)
+var koredeSound = SKAction.playSoundFileNamed("korededouda_01.wav", waitForCompletion: false)
+var kakinSound = SKAction.playSoundFileNamed("kakin.mp3", waitForCompletion: false)
+var fadeSound = SKAction.playSoundFileNamed("fade.mp3", waitForCompletion: false)
+var choroiSound = SKAction.playSoundFileNamed("choroimondane_01.wav", waitForCompletion: false)
 
 //テクスチャ
 var swordIconTexture = SKTexture(imageNamed: "sword_icon")
 
+var tapTexture = SKTexture(imageNamed: "tap")
+
 //ラベル
+var gameoverLabel:SKLabelNode!
+var scoreLabel:SKLabelNode!
+var comboLabel:SKLabelNode!
+var returnLabel:SKLabelNode!
+/*
 let gameoverLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
 let scoreLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
 let comboLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
 let returnLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
+*/
 
 //スコア
 var totalScore: Int = 0
@@ -151,6 +173,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         SMNodeUtil.makeParticleNode(CGPoint(x: 0.0, y: 0.0), filename: "cutinParticle.sks", hide: true, node: cutin1)
     }
     
+    //操作説明を表示する
+    func howto() {
+        let tap = SKSpriteNode(texture: tapTexture)
+        tap.zPosition = 1000
+        tap.position = CGPoint(x: self.frame.width/2 + 100, y: self.frame.height/2 - 150)
+        tap.alpha = 0.0
+        self.addChild(tap)
+        
+        let waitAction = SKAction.waitForDuration(2.0)
+        let fadeInAction = SKAction.fadeInWithDuration(0.5)
+        let fadeOutAction = SKAction.fadeOutWithDuration(0.5)
+        let scale1 = SKAction.scaleTo(1.2, duration: 0.0)
+        let scale2 = SKAction.scaleTo(1.0, duration: 0.5)
+        let tapAction = SKAction.sequence([waitAction, fadeInAction, scale1, scale2, scale1, scale2, scale1, scale2, fadeOutAction])
+        
+        moveAim = SMAnimationUtil.explodeAnime("moveAnim", xFrame: 2, yFrame: 1)
+        var moveAnimAction = SKAction.animateWithTextures(moveAim, timePerFrame: 1.0)
+        var repeatMove = SKAction.repeatAction(moveAnimAction, count: 3)
+        var moveAction = SKAction.sequence([waitAction,fadeInAction, repeatMove, fadeOutAction])
+        let allAction = SKAction.sequence([tapAction,moveAction])
+        tap.runAction(allAction)
+    }
+    
     //画面の初期化処理
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -170,6 +215,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //重力の設定
         self.physicsWorld.gravity = CGVector(dx:0.0, dy:-0.10)
         self.physicsWorld.contactDelegate = self
+        
+        gameoverLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
+        scoreLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
+        comboLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
+        returnLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
+        totalScore = 0
         
         //スコアラベルの表示
         scoreLabel.text = "\(totalScore)"
@@ -216,14 +267,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //hitのアニメーションを切り出す
         hitAim = SMAnimationUtil.explodeAnime("hiteffect", xFrame: 5, yFrame: 6)
         
+        killAim = SMAnimationUtil.explodeAnime("kill", xFrame: 1, yFrame: 10)
+        
         //モーションセンサーを初期化する
         motionInit()
         
         //ステージの作成処理
         stageManager.makeStage()
         
-        self.runAction(ganbarimasuSound)
         cutin()
+        let waitAction = SKAction.waitForDuration(0.5)
+        self.runAction(SKAction.sequence([waitAction,ganbarimasuSound]))
+        self.runAction(SKAction.sequence([waitAction,ganbarimasuSound]))
+        self.runAction(SKAction.sequence([waitAction,ganbarimasuSound]))
+        
+        killAimNode = SKSpriteNode(texture: killAim[0])
+        killAimNode.zPosition = 100
+        killAimNode.position = CGPoint(x:self.frame.width/2, y:self.frame.height/2 + 200)
+        killAimNode.blendMode = SKBlendMode.Add
+        killAimNode.alpha = 0.0
+        self.addChild(killAimNode)
+        
+        howto()
     }
     
     //カメラの移動処理
@@ -325,6 +390,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 tmpsword?.circle.colorBlendFactor = 0.5
                 tmpsword!.makeCircle(touchPoint)
                 tmpsword!.removeCircle()
+                self.runAction(hawawaSound)
+                self.runAction(hawawaSound)
+                self.runAction(hawawaSound)
                 return
             }
             player.countDownSword()
@@ -443,6 +511,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scene.size = skView.frame.size
         
         skView.presentScene(scene)
+        scene.runAction(mataSound)
+        scene.runAction(mataSound)
+        scene.runAction(mataSound)
     }
    
     override func update(currentTime: CFTimeInterval) {
@@ -544,6 +615,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //ゲームオーバーの処理
     func gameover() {
+        self.runAction(hawawaSound)
+        self.runAction(hawawaSound)
+        self.runAction(hawawaSound)
         stageManager.currentStage.audioPlayer?.stop()
         
         //フラグをtrueにする
@@ -551,6 +625,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //敵の停止
         enemysNode.speed = 0.0
+        self.physicsWorld.gravity = CGVector(dx:0.0, dy:0.0)
         
         //ラベル表示
         gameoverLabel.text = "GAMEOVER"

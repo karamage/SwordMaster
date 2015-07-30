@@ -8,8 +8,11 @@
 
 import Foundation
 import SpriteKit
+import AVFoundation
 
 class GameTitleScene: SKScene {
+    //音楽プレイヤー
+    var audioPlayer:AVAudioPlayer?
     //テクスチャ
     var titleTexture = SKTexture(imageNamed: "title")
     var logoTexture = SKTexture(imageNamed: "logo")
@@ -17,12 +20,13 @@ class GameTitleScene: SKScene {
     var startTexture = SKTexture(imageNamed: "start")
     var bgNode :SKNode = SKNode()
     //オープニング曲
-    var openingSound = SKAction.playSoundFileNamed("short_song_minami_kirakira.mp3", waitForCompletion: false)
+    //var openingSound = SKAction.playSoundFileNamed("short_song_minami_kirakira.mp3", waitForCompletion: false)
     
     //画面の初期化処理
     override func didMoveToView(view: SKView) {
         //音楽再生
-        self.runAction(openingSound)
+        //self.runAction(openingSound)
+        startBgm("short_song_minami_kirakira")
         
         //背景管理用ノード
         bgNode.position = CGPoint(x:0, y:0)
@@ -109,11 +113,30 @@ class GameTitleScene: SKScene {
             let node: SKNode! =  self.nodeAtPoint(touchPoint)
             if let tmpnode = node {
                 if tmpnode.name == "start" {
+                    audioPlayer!.stop()
                     gamestart()
                     return
                 }
             }
         }
+    }
+    func startBgm(filename: String) {
+        // 再生する audio ファイルのパスを取得
+        let audioPath = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(filename, ofType: "mp3")!)
+        
+        // auido を再生するプレイヤーを作成する
+        var audioError:NSError?
+        audioPlayer = AVAudioPlayer(contentsOfURL: audioPath, error:&audioError)
+        
+        // エラーが起きたとき
+        if let error = audioError {
+            println("Error \(error.localizedDescription)")
+        }
+        
+        //audioPlayer!.delegate = self
+        audioPlayer?.numberOfLoops = -1
+        audioPlayer!.prepareToPlay()
+        audioPlayer!.play()
     }
     //ゲームスタート
     func gamestart() {

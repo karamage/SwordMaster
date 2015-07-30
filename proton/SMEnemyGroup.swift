@@ -48,8 +48,14 @@ class SMEnemyGroup: SMEnemyDelegate {
     //敵が死んだときに呼び出される
     func enemyDeadDelegate(enemy: SMEnemyNode) {
         killcount++
+        if killcount >= enemys.count {
+            enemy.scene!.runAction(choroiSound)
+            enemy.scene!.runAction(choroiSound)
+            enemy.scene!.runAction(choroiSound)
+        }
         if (type == EnemyGroupType.ALLDEAD
             && killcount >= enemys.count) {
+            
             enemys.removeAll() //配列から全削除
             //次の敵グループへ
             delegate?.nextEnemyGroupDelegate()
