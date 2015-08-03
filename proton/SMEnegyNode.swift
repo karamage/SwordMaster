@@ -20,7 +20,7 @@ class SMEnegyNode: SKSpriteNode {
         var color = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         super.init(texture: texture, color:color, size:texture.size())
         self.position = CGPoint(x:location.x, y:location.y)
-        self.blendMode = SKBlendMode.Add
+        //self.blendMode = SKBlendMode.Add
         self.alpha = 0.9
         self.zPosition = 20
     }

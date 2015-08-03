@@ -10,7 +10,7 @@ import SpriteKit
 import CoreMotion
 
 //デバッグモード
-var debugflg: Bool = false
+var debugflg: Bool = true
 
 //プレイヤー
 var player: SMPlayerNode!
@@ -37,6 +37,7 @@ let stage1BgSound = SKAction.playSoundFileNamed("sound.mp3", waitForCompletion: 
 
 //背景
 var stage1Background = SKSpriteNode(imageNamed: "background2")
+var stage2Background = SKSpriteNode(imageNamed: "background_sora2")
 
 //ヒットアニメーション
 var hitAim: [SKTexture]!
@@ -514,6 +515,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scene.runAction(mataSound)
         scene.runAction(mataSound)
         scene.runAction(mataSound)
+        
+        stageManager.resetStage()
     }
    
     override func update(currentTime: CFTimeInterval) {

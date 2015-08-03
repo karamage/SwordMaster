@@ -30,7 +30,13 @@ class SMStageManage {
     
     //次のステージに進める
     func nextStage() {
-        currentStage = nil
+        //currentStage = nil
         currentStageNum++
+    }
+    
+    //最初のステージに戻る
+    func resetStage() {
+        currentStage = nil
+        currentStageNum = 1
     }
 }

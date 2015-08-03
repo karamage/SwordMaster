@@ -101,8 +101,8 @@ class SMPlayerNode: SKSpriteNode {
     
     //プレイヤー作成
     func makePlayer(node: SKNode, textures: [SKTexture]) {
-        self.blendMode = SKBlendMode.Add
-        self.alpha = 0.9
+        //self.blendMode = SKBlendMode.Add
+        //self.alpha = 0.9
         self.position = CGPoint(x: node.frame.size.width * 0.5, y: 0)
         //self.colorBlendFactor = 1.0
         //self.color = SKColor(red: 1.0, green: 0, blue: 0, alpha: 1.0)
@@ -186,8 +186,8 @@ class SMPlayerNode: SKSpriteNode {
         
         //羽のアニメーションを作成
         hane = SKSpriteNode(texture: haneAim[0], size: haneAim[0].size())
-        hane.blendMode = SKBlendMode.Add
-        hane.alpha = 0.9
+        //hane.blendMode = SKBlendMode.Add
+        hane.alpha = 0.8
         self.addChild(hane!)
         //hane.position = CGPoint(x: self.frame.size.width/2, y: 50)
         

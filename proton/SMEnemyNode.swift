@@ -27,6 +27,9 @@ class SMEnemyNode: SKSpriteNode {
     //ヒットエフェクト
     var hit: SKSpriteNode!
     
+    //ボスかどうか
+    var isBoss: Bool = false
+    
     //初期化
     init(texture: SKTexture, type: EnemyType, location: CGPoint, parentnode:SKNode){
         self.type = type
@@ -144,9 +147,18 @@ class SMEnemyNode: SKSpriteNode {
         self.physicsBody?.categoryBitMask = ColliderType.None
         self.removeAllActions()
         
-        //アイテムを出現させる
-        var item = itemFactory.createRandom(self.position)
-        item?.makeItem()
+        //ボスの場合は大量のアイテム
+        var itemnum = 1
+        if isBoss {
+            println("boss dead")
+            itemnum = 10
+        }
+        
+        for i in 1...itemnum {
+            //アイテムを出現させる
+            var item = itemFactory.createRandom(self.position)
+            item?.makeItem()
+        }
         
         var combop = 1.0
         if combo > 1 {
@@ -154,14 +166,14 @@ class SMEnemyNode: SKSpriteNode {
         }
         totalScore = totalScore + Int(Double(self.score) * combop)
         scoreLabel.text = "\(totalScore)"
-        SMNodeUtil.fadeRemoveNode(self)
         if let delegate = self.delegate {
             delegate.enemyDeadDelegate(self)
         }
+        SMNodeUtil.fadeRemoveNode(self)
         bgNode.runAction(explodeSound)
     }
     //デイニシャライザ
     deinit {
-        println("enemy deinit")
+        //println("enemy deinit")
     }
 }

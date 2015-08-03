@@ -42,10 +42,13 @@ class SMStage: SMEnemyGroupDelegate {
         for enemyGroup in enemyGroups! {
             enemyGroup.delegate = self
         }
+        bossEnemyGroup?.delegate = self
     }
     
     //ステージの作成
     func makeStage() {
+        bgNode.removeAllChildren()
+        
         //背景を描画
         let bg = background
         bg.position = CGPoint(x:0, y:0)
@@ -124,6 +127,22 @@ class SMStage: SMEnemyGroupDelegate {
         audioPlayer!.stop()
         startBgm(bossSound)
         bossEnemyGroup.makeEnemyGroup()
+    }
+    
+    //次のステージへ
+    func nextStageDelegate() {
+        println("nextStageDelegate")
+        //BGM一旦停止
+        audioPlayer!.stop()
+        //今のステージの後始末
+        destroyStage()
+        //次のステージの開始
+        stageManager.nextStage()
+        stageManager.makeStage()
+    }
+    
+    func destroyStage() {
+        enemyGroups.removeAll()
     }
     
 }

@@ -13,4 +13,6 @@ import SpriteKit
 protocol SMEnemyGroupDelegate {
     //次の敵グループを出現させる
     func nextEnemyGroupDelegate()
+    //次のステージを出現させる
+    func nextStageDelegate()
 }

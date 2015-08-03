@@ -170,6 +170,6 @@ class SMSwordNode: SKSpriteNode {
     
     //デイニシャライザ
     deinit {
-        println("sword deinit")
+        //println("sword deinit")
     }
 }

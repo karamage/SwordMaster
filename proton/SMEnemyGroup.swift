@@ -47,13 +47,21 @@ class SMEnemyGroup: SMEnemyDelegate {
     
     //敵が死んだときに呼び出される
     func enemyDeadDelegate(enemy: SMEnemyNode) {
+        println("enemyDeadDelegate")
         killcount++
         if killcount >= enemys.count {
             enemy.scene!.runAction(choroiSound)
             enemy.scene!.runAction(choroiSound)
             enemy.scene!.runAction(choroiSound)
         }
-        if (type == EnemyGroupType.ALLDEAD
+        if enemy.isBoss {
+            for tmpenemy in enemys {
+                SMNodeUtil.fadeRemoveNode(tmpenemy)
+            }
+            enemys.removeAll() //配列から全削除
+            //ボスを倒したのなら、次のステージに進む
+            delegate?.nextStageDelegate()
+        } else if (type == EnemyGroupType.ALLDEAD
             && killcount >= enemys.count) {
             
             enemys.removeAll() //配列から全削除
@@ -63,6 +71,6 @@ class SMEnemyGroup: SMEnemyDelegate {
     }
     //デイニシャライザ
     deinit {
-        println("enemygroup deinit")
+        //println("enemygroup deinit")
     }
 }
