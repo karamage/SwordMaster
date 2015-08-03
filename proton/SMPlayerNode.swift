@@ -52,6 +52,7 @@ class SMPlayerNode: SKSpriteNode {
             totalScore += 100
             scoreLabel.text = "\(totalScore)"
         case .SWORDNUMUP:
+            makeWarpAnim()
             bgNode.runAction(powerupSound)
             bgNode.runAction(powerupSound)
             bgNode.runAction(powerupSound)
@@ -59,6 +60,7 @@ class SMPlayerNode: SKSpriteNode {
             self.countUpSword()
             scene.cutin()
         case .SPEEDUP:
+            makeWarpAnim()
             bgNode.runAction(powerupSound)
             bgNode.runAction(powerupSound)
             bgNode.runAction(powerupSound)
@@ -118,21 +120,8 @@ class SMPlayerNode: SKSpriteNode {
         node.addChild(self)
         self.zPosition = 2
         
-        //パラパラアニメーション
-        let paraAction = SKAction.animateWithTextures(textures, timePerFrame: 0.2)
-        let repeatParaAction = SKAction.repeatActionForever(paraAction)
-        self.runAction(repeatParaAction)
-        
         //画面下から登場
-        var playerAction = SKAction.moveToY(50, duration: 2)
-        var repeatAction = SKAction.repeatActionForever(SKAction.sequence([SKAction.moveToY(45, duration: 2),SKAction.moveToY(55, duration: 2)]))
-        self.runAction(SKAction.sequence([playerAction, repeatAction]))
-        
-        var scaleAction1 = SKAction.scaleTo(1.1, duration: 2)
-        var scaleAction2 = SKAction.scaleTo(1.0, duration: 2)
-        var scaleAction3 = SKAction.scaleTo(0.9, duration: 2)
-        var scaleRepeat = SKAction.repeatActionForever(SKAction.sequence([scaleAction1,scaleAction2,scaleAction3]))
-        self.runAction(scaleRepeat)
+        playerStart(textures)
         
         //パーティクル作成
         let particlePosition = CGPoint(x: 0, y: 25)
@@ -143,6 +132,28 @@ class SMPlayerNode: SKSpriteNode {
         
         //剣のアイコンを作成
         makeSwordIcon()
+    }
+    
+    //プレイヤー登場のアニメーション
+    func playerStart(textures: [SKTexture]) {
+        self.removeAllActions()
+        
+        //パラパラアニメーション
+        let paraAction = SKAction.animateWithTextures(textures, timePerFrame: 0.2)
+        let repeatParaAction = SKAction.repeatActionForever(paraAction)
+        self.runAction(repeatParaAction)
+        
+        //画面下から登場
+        var resetAction = SKAction.moveToY(0, duration: 0)
+        var playerAction = SKAction.moveToY(50, duration: 2)
+        var repeatAction = SKAction.repeatActionForever(SKAction.sequence([SKAction.moveToY(45, duration: 2),SKAction.moveToY(55, duration: 2)]))
+        self.runAction(SKAction.sequence([resetAction, playerAction, repeatAction]))
+        
+        var scaleAction1 = SKAction.scaleTo(1.1, duration: 2)
+        var scaleAction2 = SKAction.scaleTo(1.0, duration: 2)
+        var scaleAction3 = SKAction.scaleTo(0.9, duration: 2)
+        var scaleRepeat = SKAction.repeatActionForever(SKAction.sequence([scaleAction1,scaleAction2,scaleAction3]))
+        self.runAction(scaleRepeat)
     }
     
     //剣のアイコンを作成
@@ -187,24 +198,33 @@ class SMPlayerNode: SKSpriteNode {
         //羽のアニメーションを作成
         hane = SKSpriteNode(texture: haneAim[0], size: haneAim[0].size())
         //hane.blendMode = SKBlendMode.Add
-        hane.alpha = 0.8
+        hane.alpha = 0.9
         self.addChild(hane!)
-        //hane.position = CGPoint(x: self.frame.size.width/2, y: 50)
-        
-        var haneAnimAction = SKAction.animateWithTextures(haneAim, timePerFrame: 0.1, resize:false, restore:true)
-        var haneAnimAction1 = SKAction.animateWithTextures(haneAim1, timePerFrame: 0.1, resize:false, restore:true)
-        var haneAnimAction2 = SKAction.animateWithTextures(haneAim2, timePerFrame: 0.1, resize:false, restore:true)
+        makeHaneAnim()
         var scaleHaneAction = SKAction.scaleTo(0.5, duration: 3.0)
-        var repeatHaneAction = SKAction.repeatActionForever(haneAnimAction2)
-        hane.runAction(SKAction.sequence([haneAnimAction,haneAnimAction1, repeatHaneAction]))
         hane.runAction(scaleHaneAction)
         
         //ワープのアニメーションを作成
         warp = SKSpriteNode(texture: warpAim[0], size: warpAim[0].size())
         warp.blendMode = SKBlendMode.Add
         warp.alpha = 0.8
+        makeWarpAnim()
+    }
+    
+    func makeHaneAnim() {
+        hane.removeAllActions()
+        
+        var haneAnimAction = SKAction.animateWithTextures(haneAim, timePerFrame: 0.1, resize:false, restore:true)
+        var haneAnimAction1 = SKAction.animateWithTextures(haneAim1, timePerFrame: 0.1, resize:false, restore:true)
+        var haneAnimAction2 = SKAction.animateWithTextures(haneAim2, timePerFrame: 0.1, resize:false, restore:true)
+        var repeatHaneAction = SKAction.repeatActionForever(haneAnimAction2)
+        hane.runAction(SKAction.sequence([haneAnimAction,haneAnimAction1, repeatHaneAction]))
+    }
+    
+    func makeWarpAnim() {
+        warp.removeFromParent()
         self.addChild(warp!)
-        //warp.position = CGPoint(x: self.frame.size.width/2, y: 50)
+        warp.removeAllActions()
         var warpAnimAction = SKAction.animateWithTextures(warpAim2, timePerFrame: 0.1, resize:false, restore:true)
         var warpRemoveAction = SKAction.removeFromParent()
         warp.runAction(SKAction.sequence([warpAnimAction,warpRemoveAction]))

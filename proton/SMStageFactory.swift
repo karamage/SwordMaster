@@ -20,6 +20,9 @@ class SMStageFactory {
         case 2:
             stage = makeStage2()
             break
+        case 3:
+            stage = makeStage3()
+            break
         default:
             break
         }
@@ -120,8 +123,10 @@ class SMStageFactory {
         enemyGroup6 = SMEnemyGroup(enemys:enemyArray6, type:EnemyGroupType.INTERVAL)
         enemyGroup6.interval = 15.0
         
-        //enemyGroups = [enemyGroup,enemyGroup1,enemyGroup2,enemyGroup3,enemyGroup4,enemyGroup4_1,enemyGroup5,enemyGroup6]
-        enemyGroups = [enemyGroup]
+        enemyGroups = [enemyGroup,enemyGroup1,enemyGroup2,enemyGroup3,enemyGroup4,enemyGroup4_1,enemyGroup5,enemyGroup6]
+        if debugflg {
+            enemyGroups = [enemyGroup]
+        }
         
         //ボス作成
         var boss1: SMEnemyNode? = enemyFactory.create(EnemyType.BOSS1)
@@ -133,7 +138,7 @@ class SMStageFactory {
         bossGroup = SMEnemyGroup(enemys:bossArray, type:EnemyGroupType.BOSS)
         
         //ステージ1作成
-        let stage = SMStage(background: stage1Background, bgSound: "bgm_maoudamashii_neorock33", enemyGroups: enemyGroups, bossEnemyGroup: bossGroup, bossSound: "bosssound1")
+        let stage = SMStage(background: stage1Background, bgSound: "bgm_maoudamashii_neorock33", enemyGroups: enemyGroups, bossEnemyGroup: bossGroup, bossSound: "bosssound1", bgParticle:"scrollParticle.sks")
         return stage
     }
     
@@ -169,7 +174,7 @@ class SMStageFactory {
         
         enemyGroups = [enemyGroup]
         //ボス作成
-        var boss1: SMEnemyNode? = enemyFactory.create(EnemyType.BOSS1)
+        var boss1: SMEnemyNode? = enemyFactory.create(EnemyType.BOSS2)
         bossArray.append(boss1!)
         for i in 0..<5 {
             let enemy = enemyFactory.create(EnemyType.CUBE)
@@ -178,7 +183,53 @@ class SMStageFactory {
         bossGroup = SMEnemyGroup(enemys:bossArray, type:EnemyGroupType.BOSS)
         
         //ステージ2作成
-        let stage = SMStage(background: stage2Background, bgSound: "sound", enemyGroups: enemyGroups, bossEnemyGroup: bossGroup, bossSound: "bosssound1")
+        let stage = SMStage(background: stage2Background, bgSound: "sound", enemyGroups: enemyGroups, bossEnemyGroup: bossGroup, bossSound: "bosssound1", bgParticle:"scrollParticle2.sks")
+        return stage
+    }
+    
+    func makeStage3() -> SMStage {
+        var enemyGroups: [SMEnemyGroup]!
+        var enemyGroup: SMEnemyGroup!
+        var enemyArray: [SMEnemyNode] = [SMEnemyNode]()
+        var enemyGroup1: SMEnemyGroup!
+        var enemyArray1: [SMEnemyNode] = [SMEnemyNode]()
+        var enemyGroup2: SMEnemyGroup!
+        var enemyArray2: [SMEnemyNode] = [SMEnemyNode]()
+        var enemyGroup3: SMEnemyGroup!
+        var enemyArray3: [SMEnemyNode] = [SMEnemyNode]()
+        var enemyGroup4: SMEnemyGroup!
+        var enemyArray4: [SMEnemyNode] = [SMEnemyNode]()
+        var enemyGroup4_1: SMEnemyGroup!
+        var enemyArray4_1: [SMEnemyNode] = [SMEnemyNode]()
+        var enemyGroup5: SMEnemyGroup!
+        var enemyArray5: [SMEnemyNode] = [SMEnemyNode]()
+        var enemyGroup6: SMEnemyGroup!
+        var enemyArray6: [SMEnemyNode] = [SMEnemyNode]()
+        var bossGroup: SMEnemyGroup!
+        var bossArray: [SMEnemyNode] = [SMEnemyNode]()
+        
+        //最初、敵CUBEが5匹
+        for i in 0..<10 {
+            let enemy = enemyFactory.create(EnemyType.CUBE)
+            enemyArray.append(enemy!)
+        }
+        
+        //全滅させるまで次に進めない
+        enemyGroup = SMEnemyGroup(enemys:enemyArray, type:EnemyGroupType.INTERVAL)
+        
+        enemyGroups = [enemyGroup]
+        
+        //ボス作成
+        var boss1: SMEnemyNode? = enemyFactory.create(EnemyType.BOSS3)
+        bossArray.append(boss1!)
+        for i in 0..<5 {
+            let enemy = enemyFactory.create(EnemyType.CUBE)
+            bossArray.append(enemy!)
+        }
+        bossGroup = SMEnemyGroup(enemys:bossArray, type:EnemyGroupType.BOSS)
+        
+        //ステージ3作成
+        let stage = SMStage(background: stage3Background, bgSound: "sound", enemyGroups: enemyGroups, bossEnemyGroup: bossGroup, bossSound: "bosssound1", bgParticle:"scrollParticle.sks")
         return stage
     }
 }

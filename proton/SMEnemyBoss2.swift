@@ -1,15 +1,15 @@
 //
-//  SMEnemyBoss1.swift
+//  SMEnemyBoss2.swift
 //  proton
 //
-//  Created by KakimotoMasaaki on 2015/07/15.
+//  Created by KakimotoMasaaki on 2015/08/03.
 //  Copyright (c) 2015年 Masaaki Kakimoto. All rights reserved.
 //
 
 import Foundation
 import SpriteKit
 
-class SMEnemyBoss1: SMEnemyNode {
+class SMEnemyBoss2: SMEnemyNode {
     
     init(texture: SKTexture) {
         var x:CGFloat = 0
@@ -17,14 +17,14 @@ class SMEnemyBoss1: SMEnemyNode {
         x = frameWidth/2
         y = CGFloat(frameHeight)
         let location = CGPoint(x:x, y:y)
-        super.init(texture: texture, type: EnemyType.BOSS1, location: location, parentnode: enemysNode)
+        super.init(texture: texture, type: EnemyType.BOSS2, location: location, parentnode: enemysNode)
         self.isBoss = true
-        self.hitpoint = 20
+        self.hitpoint = 40
         if debugflg {
             self.hitpoint = 1
         }
         self.diffence = 0
-        self.score = 1000
+        self.score = 2000
     }
     required override init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -36,7 +36,7 @@ class SMEnemyBoss1: SMEnemyNode {
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.restitution = 0.1
         self.physicsBody?.density = 1000.0
-        makeEnegy(15)
+        makeEnegy(30)
         let move = SKAction.moveToY(frameHeight - 100, duration: 3.0)
         self.runAction(move)
     }

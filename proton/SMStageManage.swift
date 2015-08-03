@@ -15,6 +15,9 @@ class SMStageManage {
     var currentStage: SMStage!
     var currentStageNum: Int = 1
     
+    //何周したかどうか
+    var clearNum: Int = 0
+    
     init() {
     }
     

@@ -12,4 +12,6 @@ enum EnemyType {
     case CUBE //最初の敵
     case FLY
     case BOSS1
+    case BOSS2
+    case BOSS3
 }

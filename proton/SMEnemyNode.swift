@@ -154,9 +154,26 @@ class SMEnemyNode: SKSpriteNode {
             itemnum = 10
         }
         
+        var itempos = self.position
         for i in 1...itemnum {
-            //アイテムを出現させる
-            var item = itemFactory.createRandom(self.position)
+            var rand:CGFloat = CGFloat(arc4random_uniform(100))
+            var randY:CGFloat = CGFloat(arc4random_uniform(100))
+            var randp: CGFloat = 1.0
+            var randyp: CGFloat = 1.0
+            var x = self.position.x
+            var y = self.position.y
+            if i > 1 {
+                if rand % 2 == 0 {
+                    randp = -1
+                }
+                if randY % 2 == 0 {
+                    randyp = -1
+                }
+                x = x + (rand * randp)
+                y = y + (randY * randyp)
+                itempos = CGPoint(x:x, y:y)
+            }
+            var item = itemFactory.createRandom(itempos)
             item?.makeItem()
         }
         

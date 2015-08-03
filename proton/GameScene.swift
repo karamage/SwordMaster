@@ -38,6 +38,7 @@ let stage1BgSound = SKAction.playSoundFileNamed("sound.mp3", waitForCompletion: 
 //背景
 var stage1Background = SKSpriteNode(imageNamed: "background2")
 var stage2Background = SKSpriteNode(imageNamed: "background_sora2")
+var stage3Background = SKSpriteNode(imageNamed: "background3")
 
 //ヒットアニメーション
 var hitAim: [SKTexture]!
@@ -112,6 +113,9 @@ var frameHeight: CGFloat!
 //ステージ管理
 var stageManager: SMStageManage = SMStageManage()
 
+//プレイヤーテクスチャ
+var playerTexture = SKTexture(imageNamed: "player1")
+var playerTexture2 = SKTexture(imageNamed: "player2")
 
 extension SKScene{
     
@@ -143,9 +147,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //敵を倒した数
     var killcount = 0
     
-    //プレイヤーテクスチャ
-    var playerTexture = SKTexture(imageNamed: "player1")
-    var playerTexture2 = SKTexture(imageNamed: "player2")
     
     //剣
     var sword: SMSwordNode!

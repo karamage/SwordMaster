@@ -11,10 +11,12 @@ import SpriteKit
 
 //敵のファクトリークラス
 class SMEnemyFactory {
-    //敵１のテクスチャ
+    //敵のテクスチャ
     var enemy1Texture = SKTexture(imageNamed: "enemy1")
     var enemy2Texture = SKTexture(imageNamed: "enemy2")
     var boss1Texture = SKTexture(imageNamed: "boss1")
+    var boss2Texture = SKTexture(imageNamed: "boss2")
+    var boss3Texture = SKTexture(imageNamed: "boss3")
     
     func create(type:EnemyType) -> SMEnemyNode? {
         var enemy:SMEnemyNode? = nil
@@ -25,6 +27,10 @@ class SMEnemyFactory {
             enemy = SMEnemyFly(texture: enemy2Texture) as SMEnemyNode?
         case .BOSS1:
             enemy = SMEnemyBoss1(texture: boss1Texture) as SMEnemyNode?
+        case .BOSS2:
+            enemy = SMEnemyBoss2(texture: boss2Texture) as SMEnemyNode?
+        case .BOSS3:
+            enemy = SMEnemyBoss3(texture: boss3Texture) as SMEnemyNode?
         default:
             break
         }

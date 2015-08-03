@@ -31,13 +31,16 @@ class SMStage: SMEnemyGroupDelegate {
     //ボス音楽
     var bossSound: String!
     
-    init(background: SKSpriteNode, bgSound: String, enemyGroups: [SMEnemyGroup]?,  bossEnemyGroup: SMEnemyGroup?, bossSound: String?) {
+    var bgParticle: String!
+    
+    init(background: SKSpriteNode, bgSound: String, enemyGroups: [SMEnemyGroup]?,  bossEnemyGroup: SMEnemyGroup?, bossSound: String?, bgParticle: String) {
         self.background = background
         self.bgSound = bgSound
         self.enemyGroups = enemyGroups
         //self.boss = boss
         self.bossEnemyGroup = bossEnemyGroup
         self.bossSound = bossSound
+        self.bgParticle = bgParticle
         //通知用
         for enemyGroup in enemyGroups! {
             enemyGroup.delegate = self
@@ -55,8 +58,12 @@ class SMStage: SMEnemyGroupDelegate {
         bg.texture?.filteringMode = SKTextureFilteringMode.Nearest
         bg.anchorPoint = CGPoint(x:0.5, y:0) //中央に合わせる
         bg.zPosition = -100
+        bg.alpha = 0.0
         bgNode.addChild(bg)
-        makeBgParticle()
+        let fadein = SKAction.fadeInWithDuration(2.0)
+        bg.runAction(fadein)
+        
+        makeBgParticle(file: bgParticle)
         
         //背景を徐々に下にスクロールする
         var bgScrollAction = SKAction.moveToY(-60.0, duration: 10) //指定座標まで移動
@@ -95,8 +102,8 @@ class SMStage: SMEnemyGroupDelegate {
     }
     
     //背景用パーティクル作成
-    func makeBgParticle() {
-        let particle = SKEmitterNode(fileNamed: "scrollParticle.sks")
+    func makeBgParticle(file:String = "scrollParticle.sks") {
+        let particle = SKEmitterNode(fileNamed: file)
         particle.zPosition = 0.0
         bgNode.addChild(particle)
         
@@ -134,11 +141,29 @@ class SMStage: SMEnemyGroupDelegate {
         println("nextStageDelegate")
         //BGM一旦停止
         audioPlayer!.stop()
-        //今のステージの後始末
-        destroyStage()
-        //次のステージの開始
-        stageManager.nextStage()
-        stageManager.makeStage()
+        
+        weak var tmpself = self
+        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode!, elapsedTime: CGFloat) -> Void in
+            //今のステージの後始末
+            tmpself!.destroyStage()
+            
+            if stageManager.currentStageNum == 3 {
+                //全３ステージ
+                stageManager.clearNum++
+                stageManager.currentStageNum = 0
+            }
+            
+            //次のステージの開始
+            stageManager.nextStage()
+            stageManager.makeStage()
+            player.playerStart([playerTexture,playerTexture2])
+            player.makeHaneAnim()
+            player.makeWarpAnim()
+        })
+        let wait = SKAction.waitForDuration(10.0)
+        bgNode.runAction(SKAction.sequence([wait, custumAction]))
+        let fadeout = SKAction.fadeOutWithDuration(10.0)
+        background.runAction(fadeout)
     }
     
     func destroyStage() {
