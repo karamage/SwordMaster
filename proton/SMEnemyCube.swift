@@ -34,8 +34,8 @@ class SMEnemyCube: SMEnemyNode {
         
         //プレイヤーに迫って移動してくるようにする
         var vector = SMNodeUtil.makePlayerVector(self.position, player: player)
-        self.physicsBody?.velocity = CGVector.zeroVector
-        self.physicsBody?.applyImpulse(CGVector(dx:vector.dx / 100, dy:vector.dy / 500))
+        //self.physicsBody?.velocity = CGVector.zeroVector
+        //self.physicsBody?.applyImpulse(CGVector(dx:vector.dx / 100, dy:vector.dy / 500))
         
         var randY = arc4random_uniform(100)
         hit.alpha = 0.7

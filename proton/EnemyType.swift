@@ -10,7 +10,8 @@ import Foundation
 
 enum EnemyType {
     case CUBE //最初の敵
-    case FLY
+    case FLY //飛ぶ敵
+    case KNIGHT //ナイト
     case BOSS1
     case BOSS2
     case BOSS3

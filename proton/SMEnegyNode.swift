@@ -61,8 +61,8 @@ class SMEnegyNode: SKSpriteNode {
         if rand % 2 == 0 {
             minus = -1
         }
-        var dx: CGFloat = CGFloat(randX/20) * CGFloat(minus)
-        var dy: CGFloat = CGFloat(randY/20) * CGFloat(-1)
+        var dx: CGFloat = CGFloat(randX/40) * CGFloat(minus)
+        var dy: CGFloat = CGFloat(randY/40) * CGFloat(-1)
         shotEnegy(dx, dy: dy)
     }
 }

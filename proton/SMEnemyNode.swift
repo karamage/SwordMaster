@@ -83,6 +83,16 @@ class SMEnemyNode: SKSpriteNode {
     }
     //剣が当たった時の処理
     func hitSword(sword: SMSwordNode) {
+        var damage = sword.attack - diffence
+        if damage <= 0 {
+            //ダメージを与えられない
+            var guardAnimAction = SKAction.animateWithTextures(guardAim, timePerFrame: 0.1, resize:false, restore:true)
+            hit.runAction(guardAnimAction)
+            bgNode.runAction(kakinSound)
+            return
+        }
+        hitpoint -= (damage)
+        
         //コンボの処理
         let waitAction = SKAction.waitForDuration(1.0)
         let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode!, elapsedTime: CGFloat) -> Void in
@@ -128,7 +138,6 @@ class SMEnemyNode: SKSpriteNode {
         
         sword.physicsBody?.categoryBitMask = ColliderType.None
         bgNode.runAction(explodeSound2)
-        hitpoint -= (sword.attack - diffence)
         if hitpoint <= 0 {
             //敵が死んだ時の処理
             dead()

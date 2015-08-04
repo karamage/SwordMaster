@@ -121,6 +121,11 @@ class SMSwordNode: SKSpriteNode {
         self.physicsBody?.applyImpulse(CGVector(dx:CGFloat(swipex), dy:50.0))
         self.isShot = true
         
+        if self.attack >= 3 {
+            self.physicsBody?.restitution = 0
+            self.physicsBody?.density = 3.0
+        }
+        
         //2秒後に消す
         var removeAction = SKAction.removeFromParent()
         var durationAction = SKAction.waitForDuration(2.00)

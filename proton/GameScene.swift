@@ -43,6 +43,9 @@ var stage3Background = SKSpriteNode(imageNamed: "background3")
 //ヒットアニメーション
 var hitAim: [SKTexture]!
 
+//ガードアニメーション
+var guardAim: [SKTexture]!
+
 //切るアニメーション
 var killAim: [SKTexture]!
 var killAimNode: SKSpriteNode!
@@ -268,6 +271,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //hitのアニメーションを切り出す
         hitAim = SMAnimationUtil.explodeAnime("hiteffect", xFrame: 5, yFrame: 6)
+        guardAim = SMAnimationUtil.explodeAnime("guard", xFrame: 5, yFrame: 2)
         
         killAim = SMAnimationUtil.explodeAnime("kill", xFrame: 1, yFrame: 10)
         
@@ -412,6 +416,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     return
                 }
                 player.countDownSword()
+                
+                //剣の攻撃力を上げる
+                tmpself!.sword.attack++
+                
+                //剣にパーティクルを付ける
+                SMNodeUtil.makeParticleNode(CGPoint(x:0,y:80), filename: "tameParticle.sks", hide: false, node: tmpself!.sword)
+                
                 //剣を作成する
                 let optrandtype = randomSwordType()
                 var positionx = tmpself!.sword.position.x
