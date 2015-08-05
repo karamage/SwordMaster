@@ -25,6 +25,11 @@ class SMEnemyBoss1: SMEnemyNode {
         }
         self.diffence = 0
         self.score = 1000
+        
+        //バリアを作成
+        var guardpos = CGPoint(x:-10, y:-80)
+        var guard = SMGuardNode(texture: guardTexture, location: guardpos, parentnode: self)
+        guard.makeGuard()
     }
     required override init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

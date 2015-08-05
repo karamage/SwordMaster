@@ -50,12 +50,10 @@ class SMStageFactory {
         var bossArray: [SMEnemyNode] = [SMEnemyNode]()
         
         //最初、敵CUBEが3匹
-        /*
         for i in 0..<3 {
-            let enemy = enemyFactory.create(EnemyType.CUBE)
+            let enemy = enemyFactory.create(EnemyType.CUBE2)
             enemyArray.append(enemy!)
         }
-*/
         let enemy = enemyFactory.create(EnemyType.KNIGHT)
         enemyArray.append(enemy!)
         //全滅させるまで次に進めない

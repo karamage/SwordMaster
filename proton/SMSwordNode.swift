@@ -52,8 +52,8 @@ class SMSwordNode: SKSpriteNode {
         self.physicsBody?.affectedByGravity = false
         
         self.physicsBody?.categoryBitMask = ColliderType.Sword
-        self.physicsBody?.collisionBitMask = ColliderType.Enemy | ColliderType.Sword | ColliderType.Enegy
-        self.physicsBody?.contactTestBitMask = ColliderType.Enemy | ColliderType.Sword | ColliderType.Item | ColliderType.Enegy
+        self.physicsBody?.collisionBitMask = ColliderType.Enemy | ColliderType.Sword | ColliderType.Enegy | ColliderType.Guard
+        self.physicsBody?.contactTestBitMask = ColliderType.Enemy | ColliderType.Sword | ColliderType.Item | ColliderType.Enegy | ColliderType.Guard
         
         self.alpha = 0.0
         self.anchorPoint = CGPoint(x:0.5,y:0)

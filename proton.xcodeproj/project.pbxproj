@@ -21,6 +21,8 @@
 		935D90961B6F54680098A2FF /* SMEnemyBoss3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D90951B6F54680098A2FF /* SMEnemyBoss3.swift */; };
 		935D90981B70797D0098A2FF /* SMEnemyKnight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D90971B70797D0098A2FF /* SMEnemyKnight.swift */; };
 		935D909A1B7087E70098A2FF /* tameParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 935D90991B7087E70098A2FF /* tameParticle.sks */; };
+		935D909C1B71E6F60098A2FF /* SMEnemyCube2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D909B1B71E6F60098A2FF /* SMEnemyCube2.swift */; };
+		935D909E1B71EBCA0098A2FF /* SMGuardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D909D1B71EBCA0098A2FF /* SMGuardNode.swift */; };
 		937056CA1B4E0991009BBAC2 /* playerParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 937056C91B4E0991009BBAC2 /* playerParticle.sks */; };
 		937056CC1B4F63A0009BBAC2 /* sparkParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 937056CB1B4F63A0009BBAC2 /* sparkParticle.sks */; };
 		937056CE1B4F75D9009BBAC2 /* SMPlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937056CD1B4F75D9009BBAC2 /* SMPlayerNode.swift */; };
@@ -123,6 +125,8 @@
 		935D90951B6F54680098A2FF /* SMEnemyBoss3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyBoss3.swift; sourceTree = "<group>"; };
 		935D90971B70797D0098A2FF /* SMEnemyKnight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyKnight.swift; sourceTree = "<group>"; };
 		935D90991B7087E70098A2FF /* tameParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = tameParticle.sks; sourceTree = "<group>"; };
+		935D909B1B71E6F60098A2FF /* SMEnemyCube2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyCube2.swift; sourceTree = "<group>"; };
+		935D909D1B71EBCA0098A2FF /* SMGuardNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMGuardNode.swift; path = ../SMGuardNode.swift; sourceTree = "<group>"; };
 		937056C91B4E0991009BBAC2 /* playerParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = playerParticle.sks; sourceTree = "<group>"; };
 		937056CB1B4F63A0009BBAC2 /* sparkParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = sparkParticle.sks; sourceTree = "<group>"; };
 		937056CD1B4F75D9009BBAC2 /* SMPlayerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMPlayerNode.swift; sourceTree = "<group>"; };
@@ -251,6 +255,7 @@
 		93EF1AAC1B4BC01800B1FC93 /* proton */ = {
 			isa = PBXGroup;
 			children = (
+				935D909D1B71EBCA0098A2FF /* SMGuardNode.swift */,
 				93D8CD4C1B69BB5B0052BE67 /* combo_01.wav */,
 				93D8CD4A1B69B9B50052BE67 /* bgm_maoudamashii_neorock33.mp3 */,
 				93D8CD461B689E840052BE67 /* swordmaster2.png */,
@@ -305,6 +310,7 @@
 				93D1D7B41B54B450000EC266 /* SMEnemyGroupDelegate.swift */,
 				935D90951B6F54680098A2FF /* SMEnemyBoss3.swift */,
 				93D1D7A41B523CCF000EC266 /* SMEnemyNode.swift */,
+				935D909B1B71E6F60098A2FF /* SMEnemyCube2.swift */,
 				93D1D7A61B525250000EC266 /* SMEnemyCube.swift */,
 				931943191B58DB740002F1BD /* SMItemNode.swift */,
 				93D1D7BA1B54E240000EC266 /* SMEnemyFly.swift */,
@@ -515,10 +521,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				93EF1AB41B4BC01800B1FC93 /* GameScene.swift in Sources */,
+				935D909E1B71EBCA0098A2FF /* SMGuardNode.swift in Sources */,
 				937056D41B4F8A1F009BBAC2 /* SMNodeUtil.swift in Sources */,
 				93D1D7BB1B54E240000EC266 /* SMEnemyFly.swift in Sources */,
 				937056D21B4F8398009BBAC2 /* SwordType.swift in Sources */,
 				937056DA1B4FA933009BBAC2 /* SMSwordNode.swift in Sources */,
+				935D909C1B71E6F60098A2FF /* SMEnemyCube2.swift in Sources */,
 				93D1D7AB1B534BA4000EC266 /* SMEnemyGroup.swift in Sources */,
 				93D1D7B91B54C57A000EC266 /* SMEnemyDelegate.swift in Sources */,
 				937056D01B4F7F56009BBAC2 /* ColliderType.swift in Sources */,

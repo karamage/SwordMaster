@@ -80,8 +80,8 @@ var choroiSound = SKAction.playSoundFileNamed("choroimondane_01.wav", waitForCom
 
 //テクスチャ
 var swordIconTexture = SKTexture(imageNamed: "sword_icon")
-
 var tapTexture = SKTexture(imageNamed: "tap")
+var guardTexture = SKTexture(imageNamed: "guard1")
 
 //ラベル
 var gameoverLabel:SKLabelNode!
@@ -420,6 +420,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 //剣の攻撃力を上げる
                 tmpself!.sword.attack++
                 
+                tmpself!.sword.circle.color = UIColor.blueColor()
+                tmpself!.sword.circle.colorBlendFactor = 0.5
+                
                 //剣にパーティクルを付ける
                 SMNodeUtil.makeParticleNode(CGPoint(x:0,y:80), filename: "tameParticle.sks", hide: false, node: tmpself!.sword)
                 
@@ -548,6 +551,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let playerType = ColliderType.Player
         let enegyType = ColliderType.Enegy
         let itemType = ColliderType.Item
+        let guardType = ColliderType.Guard
         if (contact.bodyA.categoryBitMask & swordType == swordType ||
             contact.bodyB.categoryBitMask & swordType == swordType ) {
             //剣の衝突
@@ -584,6 +588,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     let enegy: SMEnegyNode = contact.bodyB.node as! SMEnegyNode
                     let sword: SMSwordNode = contact.bodyA.node as! SMSwordNode
                     enegy.contactSword(sword)
+                }
+            } else if contact.bodyA.categoryBitMask & guardType == guardType ||
+                contact.bodyB.categoryBitMask & guardType == guardType {
+                if contact.bodyA.categoryBitMask & guardType == guardType {
+                    let guard: SMGuardNode = contact.bodyA.node as! SMGuardNode
+                    let sword: SMSwordNode = contact.bodyB.node as! SMSwordNode
+                    guard.hitSword(sword)
+                } else if contact.bodyB.categoryBitMask & guardType == guardType {
+                    let guard: SMGuardNode = contact.bodyB.node as! SMGuardNode
+                    let sword: SMSwordNode = contact.bodyA.node as! SMSwordNode
+                    guard.hitSword(sword)
                 }
             }
         } else if contact.bodyA.categoryBitMask & playerType == playerType ||

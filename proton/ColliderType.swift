@@ -16,5 +16,6 @@ struct ColliderType {
     static let Item: UInt32 = (1<<3)
     static let Wall: UInt32 = (1<<4)
     static let Enegy: UInt32 = (1<<5)
+    static let Guard: UInt32 = (1<<6)
     static let None: UInt32 = (1<<9)
 }

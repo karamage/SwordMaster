@@ -24,6 +24,8 @@ class SMEnemyFactory {
         switch type {
         case .CUBE:
             enemy = SMEnemyCube(texture: enemy1Texture) as SMEnemyNode?
+        case .CUBE2:
+            enemy = SMEnemyCube2(texture: enemy1Texture) as SMEnemyNode?
         case .FLY:
             enemy = SMEnemyFly(texture: enemy2Texture) as SMEnemyNode?
         case .KNIGHT:
