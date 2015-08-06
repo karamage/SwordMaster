@@ -81,6 +81,22 @@ class SMEnemyNode: SKSpriteNode {
         let waitAction = SKAction.waitForDuration(2.0)
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([waitAction,custumAction])))
     }
+    func makeEnegy2() {
+        println("makeEnegy2()")
+        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode!, elapsedTime: CGFloat) -> Void in
+            println("makeEnegy2() customAction")
+            var point = CGPoint(x: self.position.x , y: self.position.y)
+            var enegy = enegyFactory.create(point)
+            enegy.makeEnegy(rad:10.0, den: 100.0)
+            //enegy.shotEnegyRandom()
+            enegy.shotEnegyPlayer()
+            var scale = SKAction.scaleBy(3.0, duration: 1.0)
+            enegy.runAction(scale)
+            SMNodeUtil.makeParticleNode(CGPoint(x:0,y:0), filename: "enegyParticle.sks", hide: false, node: enegy)
+        })
+        let waitAction = SKAction.waitForDuration(5.0)
+        self.runAction(SKAction.repeatActionForever(SKAction.sequence([waitAction,custumAction])))
+    }
     //剣が当たった時の処理
     func hitSword(sword: SMSwordNode) {
         var damage = sword.attack - diffence

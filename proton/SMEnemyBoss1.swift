@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class SMEnemyBoss1: SMEnemyNode {
-    
+    var guard: SMGuardNode!
     init(texture: SKTexture) {
         var x:CGFloat = 0
         var y:CGFloat = 0
@@ -26,10 +26,6 @@ class SMEnemyBoss1: SMEnemyNode {
         self.diffence = 0
         self.score = 1000
         
-        //バリアを作成
-        var guardpos = CGPoint(x:-10, y:-80)
-        var guard = SMGuardNode(texture: guardTexture, location: guardpos, parentnode: self)
-        guard.makeGuard()
     }
     required override init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -42,7 +38,15 @@ class SMEnemyBoss1: SMEnemyNode {
         self.physicsBody?.restitution = 0.1
         self.physicsBody?.density = 1000.0
         makeEnegy(15)
+        makeEnegy2()
         let move = SKAction.moveToY(frameHeight - 100, duration: 3.0)
         self.runAction(move)
+        
+        println("boss1 guard make")
+        
+        //バリアを作成
+        var guardpos = CGPoint(x:-10, y:-80)
+        guard = SMGuardNode(texture: guardTexture, location: guardpos, parentnode: self)
+        guard.makeGuard()
     }
 }

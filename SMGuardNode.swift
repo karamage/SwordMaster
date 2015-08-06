@@ -39,6 +39,7 @@ class SMGuardNode: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     func makeGuard() {
+        println("make guard")
         //物理シミュレーション設定
         self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
         //self.physicsBody = SKPhysicsBody(circleOfRadius: 3.0)
@@ -54,18 +55,21 @@ class SMGuardNode: SKSpriteNode {
     }
     //剣が当たった時の処理
     func hitSword(sword: SMSwordNode) {
+        println("guard hitSword()")
         var damage = sword.attack
-        var guardAnimAction = SKAction.animateWithTextures(guardAim, timePerFrame: 0.1, resize:false, restore:true)
-        hit.runAction(guardAnimAction)
-        bgNode.runAction(kakinSound)
         hitpoint -= (damage)
         sword.physicsBody?.categoryBitMask = ColliderType.None
-        SMNodeUtil.makeParticleNode(self.position, filename:"hitParticle.sks", node:bgNode)
+        var parent = self.parentnode
         if hitpoint <= 0 {
             //バリア破壊
             bgNode.runAction(explodeSound2)
-        SMNodeUtil.makeParticleNode(self.position, filename:"deadParticle.sks", node:bgNode)
-            self.removeFromParent()
+        SMNodeUtil.makeParticleNode(parent!.position, filename:"deadParticle.sks", node:bgNode)
+            SMNodeUtil.fadeRemoveNode(self)
+            //self.removeFromParent()
+        } else {
+            hit.runAction(guardAnimAction)
+            bgNode.runAction(kakinSound)
+            SMNodeUtil.makeParticleNode(parent!.position, filename:"hitParticle.sks", node:bgNode)
         }
     }
 }

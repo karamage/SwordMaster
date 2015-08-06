@@ -23,6 +23,8 @@
 		935D909A1B7087E70098A2FF /* tameParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 935D90991B7087E70098A2FF /* tameParticle.sks */; };
 		935D909C1B71E6F60098A2FF /* SMEnemyCube2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D909B1B71E6F60098A2FF /* SMEnemyCube2.swift */; };
 		935D909E1B71EBCA0098A2FF /* SMGuardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D909D1B71EBCA0098A2FF /* SMGuardNode.swift */; };
+		935D90A01B7336510098A2FF /* SMEnemyLion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D909F1B7336510098A2FF /* SMEnemyLion.swift */; };
+		935D90A21B7350990098A2FF /* enegyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 935D90A11B7350990098A2FF /* enegyParticle.sks */; };
 		937056CA1B4E0991009BBAC2 /* playerParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 937056C91B4E0991009BBAC2 /* playerParticle.sks */; };
 		937056CC1B4F63A0009BBAC2 /* sparkParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 937056CB1B4F63A0009BBAC2 /* sparkParticle.sks */; };
 		937056CE1B4F75D9009BBAC2 /* SMPlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937056CD1B4F75D9009BBAC2 /* SMPlayerNode.swift */; };
@@ -127,6 +129,8 @@
 		935D90991B7087E70098A2FF /* tameParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = tameParticle.sks; sourceTree = "<group>"; };
 		935D909B1B71E6F60098A2FF /* SMEnemyCube2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyCube2.swift; sourceTree = "<group>"; };
 		935D909D1B71EBCA0098A2FF /* SMGuardNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMGuardNode.swift; path = ../SMGuardNode.swift; sourceTree = "<group>"; };
+		935D909F1B7336510098A2FF /* SMEnemyLion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyLion.swift; sourceTree = "<group>"; };
+		935D90A11B7350990098A2FF /* enegyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = enegyParticle.sks; sourceTree = "<group>"; };
 		937056C91B4E0991009BBAC2 /* playerParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = playerParticle.sks; sourceTree = "<group>"; };
 		937056CB1B4F63A0009BBAC2 /* sparkParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = sparkParticle.sks; sourceTree = "<group>"; };
 		937056CD1B4F75D9009BBAC2 /* SMPlayerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMPlayerNode.swift; sourceTree = "<group>"; };
@@ -317,6 +321,8 @@
 				935D90991B7087E70098A2FF /* tameParticle.sks */,
 				935D90971B70797D0098A2FF /* SMEnemyKnight.swift */,
 				9319431B1B5F5C790002F1BD /* ItemType.swift */,
+				935D909F1B7336510098A2FF /* SMEnemyLion.swift */,
+				935D90A11B7350990098A2FF /* enegyParticle.sks */,
 				937056DB1B4FB750009BBAC2 /* hitParticle.sks */,
 				937056D71B4FA89B009BBAC2 /* EnemyType.swift */,
 				937056D51B4FA28E009BBAC2 /* SMAnimationUtil.swift */,
@@ -462,6 +468,7 @@
 				935D909A1B7087E70098A2FF /* tameParticle.sks in Resources */,
 				9356C1DD1B4D00410073EBF8 /* spark.png in Resources */,
 				93D1D7CB1B57558B000EC266 /* spark.png in Resources */,
+				935D90A21B7350990098A2FF /* enegyParticle.sks in Resources */,
 				93D8CD341B679E620052BE67 /* torya_01.wav in Resources */,
 				93D8CD371B679E620052BE67 /* choroichoroi_01.wav in Resources */,
 				93EF1ABE1B4BC01800B1FC93 /* LaunchScreen.xib in Resources */,
@@ -528,6 +535,7 @@
 				937056DA1B4FA933009BBAC2 /* SMSwordNode.swift in Sources */,
 				935D909C1B71E6F60098A2FF /* SMEnemyCube2.swift in Sources */,
 				93D1D7AB1B534BA4000EC266 /* SMEnemyGroup.swift in Sources */,
+				935D90A01B7336510098A2FF /* SMEnemyLion.swift in Sources */,
 				93D1D7B91B54C57A000EC266 /* SMEnemyDelegate.swift in Sources */,
 				937056D01B4F7F56009BBAC2 /* ColliderType.swift in Sources */,
 				93D1D7AF1B538DC6000EC266 /* SMSwordFactory.swift in Sources */,

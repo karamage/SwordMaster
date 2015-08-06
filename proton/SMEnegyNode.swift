@@ -27,13 +27,13 @@ class SMEnegyNode: SKSpriteNode {
     required override init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func makeEnegy() {
+    func makeEnegy(rad:CGFloat = 3.0, den:CGFloat = 10.0) {
         //物理シミュレーション設定
         //self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
-        self.physicsBody = SKPhysicsBody(circleOfRadius: 3.0)
+        self.physicsBody = SKPhysicsBody(circleOfRadius: rad)
         self.physicsBody?.dynamic = true
         self.physicsBody?.allowsRotation = false
-        self.physicsBody?.density = 10.0
+        self.physicsBody?.density = den
         
         self.physicsBody?.categoryBitMask = ColliderType.Enegy
         self.physicsBody?.collisionBitMask = ColliderType.Sword
@@ -64,5 +64,12 @@ class SMEnegyNode: SKSpriteNode {
         var dx: CGFloat = CGFloat(randX/40) * CGFloat(minus)
         var dy: CGFloat = CGFloat(randY/40) * CGFloat(-1)
         shotEnegy(dx, dy: dy)
+    }
+    func shotEnegyPlayer() {
+        //プレイヤーに迫って移動してくるようにする
+        var vector = SMNodeUtil.makePlayerVector(self.position, player: player)
+        //self.physicsBody?.velocity = CGVector.zeroVector
+        //self.physicsBody?.applyImpulse(CGVector(dx:vector.dx / 100, dy:vector.dy / 500))
+        shotEnegy(vector.dx, dy: vector.dy)
     }
 }

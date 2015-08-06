@@ -45,6 +45,7 @@ var hitAim: [SKTexture]!
 
 //ガードアニメーション
 var guardAim: [SKTexture]!
+var guardAnimAction = SKAction.animateWithTextures(guardAim, timePerFrame: 0.1, resize:false, restore:true)
 
 //切るアニメーション
 var killAim: [SKTexture]!

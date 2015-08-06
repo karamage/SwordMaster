@@ -13,6 +13,7 @@ enum EnemyType {
     case CUBE2 //最初の敵
     case FLY //飛ぶ敵
     case KNIGHT //ナイト
+    case LION
     case BOSS1
     case BOSS2
     case BOSS3
