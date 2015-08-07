@@ -15,6 +15,7 @@ class SMEnemyFactory {
     var enemy1Texture = SKTexture(imageNamed: "enemy1")
     var enemy2Texture = SKTexture(imageNamed: "enemy2")
     var enemy4Texture = SKTexture(imageNamed: "enemy4")
+    var enemy7Texture = SKTexture(imageNamed: "enemy7")
     var enemy8Texture = SKTexture(imageNamed: "enemy8")
     var boss1Texture = SKTexture(imageNamed: "boss1")
     var boss2Texture = SKTexture(imageNamed: "boss2")
@@ -31,6 +32,8 @@ class SMEnemyFactory {
             enemy = SMEnemyFly(texture: enemy2Texture) as SMEnemyNode?
         case .KNIGHT:
             enemy = SMEnemyKnight(texture: enemy4Texture) as SMEnemyNode?
+        case .AKNIGHT:
+            enemy = SMEnemyAKnight(texture: enemy7Texture) as SMEnemyNode?
         case .LION:
             enemy = SMEnemyLion(texture: enemy8Texture) as SMEnemyNode?
         case .BOSS1:

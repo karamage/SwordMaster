@@ -156,6 +156,8 @@ class SMSwordNode: SKSpriteNode {
             self.runAction(eiSound)
             self.runAction(eiSound)
             self.runAction(eiSound)
+        default:
+            break;
         }
         
         var fadeAction = SKAction.fadeAlphaTo(0, duration: 2.0)

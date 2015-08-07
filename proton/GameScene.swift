@@ -10,7 +10,7 @@ import SpriteKit
 import CoreMotion
 
 //デバッグモード
-var debugflg: Bool = true
+var debugflg: Bool = false
 
 //プレイヤー
 var player: SMPlayerNode!
@@ -339,7 +339,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             var speed: CGFloat = 1.0 + (0.1 * CGFloat(player.speedup))
             if player.position.x >= 0 && player.position.x <= self.frame.width {
                 positionx = CGFloat(CGFloat(data.acceleration.x) * CGFloat(20.0) * speed)
-                moveAction = SKAction.moveByX(positionx, y:player.position.y, duration: 0.1)
+                moveAction = SKAction.moveByX(positionx, y:0, duration: 0.1)
             } else {
                 //画面端の場合はそれ以上進めないようにする
                 if player.position.x <= 0 {

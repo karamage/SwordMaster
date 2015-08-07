@@ -15,7 +15,9 @@ class SMEnemyLion: SMEnemyNode {
     init(texture: SKTexture) {
         var x:CGFloat = 0
         var y:CGFloat = 0
-        x = frameWidth/2
+        var randX = arc4random_uniform(200)
+        x = CGFloat(randX)
+        x = frameWidth/2 + 100.0 - CGFloat(randX)
         y = CGFloat(frameHeight)
         let location = CGPoint(x:x, y:y)
         super.init(texture: texture, type: EnemyType.LION, location: location, parentnode: enemysNode)

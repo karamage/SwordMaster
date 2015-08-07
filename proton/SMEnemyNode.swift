@@ -81,7 +81,7 @@ class SMEnemyNode: SKSpriteNode {
         let waitAction = SKAction.waitForDuration(2.0)
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([waitAction,custumAction])))
     }
-    func makeEnegy2() {
+    func makeEnegy2(interval: Double = 5.0) {
         println("makeEnegy2()")
         let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode!, elapsedTime: CGFloat) -> Void in
             println("makeEnegy2() customAction")
@@ -94,7 +94,7 @@ class SMEnemyNode: SKSpriteNode {
             enegy.runAction(scale)
             SMNodeUtil.makeParticleNode(CGPoint(x:0,y:0), filename: "enegyParticle.sks", hide: false, node: enegy)
         })
-        let waitAction = SKAction.waitForDuration(5.0)
+        let waitAction = SKAction.waitForDuration(interval)
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([waitAction,custumAction])))
     }
     //剣が当たった時の処理
