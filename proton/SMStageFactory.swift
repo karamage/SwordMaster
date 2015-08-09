@@ -132,7 +132,7 @@ class SMStageFactory {
         
         enemyGroups = [enemyGroup,enemyGroup1,enemyGroup2,enemyGroup3,enemyGroup4,enemyGroup4_1,enemyGroup5,enemyGroup6]
         if debugflg {
-            //enemyGroups = [enemyGroup]
+            enemyGroups = [enemyGroup]
         }
         
         //ボス作成

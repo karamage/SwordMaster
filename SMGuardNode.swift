@@ -9,6 +9,7 @@
 import Foundation
 import SpriteKit
 
+//敵用のバリアクラス
 class SMGuardNode: SKSpriteNode {
     //耐久力
     var hitpoint: Int = 10
@@ -26,7 +27,7 @@ class SMGuardNode: SKSpriteNode {
         self.position = CGPoint(x:location.x, y:location.y)
         self.zPosition = 2
         self.blendMode = SKBlendMode.Add
-        self.alpha = 0.7
+        self.alpha = 0.8
         
         //アニメーションを作成
         hit = SKSpriteNode(texture: hitAim[0], size: hitAim[0].size())
@@ -39,10 +40,9 @@ class SMGuardNode: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     func makeGuard() {
-        println("make guard")
         //物理シミュレーション設定
-        self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
-        //self.physicsBody = SKPhysicsBody(circleOfRadius: 3.0)
+        //self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 100, height: 30))
         self.physicsBody?.dynamic = false
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.density = 1000.0
@@ -55,7 +55,6 @@ class SMGuardNode: SKSpriteNode {
     }
     //剣が当たった時の処理
     func hitSword(sword: SMSwordNode) {
-        println("guard hitSword()")
         var damage = sword.attack
         hitpoint -= (damage)
         sword.physicsBody?.categoryBitMask = ColliderType.None

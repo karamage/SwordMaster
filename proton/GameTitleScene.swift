@@ -75,10 +75,10 @@ class GameTitleScene: SKScene {
         start.name = "start"
         start.position = CGPoint(x: self.frame.width/2, y:60)
         start.zPosition = 120
-        start.alpha = 0.8
-        start.color = UIColor(red: 0.4, green: 0.1, blue: 0.1, alpha: 0.7)
-        start.colorBlendFactor = 0.65
-        start.blendMode =  SKBlendMode.Add
+        start.alpha = 0.9
+        //start.color = UIColor(red: 0.4, green: 0.1, blue: 0.1, alpha: 0.7)
+        //start.colorBlendFactor = 0.65
+        //start.blendMode =  SKBlendMode.Add
         bgNode.addChild(start)
         let fadeoutAction = SKAction.fadeOutWithDuration(0.5)
         let waitAction = SKAction.waitForDuration(0.5)

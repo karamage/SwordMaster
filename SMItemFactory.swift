@@ -14,6 +14,7 @@ class SMItemFactory {
     let daiyaTexture: SKTexture = SKTexture(imageNamed: "daiya")
     let swordnumTexture: SKTexture = SKTexture(imageNamed: "sword_icon2")
     let speedTexture: SKTexture = SKTexture(imageNamed: "speed")
+    let shieldTexture: SKTexture = SKTexture(imageNamed: "shield")
     func createRandom(location:CGPoint) -> SMItemNode? {
         var rand = arc4random_uniform(100)
         var ret: SMItemNode?
@@ -23,8 +24,13 @@ class SMItemFactory {
             ret = create(ItemType.SWORDNUMUP, location: location)
         } else if rand % 10 == 3 {
             ret = create(ItemType.SPEEDUP, location: location)
+        } else if rand % 10 == 4 {
+            ret = create(ItemType.SHIELD, location: location)
         } else {
             ret = create(ItemType.COIN, location: location)
+            if debugflg {
+                ret = create(ItemType.SHIELD, location: location)
+            }
         }
         return ret
     }
@@ -42,6 +48,9 @@ class SMItemFactory {
             break
         case ItemType.SPEEDUP:
             ret = SMItemNode(texture: speedTexture, type: ItemType.SPEEDUP, location: location, parentnode: enemysNode)
+            break
+        case ItemType.SHIELD:
+            ret = SMItemNode(texture: shieldTexture, type: ItemType.SHIELD, location: location, parentnode: enemysNode)
             break
         default:
             break

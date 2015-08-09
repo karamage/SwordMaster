@@ -126,6 +126,7 @@ class SMEnemyNode: SKSpriteNode {
             //comboLabel.alpha = 1.0
             if comboLabel.alpha == 0.0 {
                 let fadeInAction = SKAction.fadeInWithDuration(0.5)
+                let fadeInAction2 = SKAction.fadeAlphaTo(0.3, duration: 0.5)
                 let fadeOutAction = SKAction.fadeOutWithDuration(0.5)
                 
                 comboLabel.runAction(fadeInAction)
@@ -141,9 +142,9 @@ class SMEnemyNode: SKSpriteNode {
                 killAimNode.runAction(kiruSound)
                 var killAnimAction = SKAction.animateWithTextures(killAim, timePerFrame: 0.1, resize:false, restore:true)
                 killAimNode.runAction(killAnimAction)
-                killAimNode.runAction(SKAction.sequence([fadeInAction,fadeOutAction]) )
+                killAimNode.runAction(SKAction.sequence([fadeInAction2,fadeOutAction]) )
                 let scale1 = SKAction.scaleTo(1.0, duration: 0.0)
-                let scale2 = SKAction.scaleTo(1.5, duration: 1.0)
+                let scale2 = SKAction.scaleTo(3.0, duration: 1.0)
                 killAimNode.runAction(SKAction.sequence([scale1,scale2]))
             } else {
                 comboLabel.alpha = 1.0

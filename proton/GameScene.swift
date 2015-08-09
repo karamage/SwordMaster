@@ -83,18 +83,15 @@ var choroiSound = SKAction.playSoundFileNamed("choroimondane_01.wav", waitForCom
 var swordIconTexture = SKTexture(imageNamed: "sword_icon")
 var tapTexture = SKTexture(imageNamed: "tap")
 var guardTexture = SKTexture(imageNamed: "guard1")
+var guard2Texture = SKTexture(imageNamed: "guard2")
 
 //ラベル
 var gameoverLabel:SKLabelNode!
 var scoreLabel:SKLabelNode!
 var comboLabel:SKLabelNode!
 var returnLabel:SKLabelNode!
-/*
-let gameoverLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
-let scoreLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
-let comboLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
-let returnLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
-*/
+var helpLabel:SKLabelNode!
+var helpLabel2:SKLabelNode!
 
 //スコア
 var totalScore: Int = 0
@@ -181,6 +178,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //操作説明を表示する
     func howto() {
+        //タップして剣を撃つ操作説明
         let tap = SKSpriteNode(texture: tapTexture)
         tap.zPosition = 1000
         tap.position = CGPoint(x: self.frame.width/2 + 100, y: self.frame.height/2 - 150)
@@ -194,12 +192,46 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let scale2 = SKAction.scaleTo(1.0, duration: 0.5)
         let tapAction = SKAction.sequence([waitAction, fadeInAction, scale1, scale2, scale1, scale2, scale1, scale2, fadeOutAction])
         
+        //ラベルの表示
+        helpLabel.text = "自機周辺をタップすると剣を撃ちます"
+        helpLabel.fontSize = 20
+        helpLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
+        helpLabel.zPosition = 1000
+        helpLabel.alpha = 0.0
+        self.addChild(helpLabel)
+        helpLabel.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.size.height/2)
+        let tapLabelAction = SKAction.sequence([waitAction, fadeInAction, waitAction, fadeOutAction])
+        helpLabel.runAction(SKAction.sequence([tapLabelAction,SKAction.removeFromParent()]))
+        
+        //タップ領域の説明
+        let shape:SKShapeNode = SKShapeNode(rectOfSize: CGSize(width: self.frame.width, height: 300))
+        shape.fillColor = UIColor.whiteColor()
+        shape.alpha = 0.05
+        self.addChild(shape)
+        shape.position = CGPoint(x:self.frame.width/2, y: 150)
+        let scale0 = SKAction.scaleTo(0.0, duration: 0.0)
+        let scale3 = SKAction.scaleTo(1.0, duration: 1.0)
+        let shapeAction = SKAction.sequence([scale0, scale3])
+        let repeatShape = SKAction.repeatAction(shapeAction,count:7)
+        shape.runAction(SKAction.sequence([scale0, waitAction, repeatShape, SKAction.removeFromParent()]))
+        
+        //移動の操作説明
         moveAim = SMAnimationUtil.explodeAnime("moveAnim", xFrame: 2, yFrame: 1)
         var moveAnimAction = SKAction.animateWithTextures(moveAim, timePerFrame: 1.0)
         var repeatMove = SKAction.repeatAction(moveAnimAction, count: 3)
         var moveAction = SKAction.sequence([waitAction,fadeInAction, repeatMove, fadeOutAction])
         let allAction = SKAction.sequence([tapAction,moveAction])
         tap.runAction(allAction)
+        
+        let waitAction7 = SKAction.waitForDuration(7.0)
+        helpLabel2.text = "画面を傾けると自機が左右に移動します"
+        helpLabel2.fontSize = 20
+        helpLabel2.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
+        helpLabel2.zPosition = 1000
+        helpLabel2.alpha = 0.0
+        self.addChild(helpLabel2)
+        helpLabel2.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.size.height/2)
+        helpLabel2.runAction(SKAction.sequence([waitAction7, tapLabelAction,SKAction.removeFromParent()]))
     }
     
     //画面の初期化処理
@@ -226,6 +258,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
         comboLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
         returnLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
+        helpLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
+        helpLabel2 = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
         totalScore = 0
         
         //スコアラベルの表示
@@ -553,6 +587,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let enegyType = ColliderType.Enegy
         let itemType = ColliderType.Item
         let guardType = ColliderType.Guard
+        let guardType2 = ColliderType.Guard2
         if (contact.bodyA.categoryBitMask & swordType == swordType ||
             contact.bodyB.categoryBitMask & swordType == swordType ) {
             //剣の衝突
@@ -633,13 +668,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             } else if contact.bodyA.categoryBitMask & itemType == itemType ||
                 contact.bodyB.categoryBitMask & itemType == itemType {
-                    var item: SMItemNode!
+                var item: SMItemNode!
                 if contact.bodyA.categoryBitMask & itemType == itemType {
                     item = contact.bodyA.node as! SMItemNode
                 } else if contact.bodyB.categoryBitMask & itemType == itemType {
                     item = contact.bodyB.node as! SMItemNode
                 }
                 player.contactItem(item)
+            }
+        } else if contact.bodyA.categoryBitMask & guardType2 == guardType2 ||
+            contact.bodyB.categoryBitMask & guardType2 == guardType2 {
+            //自機バリアとの衝突
+            if contact.bodyA.categoryBitMask & enegyType == enegyType ||
+                contact.bodyB.categoryBitMask & enegyType == enegyType {
+                var guard2: SMGuardNode2!
+                var enegy: SMEnegyNode!
+                if contact.bodyA.categoryBitMask & enegyType == enegyType {
+                    enegy = contact.bodyA.node as! SMEnegyNode
+                    guard2 = contact.bodyB.node as! SMGuardNode2
+                } else if contact.bodyB.categoryBitMask & enegyType == enegyType {
+                    enegy = contact.bodyB.node as! SMEnegyNode
+                    guard2 = contact.bodyA.node as! SMGuardNode2
+                }
+                    guard2.hitEnegy(enegy)
             }
         }
     }

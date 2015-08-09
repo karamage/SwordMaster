@@ -11,7 +11,6 @@
 		9319431A1B58DB740002F1BD /* SMItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931943191B58DB740002F1BD /* SMItemNode.swift */; };
 		9319431C1B5F5C790002F1BD /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9319431B1B5F5C790002F1BD /* ItemType.swift */; };
 		9319431E1B5F724E0002F1BD /* SMItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9319431D1B5F724E0002F1BD /* SMItemFactory.swift */; };
-		931943201B661B690002F1BD /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9319431F1B661B690002F1BD /* iAd.framework */; };
 		9356C1DC1B4D00410073EBF8 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DA1B4D00410073EBF8 /* MyParticle.sks */; };
 		9356C1DD1B4D00410073EBF8 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DB1B4D00410073EBF8 /* spark.png */; };
 		9356C1DF1B4D05000073EBF8 /* ice1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DE1B4D05000073EBF8 /* ice1.png */; };
@@ -38,6 +37,7 @@
 		937056D81B4FA89B009BBAC2 /* EnemyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937056D71B4FA89B009BBAC2 /* EnemyType.swift */; };
 		937056DA1B4FA933009BBAC2 /* SMSwordNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937056D91B4FA933009BBAC2 /* SMSwordNode.swift */; };
 		937056DC1B4FB750009BBAC2 /* hitParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 937056DB1B4FB750009BBAC2 /* hitParticle.sks */; };
+		9380AB501B75E4C10052274E /* SMGuardNode2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380AB4F1B75E4C10052274E /* SMGuardNode2.swift */; };
 		93D1D79C1B513933000EC266 /* magic_circle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7961B513933000EC266 /* magic_circle.mp3 */; };
 		93D1D79D1B513933000EC266 /* nagarebosi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7971B513933000EC266 /* nagarebosi.mp3 */; };
 		93D1D79E1B513933000EC266 /* hit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7981B513933000EC266 /* hit.mp3 */; };
@@ -147,6 +147,7 @@
 		937056D71B4FA89B009BBAC2 /* EnemyType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyType.swift; sourceTree = "<group>"; };
 		937056D91B4FA933009BBAC2 /* SMSwordNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSwordNode.swift; sourceTree = "<group>"; };
 		937056DB1B4FB750009BBAC2 /* hitParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hitParticle.sks; sourceTree = "<group>"; };
+		9380AB4F1B75E4C10052274E /* SMGuardNode2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMGuardNode2.swift; sourceTree = "<group>"; };
 		93D1D7961B513933000EC266 /* magic_circle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = magic_circle.mp3; sourceTree = "<group>"; };
 		93D1D7971B513933000EC266 /* nagarebosi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = nagarebosi.mp3; sourceTree = "<group>"; };
 		93D1D7981B513933000EC266 /* hit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hit.mp3; sourceTree = "<group>"; };
@@ -223,7 +224,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				931943201B661B690002F1BD /* iAd.framework in Frameworks */,
 				93D1D7A31B522AB4000EC266 /* CoreMotion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,6 +329,7 @@
 				935D90991B7087E70098A2FF /* tameParticle.sks */,
 				935D90971B70797D0098A2FF /* SMEnemyKnight.swift */,
 				9319431B1B5F5C790002F1BD /* ItemType.swift */,
+				9380AB4F1B75E4C10052274E /* SMGuardNode2.swift */,
 				935D909F1B7336510098A2FF /* SMEnemyLion.swift */,
 				935D90A11B7350990098A2FF /* enegyParticle.sks */,
 				937056DB1B4FB750009BBAC2 /* hitParticle.sks */,
@@ -553,6 +554,7 @@
 				93D1D7A71B525250000EC266 /* SMEnemyCube.swift in Sources */,
 				93D1D7B71B54BCD7000EC266 /* EnemyGroupType.swift in Sources */,
 				93D1D7B51B54B450000EC266 /* SMEnemyGroupDelegate.swift in Sources */,
+				9380AB501B75E4C10052274E /* SMGuardNode2.swift in Sources */,
 				93D1D7B11B538FE3000EC266 /* SMEnemyFactory.swift in Sources */,
 				9319431A1B58DB740002F1BD /* SMItemNode.swift in Sources */,
 				9319431C1B5F5C790002F1BD /* ItemType.swift in Sources */,

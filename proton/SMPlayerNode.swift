@@ -66,6 +66,13 @@ class SMPlayerNode: SKSpriteNode {
             bgNode.runAction(powerupSound)
             self.speedUp()
             scene.cutin()
+        case .SHIELD:
+            makeWarpAnim()
+            bgNode.runAction(powerupSound)
+            bgNode.runAction(powerupSound)
+            bgNode.runAction(powerupSound)
+            self.guard()
+            scene.cutin()
         default:
             break
         }
@@ -73,6 +80,11 @@ class SMPlayerNode: SKSpriteNode {
         SMNodeUtil.makeParticleNode(CGPoint(x: self.position.x, y: self.position.y + 30), filename: "MyParticle.sks", node: bgNode)
     }
     
+    //バリアの作成
+    func guard() {
+        var guard = SMGuardNode2(texture: guard2Texture, location: CGPoint(x:self.position.x + 10, y:100.0), parentnode: bgNode)
+        guard.makeGuard()
+    }
     //スピードアップの処理
     func speedUp() {
         self.speedup++
