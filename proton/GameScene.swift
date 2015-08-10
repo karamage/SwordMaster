@@ -53,6 +53,8 @@ var killAimNode: SKSpriteNode!
 
 //操作アニメーション
 var moveAim: [SKTexture]!
+var tapAim: [SKTexture]!
+var swipeAim: [SKTexture]!
 
 //効果音
 var hitSound = SKAction.playSoundFileNamed("hit.mp3", waitForCompletion: false)
@@ -92,6 +94,8 @@ var comboLabel:SKLabelNode!
 var returnLabel:SKLabelNode!
 var helpLabel:SKLabelNode!
 var helpLabel2:SKLabelNode!
+var helpLabel3:SKLabelNode!
+var helpLabel4:SKLabelNode!
 
 //スコア
 var totalScore: Int = 0
@@ -220,9 +224,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var moveAnimAction = SKAction.animateWithTextures(moveAim, timePerFrame: 1.0)
         var repeatMove = SKAction.repeatAction(moveAnimAction, count: 3)
         var moveAction = SKAction.sequence([waitAction,fadeInAction, repeatMove, fadeOutAction])
-        let allAction = SKAction.sequence([tapAction,moveAction])
+        
+        //長押しタップの説明
+        tapAim = SMAnimationUtil.explodeAnime("tap", xFrame: 1, yFrame: 1)
+        let lscale2 = SKAction.scaleTo(1.5, duration: 1.5)
+        var ltapAnimAction = SKAction.animateWithTextures(tapAim, timePerFrame: 0.1)
+        let ltapAction = SKAction.sequence([waitAction, ltapAnimAction, fadeInAction, scale1, lscale2, scale1, lscale2, scale1, lscale2, fadeOutAction])
+        
+        //スワイプの説明
+        swipeAim = SMAnimationUtil.explodeAnime("swipe", xFrame: 2, yFrame: 1)
+        var swipeAnimAction = SKAction.animateWithTextures(swipeAim, timePerFrame: 1.0)
+        var repeatSwipe = SKAction.repeatAction(swipeAnimAction, count: 3)
+        var swipeAction = SKAction.sequence([waitAction,scale1,fadeInAction, repeatSwipe, fadeOutAction])
+        
+        
+        let allAction = SKAction.sequence([tapAction,moveAction,ltapAction,swipeAction])
         tap.runAction(allAction)
         
+        //移動のラベルの説明
         let waitAction7 = SKAction.waitForDuration(7.0)
         helpLabel2.text = "画面を傾けると自機が左右に移動します"
         helpLabel2.fontSize = 20
@@ -232,6 +251,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(helpLabel2)
         helpLabel2.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.size.height/2)
         helpLabel2.runAction(SKAction.sequence([waitAction7, tapLabelAction,SKAction.removeFromParent()]))
+        
+        //長押しタップのラベル説明
+        helpLabel3.text = "長押しタップでタメ撃ちします"
+        helpLabel3.fontSize = 20
+        helpLabel3.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
+        helpLabel3.zPosition = 1000
+        helpLabel3.alpha = 0.0
+        self.addChild(helpLabel3)
+        helpLabel3.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.size.height/2)
+        helpLabel3.runAction(SKAction.sequence([waitAction7, waitAction7,tapLabelAction,SKAction.removeFromParent()]))
+        
+        //スワイプのラベル説明
+        helpLabel4.text = "スワイプで剣の発射角度が変わります"
+        helpLabel4.fontSize = 20
+        helpLabel4.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
+        helpLabel4.zPosition = 1000
+        helpLabel4.alpha = 0.0
+        self.addChild(helpLabel4)
+        helpLabel4.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.size.height/2)
+        helpLabel4.runAction(SKAction.sequence([waitAction7, waitAction7,waitAction7,tapLabelAction,SKAction.removeFromParent()]))
     }
     
     //画面の初期化処理
@@ -260,6 +299,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         returnLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
         helpLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
         helpLabel2 = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
+        helpLabel3 = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
+        helpLabel4 = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
         totalScore = 0
         
         //スコアラベルの表示
@@ -452,14 +493,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
                 player.countDownSword()
                 
+                let scaleAction = SKAction.scaleBy(1.1, duration: 1.0)
                 //剣の攻撃力を上げる
                 tmpself!.sword.attack++
+                for oSword: SMSwordNode in tmpself!.optionSwords {
+                    oSword.attack++
+                    if oSword.attack == 2 {
+                        oSword.circle.color = UIColor.blueColor()
+                        oSword.circle.colorBlendFactor = 0.5
+                        
+                        //剣にパーティクルを付ける
+                        SMNodeUtil.makeParticleNode(CGPoint(x:0,y:80), filename: "tameParticle.sks", hide: false, node: oSword)
+                    }
+                    oSword.runAction(scaleAction)
+                }
                 
-                tmpself!.sword.circle.color = UIColor.blueColor()
-                tmpself!.sword.circle.colorBlendFactor = 0.5
-                
-                //剣にパーティクルを付ける
-                SMNodeUtil.makeParticleNode(CGPoint(x:0,y:80), filename: "tameParticle.sks", hide: false, node: tmpself!.sword)
+                if tmpself!.sword.attack == 2 {
+                    tmpself!.sword.circle.color = UIColor.blueColor()
+                    tmpself!.sword.circle.colorBlendFactor = 0.5
+                    
+                    //剣にパーティクルを付ける
+                    SMNodeUtil.makeParticleNode(CGPoint(x:0,y:80), filename: "tameParticle.sks", hide: false, node: tmpself!.sword)
+                }
+                tmpself!.sword.runAction(scaleAction)
                 
                 //剣を作成する
                 let optrandtype = randomSwordType()

@@ -42,7 +42,7 @@ class SMEnemyBoss1: SMEnemyNode {
         let move = SKAction.moveToY(frameHeight - 100, duration: 3.0)
         self.runAction(move)
         
-        println("boss1 guard make")
+        //println("boss1 guard make")
         
         //バリアを作成
         var guardpos = CGPoint(x:-10, y:-80)

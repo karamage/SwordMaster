@@ -23,7 +23,7 @@ class SMEnemyBoss3: SMEnemyNode {
         if debugflg {
             self.hitpoint = 1
         }
-        self.diffence = 0
+        self.diffence = 1
         self.score = 3000
     }
     required override init(coder: NSCoder) {

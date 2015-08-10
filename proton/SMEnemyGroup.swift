@@ -47,7 +47,7 @@ class SMEnemyGroup: SMEnemyDelegate {
     
     //敵が死んだときに呼び出される
     func enemyDeadDelegate(enemy: SMEnemyNode) {
-        println("enemyDeadDelegate")
+        //println("enemyDeadDelegate")
         killcount++
         if killcount >= enemys.count {
             enemy.scene!.runAction(choroiSound)

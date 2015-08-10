@@ -138,7 +138,7 @@ class SMStage: SMEnemyGroupDelegate {
     
     //次のステージへ
     func nextStageDelegate() {
-        println("nextStageDelegate")
+        //println("nextStageDelegate")
         //BGM一旦停止
         audioPlayer!.stop()
         

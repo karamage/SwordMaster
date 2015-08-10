@@ -66,7 +66,9 @@ class SMGuardNode: SKSpriteNode {
             SMNodeUtil.fadeRemoveNode(self)
             //self.removeFromParent()
         } else {
-            hit.runAction(guardAnimAction)
+            var fadeIn = SKAction.fadeInWithDuration(0)
+            var fadeOut = SKAction.fadeOutWithDuration(0.5)
+            hit.runAction(SKAction.sequence([fadeIn, guardAnimAction, fadeOut]))
             bgNode.runAction(kakinSound)
             SMNodeUtil.makeParticleNode(parent!.position, filename:"hitParticle.sks", node:bgNode)
         }

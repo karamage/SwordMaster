@@ -82,9 +82,9 @@ class SMEnemyNode: SKSpriteNode {
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([waitAction,custumAction])))
     }
     func makeEnegy2(interval: Double = 5.0) {
-        println("makeEnegy2()")
+        //println("makeEnegy2()")
         let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode!, elapsedTime: CGFloat) -> Void in
-            println("makeEnegy2() customAction")
+            //println("makeEnegy2() customAction")
             var point = CGPoint(x: self.position.x , y: self.position.y)
             var enegy = enegyFactory.create(point)
             enegy.makeEnegy(rad:10.0, den: 100.0)
@@ -102,8 +102,10 @@ class SMEnemyNode: SKSpriteNode {
         var damage = sword.attack - diffence
         if damage <= 0 {
             //ダメージを与えられない
+            var fadeIn = SKAction.fadeInWithDuration(0)
+            var fadeOut = SKAction.fadeOutWithDuration(0.5)
             var guardAnimAction = SKAction.animateWithTextures(guardAim, timePerFrame: 0.1, resize:false, restore:true)
-            hit.runAction(guardAnimAction)
+            hit.runAction(SKAction.sequence([fadeIn,guardAnimAction,fadeOut]))
             bgNode.runAction(kakinSound)
             return
         }
@@ -176,7 +178,7 @@ class SMEnemyNode: SKSpriteNode {
         //ボスの場合は大量のアイテム
         var itemnum = 1
         if isBoss {
-            println("boss dead")
+            //println("boss dead")
             itemnum = 10
         }
         

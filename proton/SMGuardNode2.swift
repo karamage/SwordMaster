@@ -14,7 +14,7 @@ class SMGuardNode2: SMGuardNode {
     //初期化
     override init(texture: SKTexture, location: CGPoint, parentnode:SKNode){
         super.init(texture: texture, location: location, parentnode: parentnode)
-        self.hitpoint = 30
+        self.hitpoint = 20
     }
     required override init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -31,6 +31,8 @@ class SMGuardNode2: SMGuardNode {
         var damage = 1
         hitpoint -= (damage)
         //enegy.physicsBody?.categoryBitMask = ColliderType.None
+        var fadeIn = SKAction.fadeInWithDuration(0)
+        var fadeOut = SKAction.fadeOutWithDuration(0.5)
         
         if hitpoint <= 0 {
             //バリア破壊
@@ -38,7 +40,7 @@ class SMGuardNode2: SMGuardNode {
         SMNodeUtil.makeParticleNode(self.position, filename:"deadParticle.sks", node:bgNode)
             SMNodeUtil.fadeRemoveNode(self)
         } else {
-            hit.runAction(guardAnimAction)
+            hit.runAction(SKAction.sequence([fadeIn, guardAnimAction, fadeOut]))
             bgNode.runAction(kakinSound)
         }
     }
