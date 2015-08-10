@@ -57,29 +57,29 @@ var tapAim: [SKTexture]!
 var swipeAim: [SKTexture]!
 
 //効果音
-var hitSound = SKAction.playSoundFileNamed("hit.mp3", waitForCompletion: false)
-var sasaruSound = SKAction.playSoundFileNamed("sasaru.mp3", waitForCompletion: false)
-var swordSound = SKAction.playSoundFileNamed("sword.mp3", waitForCompletion: false)
-var nagarebosiSound = SKAction.playSoundFileNamed("nagarebosi.mp3", waitForCompletion: false)
-var explodeSound = SKAction.playSoundFileNamed("explode.mp3", waitForCompletion: false)
-var explodeSound2 = SKAction.playSoundFileNamed("explode2.mp3", waitForCompletion: false)
-var magicSound = SKAction.playSoundFileNamed("magic_circle.mp3", waitForCompletion: false)
-var kiruSound = SKAction.playSoundFileNamed("kiru.mp3", waitForCompletion: false)
-var kuraeSound = SKAction.playSoundFileNamed("kurae_01.wav", waitForCompletion: false)
-var konoSound = SKAction.playSoundFileNamed("kono_01.wav", waitForCompletion: false)
-var sokodaSound = SKAction.playSoundFileNamed("sokoda_01.wav", waitForCompletion: false)
-var toryaSound = SKAction.playSoundFileNamed("torya_01.wav", waitForCompletion: false)
-var eiSound = SKAction.playSoundFileNamed("ei_01.wav", waitForCompletion: false)
-var yaaSound = SKAction.playSoundFileNamed("yaa_01.wav", waitForCompletion: false)
-var powerupSound = SKAction.playSoundFileNamed("powerup_01.wav", waitForCompletion: false)
-var itemgetSound = SKAction.playSoundFileNamed("itemget_01.wav", waitForCompletion: false)
-var comboSound = SKAction.playSoundFileNamed("combo_01.wav", waitForCompletion: false)
-var hawawaSound = SKAction.playSoundFileNamed("hawawa_01.wav", waitForCompletion: false)
-var mataSound = SKAction.playSoundFileNamed("mataaeruyone_01.wav", waitForCompletion: false)
-var koredeSound = SKAction.playSoundFileNamed("korededouda_01.wav", waitForCompletion: false)
-var kakinSound = SKAction.playSoundFileNamed("kakin.mp3", waitForCompletion: false)
-var fadeSound = SKAction.playSoundFileNamed("fade.mp3", waitForCompletion: false)
-var choroiSound = SKAction.playSoundFileNamed("choroimondane_01.wav", waitForCompletion: false)
+var hitSound:SKAction!
+var sasaruSound:SKAction!
+var swordSound:SKAction!
+var nagarebosiSound:SKAction!
+var explodeSound:SKAction!
+var explodeSound2:SKAction!
+var magicSound:SKAction!
+var kiruSound:SKAction!
+var kuraeSound:SKAction!
+var konoSound:SKAction!
+var sokodaSound:SKAction!
+var toryaSound:SKAction!
+var eiSound:SKAction!
+var yaaSound:SKAction!
+var powerupSound:SKAction!
+var itemgetSound:SKAction!
+var comboSound:SKAction!
+var hawawaSound:SKAction!
+var mataSound:SKAction!
+var koredeSound:SKAction!
+var kakinSound:SKAction!
+var fadeSound:SKAction!
+var choroiSound:SKAction!
 
 //テクスチャ
 var swordIconTexture = SKTexture(imageNamed: "sword_icon")
@@ -139,7 +139,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //タッチ開始ポイント
     var touchStartPoint: CGPoint! = nil
     //がんばります
-    var ganbarimasuSound = SKAction.playSoundFileNamed("ganbarimasu_01.wav", waitForCompletion: false)
+    var ganbarimasuSound = SKAction.playSoundFileNamed("ganbarimasu_01.mp3", waitForCompletion: false)
     //カットイン
     var cutin1 = SKSpriteNode(imageNamed: "cutin1")
     
@@ -293,6 +293,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.gravity = CGVector(dx:0.0, dy:-0.10)
         self.physicsWorld.contactDelegate = self
         
+        hitSound = SKAction.playSoundFileNamed("hit.mp3", waitForCompletion: false)
+        sasaruSound = SKAction.playSoundFileNamed("sasaru.mp3", waitForCompletion: false)
+        swordSound = SKAction.playSoundFileNamed("sword.mp3", waitForCompletion: false)
+        nagarebosiSound = SKAction.playSoundFileNamed("nagarebosi.mp3", waitForCompletion: false)
+        explodeSound = SKAction.playSoundFileNamed("explode.mp3", waitForCompletion: false)
+        explodeSound2 = SKAction.playSoundFileNamed("explode2.mp3", waitForCompletion: false)
+        magicSound = SKAction.playSoundFileNamed("magic_circle.mp3", waitForCompletion: false)
+        kiruSound = SKAction.playSoundFileNamed("kiru.mp3", waitForCompletion: false)
+        kuraeSound = SKAction.playSoundFileNamed("kurae_01.wav", waitForCompletion: false)
+        konoSound = SKAction.playSoundFileNamed("kono_01.wav", waitForCompletion: false)
+        sokodaSound = SKAction.playSoundFileNamed("sokoda_01.wav", waitForCompletion: false)
+        toryaSound = SKAction.playSoundFileNamed("torya_01.wav", waitForCompletion: false)
+        eiSound = SKAction.playSoundFileNamed("ei_01.wav", waitForCompletion: false)
+        yaaSound = SKAction.playSoundFileNamed("yaa_01.wav", waitForCompletion: false)
+        powerupSound = SKAction.playSoundFileNamed("powerup_01.wav", waitForCompletion: false)
+        itemgetSound = SKAction.playSoundFileNamed("itemget_01.wav", waitForCompletion: false)
+        comboSound = SKAction.playSoundFileNamed("combo_01.wav", waitForCompletion: false)
+        hawawaSound = SKAction.playSoundFileNamed("hawawa_01.wav", waitForCompletion: false)
+        mataSound = SKAction.playSoundFileNamed("mataaeruyone_01.wav", waitForCompletion: false)
+        koredeSound = SKAction.playSoundFileNamed("korededouda_01.wav", waitForCompletion: false)
+        kakinSound = SKAction.playSoundFileNamed("kakin.mp3", waitForCompletion: false)
+        fadeSound = SKAction.playSoundFileNamed("fade.mp3", waitForCompletion: false)
+        choroiSound = SKAction.playSoundFileNamed("choroimondane_01.wav", waitForCompletion: false)
+        
         gameoverLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
         scoreLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
         comboLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
@@ -321,6 +345,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         comboLabel.position = CGPoint(x: self.frame.size.width - 100, y: self.frame.size.height - 30)
         
         //背景管理用ノード
+        bgNode.removeAllActions()
         bgNode.position = CGPoint(x:0, y:0)
         world.addChild(bgNode)
         bgNode.zPosition = -100
@@ -359,9 +384,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         cutin()
         let waitAction = SKAction.waitForDuration(0.5)
-        self.runAction(SKAction.sequence([waitAction,ganbarimasuSound]))
-        self.runAction(SKAction.sequence([waitAction,ganbarimasuSound]))
-        self.runAction(SKAction.sequence([waitAction,ganbarimasuSound]))
+        bgNode.runAction(SKAction.sequence([waitAction,ganbarimasuSound]))
+        //self.runAction(SKAction.sequence([waitAction,ganbarimasuSound]))
+        //self.runAction(SKAction.sequence([waitAction,ganbarimasuSound]))
         
         killAimNode = SKSpriteNode(texture: killAim[0])
         killAimNode.zPosition = 100
@@ -418,9 +443,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             } else {
                 //画面端の場合はそれ以上進めないようにする
                 if player.position.x <= 0 {
-                    tmpx = 0
+                    tmpx = 10
                 } else if player.position.x >= self.frame.width {
-                    tmpx = self.frame.width
+                    tmpx = self.frame.width - 10
                 }
                 moveAction = SKAction.moveToX(tmpx, duration: 0.1)
             }
@@ -472,9 +497,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 tmpsword?.circle.colorBlendFactor = 0.5
                 tmpsword!.makeCircle(touchPoint)
                 tmpsword!.removeCircle()
-                self.runAction(hawawaSound)
-                self.runAction(hawawaSound)
-                self.runAction(hawawaSound)
+                bgNode.runAction(hawawaSound)
                 return
             }
             player.countDownSword()
@@ -492,6 +515,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     return
                 }
                 player.countDownSword()
+                if tmpself!.sword.attack < 4 {
+                    bgNode.runAction(magicSound)
+                }
                 
                 let scaleAction = SKAction.scaleBy(1.1, duration: 1.0)
                 //剣の攻撃力を上げる
@@ -558,11 +584,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         for touch: AnyObject in touches {
             //let location = touch.locationInNode(self)
-            //剣を発射する
-            sword.shotSword()
-            if optionSwords.count > 0 {
-                cutin()
+            bgNode.runAction(fadeSound)
+            switch sword.type {
+            case .EXCALIBUR:
+                bgNode.runAction(kuraeSound)
+                bgNode.runAction(kuraeSound)
+                bgNode.runAction(kuraeSound)
+            case .KATANA:
+                bgNode.runAction(sokodaSound)
+                bgNode.runAction(sokodaSound)
+                bgNode.runAction(sokodaSound)
+            case .PANZERSTECHER:
+                bgNode.runAction(yaaSound)
+                bgNode.runAction(yaaSound)
+                bgNode.runAction(yaaSound)
+            case .ZWEIHANDER:
+                bgNode.runAction(eiSound)
+                bgNode.runAction(eiSound)
+                bgNode.runAction(eiSound)
+            default:
+                break;
             }
+            //剣を発射する
+            bgNode.runAction(sword.shotSound)
+            sword.shotSword()
+            //if optionSwords.count > 0 {
+            //    cutin()
+            //}
             for optsword: SMSwordNode in optionSwords {
                 optsword.shotSword()
             }
@@ -604,6 +652,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         enemysNode.speed = 1.0
         
+        hitSound = nil
+        sasaruSound = nil
+        swordSound = nil
+        nagarebosiSound = nil
+        explodeSound = nil
+        explodeSound2 = nil
+        magicSound = nil
+        kiruSound = nil
+        kuraeSound = nil
+        konoSound = nil
+        sokodaSound = nil
+        toryaSound = nil
+        eiSound = nil
+        yaaSound = nil
+        powerupSound = nil
+        itemgetSound = nil
+        comboSound = nil
+        hawawaSound = nil
+        mataSound = nil
+        koredeSound = nil
+        kakinSound = nil
+        fadeSound = nil
+        choroiSound = nil
+        
         //タイトル画面表示
         let scene = GameTitleScene()
         
@@ -618,9 +690,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scene.size = skView.frame.size
         
         skView.presentScene(scene)
-        scene.runAction(mataSound)
-        scene.runAction(mataSound)
-        scene.runAction(mataSound)
+        //scene.runAction(mataSound)
+        //scene.runAction(mataSound)
+        //scene.runAction(mataSound)
         
         stageManager.resetStage()
     }
@@ -753,9 +825,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //ゲームオーバーの処理
     func gameover() {
-        self.runAction(hawawaSound)
-        self.runAction(hawawaSound)
-        self.runAction(hawawaSound)
+        //self.runAction(hawawaSound)
+        //self.runAction(hawawaSound)
+        //self.runAction(hawawaSound)
         stageManager.currentStage.audioPlayer?.stop()
         
         //フラグをtrueにする
@@ -784,15 +856,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(returnLabel)
         returnLabel.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.size.height/2 - 100)
     }
-    
-    /*
-    //敵消滅のパーティクルを作る
-    func makeKillParticle(node:SKNode) {
-        let point: CGPoint = CGPoint(x:0, y:0)
-        makeParticleNode(point, filename:"MyParticle.sks", node:node)
-        self.runAction(hitSound) //消滅の効果音を鳴らす
-    }
-*/
     
     //パーティクル発生
     func makeParticle(position:CGPoint?, filename: String, hide: Bool = true) {

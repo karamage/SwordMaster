@@ -46,6 +46,6 @@ class SMItemNode: SKSpriteNode {
         var vector = SMNodeUtil.makePlayerVector(self.position, player: player)
         self.physicsBody?.velocity = CGVector.zeroVector
         self.physicsBody?.applyImpulse(CGVector(dx: vector.dx/20, dy:vector.dy/20))
-        SMNodeUtil.makeParticleNode(self.position, filename: "MyParticle.sks", node: parentnode)
+        //SMNodeUtil.makeParticleNode(self.position, filename: "MyParticle.sks", node: parentnode)
     }
 }

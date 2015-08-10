@@ -50,9 +50,9 @@ class SMEnemyGroup: SMEnemyDelegate {
         //println("enemyDeadDelegate")
         killcount++
         if killcount >= enemys.count {
-            enemy.scene!.runAction(choroiSound)
-            enemy.scene!.runAction(choroiSound)
-            enemy.scene!.runAction(choroiSound)
+            bgNode.scene!.runAction(choroiSound)
+            bgNode.scene!.runAction(choroiSound)
+            bgNode.scene!.runAction(choroiSound)
         }
         if enemy.isBoss {
             for tmpenemy in enemys {

@@ -102,8 +102,8 @@ class SMPlayerNode: SKSpriteNode {
     //プレイヤーが死んだ時の処理
     func deadPlayer() {
         //やられた効果音再生
-        self.runAction(explodeSound)
-        self.runAction(explodeSound)
+        bgNode.runAction(explodeSound)
+        //bgNode.runAction(explodeSound)
         
         //やられたアニメーション作成
         SMNodeUtil.makeParticleNode(self.position, filename: "deadParticle.sks", hide: true, node: bgNode)

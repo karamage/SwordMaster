@@ -42,7 +42,7 @@ class SMEnegyNode: SKSpriteNode {
         parentnode.addChild(self)
     }
     func contactSword(sword:SMSwordNode) {
-        SMNodeUtil.makeParticleNode(CGPoint(x: self.position.x, y: self.position.y), filename: "MyParticle.sks", node: parentnode)
+        //SMNodeUtil.makeParticleNode(CGPoint(x: self.position.x, y: self.position.y), filename: "MyParticle.sks", node: parentnode)
         if sword.isShot == false {
             SMNodeUtil.fadeRemoveNode(self)
         }

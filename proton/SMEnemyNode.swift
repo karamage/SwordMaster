@@ -101,6 +101,7 @@ class SMEnemyNode: SKSpriteNode {
     func hitSword(sword: SMSwordNode) {
         var damage = sword.attack - diffence
         if damage <= 0 {
+            hit.removeAllActions()
             //ダメージを与えられない
             var fadeIn = SKAction.fadeInWithDuration(0)
             var fadeOut = SKAction.fadeOutWithDuration(0.5)
@@ -123,8 +124,6 @@ class SMEnemyNode: SKSpriteNode {
         if combo > 1 {
             comboLabel.text = "\(combo) Combo!"
             bgNode.runAction(comboSound)
-            bgNode.runAction(comboSound)
-            bgNode.runAction(comboSound)
             //comboLabel.alpha = 1.0
             if comboLabel.alpha == 0.0 {
                 let fadeInAction = SKAction.fadeInWithDuration(0.5)
@@ -136,12 +135,10 @@ class SMEnemyNode: SKSpriteNode {
                 let move1 = SKAction.moveToX(self.scene!.frame.width + 10.0, duration: 0.0)
                 let move2 = SKAction.moveToX(self.scene!.frame.width - 100.0, duration: 0.5)
                 comboLabel.runAction(SKAction.sequence([move1,move2]))
-                killAimNode.runAction(koredeSound)
-                killAimNode.runAction(koredeSound)
-                killAimNode.runAction(koredeSound)
-                killAimNode.runAction(kiruSound)
-                killAimNode.runAction(kiruSound)
-                killAimNode.runAction(kiruSound)
+                bgNode.runAction(koredeSound)
+                //killAimNode.runAction(kiruSound)
+                //killAimNode.runAction(kiruSound)
+                //killAimNode.runAction(kiruSound)
                 var killAnimAction = SKAction.animateWithTextures(killAim, timePerFrame: 0.1, resize:false, restore:true)
                 killAimNode.runAction(killAnimAction)
                 killAimNode.runAction(SKAction.sequence([fadeInAction2,fadeOutAction]) )
@@ -156,13 +153,14 @@ class SMEnemyNode: SKSpriteNode {
         }
         
         sword.physicsBody?.categoryBitMask = ColliderType.None
-        bgNode.runAction(explodeSound2)
         if hitpoint <= 0 {
             //敵が死んだ時の処理
             dead()
         } else {
+            bgNode.runAction(explodeSound2)
             SMNodeUtil.makeParticleNode(self.position, filename:"hitParticle.sks", node:bgNode)
             var hitAnimAction = SKAction.animateWithTextures(hitAim, timePerFrame: 0.03, resize:false, restore:true)
+            hit.removeAllActions()
             hit.runAction(hitAnimAction)
             hit.alpha = 0.8
             let fadeout = SKAction.fadeOutWithDuration(1.0)

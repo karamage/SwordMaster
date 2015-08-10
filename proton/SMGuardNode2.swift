@@ -34,6 +34,12 @@ class SMGuardNode2: SMGuardNode {
         var fadeIn = SKAction.fadeInWithDuration(0)
         var fadeOut = SKAction.fadeOutWithDuration(0.5)
         
+        if hitpoint <= 3 {
+            //バリアが壊れそうな時は赤くする
+            self.color = UIColor.redColor()
+            self.colorBlendFactor = 0.7
+        }
+        
         if hitpoint <= 0 {
             //バリア破壊
             bgNode.runAction(explodeSound2)

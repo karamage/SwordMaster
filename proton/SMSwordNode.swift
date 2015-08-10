@@ -40,11 +40,12 @@ class SMSwordNode: SKSpriteNode {
     }
     //剣の作成
     func makeSword(){
-        let waitSoundAction = SKAction.waitForDuration(0.5)
-        let magic = SKAction.sequence([waitSoundAction, magicSound])
-        self.runAction(magic)
-        self.runAction(magic)
-        self.runAction(magic)
+        //let waitSoundAction = SKAction.waitForDuration(0.5)
+        //let magic = SKAction.sequence([waitSoundAction, magicSound])
+        //self.runAction(magic)
+        //self.runAction(magic)
+        //self.runAction(magic)
+        
         //物理シミュレーション設定
         self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
         self.physicsBody?.dynamic = false
@@ -134,31 +135,8 @@ class SMSwordNode: SKSpriteNode {
                 player.countUpSword()
             }
         })
-        self.runAction(fadeSound)
-        self.runAction(fadeSound)
-        self.runAction(fadeSound)
-        var sequenceAction = SKAction.sequence([shotSound,durationAction,custumAction,removeAction])
+        var sequenceAction = SKAction.sequence([durationAction,custumAction,removeAction])
         self.runAction(sequenceAction)
-        switch self.type {
-        case .EXCALIBUR:
-            self.runAction(kuraeSound)
-            self.runAction(kuraeSound)
-            self.runAction(kuraeSound)
-        case .KATANA:
-            self.runAction(sokodaSound)
-            self.runAction(sokodaSound)
-            self.runAction(sokodaSound)
-        case .PANZERSTECHER:
-            self.runAction(yaaSound)
-            self.runAction(yaaSound)
-            self.runAction(yaaSound)
-        case .ZWEIHANDER:
-            self.runAction(eiSound)
-            self.runAction(eiSound)
-            self.runAction(eiSound)
-        default:
-            break;
-        }
         
         var fadeAction = SKAction.fadeAlphaTo(0, duration: 2.0)
         self.runAction(fadeAction)
