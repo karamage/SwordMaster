@@ -198,7 +198,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //ラベルの表示
         helpLabel.text = "自機周辺をタップすると剣を撃ちます"
-        helpLabel.fontSize = 20
+        helpLabel.fontSize = 18
         helpLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
         helpLabel.zPosition = 1000
         helpLabel.alpha = 0.0
@@ -244,7 +244,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //移動のラベルの説明
         let waitAction7 = SKAction.waitForDuration(7.0)
         helpLabel2.text = "画面を傾けると自機が左右に移動します"
-        helpLabel2.fontSize = 20
+        helpLabel2.fontSize = 18
         helpLabel2.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
         helpLabel2.zPosition = 1000
         helpLabel2.alpha = 0.0
@@ -264,7 +264,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //スワイプのラベル説明
         helpLabel4.text = "スワイプで剣の発射角度が変わります"
-        helpLabel4.fontSize = 20
+        helpLabel4.fontSize = 18
         helpLabel4.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
         helpLabel4.zPosition = 1000
         helpLabel4.alpha = 0.0
