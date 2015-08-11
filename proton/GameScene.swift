@@ -558,6 +558,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             })
             let repeatSwordAction = SKAction.repeatActionForever(SKAction.sequence([waitAction,custumAction]))
             sword.runAction(repeatSwordAction)
+            
+            //マルチタッチには対応しない
+            break
         }
     }
     
@@ -573,6 +576,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             for optsword: SMSwordNode in optionSwords {
                 optsword.swipeSword(location)
             }
+            //マルチタッチには対応しない
+            break
         }
     }
     
@@ -617,6 +622,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             sword = nil
             optionSwords.removeAll()
             touchStartPoint = nil
+            
+            //マルチタッチには対応しない
+            break
         }
     }
     
