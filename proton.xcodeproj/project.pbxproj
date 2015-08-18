@@ -120,7 +120,7 @@
 		931943171B58BD240002F1BD /* deadParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = deadParticle.sks; sourceTree = "<group>"; };
 		931943191B58DB740002F1BD /* SMItemNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMItemNode.swift; sourceTree = "<group>"; };
 		9319431B1B5F5C790002F1BD /* ItemType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
-		9319431D1B5F724E0002F1BD /* SMItemFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMItemFactory.swift; sourceTree = "<group>"; };
+		9319431D1B5F724E0002F1BD /* SMItemFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMItemFactory.swift; path = ../SMItemFactory.swift; sourceTree = "<group>"; };
 		9319431F1B661B690002F1BD /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		9356C1DA1B4D00410073EBF8 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		9356C1DB1B4D00410073EBF8 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
@@ -173,10 +173,10 @@
 		93D1D7BE1B55F37E000EC266 /* SMEnemyBoss1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyBoss1.swift; sourceTree = "<group>"; };
 		93D1D7C01B563B01000EC266 /* swordmaster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swordmaster.png; sourceTree = "<group>"; };
 		93D1D7C41B57458E000EC266 /* GameTitleScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTitleScene.swift; sourceTree = "<group>"; };
-		93D1D7C81B57558B000EC266 /* titleParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = titleParticle.sks; sourceTree = "<group>"; };
-		93D1D7C91B57558B000EC266 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		93D1D7C81B57558B000EC266 /* titleParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = titleParticle.sks; path = ../titleParticle.sks; sourceTree = "<group>"; };
+		93D1D7C91B57558B000EC266 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = ../spark.png; sourceTree = "<group>"; };
 		93D1D7CC1B5782B8000EC266 /* SMEnegyNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnegyNode.swift; sourceTree = "<group>"; };
-		93D1D7CE1B578526000EC266 /* SMEnegyFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnegyFactory.swift; sourceTree = "<group>"; };
+		93D1D7CE1B578526000EC266 /* SMEnegyFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMEnegyFactory.swift; path = ../SMEnegyFactory.swift; sourceTree = "<group>"; };
 		93D8CD1A1B6798D50052BE67 /* ganbarimasu_01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ganbarimasu_01.wav; sourceTree = "<group>"; };
 		93D8CD1C1B679E470052BE67 /* short_song_minami_kirakira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = short_song_minami_kirakira.mp3; sourceTree = "<group>"; };
 		93D8CD1E1B679E620052BE67 /* powerup_01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = powerup_01.wav; sourceTree = "<group>"; };
@@ -244,10 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				9319431F1B661B690002F1BD /* iAd.framework */,
-				9319431D1B5F724E0002F1BD /* SMItemFactory.swift */,
-				93D1D7CE1B578526000EC266 /* SMEnegyFactory.swift */,
-				93D1D7C81B57558B000EC266 /* titleParticle.sks */,
-				93D1D7C91B57558B000EC266 /* spark.png */,
 				93D1D7A21B522AB4000EC266 /* CoreMotion.framework */,
 				93EF1AAC1B4BC01800B1FC93 /* proton */,
 				93EF1AC61B4BC01800B1FC93 /* protonTests */,
@@ -267,6 +263,10 @@
 		93EF1AAC1B4BC01800B1FC93 /* proton */ = {
 			isa = PBXGroup;
 			children = (
+				9319431D1B5F724E0002F1BD /* SMItemFactory.swift */,
+				93D1D7CE1B578526000EC266 /* SMEnegyFactory.swift */,
+				93D1D7C81B57558B000EC266 /* titleParticle.sks */,
+				93D1D7C91B57558B000EC266 /* spark.png */,
 				935D909D1B71EBCA0098A2FF /* SMGuardNode.swift */,
 				93D8CD4C1B69BB5B0052BE67 /* combo_01.wav */,
 				93D8CD4A1B69B9B50052BE67 /* bgm_maoudamashii_neorock33.mp3 */,

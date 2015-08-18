@@ -5,6 +5,7 @@
 //  Created by KakimotoMasaaki on 2015/07/07.
 //  Copyright (c) 2015年 Masaaki Kakimoto. All rights reserved.
 //
+//  2015 8/18 v1.0 AppStore release
 
 import SpriteKit
 import CoreMotion
@@ -613,9 +614,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //剣を発射する
             bgNode.runAction(sword.shotSound)
             sword.shotSword()
-            //if optionSwords.count > 0 {
-            //    cutin()
-            //}
             for optsword: SMSwordNode in optionSwords {
                 optsword.shotSword()
             }
