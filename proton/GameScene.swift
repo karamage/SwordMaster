@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 Masaaki Kakimoto. All rights reserved.
 //
 //  2015 8/18 v1.0 AppStore release
+//  2015 8/18 v1.1 開発開始
 
 import SpriteKit
 import CoreMotion
