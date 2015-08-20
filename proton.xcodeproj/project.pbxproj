@@ -11,6 +11,7 @@
 		9319431A1B58DB740002F1BD /* SMItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931943191B58DB740002F1BD /* SMItemNode.swift */; };
 		9319431C1B5F5C790002F1BD /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9319431B1B5F5C790002F1BD /* ItemType.swift */; };
 		9319431E1B5F724E0002F1BD /* SMItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9319431D1B5F724E0002F1BD /* SMItemFactory.swift */; };
+		935665021B85C19500EAE798 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935665011B85C19500EAE798 /* Social.framework */; };
 		9356C1DC1B4D00410073EBF8 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DA1B4D00410073EBF8 /* MyParticle.sks */; };
 		9356C1DD1B4D00410073EBF8 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DB1B4D00410073EBF8 /* spark.png */; };
 		9356C1DF1B4D05000073EBF8 /* ice1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DE1B4D05000073EBF8 /* ice1.png */; };
@@ -122,6 +123,7 @@
 		9319431B1B5F5C790002F1BD /* ItemType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		9319431D1B5F724E0002F1BD /* SMItemFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMItemFactory.swift; path = ../SMItemFactory.swift; sourceTree = "<group>"; };
 		9319431F1B661B690002F1BD /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		935665011B85C19500EAE798 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		9356C1DA1B4D00410073EBF8 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		9356C1DB1B4D00410073EBF8 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		9356C1DE1B4D05000073EBF8 /* ice1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ice1.png; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				935665021B85C19500EAE798 /* Social.framework in Frameworks */,
 				93D1D7A31B522AB4000EC266 /* CoreMotion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,6 +246,7 @@
 		93EF1AA11B4BC01800B1FC93 = {
 			isa = PBXGroup;
 			children = (
+				935665011B85C19500EAE798 /* Social.framework */,
 				9319431F1B661B690002F1BD /* iAd.framework */,
 				93D1D7A21B522AB4000EC266 /* CoreMotion.framework */,
 				93EF1AAC1B4BC01800B1FC93 /* proton */,
@@ -707,7 +711,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = proton/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ecc2539a-29dc-4a6e-8813-befaf50adccf";
@@ -719,7 +723,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = proton/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ecc2539a-29dc-4a6e-8813-befaf50adccf";

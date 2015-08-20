@@ -8,6 +8,7 @@
 
 import UIKit
 import SpriteKit
+import Social
 
 
 class GameViewController: UIViewController{
@@ -18,6 +19,9 @@ class GameViewController: UIViewController{
         
         //iAd表示
         //self.canDisplayBannerAds = true
+        
+        //ソーシャルボタン表示用のオブザーバー登録
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showSocialShare:", name: "socialShare", object: nil)
 
         //タイトル画面表示
         let scene = GameTitleScene()
@@ -42,6 +46,38 @@ class GameViewController: UIViewController{
         skView.presentScene(scene)
     }
 
+    //ソーシャルボタンの表示
+    func showSocialShare(notification: NSNotification) {
+        
+        // (1) オブザーバーから渡ってきたuserInfoから必要なデータを取得する
+        let userInfo:Dictionary<String,NSData!> = notification.userInfo as! Dictionary<String,NSData!>
+        let message = NSString(data: userInfo["message"]!, encoding: UInt())
+        let social = NSString(data: userInfo["social"]!, encoding: UInt())
+        
+        // (2) userInfoの情報をもとにTwitter/Facebookボタンどちらが押されたのか特定する
+        var type = String()
+        if social == "twitter" {
+            type = SLServiceTypeTwitter
+        } else if social == "facebook" {
+            type = SLServiceTypeFacebook
+        }
+        
+        // (3) shareViewControllerを作成、表示する
+        var shareView = SLComposeViewController(forServiceType: type)
+        shareView.setInitialText(message as! String)
+        
+        shareView.completionHandler = {
+            (result:SLComposeViewControllerResult) -> () in
+            switch (result) {
+            case SLComposeViewControllerResult.Done:
+                println("SLComposeViewControllerResult.Done")
+            case SLComposeViewControllerResult.Cancelled:
+                println("SLComposeViewControllerResult.Cancelled")
+            }
+        }
+        self.presentViewController(shareView, animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

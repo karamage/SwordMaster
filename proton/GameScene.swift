@@ -145,6 +145,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //カットイン
     var cutin1 = SKSpriteNode(imageNamed: "cutin1")
     
+    //ソーシャルボタン
+    let twButton = SKSpriteNode(imageNamed:"twitter_icon")
+    let fbButton = SKSpriteNode(imageNamed:"facebook_icon")
+    var touchButtonName:String? = ""
     
     //ゲームオーバーフラグ
     var gameoverflg = false
@@ -465,6 +469,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         withHandler: accelerometerHandler)
     }
     
+    // Twitter/Facebookボタンがタップされたとき
+    func socialButtonTapped(social:String){
+        
+        // share画面で表示するメッセージを格納
+        var message = String()
+        if social == "twitter" {
+            message = "Twitter Share"
+        } else {
+            message = "Facebook Share"
+        }
+        
+        // userinfoに情報(socialの種類とmessage)を格納
+        let userInfo = ["social": social.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!,"message": message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!]
+        
+        // userInfoも含めて、"socialShare"という名称の通知をここで飛ばす
+        NSNotificationCenter.defaultCenter().postNotificationName("socialShare", object: nil, userInfo: userInfo)
+        
+    }
+    
     //タッチした時に呼び出される
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
@@ -477,6 +500,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         //ゲームオーバの場合リスタート処理
                         restart()
                         return
+                    }
+                    let location = touch.locationInNode(self)
+                    touchButtonName = nodeAtPoint(location).name
+                    if (touchButtonName == "twitter_button") {
+                        socialButtonTapped("twitter")
+                    } else if (touchButtonName == "facebook_button") {
+                        socialButtonTapped("facebook")
                     }
                 }
             }
@@ -843,6 +873,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //敵の停止
         enemysNode.speed = 0.0
         self.physicsWorld.gravity = CGVector(dx:0.0, dy:0.0)
+        
+        //SNSボタンの表示
+        twButton.position = CGPoint(x: self.frame.width * 0.45, y: self.frame.size.height * 0.25)
+        twButton.name = "twitter_button"
+        twButton.zPosition = 100
+        self.addChild(twButton)
+        
+        fbButton.position = CGPoint(x: self.frame.width * 0.65, y: self.frame.size.height * 0.25)
+        fbButton.name = "facebook_button"
+        fbButton.zPosition = 100
+        self.addChild(fbButton)
         
         //ラベル表示
         gameoverLabel.text = "GAMEOVER"
