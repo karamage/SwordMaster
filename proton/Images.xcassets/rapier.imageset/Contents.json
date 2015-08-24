@@ -2,12 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "rapier@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "rapier@2x.png"
+      "filename" : "rapier.png"
     },
     {
       "idiom" : "universal",

@@ -2,12 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "katana@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "katana@2x.png"
+      "filename" : "katana.png"
     },
     {
       "idiom" : "universal",
