@@ -2,12 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "zweihander@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "zweihander@2x.png"
+      "filename" : "zweihander.png"
     },
     {
       "idiom" : "universal",
