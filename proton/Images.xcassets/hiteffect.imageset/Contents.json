@@ -2,13 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "hiteffect@2x.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "hiteffect.png"
+      "filename" : "hiteffect@2x.png"
     },
     {
       "idiom" : "universal",
