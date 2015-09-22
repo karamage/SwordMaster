@@ -480,11 +480,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // share画面で表示するメッセージを格納
         var message = String()
-        if social == "twitter" {
-            message = "Twitter Share"
+        //if social == "twitter" {
+            message = "score:" + String(totalScore) + " #SMYuusuke"
+        /*
         } else {
             message = "Facebook Share"
         }
+*/
         
         // userinfoに情報(socialの種類とmessage)を格納
         let userInfo = ["social": social.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!,"message": message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!]
