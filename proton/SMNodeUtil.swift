@@ -21,11 +21,11 @@ class SMNodeUtil {
     //パーティクル作成
     class func makeParticleNode(position:CGPoint?, filename: String, hide: Bool = true, node: SKNode) {
         var particle = SKEmitterNode(fileNamed: filename)
-        particle.zPosition = 100
-        node.addChild(particle)
+        particle!.zPosition = 100
+        node.addChild(particle!)
         
         if let tmp = position {
-            particle.position = tmp
+            particle!.position = tmp
         }
         
         //消さないんだったらリターン
@@ -46,22 +46,22 @@ class SMNodeUtil {
     //一秒後にフェードしながらノードを消す
     class func fadeRemoveNode(removenode: SKNode!) {
         //１秒後に消す
-        var removeAction = SKAction.removeFromParent()
-        var durationAction = SKAction.waitForDuration(1.50)
-        var sequenceAction = SKAction.sequence([durationAction,removeAction])
+        let removeAction = SKAction.removeFromParent()
+        let durationAction = SKAction.waitForDuration(1.50)
+        let sequenceAction = SKAction.sequence([durationAction,removeAction])
         removenode.runAction(sequenceAction)
         
         removenode.alpha = 1
         
-        var fadeAction = SKAction.fadeAlphaTo(0, duration: 1.0)
+        let fadeAction = SKAction.fadeAlphaTo(0, duration: 1.0)
         removenode.runAction(fadeAction)
     }
     //10秒後にフェードしながらノードを消す
     class func fadeRemoveNode10(removenode: SKNode!) {
         //１秒後に消す
-        var removeAction = SKAction.removeFromParent()
-        var durationAction = SKAction.waitForDuration(5.50)
-        var sequenceAction = SKAction.sequence([durationAction,removeAction])
+        let removeAction = SKAction.removeFromParent()
+        let durationAction = SKAction.waitForDuration(5.50)
+        let sequenceAction = SKAction.sequence([durationAction,removeAction])
         removenode.runAction(sequenceAction)
         
         removenode.alpha = 1

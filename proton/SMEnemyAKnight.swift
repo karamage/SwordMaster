@@ -10,14 +10,14 @@ import Foundation
 import SpriteKit
 
 class SMEnemyAKnight: SMEnemyNode {
-    var guard: SMGuardNode!
+    var `guard`: SMGuardNode!
     var x:CGFloat = 0
     var y:CGFloat = 0
     
     init(texture: SKTexture) {
         //位置をランダムに作成する
         var randY = arc4random_uniform(10)
-        var randX = arc4random_uniform(200)
+        let randX = arc4random_uniform(200)
         x = frameWidth/2 + 100.0 - CGFloat(randX)
         y = CGFloat(frameHeight - 120)
         let location = CGPoint(x:x, y:y)
@@ -38,13 +38,13 @@ class SMEnemyAKnight: SMEnemyNode {
         self.physicsBody?.density = 40.0
         
         //バリアを作成
-        var guardpos = CGPoint(x:-10, y:-80)
-        guard = SMGuardNode(texture: guardTexture, location: guardpos, parentnode: self)
-        guard.hitpoint = 10
+        let guardpos = CGPoint(x:-10, y:-80)
+        `guard` = SMGuardNode(texture: guardTexture, location: guardpos, parentnode: self)
+        `guard`.hitpoint = 10
         
-        guard.makeGuard()
+        `guard`.makeGuard()
         weak var tmpself = self
-        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode!, elapsedTime: CGFloat) -> Void in
+        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
             let move = SKAction.moveTo(player.position, duration: 3.0)
             let remove = SKAction.moveToY(frameHeight - 120, duration: 1.0)
             tmpself!.runAction(SKAction.sequence([move,remove]))

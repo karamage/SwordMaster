@@ -31,7 +31,7 @@ class SMSwordNode: SKSpriteNode {
         self.parentnode = parentnode
         //self.circle = SKShapeNode(circleOfRadius: 15)
         self.circle = SKSpriteNode(imageNamed: "magic_circle")
-        var color = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        let color = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         super.init(texture: texture, color:color, size:texture.size())
         self.position = CGPoint(x:location.x, y:location.y - 40)
     }
@@ -47,7 +47,11 @@ class SMSwordNode: SKSpriteNode {
         //self.runAction(magic)
         
         //物理シミュレーション設定
-        self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
+        if #available(iOS 8.0, *) {
+            self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
+        } else {
+            // Fallback on earlier versions
+        }
         self.physicsBody?.dynamic = false
         self.physicsBody?.allowsRotation = true
         self.physicsBody?.affectedByGravity = false
@@ -96,19 +100,19 @@ class SMSwordNode: SKSpriteNode {
         
         
         //回転のアニメーション
-        var rotateAction = SKAction.rotateByAngle(CGFloat(360*M_PI/180), duration: 10)
+        let rotateAction = SKAction.rotateByAngle(CGFloat(360*M_PI/180), duration: 10)
         circle.runAction(rotateAction)
     }
     
     //剣をスワイプする
     func swipeSword(swipepoint: CGPoint) {
         //println("swipepoint:\(swipepoint)")
-        var x:Int = Int(swipepoint.x) - Int(startPoint.x)
+        let x:Int = Int(swipepoint.x) - Int(startPoint.x)
         swipex = x * -1
-        var angle: CGFloat = CGFloat(x) / CGFloat(180.0) * CGFloat(M_PI) ;
+        let angle: CGFloat = CGFloat(x) / CGFloat(180.0) * CGFloat(M_PI) ;
         //回転のアニメーション
         //var rotateAction = SKAction.rotateByAngle(1, duration: 0)
-        var rotateAction = SKAction.rotateToAngle(angle, duration: 0)
+        let rotateAction = SKAction.rotateToAngle(angle, duration: 0)
         self.runAction(SKAction.sequence([rotateAction]))
     }
     
@@ -118,7 +122,7 @@ class SMSwordNode: SKSpriteNode {
         self.alpha = 1.0
         self.anchorPoint = CGPoint(x:0.5,y:0.5)
         self.physicsBody?.dynamic = true
-        self.physicsBody?.velocity = CGVector.zeroVector
+        self.physicsBody?.velocity = CGVector.zero
         self.physicsBody?.applyImpulse(CGVector(dx:CGFloat(swipex), dy:50.0))
         self.isShot = true
         
@@ -128,23 +132,23 @@ class SMSwordNode: SKSpriteNode {
         }
         
         //2秒後に消す
-        var removeAction = SKAction.removeFromParent()
-        var durationAction = SKAction.waitForDuration(2.00)
-        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode!, elapsedTime: CGFloat) -> Void in
+        let removeAction = SKAction.removeFromParent()
+        let durationAction = SKAction.waitForDuration(2.00)
+        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
             if player.swordNum < player.swordMaxNum {
                 player.countUpSword()
             }
         })
-        var sequenceAction = SKAction.sequence([durationAction,custumAction,removeAction])
+        let sequenceAction = SKAction.sequence([durationAction,custumAction,removeAction])
         self.runAction(sequenceAction)
         
-        var fadeAction = SKAction.fadeAlphaTo(0, duration: 2.0)
+        let fadeAction = SKAction.fadeAlphaTo(0, duration: 2.0)
         self.runAction(fadeAction)
         
         removeCircle()
         
         //パーティクル作成
-        var point = CGPoint(x:0, y:30)
+        let point = CGPoint(x:0, y:30)
         SMNodeUtil.makeMagicParticle(startPoint, node: parentnode)
         SMNodeUtil.makeSparkParticle(point, node: self)
     }

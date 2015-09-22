@@ -15,8 +15,8 @@ class SMEnemyCube: SMEnemyNode {
         var x:CGFloat = 0
         var y:CGFloat = 0
         
-        var randX = arc4random_uniform(320)
-        var randY = arc4random_uniform(100)
+        let randX = arc4random_uniform(320)
+        let randY = arc4random_uniform(100)
         x = CGFloat(randX)
         y = CGFloat(frameHeight - CGFloat(randY) + 100)
         let location = CGPoint(x:x, y:y)
@@ -37,13 +37,13 @@ class SMEnemyCube: SMEnemyNode {
         //self.physicsBody?.velocity = CGVector.zeroVector
         //self.physicsBody?.applyImpulse(CGVector(dx:vector.dx / 100, dy:vector.dy / 500))
         
-        var randY = arc4random_uniform(100)
+        let randY = arc4random_uniform(100)
         hit.alpha = 0.7
         
         //回転のアニメーションをランダム時間で付ける
-        var rotateAction = SKAction.rotateByAngle(CGFloat(360*M_PI/180), duration: 0.5)
-        var rotateWaitAction = SKAction.waitForDuration(NSTimeInterval(CGFloat(randY) * 0.05))
-        var rotate = SKAction.repeatActionForever(SKAction.sequence([rotateAction,rotateWaitAction]))
+        let rotateAction = SKAction.rotateByAngle(CGFloat(360*M_PI/180), duration: 0.5)
+        let rotateWaitAction = SKAction.waitForDuration(NSTimeInterval(CGFloat(randY) * 0.05))
+        let rotate = SKAction.repeatActionForever(SKAction.sequence([rotateAction,rotateWaitAction]))
         self.runAction(rotate)
         
         //ずっとプレイヤーの方向を向くようにする

@@ -17,7 +17,7 @@ class SMEnegyNode: SKSpriteNode {
         self.startPoint = location
         self.parentnode = parentnode
         texture.filteringMode = .Nearest
-        var color = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        let color = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         super.init(texture: texture, color:color, size:texture.size())
         self.position = CGPoint(x:location.x, y:location.y)
         //self.blendMode = SKBlendMode.Add
@@ -48,26 +48,26 @@ class SMEnegyNode: SKSpriteNode {
         }
     }
     func shotEnegy(dx: CGFloat, dy: CGFloat) {
-        self.physicsBody?.velocity = CGVector.zeroVector
+        self.physicsBody?.velocity = CGVector.zero
         self.physicsBody?.applyImpulse(CGVector(dx:dx, dy:dy))
         //self.physicsBody?.applyForce(CGVector(dx:0, dy: -50.0))
         SMNodeUtil.fadeRemoveNode10(self)
     }
     func shotEnegyRandom() {
-        var randX = arc4random_uniform(100)
-        var randY = arc4random_uniform(100)
-        var rand = arc4random_uniform(100)
+        let randX = arc4random_uniform(100)
+        let randY = arc4random_uniform(100)
+        let rand = arc4random_uniform(100)
         var minus = 1
         if rand % 2 == 0 {
             minus = -1
         }
-        var dx: CGFloat = CGFloat(randX/40) * CGFloat(minus)
-        var dy: CGFloat = CGFloat(randY/40) * CGFloat(-1)
+        let dx: CGFloat = CGFloat(randX/40) * CGFloat(minus)
+        let dy: CGFloat = CGFloat(randY/40) * CGFloat(-1)
         shotEnegy(dx, dy: dy)
     }
     func shotEnegyPlayer() {
         //プレイヤーに迫って移動してくるようにする
-        var vector = SMNodeUtil.makePlayerVector(self.position, player: player)
+        let vector = SMNodeUtil.makePlayerVector(self.position, player: player)
         //self.physicsBody?.velocity = CGVector.zeroVector
         //self.physicsBody?.applyImpulse(CGVector(dx:vector.dx / 100, dy:vector.dy / 500))
         shotEnegy(vector.dx, dy: vector.dy)

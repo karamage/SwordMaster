@@ -63,16 +63,16 @@ class GameViewController: UIViewController{
         }
         
         // (3) shareViewControllerを作成、表示する
-        var shareView = SLComposeViewController(forServiceType: type)
+        let shareView = SLComposeViewController(forServiceType: type)
         shareView.setInitialText(message as! String)
         
         shareView.completionHandler = {
             (result:SLComposeViewControllerResult) -> () in
             switch (result) {
             case SLComposeViewControllerResult.Done:
-                println("SLComposeViewControllerResult.Done")
+                print("SLComposeViewControllerResult.Done")
             case SLComposeViewControllerResult.Cancelled:
-                println("SLComposeViewControllerResult.Cancelled")
+                print("SLComposeViewControllerResult.Cancelled")
             }
         }
         self.presentViewController(shareView, animated: true, completion: nil)
@@ -87,8 +87,8 @@ class GameViewController: UIViewController{
         return true
     }
 
-    override func supportedInterfaceOrientations() -> Int {
-        return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.AllButUpsideDown
     }
 
     override func prefersStatusBarHidden() -> Bool {

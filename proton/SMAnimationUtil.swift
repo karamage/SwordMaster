@@ -15,12 +15,12 @@ class SMAnimationUtil {
     class func explodeAnime(imageName: String, xFrame: UInt, yFrame: UInt) -> [SKTexture] {
         
         var ret: [SKTexture] = []
-        var image = UIImage(named: imageName)
+        let image = UIImage(named: imageName)
         
-        var inner: CGImageRef! = image?.CGImage
+        let inner: CGImageRef! = image?.CGImage
         
-        var xFrameInt: Int = Int(xFrame)
-        var yFrameInt: Int = Int(yFrame)
+        let xFrameInt: Int = Int(xFrame)
+        let yFrameInt: Int = Int(yFrame)
         
         //var width: Int = Int(image?.size.width) / xFrameInt
         var width:Int = 0
@@ -42,10 +42,10 @@ class SMAnimationUtil {
                 fy = 0+(CGFloat(i * height) * scale)
                 fwidth = CGFloat(width)*scale
                 fheight = CGFloat(height)*scale
-                var rect: CGRect = CGRectMake(fx, fy, fwidth, fheight)
-                var ref: CGImageRef = CGImageCreateWithImageInRect(inner, rect)
+                let rect: CGRect = CGRectMake(fx, fy, fwidth, fheight)
+                let ref: CGImage? = CGImageCreateWithImageInRect(inner, rect)
                 //var rev: UIImage? = UIImage(CGImage: ref)
-                var texture = SKTexture(CGImage: ref)
+                let texture = SKTexture(CGImage: ref!)
                 ret.append(texture)
             }
         }

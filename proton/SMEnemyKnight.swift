@@ -16,8 +16,8 @@ class SMEnemyKnight: SMEnemyNode {
         var x:CGFloat = 0
         var y:CGFloat = 0
         
-        var randX = arc4random_uniform(100)
-        var randY = arc4random_uniform(100)
+        let randX = arc4random_uniform(100)
+        let randY = arc4random_uniform(100)
         x = frameWidth/2 - 50 + CGFloat(randX)
         y = CGFloat(frameHeight - CGFloat(randY) + 50)
         let location = CGPoint(x:x, y:y)
@@ -36,8 +36,8 @@ class SMEnemyKnight: SMEnemyNode {
         self.physicsBody?.restitution = 0.9
         self.physicsBody?.density = 10.0
         
-        var rand1 = Double(arc4random_uniform(40)) * 0.01
-        var rand2 = Double(arc4random_uniform(40)) * 0.01
+        let rand1 = Double(arc4random_uniform(40)) * 0.01
+        let rand2 = Double(arc4random_uniform(40)) * 0.01
         
         //ゆらゆら移動してくるようにする
         let wait1 = SKAction.waitForDuration(rand1)
