@@ -31,12 +31,12 @@ class SMItemNode: SKSpriteNode {
             self.physicsBody = SKPhysicsBody(rectangleOfSize: self.texture!.size())
         }
         self.physicsBody?.dynamic = true
-        self.physicsBody?.allowsRotation = true
+        self.physicsBody?.allowsRotation = false
         self.physicsBody?.restitution = 0.5
-        self.physicsBody?.density = 10.0
+        self.physicsBody?.density = 100.0
         self.physicsBody?.categoryBitMask = ColliderType.Item
-        self.physicsBody?.collisionBitMask = ColliderType.Sword
-        self.physicsBody?.contactTestBitMask = ColliderType.Player | ColliderType.Sword
+        self.physicsBody?.collisionBitMask = ColliderType.Item
+        self.physicsBody?.contactTestBitMask = ColliderType.Player
         
         if let parentnode = self.parentnode {
             parentnode.addChild(self)

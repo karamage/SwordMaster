@@ -40,8 +40,8 @@ class GameTitleScene: SKScene {
         title.zPosition = 1
         bgNode.addChild(title)
         
-        //let scaleAction = SKAction.scaleBy(1.2, duration: 0.8)
-        //title.runAction(scaleAction)
+        let scaleAction = SKAction.scaleBy(1.2, duration: 0.8)
+        title.runAction(scaleAction)
         let fadeinAction = SKAction.fadeInWithDuration(0.5)
         title.runAction(fadeinAction)
         
