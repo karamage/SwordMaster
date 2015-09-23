@@ -28,11 +28,11 @@ class SMGuardNode2: SMGuardNode {
     }
     //弾が当たった時の処理
     func hitEnegy(enegy: SMEnegyNode) {
-        var damage = 1
+        let damage = 1
         hitpoint -= (damage)
         //enegy.physicsBody?.categoryBitMask = ColliderType.None
-        var fadeIn = SKAction.fadeInWithDuration(0)
-        var fadeOut = SKAction.fadeOutWithDuration(0.5)
+        let fadeIn = SKAction.fadeInWithDuration(0)
+        let fadeOut = SKAction.fadeOutWithDuration(0.5)
         
         if hitpoint <= 3 {
             //バリアが壊れそうな時は赤くする

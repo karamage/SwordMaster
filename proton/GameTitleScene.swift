@@ -86,9 +86,9 @@ class GameTitleScene: SKScene {
         
         //背景パーティクル
         let particle = SKEmitterNode(fileNamed: "titleParticle.sks")
-        particle.zPosition = -10
-        particle.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
-        bgNode.addChild(particle)
+        particle!.zPosition = -10
+        particle!.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
+        bgNode.addChild(particle!)
         
         //剣をクルクルまわす
         var swordTexture = swordFactory.swordTexture1
@@ -107,9 +107,9 @@ class GameTitleScene: SKScene {
         //歌付き音楽を流す
     }
     //タッチした時に呼び出される
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch: AnyObject in touches {
-            var touchPoint = touch.locationInNode(self)
+            let touchPoint = touch.locationInNode(self)
             let node: SKNode! =  self.nodeAtPoint(touchPoint)
             if let tmpnode = node {
                 if tmpnode.name == "start" {
@@ -126,11 +126,16 @@ class GameTitleScene: SKScene {
         
         // auido を再生するプレイヤーを作成する
         var audioError:NSError?
-        audioPlayer = AVAudioPlayer(contentsOfURL: audioPath, error:&audioError)
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOfURL: audioPath)
+        } catch let error as NSError {
+            audioError = error
+            audioPlayer = nil
+        }
         
         // エラーが起きたとき
         if let error = audioError {
-            println("Error \(error.localizedDescription)")
+            print("Error \(error.localizedDescription)")
         }
         
         //audioPlayer!.delegate = self
@@ -144,7 +149,7 @@ class GameTitleScene: SKScene {
         let scene = GameScene()
         
         // Configure the view.
-        let skView = self.view! as! SKView
+        let skView = self.view! 
         if debugflg {
             skView.showsFPS = true
             skView.showsNodeCount = true

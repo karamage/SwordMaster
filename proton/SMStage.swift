@@ -63,17 +63,17 @@ class SMStage: SMEnemyGroupDelegate {
         let fadein = SKAction.fadeInWithDuration(2.0)
         bg.runAction(fadein)
         
-        makeBgParticle(file: bgParticle)
+        makeBgParticle(bgParticle)
         
         //背景を徐々に下にスクロールする
-        var bgScrollAction = SKAction.moveToY(-60.0, duration: 10) //指定座標まで移動
-        var bgScrollRevAction = SKAction.moveToY(0, duration: 10)
-        var bgScroll = SKAction.repeatActionForever(SKAction.sequence([bgScrollAction,bgScrollRevAction]))
+        let bgScrollAction = SKAction.moveToY(-60.0, duration: 10) //指定座標まで移動
+        let bgScrollRevAction = SKAction.moveToY(0, duration: 10)
+        let bgScroll = SKAction.repeatActionForever(SKAction.sequence([bgScrollAction,bgScrollRevAction]))
         bg.runAction(bgScroll)
-        var scaleAction1 = SKAction.scaleTo(0.97, duration: 2)
-        var scaleAction2 = SKAction.scaleTo(1.0, duration: 2)
-        var scaleAction3 = SKAction.scaleTo(1.03, duration: 2)
-        var scaleRepeat = SKAction.repeatActionForever(SKAction.sequence([scaleAction1,scaleAction2,scaleAction3]))
+        let scaleAction1 = SKAction.scaleTo(0.97, duration: 2)
+        let scaleAction2 = SKAction.scaleTo(1.0, duration: 2)
+        let scaleAction3 = SKAction.scaleTo(1.03, duration: 2)
+        let scaleRepeat = SKAction.repeatActionForever(SKAction.sequence([scaleAction1,scaleAction2,scaleAction3]))
         bg.runAction(scaleRepeat)
         
         //敵の集団を作成
@@ -88,11 +88,16 @@ class SMStage: SMEnemyGroupDelegate {
         
         // auido を再生するプレイヤーを作成する
         var audioError:NSError?
-        audioPlayer = AVAudioPlayer(contentsOfURL: audioPath, error:&audioError)
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOfURL: audioPath)
+        } catch let error as NSError {
+            audioError = error
+            audioPlayer = nil
+        }
         
         // エラーが起きたとき
         if let error = audioError {
-            println("Error \(error.localizedDescription)")
+            print("Error \(error.localizedDescription)")
         }
         
         //audioPlayer!.delegate = self
@@ -104,10 +109,10 @@ class SMStage: SMEnemyGroupDelegate {
     //背景用パーティクル作成
     func makeBgParticle(file:String = "scrollParticle.sks") {
         let particle = SKEmitterNode(fileNamed: file)
-        particle.zPosition = 0.0
-        bgNode.addChild(particle)
+        particle!.zPosition = 0.0
+        bgNode.addChild(particle!)
         
-        particle.position = CGPoint(x: CGFloat(frameWidth / 2), y: CGFloat(frameHeight))
+        particle!.position = CGPoint(x: CGFloat(frameWidth / 2), y: CGFloat(frameHeight))
     }
     //敵を作成
     func makeEnemyGroup() {
@@ -143,7 +148,7 @@ class SMStage: SMEnemyGroupDelegate {
         audioPlayer!.stop()
         
         weak var tmpself = self
-        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode!, elapsedTime: CGFloat) -> Void in
+        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
             //今のステージの後始末
             tmpself!.destroyStage()
             

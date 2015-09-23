@@ -32,7 +32,7 @@ class SMEnemyGroup: SMEnemyDelegate {
         }
         if self.type == EnemyGroupType.INTERVAL {
             weak var tmpself = self
-            let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode!, elapsedTime: CGFloat) -> Void in
+            let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
                 //指定秒後に次のグループへ
                 for enemy in tmpself!.enemys {
                     SMNodeUtil.fadeRemoveNode(enemy)

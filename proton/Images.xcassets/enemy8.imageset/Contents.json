@@ -2,13 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "enemy8@2x.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "enemy8.png"
+      "filename" : "enemy8@2x.png"
     },
     {
       "idiom" : "universal",

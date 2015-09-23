@@ -2,8 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "sword.png"
+      "filename" : "sword.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",

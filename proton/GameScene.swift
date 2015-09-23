@@ -164,7 +164,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var optionSwords: [SMSwordNode] = [SMSwordNode]()
     
     //カメラ
-    var camera: SKNode = SKNode()
+    var camera_tmp: SKNode = SKNode()
     
     func cutin() {
         cutin1.removeFromParent()
@@ -214,34 +214,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         helpLabel.runAction(SKAction.sequence([tapLabelAction,SKAction.removeFromParent()]))
         
         //タップ領域の説明
-        let shape:SKShapeNode = SKShapeNode(rectOfSize: CGSize(width: self.frame.width, height: 300))
-        shape.fillColor = UIColor.whiteColor()
-        shape.alpha = 0.05
-        self.addChild(shape)
-        shape.position = CGPoint(x:self.frame.width/2, y: 150)
-        let scale0 = SKAction.scaleTo(0.0, duration: 0.0)
-        let scale3 = SKAction.scaleTo(1.0, duration: 1.0)
-        let shapeAction = SKAction.sequence([scale0, scale3])
-        let repeatShape = SKAction.repeatAction(shapeAction,count:7)
-        shape.runAction(SKAction.sequence([scale0, waitAction, repeatShape, SKAction.removeFromParent()]))
+        if #available(iOS 8.0, *) {
+            let shape:SKShapeNode = SKShapeNode(rectOfSize: CGSize(width: self.frame.width, height: 300))
+            shape.fillColor = UIColor.whiteColor()
+            shape.alpha = 0.05
+            self.addChild(shape)
+            shape.position = CGPoint(x:self.frame.width/2, y: 150)
+            let scale0 = SKAction.scaleTo(0.0, duration: 0.0)
+            let scale3 = SKAction.scaleTo(1.0, duration: 1.0)
+            let shapeAction = SKAction.sequence([scale0, scale3])
+            let repeatShape = SKAction.repeatAction(shapeAction,count:7)
+            shape.runAction(SKAction.sequence([scale0, waitAction, repeatShape, SKAction.removeFromParent()]))
+        } else {
+            // Fallback on earlier versions
+        }
         
         //移動の操作説明
         moveAim = SMAnimationUtil.explodeAnime("moveAnim", xFrame: 2, yFrame: 1)
-        var moveAnimAction = SKAction.animateWithTextures(moveAim, timePerFrame: 1.0)
-        var repeatMove = SKAction.repeatAction(moveAnimAction, count: 3)
-        var moveAction = SKAction.sequence([waitAction,fadeInAction, repeatMove, fadeOutAction])
+        let moveAnimAction = SKAction.animateWithTextures(moveAim, timePerFrame: 1.0)
+        let repeatMove = SKAction.repeatAction(moveAnimAction, count: 3)
+        let moveAction = SKAction.sequence([waitAction,fadeInAction, repeatMove, fadeOutAction])
         
         //長押しタップの説明
         tapAim = SMAnimationUtil.explodeAnime("tap", xFrame: 1, yFrame: 1)
         let lscale2 = SKAction.scaleTo(1.5, duration: 1.5)
-        var ltapAnimAction = SKAction.animateWithTextures(tapAim, timePerFrame: 0.1)
+        let ltapAnimAction = SKAction.animateWithTextures(tapAim, timePerFrame: 0.1)
         let ltapAction = SKAction.sequence([waitAction, ltapAnimAction, fadeInAction, scale1, lscale2, scale1, lscale2, scale1, lscale2, fadeOutAction])
         
         //スワイプの説明
         swipeAim = SMAnimationUtil.explodeAnime("swipe", xFrame: 2, yFrame: 1)
-        var swipeAnimAction = SKAction.animateWithTextures(swipeAim, timePerFrame: 1.0)
-        var repeatSwipe = SKAction.repeatAction(swipeAnimAction, count: 3)
-        var swipeAction = SKAction.sequence([waitAction,scale1,fadeInAction, repeatSwipe, fadeOutAction])
+        let swipeAnimAction = SKAction.animateWithTextures(swipeAim, timePerFrame: 1.0)
+        let repeatSwipe = SKAction.repeatAction(swipeAnimAction, count: 3)
+        let swipeAction = SKAction.sequence([waitAction,scale1,fadeInAction, repeatSwipe, fadeOutAction])
         
         
         let allAction = SKAction.sequence([tapAction,moveAction,ltapAction,swipeAction])
@@ -289,8 +293,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(world)
         
         //カメラを設定する
-        camera.name = "camera"
-        world.addChild(camera)
+        camera_tmp.name = "camera"
+        world.addChild(camera_tmp)
         
         frameWidth = self.frame.width
         frameHeight = self.frame.height
@@ -406,14 +410,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //カメラの移動処理
     override func didSimulatePhysics(){
-        var camera:SKNode = self.childNodeWithName("//camera")!
+        let camera:SKNode = self.childNodeWithName("//camera")!
         camera.position = CGPointMake(player.position.x - self.frame.width/2, camera.position.y)
         self.centerOnNode(camera)
     }
     func centerOnNode(node:SKNode) {
         if let scene:SKScene = node.scene
         {
-            var cameraPositionInScene:CGPoint = scene.convertPoint(node.position, fromNode: node.parent!)
+            let cameraPositionInScene:CGPoint = scene.convertPoint(node.position, fromNode: node.parent!)
             node.parent!.position = CGPointMake(node.parent!.position.x - cameraPositionInScene.x,                                       node.parent!.position.y - cameraPositionInScene.y);
         }
     }
@@ -428,7 +432,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //ハンドラを設定する
         let accelerometerHandler: CMAccelerometerHandler = {
-            (data:CMAccelerometerData!, error:NSError!) -> Void in
+            (data:CMAccelerometerData?, error:NSError?) -> Void in
             
             //ログにx,y,zの加速度を表示する
             //println("x:\(data.acceleration.x),y:\(data.acceleration.y),z:\(data.acceleration.z)")
@@ -442,9 +446,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             var positionx: CGFloat = 0.0
             var moveAction: SKAction!
             var tmpx: CGFloat = 0.0
-            var speed: CGFloat = 1.0 + (0.1 * CGFloat(player.speedup))
+            let speed: CGFloat = 1.0 + (0.1 * CGFloat(player.speedup))
             if player.position.x >= 0 && player.position.x <= self.frame.width {
-                positionx = CGFloat(CGFloat(data.acceleration.x) * CGFloat(20.0) * speed)
+                positionx = CGFloat(CGFloat(data!.acceleration.x) * CGFloat(20.0) * speed)
                 moveAction = SKAction.moveByX(positionx, y:0, duration: 0.1)
             } else {
                 //画面端の場合はそれ以上進めないようにする
@@ -458,14 +462,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.runAction(moveAction)
             
             //自機を傾ける
-            var angle: CGFloat = CGFloat(positionx * -1) / CGFloat(180.0) * CGFloat(M_PI) ;
+            let angle: CGFloat = CGFloat(positionx * -1) / CGFloat(180.0) * CGFloat(M_PI) ;
             //回転のアニメーション
-            var rotateAction = SKAction.rotateToAngle(angle, duration: 0.1)
+            let rotateAction = SKAction.rotateToAngle(angle, duration: 0.1)
             player.runAction(SKAction.sequence([rotateAction]))
         }
         
+        let que = NSOperationQueue.currentQueue()
+        
         //センサー取得開始
-        motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(),
+        motionManager.startAccelerometerUpdatesToQueue(que!,
         withHandler: accelerometerHandler)
     }
     
@@ -474,11 +480,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // share画面で表示するメッセージを格納
         var message = String()
-        if social == "twitter" {
-            message = "Twitter Share"
+        //if social == "twitter" {
+            message = "score:" + String(totalScore) + " #SMYuusuke"
+        /*
         } else {
             message = "Facebook Share"
         }
+*/
         
         // userinfoに情報(socialの種類とmessage)を格納
         let userInfo = ["social": social.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!,"message": message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!]
@@ -489,11 +497,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     //タッチした時に呼び出される
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         if gameoverflg {
             for touch: AnyObject in touches {
-                var touchPoint = touch.locationInNode(self)
+                let touchPoint = touch.locationInNode(self)
                 let node: SKNode! =  self.nodeAtPoint(touchPoint)
                 if let tmpnode = node {
                     if tmpnode.name == "returnLabel" {
@@ -517,7 +525,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             return
         }
         for touch: AnyObject in touches {
-            var touchPoint = touch.locationInNode(self)
+            let touchPoint = touch.locationInNode(self)
             if touchPoint.y > 300 {
                 continue
             }
@@ -542,7 +550,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //オプションの剣の作成を行う
             let waitAction = SKAction.waitForDuration(0.5)
             weak var tmpself = self
-            let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode!, elapsedTime: CGFloat) -> Void in
+            let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
                 if player.swordNum <= 0 || tmpself!.sword == nil {
                     return
                 }
@@ -597,7 +605,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     //スワイプした時に呼び出される
-    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         //タッチが開始されていないのなら即リターン
         if touchStartPoint == nil {
             return
@@ -614,7 +622,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     //タッチして指を離したときに呼び出される
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         //タッチが開始されていないのなら即リターン
         if touchStartPoint == nil {
             return
@@ -717,7 +725,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let scene = GameTitleScene()
         
         // Configure the view.
-        let skView = self.view! as! SKView
+        let skView = self.view! 
         
         /* Sprite Kit applies additional optimizations to improve rendering performance */
         skView.ignoresSiblingOrder = true
@@ -793,13 +801,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             } else if contact.bodyA.categoryBitMask & guardType == guardType ||
                 contact.bodyB.categoryBitMask & guardType == guardType {
                 if contact.bodyA.categoryBitMask & guardType == guardType {
-                    let guard: SMGuardNode = contact.bodyA.node as! SMGuardNode
+                    let `guard`: SMGuardNode = contact.bodyA.node as! SMGuardNode
                     let sword: SMSwordNode = contact.bodyB.node as! SMSwordNode
-                    guard.hitSword(sword)
+                    `guard`.hitSword(sword)
                 } else if contact.bodyB.categoryBitMask & guardType == guardType {
-                    let guard: SMGuardNode = contact.bodyB.node as! SMGuardNode
+                    let `guard`: SMGuardNode = contact.bodyB.node as! SMGuardNode
                     let sword: SMSwordNode = contact.bodyA.node as! SMSwordNode
-                    guard.hitSword(sword)
+                    `guard`.hitSword(sword)
                 }
             }
         } else if contact.bodyA.categoryBitMask & playerType == playerType ||

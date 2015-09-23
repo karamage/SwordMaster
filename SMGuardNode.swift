@@ -22,7 +22,7 @@ class SMGuardNode: SKSpriteNode {
     //初期化
     init(texture: SKTexture, location: CGPoint, parentnode:SKNode){
         self.parentnode = parentnode
-        var color = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        let color = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         super.init(texture: texture, color:color, size:texture.size())
         self.position = CGPoint(x:location.x, y:location.y)
         self.zPosition = 2
@@ -55,10 +55,10 @@ class SMGuardNode: SKSpriteNode {
     }
     //剣が当たった時の処理
     func hitSword(sword: SMSwordNode) {
-        var damage = sword.attack
+        let damage = sword.attack
         hitpoint -= (damage)
         sword.physicsBody?.categoryBitMask = ColliderType.None
-        var parent = self.parentnode
+        let parent = self.parentnode
         if hitpoint <= 3 {
             //バリアが壊れそうな時は赤くする
             self.color = UIColor.redColor()
@@ -72,8 +72,8 @@ class SMGuardNode: SKSpriteNode {
             //self.removeFromParent()
         } else {
             hit.removeAllActions()
-            var fadeIn = SKAction.fadeInWithDuration(0)
-            var fadeOut = SKAction.fadeOutWithDuration(0.5)
+            let fadeIn = SKAction.fadeInWithDuration(0)
+            let fadeOut = SKAction.fadeOutWithDuration(0.5)
             hit.runAction(SKAction.sequence([fadeIn, guardAnimAction, fadeOut]))
             bgNode.runAction(kakinSound)
             SMNodeUtil.makeParticleNode(parent!.position, filename:"hitParticle.sks", node:bgNode)

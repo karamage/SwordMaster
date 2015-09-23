@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class SMEnemyBoss1: SMEnemyNode {
-    var guard: SMGuardNode!
+    var `guard`: SMGuardNode!
     init(texture: SKTexture) {
         var x:CGFloat = 0
         var y:CGFloat = 0
@@ -45,8 +45,8 @@ class SMEnemyBoss1: SMEnemyNode {
         //println("boss1 guard make")
         
         //バリアを作成
-        var guardpos = CGPoint(x:-10, y:-80)
-        guard = SMGuardNode(texture: guardTexture, location: guardpos, parentnode: self)
-        guard.makeGuard()
+        let guardpos = CGPoint(x:-10, y:-80)
+        `guard` = SMGuardNode(texture: guardTexture, location: guardpos, parentnode: self)
+        `guard`.makeGuard()
     }
 }

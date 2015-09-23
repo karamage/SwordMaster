@@ -10,12 +10,12 @@ import Foundation
 import SpriteKit
 
 class SMEnemyLion: SMEnemyNode {
-    var guard: SMGuardNode!
+    var `guard`: SMGuardNode!
     
     init(texture: SKTexture) {
         var x:CGFloat = 0
         var y:CGFloat = 0
-        var randX = arc4random_uniform(200)
+        let randX = arc4random_uniform(200)
         x = CGFloat(randX)
         x = frameWidth/2 + 100.0 - CGFloat(randX)
         y = CGFloat(frameHeight)
@@ -42,9 +42,9 @@ class SMEnemyLion: SMEnemyNode {
         self.runAction(move)
         
         //バリアを作成
-        var guardpos = CGPoint(x:-10, y:-80)
-        guard = SMGuardNode(texture: guardTexture, location: guardpos, parentnode: self)
-        guard.makeGuard()
-        guard.hitpoint = 3
+        let guardpos = CGPoint(x:-10, y:-80)
+        `guard` = SMGuardNode(texture: guardTexture, location: guardpos, parentnode: self)
+        `guard`.makeGuard()
+        `guard`.hitpoint = 3
     }
 }

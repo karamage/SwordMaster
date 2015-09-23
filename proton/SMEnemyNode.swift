@@ -34,7 +34,7 @@ class SMEnemyNode: SKSpriteNode {
     init(texture: SKTexture, type: EnemyType, location: CGPoint, parentnode:SKNode){
         self.type = type
         self.parentnode = parentnode
-        var color = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        let color = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         super.init(texture: texture, color:color, size:texture.size())
         self.position = CGPoint(x:location.x, y:location.y)
         self.zPosition = 2
@@ -46,7 +46,12 @@ class SMEnemyNode: SKSpriteNode {
     //敵の作成
     func makeEnemy() {
         //物理シミュレーションを設定
-        self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
+        if #available(iOS 8.0, *) {
+            self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
+        } else {
+            // Fallback on earlier versions
+            self.physicsBody = SKPhysicsBody(rectangleOfSize: self.texture!.size())
+        }
         self.physicsBody?.dynamic = true
         self.physicsBody?.allowsRotation = true
         self.physicsBody?.restitution = 0.5
@@ -69,11 +74,11 @@ class SMEnemyNode: SKSpriteNode {
         self.addChild(hit!)
     }
     func makeEnegy(num: Int) {
-        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode!, elapsedTime: CGFloat) -> Void in
+        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
             //弾発射
-            var point = CGPoint(x: self.position.x , y: self.position.y)
+            let point = CGPoint(x: self.position.x , y: self.position.y)
             for i in 0..<num {
-                var enegy = enegyFactory.create(point)
+                let enegy = enegyFactory.create(point)
                 enegy.makeEnegy()
                 enegy.shotEnegyRandom()
             }
@@ -83,11 +88,11 @@ class SMEnemyNode: SKSpriteNode {
     }
     func makeEnegy2(interval: Double = 5.0) {
         //println("makeEnegy2()")
-        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode!, elapsedTime: CGFloat) -> Void in
+        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
             //println("makeEnegy2() customAction")
             var point = CGPoint(x: self.position.x , y: self.position.y)
             var enegy = enegyFactory.create(point)
-            enegy.makeEnegy(rad:10.0, den: 100.0)
+            enegy.makeEnegy(10.0, den: 100.0)
             //enegy.shotEnegyRandom()
             enegy.shotEnegyPlayer()
             var scale = SKAction.scaleBy(3.0, duration: 1.0)
@@ -99,13 +104,13 @@ class SMEnemyNode: SKSpriteNode {
     }
     //剣が当たった時の処理
     func hitSword(sword: SMSwordNode) {
-        var damage = sword.attack - diffence
+        let damage = sword.attack - diffence
         if damage <= 0 {
             hit.removeAllActions()
             //ダメージを与えられない
-            var fadeIn = SKAction.fadeInWithDuration(0)
-            var fadeOut = SKAction.fadeOutWithDuration(0.5)
-            var guardAnimAction = SKAction.animateWithTextures(guardAim, timePerFrame: 0.1, resize:false, restore:true)
+            let fadeIn = SKAction.fadeInWithDuration(0)
+            let fadeOut = SKAction.fadeOutWithDuration(0.5)
+            let guardAnimAction = SKAction.animateWithTextures(guardAim, timePerFrame: 0.1, resize:false, restore:true)
             hit.runAction(SKAction.sequence([fadeIn,guardAnimAction,fadeOut]))
             bgNode.runAction(kakinSound)
             return
@@ -114,7 +119,7 @@ class SMEnemyNode: SKSpriteNode {
         
         //コンボの処理
         let waitAction = SKAction.waitForDuration(1.0)
-        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode!, elapsedTime: CGFloat) -> Void in
+        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
             combo = 0
             comboLabel.alpha = 0.0
         })
@@ -139,7 +144,7 @@ class SMEnemyNode: SKSpriteNode {
                 //killAimNode.runAction(kiruSound)
                 //killAimNode.runAction(kiruSound)
                 //killAimNode.runAction(kiruSound)
-                var killAnimAction = SKAction.animateWithTextures(killAim, timePerFrame: 0.1, resize:false, restore:true)
+                let killAnimAction = SKAction.animateWithTextures(killAim, timePerFrame: 0.1, resize:false, restore:true)
                 killAimNode.runAction(killAnimAction)
                 killAimNode.runAction(SKAction.sequence([fadeInAction2,fadeOutAction]) )
                 let scale1 = SKAction.scaleTo(1.0, duration: 0.0)
@@ -159,7 +164,7 @@ class SMEnemyNode: SKSpriteNode {
         } else {
             bgNode.runAction(explodeSound2)
             SMNodeUtil.makeParticleNode(self.position, filename:"hitParticle.sks", node:bgNode)
-            var hitAnimAction = SKAction.animateWithTextures(hitAim, timePerFrame: 0.03, resize:false, restore:true)
+            let hitAnimAction = SKAction.animateWithTextures(hitAim, timePerFrame: 0.03, resize:false, restore:true)
             hit.removeAllActions()
             hit.runAction(hitAnimAction)
             hit.alpha = 0.8
@@ -182,8 +187,8 @@ class SMEnemyNode: SKSpriteNode {
         
         var itempos = self.position
         for i in 1...itemnum {
-            var rand:CGFloat = CGFloat(arc4random_uniform(100))
-            var randY:CGFloat = CGFloat(arc4random_uniform(100))
+            let rand:CGFloat = CGFloat(arc4random_uniform(100))
+            let randY:CGFloat = CGFloat(arc4random_uniform(100))
             var randp: CGFloat = 1.0
             var randyp: CGFloat = 1.0
             var x = self.position.x
@@ -199,7 +204,7 @@ class SMEnemyNode: SKSpriteNode {
                 y = y + (randY * randyp)
                 itempos = CGPoint(x:x, y:y)
             }
-            var item = itemFactory.createRandom(itempos)
+            let item = itemFactory.createRandom(itempos)
             item?.makeItem()
         }
         

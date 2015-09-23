@@ -12,7 +12,7 @@ import SpriteKit
 class SMEnegyFactory {
     let enegyTexture = SKTexture(imageNamed: "enegy")
     func create(position: CGPoint) -> SMEnegyNode {
-        var enegy = SMEnegyNode(texture: enegyTexture, location: position, parentnode: enemysNode)
+        let enegy = SMEnegyNode(texture: enegyTexture, location: position, parentnode: enemysNode)
         return enegy
     }
 }

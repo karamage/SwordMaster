@@ -71,7 +71,7 @@ class SMPlayerNode: SKSpriteNode {
             bgNode.runAction(powerupSound)
             bgNode.runAction(powerupSound)
             bgNode.runAction(powerupSound)
-            self.guard()
+            self.`guard`()
             scene.cutin()
         default:
             break
@@ -81,9 +81,9 @@ class SMPlayerNode: SKSpriteNode {
     }
     
     //バリアの作成
-    func guard() {
-        var guard = SMGuardNode2(texture: guard2Texture, location: CGPoint(x:self.position.x + 10, y:100.0), parentnode: bgNode)
-        guard.makeGuard()
+    func `guard`() {
+        let `guard` = SMGuardNode2(texture: guard2Texture, location: CGPoint(x:self.position.x + 10, y:100.0), parentnode: bgNode)
+        `guard`.makeGuard()
     }
     //スピードアップの処理
     func speedUp() {
@@ -122,7 +122,12 @@ class SMPlayerNode: SKSpriteNode {
         //self.color = SKColor(red: 1.0, green: 0, blue: 0, alpha: 1.0)
         
         //物理シミュレーション設定
-        self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
+        if #available(iOS 8.0, *) {
+            self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
+        } else {
+            // Fallback on earlier versions
+            self.physicsBody = SKPhysicsBody(rectangleOfSize: texture!.size())
+        }
         self.physicsBody?.dynamic = false
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.categoryBitMask = ColliderType.Player
@@ -156,15 +161,15 @@ class SMPlayerNode: SKSpriteNode {
         self.runAction(repeatParaAction)
         
         //画面下から登場
-        var resetAction = SKAction.moveToY(0, duration: 0)
-        var playerAction = SKAction.moveToY(50, duration: 2)
-        var repeatAction = SKAction.repeatActionForever(SKAction.sequence([SKAction.moveToY(45, duration: 2),SKAction.moveToY(55, duration: 2)]))
+        let resetAction = SKAction.moveToY(0, duration: 0)
+        let playerAction = SKAction.moveToY(50, duration: 2)
+        let repeatAction = SKAction.repeatActionForever(SKAction.sequence([SKAction.moveToY(45, duration: 2),SKAction.moveToY(55, duration: 2)]))
         self.runAction(SKAction.sequence([resetAction, playerAction, repeatAction]))
         
-        var scaleAction1 = SKAction.scaleTo(1.1, duration: 2)
-        var scaleAction2 = SKAction.scaleTo(1.0, duration: 2)
-        var scaleAction3 = SKAction.scaleTo(0.9, duration: 2)
-        var scaleRepeat = SKAction.repeatActionForever(SKAction.sequence([scaleAction1,scaleAction2,scaleAction3]))
+        let scaleAction1 = SKAction.scaleTo(1.1, duration: 2)
+        let scaleAction2 = SKAction.scaleTo(1.0, duration: 2)
+        let scaleAction3 = SKAction.scaleTo(0.9, duration: 2)
+        let scaleRepeat = SKAction.repeatActionForever(SKAction.sequence([scaleAction1,scaleAction2,scaleAction3]))
         self.runAction(scaleRepeat)
     }
     
@@ -213,7 +218,7 @@ class SMPlayerNode: SKSpriteNode {
         hane.alpha = 0.9
         self.addChild(hane!)
         makeHaneAnim()
-        var scaleHaneAction = SKAction.scaleTo(0.5, duration: 3.0)
+        let scaleHaneAction = SKAction.scaleTo(0.5, duration: 3.0)
         hane.runAction(scaleHaneAction)
         
         //ワープのアニメーションを作成
@@ -226,10 +231,10 @@ class SMPlayerNode: SKSpriteNode {
     func makeHaneAnim() {
         hane.removeAllActions()
         
-        var haneAnimAction = SKAction.animateWithTextures(haneAim, timePerFrame: 0.1, resize:false, restore:true)
-        var haneAnimAction1 = SKAction.animateWithTextures(haneAim1, timePerFrame: 0.1, resize:false, restore:true)
-        var haneAnimAction2 = SKAction.animateWithTextures(haneAim2, timePerFrame: 0.1, resize:false, restore:true)
-        var repeatHaneAction = SKAction.repeatActionForever(haneAnimAction2)
+        let haneAnimAction = SKAction.animateWithTextures(haneAim, timePerFrame: 0.1, resize:false, restore:true)
+        let haneAnimAction1 = SKAction.animateWithTextures(haneAim1, timePerFrame: 0.1, resize:false, restore:true)
+        let haneAnimAction2 = SKAction.animateWithTextures(haneAim2, timePerFrame: 0.1, resize:false, restore:true)
+        let repeatHaneAction = SKAction.repeatActionForever(haneAnimAction2)
         hane.runAction(SKAction.sequence([haneAnimAction,haneAnimAction1, repeatHaneAction]))
     }
     
@@ -237,8 +242,8 @@ class SMPlayerNode: SKSpriteNode {
         warp.removeFromParent()
         self.addChild(warp!)
         warp.removeAllActions()
-        var warpAnimAction = SKAction.animateWithTextures(warpAim2, timePerFrame: 0.1, resize:false, restore:true)
-        var warpRemoveAction = SKAction.removeFromParent()
+        let warpAnimAction = SKAction.animateWithTextures(warpAim2, timePerFrame: 0.1, resize:false, restore:true)
+        let warpRemoveAction = SKAction.removeFromParent()
         warp.runAction(SKAction.sequence([warpAnimAction,warpRemoveAction]))
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class SMEnemyBoss3: SMEnemyNode {
-    var guard: SMGuardNode!
+    var `guard`: SMGuardNode!
     init(texture: SKTexture) {
         var x:CGFloat = 0
         var y:CGFloat = 0
@@ -37,13 +37,13 @@ class SMEnemyBoss3: SMEnemyNode {
         self.physicsBody?.restitution = 0.1
         self.physicsBody?.density = 1000.0
         makeEnegy(100)
-        makeEnegy2(interval: 1.0)
+        makeEnegy2(1.0)
         let move = SKAction.moveToY(frameHeight - 100, duration: 3.0)
         self.runAction(move)
         //バリアを作成
         var guardpos = CGPoint(x:-10, y:-80)
-        guard = SMGuardNode(texture: guardTexture, location: guardpos, parentnode: self)
-        guard.makeGuard()
-        guard.hitpoint = 40
+        `guard` = SMGuardNode(texture: guardTexture, location: guardpos, parentnode: self)
+        `guard`.makeGuard()
+        `guard`.hitpoint = 40
     }
 }
