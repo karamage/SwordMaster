@@ -122,7 +122,7 @@
 		931943171B58BD240002F1BD /* deadParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = deadParticle.sks; sourceTree = "<group>"; };
 		931943191B58DB740002F1BD /* SMItemNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMItemNode.swift; sourceTree = "<group>"; };
 		9319431B1B5F5C790002F1BD /* ItemType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
-		9319431D1B5F724E0002F1BD /* SMItemFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMItemFactory.swift; path = ../SMItemFactory.swift; sourceTree = "<group>"; };
+		9319431D1B5F724E0002F1BD /* SMItemFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMItemFactory.swift; sourceTree = "<group>"; };
 		9319431F1B661B690002F1BD /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		935665011B85C19500EAE798 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		9356C1DA1B4D00410073EBF8 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 		935D90971B70797D0098A2FF /* SMEnemyKnight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyKnight.swift; sourceTree = "<group>"; };
 		935D90991B7087E70098A2FF /* tameParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = tameParticle.sks; sourceTree = "<group>"; };
 		935D909B1B71E6F60098A2FF /* SMEnemyCube2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyCube2.swift; sourceTree = "<group>"; };
-		935D909D1B71EBCA0098A2FF /* SMGuardNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMGuardNode.swift; path = ../SMGuardNode.swift; sourceTree = "<group>"; };
+		935D909D1B71EBCA0098A2FF /* SMGuardNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMGuardNode.swift; sourceTree = "<group>"; };
 		935D909F1B7336510098A2FF /* SMEnemyLion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyLion.swift; sourceTree = "<group>"; };
 		935D90A11B7350990098A2FF /* enegyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = enegyParticle.sks; sourceTree = "<group>"; };
 		935D90A31B746F420098A2FF /* SMEnemyAKnight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyAKnight.swift; sourceTree = "<group>"; };
@@ -187,20 +187,20 @@
 		93D1D7AA1B534BA4000EC266 /* SMEnemyGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyGroup.swift; sourceTree = "<group>"; };
 		93D1D7AC1B534F5D000EC266 /* SMStageManage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMStageManage.swift; sourceTree = "<group>"; };
 		93D1D7AE1B538DC6000EC266 /* SMSwordFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSwordFactory.swift; sourceTree = "<group>"; };
-		93D1D7B01B538FE3000EC266 /* SMEnemyFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMEnemyFactory.swift; path = ../SMEnemyFactory.swift; sourceTree = "<group>"; };
+		93D1D7B01B538FE3000EC266 /* SMEnemyFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyFactory.swift; sourceTree = "<group>"; };
 		93D1D7B21B539097000EC266 /* SMStageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMStageFactory.swift; sourceTree = "<group>"; };
 		93D1D7B41B54B450000EC266 /* SMEnemyGroupDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyGroupDelegate.swift; sourceTree = "<group>"; };
-		93D1D7B61B54BCD7000EC266 /* EnemyGroupType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnemyGroupType.swift; path = ../EnemyGroupType.swift; sourceTree = "<group>"; };
+		93D1D7B61B54BCD7000EC266 /* EnemyGroupType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyGroupType.swift; sourceTree = "<group>"; };
 		93D1D7B81B54C57A000EC266 /* SMEnemyDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyDelegate.swift; sourceTree = "<group>"; };
 		93D1D7BA1B54E240000EC266 /* SMEnemyFly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyFly.swift; sourceTree = "<group>"; };
 		93D1D7BC1B55F228000EC266 /* bosssound1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bosssound1.mp3; sourceTree = "<group>"; };
 		93D1D7BE1B55F37E000EC266 /* SMEnemyBoss1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyBoss1.swift; sourceTree = "<group>"; };
 		93D1D7C01B563B01000EC266 /* swordmaster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swordmaster.png; sourceTree = "<group>"; };
 		93D1D7C41B57458E000EC266 /* GameTitleScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTitleScene.swift; sourceTree = "<group>"; };
-		93D1D7C81B57558B000EC266 /* titleParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = titleParticle.sks; path = ../titleParticle.sks; sourceTree = "<group>"; };
-		93D1D7C91B57558B000EC266 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = ../spark.png; sourceTree = "<group>"; };
+		93D1D7C81B57558B000EC266 /* titleParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = titleParticle.sks; sourceTree = "<group>"; };
+		93D1D7C91B57558B000EC266 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		93D1D7CC1B5782B8000EC266 /* SMEnegyNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnegyNode.swift; sourceTree = "<group>"; };
-		93D1D7CE1B578526000EC266 /* SMEnegyFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMEnegyFactory.swift; path = ../SMEnegyFactory.swift; sourceTree = "<group>"; };
+		93D1D7CE1B578526000EC266 /* SMEnegyFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnegyFactory.swift; sourceTree = "<group>"; };
 		93D8CD1C1B679E470052BE67 /* short_song_minami_kirakira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = short_song_minami_kirakira.mp3; sourceTree = "<group>"; };
 		93D8CD421B67A8C80052BE67 /* kakin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kakin.mp3; sourceTree = "<group>"; };
 		93D8CD431B67A8C80052BE67 /* explode2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explode2.mp3; sourceTree = "<group>"; };
@@ -248,89 +248,89 @@
 		93A46BE01B8AF7A1002F6127 /* sound */ = {
 			isa = PBXGroup;
 			children = (
-				93A46BE31B8AFFFE002F6127 /* ei_01.mp3 */,
-				93A46BE41B8AFFFE002F6127 /* hawawa_01.mp3 */,
-				93A46BE51B8AFFFE002F6127 /* ita_01.mp3 */,
-				93A46BE61B8AFFFE002F6127 /* itemget_01.mp3 */,
-				93A46BE71B8AFFFE002F6127 /* kono_01.mp3 */,
-				93A46BE81B8AFFFE002F6127 /* konomamaja_01.mp3 */,
-				93A46BE91B8AFFFE002F6127 /* korededouda_01.mp3 */,
-				93A46BEA1B8AFFFE002F6127 /* kurae_01.mp3 */,
-				93A46BEB1B8AFFFE002F6127 /* mataaeruyone_01.mp3 */,
-				93A46BEC1B8AFFFE002F6127 /* motteatosukoshidesu_01.mp3 */,
-				93A46BED1B8AFFFE002F6127 /* powerup_01.mp3 */,
-				93A46BEE1B8AFFFE002F6127 /* sokoda_01.mp3 */,
-				93A46BEF1B8AFFFE002F6127 /* torya_01.mp3 */,
-				93A46BF01B8AFFFE002F6127 /* yaa_01.mp3 */,
 				93A46BF11B8AFFFE002F6127 /* aha_01.mp3 */,
+				93D8CD4A1B69B9B50052BE67 /* bgm_maoudamashii_neorock33.mp3 */,
+				935D90A61B747C940098A2FF /* bgm_stage2.mp3 */,
+				935D90A51B747C940098A2FF /* bgm_stage3.mp3 */,
+				93D1D7BC1B55F228000EC266 /* bosssound1.mp3 */,
 				93A46BF21B8AFFFE002F6127 /* choroichoroi_01.mp3 */,
 				93A46BF31B8AFFFE002F6127 /* choroimondane_01.mp3 */,
 				93A46BF41B8AFFFE002F6127 /* combo_01.mp3 */,
 				93A46BF51B8AFFFE002F6127 /* ehehe_01.mp3 */,
-				93D8CD4A1B69B9B50052BE67 /* bgm_maoudamashii_neorock33.mp3 */,
-				935D90A51B747C940098A2FF /* bgm_stage3.mp3 */,
-				935D90A61B747C940098A2FF /* bgm_stage2.mp3 */,
-				93D8CD1C1B679E470052BE67 /* short_song_minami_kirakira.mp3 */,
-				93D1D7961B513933000EC266 /* magic_circle.mp3 */,
-				93D8CD421B67A8C80052BE67 /* kakin.mp3 */,
-				93D8CD431B67A8C80052BE67 /* explode2.mp3 */,
-				93D1D7971B513933000EC266 /* nagarebosi.mp3 */,
-				93D1D7981B513933000EC266 /* hit.mp3 */,
-				93D1D7991B513933000EC266 /* kiru.mp3 */,
-				93D1D79A1B513933000EC266 /* sasaru.mp3 */,
+				93A46BE31B8AFFFE002F6127 /* ei_01.mp3 */,
 				93D1D79B1B513933000EC266 /* explode.mp3 */,
+				93D8CD431B67A8C80052BE67 /* explode2.mp3 */,
 				93E9A0691B4D4D9300B44478 /* fade.mp3 */,
-				93E9A06A1B4D4D9300B44478 /* shot.mp3 */,
-				93E9A06B1B4D4D9300B44478 /* sword.mp3 */,
-				93D1D7BC1B55F228000EC266 /* bosssound1.mp3 */,
-				93E9A06C1B4D4D9300B44478 /* sound.mp3 */,
 				9380AB511B78DFB20052274E /* ganbarimasu_01.mp3 */,
+				93A46BE41B8AFFFE002F6127 /* hawawa_01.mp3 */,
+				93D1D7981B513933000EC266 /* hit.mp3 */,
+				93A46BE51B8AFFFE002F6127 /* ita_01.mp3 */,
+				93A46BE61B8AFFFE002F6127 /* itemget_01.mp3 */,
+				93D8CD421B67A8C80052BE67 /* kakin.mp3 */,
+				93D1D7991B513933000EC266 /* kiru.mp3 */,
+				93A46BE71B8AFFFE002F6127 /* kono_01.mp3 */,
+				93A46BE81B8AFFFE002F6127 /* konomamaja_01.mp3 */,
+				93A46BE91B8AFFFE002F6127 /* korededouda_01.mp3 */,
+				93A46BEA1B8AFFFE002F6127 /* kurae_01.mp3 */,
+				93D1D7961B513933000EC266 /* magic_circle.mp3 */,
+				93A46BEB1B8AFFFE002F6127 /* mataaeruyone_01.mp3 */,
+				93A46BEC1B8AFFFE002F6127 /* motteatosukoshidesu_01.mp3 */,
+				93D1D7971B513933000EC266 /* nagarebosi.mp3 */,
+				93A46BED1B8AFFFE002F6127 /* powerup_01.mp3 */,
+				93D1D79A1B513933000EC266 /* sasaru.mp3 */,
+				93D8CD1C1B679E470052BE67 /* short_song_minami_kirakira.mp3 */,
+				93E9A06A1B4D4D9300B44478 /* shot.mp3 */,
+				93A46BEE1B8AFFFE002F6127 /* sokoda_01.mp3 */,
+				93E9A06C1B4D4D9300B44478 /* sound.mp3 */,
+				93E9A06B1B4D4D9300B44478 /* sword.mp3 */,
+				93A46BEF1B8AFFFE002F6127 /* torya_01.mp3 */,
+				93A46BF01B8AFFFE002F6127 /* yaa_01.mp3 */,
 			);
-			name = sound;
+			path = sound;
 			sourceTree = "<group>";
 		};
 		93A46BE11B8AF8A9002F6127 /* image */ = {
 			isa = PBXGroup;
 			children = (
-				93D1D7C91B57558B000EC266 /* spark.png */,
-				93D8CD461B689E840052BE67 /* swordmaster2.png */,
-				93D1D7C01B563B01000EC266 /* swordmaster.png */,
 				9356C1DE1B4D05000073EBF8 /* ice1.png */,
+				93D1D7C91B57558B000EC266 /* spark.png */,
 				9356C1DB1B4D00410073EBF8 /* spark.png */,
+				93D1D7C01B563B01000EC266 /* swordmaster.png */,
+				93D8CD461B689E840052BE67 /* swordmaster2.png */,
 			);
-			name = image;
+			path = image;
 			sourceTree = "<group>";
 		};
 		93A46BE21B8AF8DB002F6127 /* sks */ = {
 			isa = PBXGroup;
 			children = (
-				93D1D7C81B57558B000EC266 /* titleParticle.sks */,
+				9356C1DA1B4D00410073EBF8 /* MyParticle.sks */,
 				93D8CD481B68A9740052BE67 /* cutinParticle.sks */,
-				935D90991B7087E70098A2FF /* tameParticle.sks */,
+				931943171B58BD240002F1BD /* deadParticle.sks */,
 				935D90A11B7350990098A2FF /* enegyParticle.sks */,
 				937056DB1B4FB750009BBAC2 /* hitParticle.sks */,
-				935D90911B6F3A9B0098A2FF /* scrollParticle2.sks */,
-				931943171B58BD240002F1BD /* deadParticle.sks */,
-				9356C1DA1B4D00410073EBF8 /* MyParticle.sks */,
 				93E9A0671B4D228A00B44478 /* magicParticle.sks */,
-				93E9A0711B4D549E00B44478 /* scrollParticle.sks */,
 				937056C91B4E0991009BBAC2 /* playerParticle.sks */,
+				93E9A0711B4D549E00B44478 /* scrollParticle.sks */,
+				935D90911B6F3A9B0098A2FF /* scrollParticle2.sks */,
 				937056CB1B4F63A0009BBAC2 /* sparkParticle.sks */,
+				935D90991B7087E70098A2FF /* tameParticle.sks */,
+				93D1D7C81B57558B000EC266 /* titleParticle.sks */,
 			);
-			name = sks;
+			path = sks;
 			sourceTree = "<group>";
 		};
 		93EF1AA11B4BC01800B1FC93 = {
 			isa = PBXGroup;
 			children = (
+				93EF1AAB1B4BC01800B1FC93 /* Products */,
+				93EF1AAC1B4BC01800B1FC93 /* proton */,
+				93EF1AC61B4BC01800B1FC93 /* protonTests */,
+				93D1D7A21B522AB4000EC266 /* CoreMotion.framework */,
 				9371E6BB1BB241F700BA8F4D /* Default-568h@2x.png */,
 				9371E6BC1BB241F700BA8F4D /* Default@2x.png */,
 				935665011B85C19500EAE798 /* Social.framework */,
 				9319431F1B661B690002F1BD /* iAd.framework */,
-				93D1D7A21B522AB4000EC266 /* CoreMotion.framework */,
-				93EF1AAC1B4BC01800B1FC93 /* proton */,
-				93EF1AC61B4BC01800B1FC93 /* protonTests */,
-				93EF1AAB1B4BC01800B1FC93 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -346,50 +346,50 @@
 		93EF1AAC1B4BC01800B1FC93 /* proton */ = {
 			isa = PBXGroup;
 			children = (
-				93A46BE21B8AF8DB002F6127 /* sks */,
+				93EF1AAD1B4BC01800B1FC93 /* Supporting Files */,
 				93A46BE11B8AF8A9002F6127 /* image */,
+				93A46BE21B8AF8DB002F6127 /* sks */,
 				93A46BE01B8AF7A1002F6127 /* sound */,
-				9319431D1B5F724E0002F1BD /* SMItemFactory.swift */,
-				93D1D7CE1B578526000EC266 /* SMEnegyFactory.swift */,
-				935D909D1B71EBCA0098A2FF /* SMGuardNode.swift */,
-				93D1D7B61B54BCD7000EC266 /* EnemyGroupType.swift */,
-				93D1D7B01B538FE3000EC266 /* SMEnemyFactory.swift */,
-				93D1D7BE1B55F37E000EC266 /* SMEnemyBoss1.swift */,
-				93D1D7B21B539097000EC266 /* SMStageFactory.swift */,
 				93EF1AAF1B4BC01800B1FC93 /* AppDelegate.swift */,
+				937056CF1B4F7F56009BBAC2 /* ColliderType.swift */,
+				93D1D7B61B54BCD7000EC266 /* EnemyGroupType.swift */,
+				937056D71B4FA89B009BBAC2 /* EnemyType.swift */,
 				93EF1AB31B4BC01800B1FC93 /* GameScene.swift */,
 				93D1D7C41B57458E000EC266 /* GameTitleScene.swift */,
-				93D1D7AA1B534BA4000EC266 /* SMEnemyGroup.swift */,
-				935D90931B6F4D1F0098A2FF /* SMEnemyBoss2.swift */,
-				93D1D7A81B5345F5000EC266 /* SMStage.swift */,
-				93D1D7B81B54C57A000EC266 /* SMEnemyDelegate.swift */,
-				93D1D7AC1B534F5D000EC266 /* SMStageManage.swift */,
-				93D1D7B41B54B450000EC266 /* SMEnemyGroupDelegate.swift */,
-				935D90951B6F54680098A2FF /* SMEnemyBoss3.swift */,
-				93D1D7A41B523CCF000EC266 /* SMEnemyNode.swift */,
-				935D909B1B71E6F60098A2FF /* SMEnemyCube2.swift */,
-				93D1D7A61B525250000EC266 /* SMEnemyCube.swift */,
-				931943191B58DB740002F1BD /* SMItemNode.swift */,
-				93D1D7BA1B54E240000EC266 /* SMEnemyFly.swift */,
-				935D90971B70797D0098A2FF /* SMEnemyKnight.swift */,
-				9319431B1B5F5C790002F1BD /* ItemType.swift */,
-				9380AB4F1B75E4C10052274E /* SMGuardNode2.swift */,
-				935D909F1B7336510098A2FF /* SMEnemyLion.swift */,
-				937056D71B4FA89B009BBAC2 /* EnemyType.swift */,
-				937056D51B4FA28E009BBAC2 /* SMAnimationUtil.swift */,
-				935D908F1B6F2D680098A2FF /* Images.xcassets */,
-				935D90A31B746F420098A2FF /* SMEnemyAKnight.swift */,
-				937056D11B4F8398009BBAC2 /* SwordType.swift */,
-				937056D91B4FA933009BBAC2 /* SMSwordNode.swift */,
-				93D1D7CC1B5782B8000EC266 /* SMEnegyNode.swift */,
-				93D1D7AE1B538DC6000EC266 /* SMSwordFactory.swift */,
-				937056CF1B4F7F56009BBAC2 /* ColliderType.swift */,
 				93EF1AB51B4BC01800B1FC93 /* GameViewController.swift */,
-				93EF1AB71B4BC01800B1FC93 /* Main.storyboard */,
+				935D908F1B6F2D680098A2FF /* Images.xcassets */,
+				9319431B1B5F5C790002F1BD /* ItemType.swift */,
 				93EF1ABC1B4BC01800B1FC93 /* LaunchScreen.xib */,
-				93EF1AAD1B4BC01800B1FC93 /* Supporting Files */,
-				937056CD1B4F75D9009BBAC2 /* SMPlayerNode.swift */,
+				93EF1AB71B4BC01800B1FC93 /* Main.storyboard */,
+				937056D51B4FA28E009BBAC2 /* SMAnimationUtil.swift */,
+				93D1D7CE1B578526000EC266 /* SMEnegyFactory.swift */,
+				93D1D7CC1B5782B8000EC266 /* SMEnegyNode.swift */,
+				935D90A31B746F420098A2FF /* SMEnemyAKnight.swift */,
+				93D1D7BE1B55F37E000EC266 /* SMEnemyBoss1.swift */,
+				935D90931B6F4D1F0098A2FF /* SMEnemyBoss2.swift */,
+				935D90951B6F54680098A2FF /* SMEnemyBoss3.swift */,
+				93D1D7A61B525250000EC266 /* SMEnemyCube.swift */,
+				935D909B1B71E6F60098A2FF /* SMEnemyCube2.swift */,
+				93D1D7B81B54C57A000EC266 /* SMEnemyDelegate.swift */,
+				93D1D7B01B538FE3000EC266 /* SMEnemyFactory.swift */,
+				93D1D7BA1B54E240000EC266 /* SMEnemyFly.swift */,
+				93D1D7AA1B534BA4000EC266 /* SMEnemyGroup.swift */,
+				93D1D7B41B54B450000EC266 /* SMEnemyGroupDelegate.swift */,
+				935D90971B70797D0098A2FF /* SMEnemyKnight.swift */,
+				935D909F1B7336510098A2FF /* SMEnemyLion.swift */,
+				93D1D7A41B523CCF000EC266 /* SMEnemyNode.swift */,
+				935D909D1B71EBCA0098A2FF /* SMGuardNode.swift */,
+				9380AB4F1B75E4C10052274E /* SMGuardNode2.swift */,
+				9319431D1B5F724E0002F1BD /* SMItemFactory.swift */,
+				931943191B58DB740002F1BD /* SMItemNode.swift */,
 				937056D31B4F8A1F009BBAC2 /* SMNodeUtil.swift */,
+				937056CD1B4F75D9009BBAC2 /* SMPlayerNode.swift */,
+				93D1D7A81B5345F5000EC266 /* SMStage.swift */,
+				93D1D7B21B539097000EC266 /* SMStageFactory.swift */,
+				93D1D7AC1B534F5D000EC266 /* SMStageManage.swift */,
+				93D1D7AE1B538DC6000EC266 /* SMSwordFactory.swift */,
+				937056D91B4FA933009BBAC2 /* SMSwordNode.swift */,
+				937056D11B4F8398009BBAC2 /* SwordType.swift */,
 			);
 			path = proton;
 			sourceTree = "<group>";
@@ -399,14 +399,14 @@
 			children = (
 				93EF1AAE1B4BC01800B1FC93 /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		93EF1AC61B4BC01800B1FC93 /* protonTests */ = {
 			isa = PBXGroup;
 			children = (
-				93EF1AC91B4BC01800B1FC93 /* protonTests.swift */,
 				93EF1AC71B4BC01800B1FC93 /* Supporting Files */,
+				93EF1AC91B4BC01800B1FC93 /* protonTests.swift */,
 			);
 			path = protonTests;
 			sourceTree = "<group>";
@@ -416,7 +416,7 @@
 			children = (
 				93EF1AC81B4BC01800B1FC93 /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -642,6 +642,7 @@
 				93EF1AB81B4BC01800B1FC93 /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		93EF1ABC1B4BC01800B1FC93 /* LaunchScreen.xib */ = {
@@ -650,6 +651,7 @@
 				93EF1ABD1B4BC01800B1FC93 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -742,7 +744,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Masaaki Kakimoto (M63PA5KAC8)";
-				INFOPLIST_FILE = proton/Info.plist;
+				INFOPLIST_FILE = "proton/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -756,7 +758,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Masaaki Kakimoto (M63PA5KAC8)";
-				INFOPLIST_FILE = proton/Info.plist;
+				INFOPLIST_FILE = "proton/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -776,7 +778,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = protonTests/Info.plist;
+				INFOPLIST_FILE = "protonTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/proton.app/proton";
@@ -791,7 +793,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = protonTests/Info.plist;
+				INFOPLIST_FILE = "protonTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/proton.app/proton";

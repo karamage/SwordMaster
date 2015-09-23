@@ -47,8 +47,13 @@ class GameTitleScene: SKScene {
         
         
         //ロゴ
-        let logo = SKSpriteNode(texture: logoTexture, size: logoTexture.size())
-        logo.position = CGPoint(x: self.frame.width/2 - 20, y: self.frame.height - 90)
+        var logoSize: CGSize = logoTexture.size()
+        let gain = self.view!.frame.width / logoSize.width
+        logoSize.width *= gain
+        logoSize.height *= gain
+        let logo = SKSpriteNode(texture: logoTexture, size: logoSize)
+        // TODO: -20はそもそも画像が寄っているため。画像を直すのが正しい。
+        logo.position = CGPoint(x: self.frame.width / 2 - 10, y: self.frame.height - 90)
         logo.zPosition = 100
         logo.alpha = 0.0
         logo.color = UIColor(red: 1.0, green: 0.7, blue: 0.7, alpha: 0.8)
@@ -59,8 +64,11 @@ class GameTitleScene: SKScene {
         logo.runAction(fadeinAction2)
         
         //ロゴ2
-        let logo2 = SKSpriteNode(texture: logoTexture2, size: logoTexture2.size())
-        logo2.position = CGPoint(x: self.frame.width/2, y: self.frame.height - 180)
+        logoSize = logoTexture2.size()
+        logoSize.width *= gain
+        logoSize.height *= gain
+        let logo2 = SKSpriteNode(texture: logoTexture2, size: logoSize)
+        logo2.position = CGPoint(x: self.frame.width / 2 + 10, y: self.frame.height - 180)
         logo2.zPosition = 110
         logo2.alpha = 0.0
         logo2.color = UIColor(red: 0.9, green: 0.7, blue: 1.0, alpha: 0.8)

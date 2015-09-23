@@ -2,12 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "swordex.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "swordex@2x.png"
+      "filename" : "swordex@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",

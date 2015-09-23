@@ -2,12 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "enegy.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "enegy@2x.png"
+      "filename" : "enegy@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
