@@ -2,12 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "moveAnim.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "moveAnim@2x.png"
+      "filename" : "moveAnim@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",

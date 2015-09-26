@@ -2,12 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "tap.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "tap@2x.png"
+      "filename" : "tap@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
