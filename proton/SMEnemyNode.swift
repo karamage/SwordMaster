@@ -48,6 +48,9 @@ class SMEnemyNode: SKSpriteNode {
         //物理シミュレーションを設定
         if #available(iOS 8.0, *) {
             self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
+            self.shadowCastBitMask = 1
+            //self.shadowedBitMask = 1
+            //self.lightingBitMask = 1
         } else {
             // Fallback on earlier versions
             self.physicsBody = SKPhysicsBody(rectangleOfSize: self.texture!.size())
@@ -150,6 +153,18 @@ class SMEnemyNode: SKSpriteNode {
                 let scale1 = SKAction.scaleTo(1.0, duration: 0.0)
                 let scale2 = SKAction.scaleTo(3.0, duration: 1.0)
                 killAimNode.runAction(SKAction.sequence([scale1,scale2]))
+                //光の演出を付ける
+                if #available(iOS 8.0, *) {
+                    let light:SKLightNode = SKLightNode()
+                    light.categoryBitMask = 1
+                    light.falloff = 1
+                    light.ambientColor = UIColor.whiteColor()
+                    light.lightColor = UIColor(red: 1.0, green: 0.9, blue: 0.9, alpha: 0.9)
+                    light.shadowColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
+                    sword.addChild(light)
+                } else {
+                    // Fallback on earlier versions
+                }
             } else {
                 comboLabel.alpha = 1.0
                 let move2 = SKAction.moveToX(self.scene!.frame.width - 100.0, duration: 0.0)

@@ -580,6 +580,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     //剣にパーティクルを付ける
                     SMNodeUtil.makeParticleNode(CGPoint(x:0,y:80), filename: "tameParticle.sks", hide: false, node: tmpself!.sword)
+                    
+                    //剣に光の演出を付ける
+                    if #available(iOS 8.0, *) {
+                        let light:SKLightNode = SKLightNode()
+                        light.categoryBitMask = 1
+                        light.falloff = 1
+                        light.ambientColor = UIColor.whiteColor()
+                        light.lightColor = UIColor(red: 1.0, green: 0.9, blue: 0.9, alpha: 0.9)
+                        light.shadowColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
+                        tmpself!.sword.addChild(light)
+                    } else {
+                        // Fallback on earlier versions
+                    }
                 }
                 tmpself!.sword.runAction(scaleAction)
                 

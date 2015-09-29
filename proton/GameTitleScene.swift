@@ -79,7 +79,8 @@ class GameTitleScene: SKScene {
         logo2.runAction(fadeinAction3)
         
         //スタートボタン
-        let start = SKSpriteNode(texture: startTexture, size: startTexture.size())
+        //let start = SKSpriteNode(texture: startTexture, size: startTexture.size())
+        let start = SKSpriteNode(imageNamed: "start", normalMapped: true)
         start.name = "start"
         start.position = CGPoint(x: self.frame.width/2, y:60)
         start.zPosition = 120
@@ -111,6 +112,23 @@ class GameTitleScene: SKScene {
         let circleAction = SKAction.followPath(path, asOffset: true, orientToPath: false, duration: 3)
         let resetMoveAction = SKAction.moveTo(CGPoint(x:self.frame.width/2,y:self.frame.height/2), duration: 0)
         sword1.runAction(SKAction.repeatActionForever(SKAction.sequence([ circleAction,resetMoveAction])))
+        
+        //光の演出(iOS8以上のみ)
+        if #available(iOS 8.0, *) {
+            let light:SKLightNode = SKLightNode()
+            light.categoryBitMask = 1
+            light.falloff = 1
+            light.ambientColor = UIColor.whiteColor()
+            light.lightColor = UIColor(red: 1.0, green: 0.9, blue: 0.9, alpha: 0.9)
+            light.shadowColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.5)
+            sword1.addChild(light)
+            
+            start.shadowedBitMask = 1
+            start.shadowCastBitMask = 1
+            start.lightingBitMask = 1
+        } else {
+            // Fallback on earlier versions
+        }
         
         //歌付き音楽を流す
     }
