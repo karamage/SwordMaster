@@ -19,9 +19,11 @@ class SMPlayerNode: SKSpriteNode {
     var swordNum: Int = 3
     //剣のアイコンの配列
     var swordIcons: [SKSpriteNode] = [SKSpriteNode]()
+    //ハートのアイコンの配列
+    var heartIcons: [SKSpriteNode] = [SKSpriteNode]()
     
     //被弾できるヒットポイント
-    var hitpoint: Int = 1
+    var hitpoint: Int = 3
     
     //自機のスピード
     var speedup: Int = 1
@@ -95,15 +97,26 @@ class SMPlayerNode: SKSpriteNode {
     //相手の弾を被弾したときの処理
     func damegedEnegy(enegy: SMEnegyNode) {
         enegy.physicsBody?.categoryBitMask = ColliderType.None
-        hitpoint--
+        countDownHeart()
         SMNodeUtil.fadeRemoveNode(enegy)
+        
+        //やられた効果音再生
+        bgNode.runAction(explodeSound)
+        bgNode.runAction(explodeSound)
+        
+        //やられたアニメーション作成
+        SMNodeUtil.makeParticleNode(self.position, filename: "deadParticle.sks", hide: true, node: bgNode)
+        SMNodeUtil.makeParticleNode(self.position, filename: "deadParticle.sks", hide: true, node: bgNode)
     }
     
     //プレイヤーが死んだ時の処理
     func deadPlayer() {
+        //剣やハートのアイコン削除
+        statusNode.removeFromParent()
+        
         //やられた効果音再生
         bgNode.runAction(explodeSound)
-        //bgNode.runAction(explodeSound)
+        bgNode.runAction(explodeSound)
         
         //やられたアニメーション作成
         SMNodeUtil.makeParticleNode(self.position, filename: "deadParticle.sks", hide: true, node: bgNode)
@@ -149,6 +162,9 @@ class SMPlayerNode: SKSpriteNode {
         
         //剣のアイコンを作成
         makeSwordIcon()
+        
+        //ハートのアイコンを作成
+        makeHeartIcon()
     }
     
     //プレイヤー登場のアニメーション
@@ -171,6 +187,28 @@ class SMPlayerNode: SKSpriteNode {
         let scaleAction3 = SKAction.scaleTo(0.9, duration: 2)
         let scaleRepeat = SKAction.repeatActionForever(SKAction.sequence([scaleAction1,scaleAction2,scaleAction3]))
         self.runAction(scaleRepeat)
+    }
+    
+    //ハートのアイコンを作成
+    func makeHeartIcon() {
+        for i in 0..<self.hitpoint {
+            makeHeartIcon(i)
+        }
+    }
+    func makeHeartIcon(index: Int) {
+        let icon = SKSpriteNode(texture: heartIconTexture)
+        let width:CGFloat! = icon.texture?.size().width
+        icon.blendMode = SKBlendMode.Add
+        icon.alpha = 0.9
+        icon.position = CGPoint(x: width * CGFloat(index), y:CGFloat(20.0))
+        heartIcons.append(icon)
+        statusNode.addChild(icon)
+    }
+    //ハートをカウントダウン
+    func countDownHeart() {
+        hitpoint--
+        heartIcons[hitpoint].removeFromParent()
+        heartIcons.removeAtIndex(hitpoint)
     }
     
     //剣のアイコンを作成

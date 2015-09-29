@@ -85,6 +85,7 @@ var choroiSound:SKAction!
 
 //テクスチャ
 var swordIconTexture = SKTexture(imageNamed: "sword_icon")
+var heartIconTexture = SKTexture(imageNamed: "heart")
 var tapTexture = SKTexture(imageNamed: "tap")
 var guardTexture = SKTexture(imageNamed: "guard1")
 var guard2Texture = SKTexture(imageNamed: "guard2")
