@@ -254,6 +254,14 @@ class SMPlayerNode: SKSpriteNode {
         hane = SKSpriteNode(texture: haneAim[0], size: haneAim[0].size())
         //hane.blendMode = SKBlendMode.Add
         hane.alpha = 0.9
+        
+        //羽に影を付ける
+        if #available(iOS 8.0, *) {
+            hane.shadowCastBitMask = 1
+        } else {
+            // Fallback on earlier versions
+        }
+        
         self.addChild(hane!)
         makeHaneAnim()
         let scaleHaneAction = SKAction.scaleTo(0.5, duration: 3.0)

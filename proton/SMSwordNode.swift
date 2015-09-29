@@ -123,7 +123,7 @@ class SMSwordNode: SKSpriteNode {
         self.anchorPoint = CGPoint(x:0.5,y:0.5)
         self.physicsBody?.dynamic = true
         self.physicsBody?.velocity = CGVector.zero
-        self.physicsBody?.applyImpulse(CGVector(dx:CGFloat(swipex), dy:50.0))
+        self.physicsBody?.applyImpulse(CGVector(dx:CGFloat(swipex), dy:60.0))
         self.isShot = true
         
         if self.attack >= 3 {
