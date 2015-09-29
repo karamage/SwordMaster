@@ -96,6 +96,7 @@ var scoreLabel:SKLabelNode!
 var comboLabel:SKLabelNode!
 var returnLabel:SKLabelNode!
 var helpLabel:SKLabelNode!
+var helpLabel_2:SKLabelNode!
 var helpLabel2:SKLabelNode!
 var helpLabel3:SKLabelNode!
 var helpLabel4:SKLabelNode!
@@ -204,7 +205,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let tapAction = SKAction.sequence([waitAction, fadeInAction, scale1, scale2, scale1, scale2, scale1, scale2, fadeOutAction])
         
         //ラベルの表示
-        helpLabel.text = "自機周辺をタップすると剣を撃ちます"
+        helpLabel.text = "画面下領域をタップすると剣を発射!"
         helpLabel.fontSize = 18
         helpLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
         helpLabel.zPosition = 1000
@@ -214,11 +215,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let tapLabelAction = SKAction.sequence([waitAction, fadeInAction, waitAction, fadeOutAction])
         helpLabel.runAction(SKAction.sequence([tapLabelAction,SKAction.removeFromParent()]))
         
+        helpLabel_2.text = "撃つと左下の剣ゲージが減るので注意!"
+        helpLabel_2.fontSize = 18
+        helpLabel_2.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
+        helpLabel_2.zPosition = 1000
+        helpLabel_2.alpha = 0.0
+        self.addChild(helpLabel_2)
+        helpLabel_2.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.size.height/2 - 50)
+        helpLabel_2.runAction(SKAction.sequence([tapLabelAction,SKAction.removeFromParent()]))
+        
         //タップ領域の説明
         if #available(iOS 8.0, *) {
             let shape:SKShapeNode = SKShapeNode(rectOfSize: CGSize(width: self.frame.width, height: 300))
             shape.fillColor = UIColor.whiteColor()
-            shape.alpha = 0.05
+            shape.alpha = 0.2
             self.addChild(shape)
             shape.position = CGPoint(x:self.frame.width/2, y: 150)
             let scale0 = SKAction.scaleTo(0.0, duration: 0.0)
@@ -333,6 +343,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         comboLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
         returnLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
         helpLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
+        helpLabel_2 = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
         helpLabel2 = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
         helpLabel3 = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
         helpLabel4 = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
