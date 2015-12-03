@@ -28,6 +28,9 @@ class SMPlayerNode: SKSpriteNode {
     //自機のスピード
     var speedup: Int = 1
     
+    let SPEED_MAX = 10
+    let SWORD_NUM_MUX = 10
+    
     //アニメーション用ノード
     var hane: SKSpriteNode!
     var warp: SKSpriteNode!
@@ -55,19 +58,23 @@ class SMPlayerNode: SKSpriteNode {
             scoreLabel.text = "\(totalScore)"
         case .SWORDNUMUP:
             makeWarpAnim()
-            bgNode.runAction(powerupSound)
-            bgNode.runAction(powerupSound)
-            bgNode.runAction(powerupSound)
-            self.swordMaxNum++
-            self.countUpSword()
-            scene.cutin()
+            if self.swordMaxNum < SWORD_NUM_MUX {
+                bgNode.runAction(powerupSound)
+                bgNode.runAction(powerupSound)
+                bgNode.runAction(powerupSound)
+                self.swordMaxNum++
+                self.countUpSword()
+                scene.cutin()
+            }
         case .SPEEDUP:
             makeWarpAnim()
-            bgNode.runAction(powerupSound)
-            bgNode.runAction(powerupSound)
-            bgNode.runAction(powerupSound)
-            self.speedUp()
-            scene.cutin()
+            if self.speedup < SPEED_MAX {
+                bgNode.runAction(powerupSound)
+                bgNode.runAction(powerupSound)
+                bgNode.runAction(powerupSound)
+                self.speedUp()
+                scene.cutin()
+            }
         case .SHIELD:
             makeWarpAnim()
             bgNode.runAction(powerupSound)
