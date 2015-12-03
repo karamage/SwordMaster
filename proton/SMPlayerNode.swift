@@ -116,6 +116,10 @@ class SMPlayerNode: SKSpriteNode {
     func heartUp() {
         makeHeartIcon(hitpoint)
         hitpoint++
+        if self.hitpoint >= 2 {
+            self.colorBlendFactor = 0
+            self.hane.colorBlendFactor = 0
+        }
     }
     
     //相手の弾を被弾したときの処理
@@ -132,6 +136,15 @@ class SMPlayerNode: SKSpriteNode {
         SMNodeUtil.makeParticleNode(self.position, filename: "deadParticle.sks", hide: true, node: bgNode)
         SMNodeUtil.makeParticleNode(self.position, filename: "deadParticle.sks", hide: true, node: bgNode)
         SMNodeUtil.makeParticleNode(self.position, filename: "deadParticle.sks", hide: true, node: bgNode)
+        bgNode.runAction(hawawaSound)
+        bgNode.runAction(hawawaSound)
+        bgNode.runAction(hawawaSound)
+        if self.hitpoint <= 2 {
+            self.color = UIColor.redColor()
+            self.colorBlendFactor = 0.7
+            self.hane.color = UIColor.redColor()
+            self.hane.colorBlendFactor = 0.7
+        }
     }
     
     //プレイヤーが死んだ時の処理
@@ -140,6 +153,7 @@ class SMPlayerNode: SKSpriteNode {
         statusNode.removeFromParent()
         
         //やられた効果音再生
+        bgNode.runAction(explodeSound)
         bgNode.runAction(explodeSound)
         bgNode.runAction(explodeSound)
         

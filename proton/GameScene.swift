@@ -546,9 +546,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let randtype = randomSwordType()
                 let tmpsword = swordFactory.create(randtype, position: touchPoint, startPoint:touchPoint)
                 tmpsword?.circle.color = UIColor.redColor()
-                tmpsword?.circle.colorBlendFactor = 0.5
+                tmpsword?.circle.colorBlendFactor = 0.7
                 tmpsword!.makeCircle(touchPoint)
                 tmpsword!.removeCircle()
+                bgNode.runAction(hawawaSound)
+                bgNode.runAction(hawawaSound)
                 bgNode.runAction(hawawaSound)
                 return
             }
