@@ -24,7 +24,7 @@ class SMEnemyBoss1: SMEnemyNode {
             self.hitpoint = 1
         }
         self.diffence = 0
-        self.score = 1000
+        self.score = 2000
         
     }
     required override init(coder: NSCoder) {

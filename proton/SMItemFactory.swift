@@ -27,13 +27,10 @@ class SMItemFactory {
             ret = create(ItemType.SPEEDUP, location: location)
         } else if rand % 15 == 4 {
             ret = create(ItemType.SHIELD, location: location)
-        } else if rand % 30 == 5 {
+        } else if rand % 40 == 5 {
             ret = create(ItemType.HEART, location: location)
         } else {
             ret = create(ItemType.COIN, location: location)
-            if debugflg {
-                ret = create(ItemType.SHIELD, location: location)
-            }
         }
         return ret
     }
