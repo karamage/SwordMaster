@@ -108,7 +108,7 @@ class SMPlayerNode: SKSpriteNode {
     //スピードアップの処理
     func speedUp() {
         self.speedup++
-        let scaleAction = SKAction.scaleBy(1.1, duration: 0.5)
+        let scaleAction = SKAction.scaleBy(1.05, duration: 0.5)
         hane.runAction(scaleAction)
     }
     
