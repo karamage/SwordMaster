@@ -141,9 +141,9 @@ class SMPlayerNode: SKSpriteNode {
         bgNode.runAction(hawawaSound)
         if self.hitpoint <= 2 {
             self.color = UIColor.redColor()
-            self.colorBlendFactor = 0.7
+            self.colorBlendFactor = 0.5
             self.hane.color = UIColor.redColor()
-            self.hane.colorBlendFactor = 0.7
+            self.hane.colorBlendFactor = 0.3
         }
     }
     

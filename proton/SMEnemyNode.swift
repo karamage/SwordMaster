@@ -155,9 +155,11 @@ class SMEnemyNode: SKSpriteNode {
                 
                 comboLabel.runAction(fadeInAction)
                 //let x = comboLabel.position.x
+                let scale1 = SKAction.scaleTo(1.0, duration: 0.0)
+                let scale2 = SKAction.scaleTo(4.0, duration: 1.0)
                 let move1 = SKAction.moveToX(self.scene!.frame.width + 10.0, duration: 0.0)
-                let move2 = SKAction.moveToX(self.scene!.frame.width - 100.0, duration: 0.5)
-                comboLabel.runAction(SKAction.sequence([move1,move2]))
+                let move2 = SKAction.moveToX(self.scene!.frame.width - 200.0, duration: 0.5)
+                comboLabel.runAction(SKAction.sequence([scale1, move1,move2, scale2]))
                 bgNode.runAction(koredeSound)
                 //killAimNode.runAction(kiruSound)
                 //killAimNode.runAction(kiruSound)
@@ -165,8 +167,6 @@ class SMEnemyNode: SKSpriteNode {
                 let killAnimAction = SKAction.animateWithTextures(killAim, timePerFrame: 0.1, resize:false, restore:true)
                 killAimNode.runAction(killAnimAction)
                 killAimNode.runAction(SKAction.sequence([fadeInAction2,fadeOutAction]) )
-                let scale1 = SKAction.scaleTo(1.0, duration: 0.0)
-                let scale2 = SKAction.scaleTo(3.0, duration: 1.0)
                 killAimNode.runAction(SKAction.sequence([scale1,scale2]))
                 //光の演出を付ける
                 if #available(iOS 8.0, *) {
