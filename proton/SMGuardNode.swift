@@ -12,7 +12,7 @@ import SpriteKit
 //敵用のバリアクラス
 class SMGuardNode: SKSpriteNode {
     //耐久力
-    var hitpoint: Int = 10
+    var hitpoint: Int = 20
     //親ノード
     weak var parentnode: SKNode?
     
@@ -28,6 +28,7 @@ class SMGuardNode: SKSpriteNode {
         self.zPosition = 2
         self.blendMode = SKBlendMode.Add
         self.alpha = 0.8
+        self.hitpoint = self.hitpoint + (self.hitpoint * stageManager.clearNum) //クリアする度に難しくなる
         
         //アニメーションを作成
         hit = SKSpriteNode(texture: hitAim[0], size: hitAim[0].size())

@@ -77,10 +77,11 @@ class SMEnemyNode: SKSpriteNode {
         self.addChild(hit!)
     }
     func makeEnegy(num: Int) {
+        let tmpnum = num + (num * stageManager.clearNum) // クリアする度に難しくなる
         let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
             //弾発射
             let point = CGPoint(x: self.position.x , y: self.position.y)
-            for i in 0..<num {
+            for i in 0..<tmpnum {
                 let enegy = enegyFactory.create(point)
                 enegy.makeEnegy()
                 enegy.shotEnegyRandom()
@@ -119,7 +120,7 @@ class SMEnemyNode: SKSpriteNode {
     }
     //剣が当たった時の処理
     func hitSword(sword: SMSwordNode) {
-        let damage = sword.attack - diffence
+        let damage = sword.attack - diffence - (stageManager.clearNum) //周回するごとに難しくなる
         sword.attack = damage / 2
         sword.hitpoint--
         if damage <= 0 {
