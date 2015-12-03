@@ -19,6 +19,7 @@ class GameTitleScene: SKScene {
     var logoTexture2 = SKTexture(imageNamed: "logo2")
     var startTexture = SKTexture(imageNamed: "start")
     var bgNode :SKNode = SKNode()
+    var hiScoreLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
     //オープニング曲
     //var openingSound = SKAction.playSoundFileNamed("short_song_minami_kirakira.mp3", waitForCompletion: false)
     
@@ -45,6 +46,20 @@ class GameTitleScene: SKScene {
         let fadeinAction = SKAction.fadeInWithDuration(0.5)
         title.runAction(fadeinAction)
         
+        //NSUserDefaultsのインスタンスを生成
+        let defaults = NSUserDefaults.standardUserDefaults()
+        //前回の保存内容があるかどうかを判定
+        if((defaults.objectForKey("hiScore")) != nil){
+            //objectsを配列として確定させ、前回の保存内容を格納
+            hiScore = defaults.objectForKey("hiScore") as! Int
+        }
+        
+        hiScoreLabel.text = "High Score: \(hiScore)"
+        hiScoreLabel.fontSize = 25
+        hiScoreLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
+        hiScoreLabel.zPosition = 1000
+        self.addChild(hiScoreLabel)
+        hiScoreLabel.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.size.height - 30)
         
         //ロゴ
         var logoSize: CGSize = logoTexture.size()
@@ -100,18 +115,30 @@ class GameTitleScene: SKScene {
         bgNode.addChild(particle!)
         
         //剣をクルクルまわす
-        var swordTexture = swordFactory.swordTexture1
-        var sword1 = SKSpriteNode(texture: swordTexture)
-        sword1.position = CGPoint(x:self.frame.width/2, y:self.frame.height/2)
-        sword1.zPosition = 10
-        bgNode.addChild(sword1)
+        var swordTextures = [swordFactory.swordTexture1, swordFactory.swordTexture2, swordFactory.swordTexture3, swordFactory.swordTexture4, swordFactory.swordTexture5, swordFactory.swordTexture6, swordFactory.swordTexture7, swordFactory.swordTexture8, swordFactory.swordTexture9, swordFactory.swordTexture10]
+        var sword1: SKSpriteNode? = nil
         //円を描く
         var path =  CGPathCreateMutable()
         CGPathAddArc(path, nil, CGFloat(0), CGFloat(0), CGFloat(150.0), CGFloat(0), CGFloat(M_PI * 2), true)
         CGPathCloseSubpath(path)
         let circleAction = SKAction.followPath(path, asOffset: true, orientToPath: false, duration: 3)
         let resetMoveAction = SKAction.moveTo(CGPoint(x:self.frame.width/2,y:self.frame.height/2), duration: 0)
-        sword1.runAction(SKAction.repeatActionForever(SKAction.sequence([ circleAction,resetMoveAction])))
+        let repeatAction = SKAction.repeatActionForever(SKAction.sequence([  circleAction,resetMoveAction]))
+        var swordi = 0
+        
+        for swordTexture in swordTextures {
+            var sword = SKSpriteNode(texture: swordTexture)
+            if sword1 == nil {
+                sword1 = sword
+            }
+            sword.position = CGPoint(x:self.frame.width/2, y:self.frame.height/2)
+            sword.zPosition = 10
+            bgNode.addChild(sword)
+            
+            let waitAction2 = SKAction.waitForDuration(0.30 * Double(swordi))
+            sword.runAction(SKAction.sequence([waitAction2, repeatAction]))
+            swordi++
+        }
         
         //光の演出(iOS8以上のみ)
         if #available(iOS 8.0, *) {
@@ -121,7 +148,7 @@ class GameTitleScene: SKScene {
             light.ambientColor = UIColor.whiteColor()
             light.lightColor = UIColor(red: 1.0, green: 0.9, blue: 0.9, alpha: 0.9)
             light.shadowColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.5)
-            sword1.addChild(light)
+            sword1!.addChild(light)
             
             start.shadowedBitMask = 1
             start.shadowCastBitMask = 1

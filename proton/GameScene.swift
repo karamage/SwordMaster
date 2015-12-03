@@ -103,6 +103,7 @@ var helpLabel4:SKLabelNode!
 
 //スコア
 var totalScore: Int = 0
+var hiScore: Int = 0
 
 //ステージファクトリ
 let stageFactory: SMStageFactory = SMStageFactory()
@@ -906,6 +907,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //フラグをtrueにする
         gameoverflg = true
+        
+        //ハイスコアの記録
+        if totalScore > hiScore {
+            //NSUserDefaultsのインスタンスを生成
+            let defaults = NSUserDefaults.standardUserDefaults()
+            
+            //"NAME"というキーで配列namesを保存
+            defaults.setObject(totalScore, forKey:"hiScore")
+            
+            // シンクロを入れないとうまく動作しないときがあります
+            defaults.synchronize()
+        }
         
         //敵の停止
         enemysNode.speed = 0.0
