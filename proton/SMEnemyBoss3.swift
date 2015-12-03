@@ -19,11 +19,11 @@ class SMEnemyBoss3: SMEnemyNode {
         let location = CGPoint(x:x, y:y)
         super.init(texture: texture, type: EnemyType.BOSS3, location: location, parentnode: enemysNode)
         self.isBoss = true
-        self.hitpoint = 60
+        self.hitpoint = 120
         if debugflg {
             self.hitpoint = 1
         }
-        self.diffence = 1
+        self.diffence = 2
         self.score = 3000
     }
     required override init(coder: NSCoder) {
@@ -44,6 +44,6 @@ class SMEnemyBoss3: SMEnemyNode {
         var guardpos = CGPoint(x:-10, y:-80)
         `guard` = SMGuardNode(texture: guardTexture, location: guardpos, parentnode: self)
         `guard`.makeGuard()
-        `guard`.hitpoint = 40
+        `guard`.hitpoint = 80
     }
 }

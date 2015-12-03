@@ -202,6 +202,7 @@ class SMEnemyNode: SKSpriteNode {
     //敵が死んだ時の処理
     func dead() {
         SMNodeUtil.makeParticleNode(self.position, filename:"deadParticle.sks", node:bgNode)
+        SMNodeUtil.makeParticleNode(self.position, filename:"hitParticle.sks", node:bgNode)
         self.physicsBody?.categoryBitMask = ColliderType.None
         self.removeAllActions()
         

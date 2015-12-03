@@ -22,8 +22,8 @@ class SMEnemyAKnight: SMEnemyNode {
         y = CGFloat(frameHeight - 120)
         let location = CGPoint(x:x, y:y)
         super.init(texture: texture, type: EnemyType.AKNIGHT, location: location, parentnode: enemysNode)
-        self.hitpoint = 5
-        self.diffence = 1
+        self.hitpoint = 20
+        self.diffence = 2
         self.score = 100
     }
     required override init(coder: NSCoder) {
@@ -40,7 +40,7 @@ class SMEnemyAKnight: SMEnemyNode {
         //バリアを作成
         let guardpos = CGPoint(x:-10, y:-80)
         `guard` = SMGuardNode(texture: guardTexture, location: guardpos, parentnode: self)
-        `guard`.hitpoint = 10
+        `guard`.hitpoint = 20
         
         `guard`.makeGuard()
         weak var tmpself = self

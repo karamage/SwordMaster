@@ -36,7 +36,7 @@ class SMEnemyLion: SMEnemyNode {
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.restitution = 0.1
         self.physicsBody?.density = 1000.0
-        //makeEnegy(3)
+        makeEnegy(3)
         makeEnegy2()
         let move = SKAction.moveToY(frameHeight - 100, duration: 3.0)
         self.runAction(move)

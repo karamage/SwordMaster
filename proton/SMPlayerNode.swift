@@ -30,6 +30,7 @@ class SMPlayerNode: SKSpriteNode {
     
     let SPEED_MAX = 10
     let SWORD_NUM_MUX = 10
+    let HEART_MAX = 5
     
     //アニメーション用ノード
     var hane: SKSpriteNode!
@@ -48,13 +49,13 @@ class SMPlayerNode: SKSpriteNode {
         bgNode.runAction(kakinSound)
         switch item.type {
         case .COIN:
-            totalScore += 10
+            totalScore += 100
             scoreLabel.text = "\(totalScore)"
         case .DAIYA:
             bgNode.runAction(itemgetSound)
             bgNode.runAction(itemgetSound)
             bgNode.runAction(itemgetSound)
-            totalScore += 100
+            totalScore += 1000
             scoreLabel.text = "\(totalScore)"
         case .SWORDNUMUP:
             makeWarpAnim()
@@ -73,6 +74,16 @@ class SMPlayerNode: SKSpriteNode {
                 bgNode.runAction(powerupSound)
                 bgNode.runAction(powerupSound)
                 self.speedUp()
+                scene.cutin()
+            }
+        case .HEART:
+            makeWarpAnim()
+            if self.hitpoint < HEART_MAX {
+                bgNode.runAction(powerupSound)
+                bgNode.runAction(powerupSound)
+                bgNode.runAction(powerupSound)
+                //ハート回復
+                self.heartUp()
                 scene.cutin()
             }
         case .SHIELD:
@@ -101,6 +112,10 @@ class SMPlayerNode: SKSpriteNode {
         hane.runAction(scaleAction)
     }
     
+    //ハート回復アイテムゲット
+    func heartUp() {
+    }
+    
     //相手の弾を被弾したときの処理
     func damegedEnegy(enegy: SMEnegyNode) {
         enegy.physicsBody?.categoryBitMask = ColliderType.None
@@ -112,6 +127,7 @@ class SMPlayerNode: SKSpriteNode {
         bgNode.runAction(explodeSound)
         
         //やられたアニメーション作成
+        SMNodeUtil.makeParticleNode(self.position, filename: "deadParticle.sks", hide: true, node: bgNode)
         SMNodeUtil.makeParticleNode(self.position, filename: "deadParticle.sks", hide: true, node: bgNode)
         SMNodeUtil.makeParticleNode(self.position, filename: "deadParticle.sks", hide: true, node: bgNode)
     }
@@ -126,6 +142,8 @@ class SMPlayerNode: SKSpriteNode {
         bgNode.runAction(explodeSound)
         
         //やられたアニメーション作成
+        SMNodeUtil.makeParticleNode(self.position, filename: "deadParticle.sks", hide: true, node: bgNode)
+        SMNodeUtil.makeParticleNode(self.position, filename: "deadParticle.sks", hide: true, node: bgNode)
         SMNodeUtil.makeParticleNode(self.position, filename: "deadParticle.sks", hide: true, node: bgNode)
         SMNodeUtil.makeParticleNode(self.position, filename: "deadParticle.sks", hide: true, node: bgNode)
         

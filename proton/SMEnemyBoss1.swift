@@ -19,7 +19,7 @@ class SMEnemyBoss1: SMEnemyNode {
         let location = CGPoint(x:x, y:y)
         super.init(texture: texture, type: EnemyType.BOSS1, location: location, parentnode: enemysNode)
         self.isBoss = true
-        self.hitpoint = 20
+        self.hitpoint = 40
         if debugflg {
             self.hitpoint = 1
         }

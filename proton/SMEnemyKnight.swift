@@ -22,7 +22,7 @@ class SMEnemyKnight: SMEnemyNode {
         y = CGFloat(frameHeight - CGFloat(randY) + 50)
         let location = CGPoint(x:x, y:y)
         super.init(texture: texture, type: EnemyType.KNIGHT, location: location, parentnode: enemysNode)
-        self.hitpoint = 5
+        self.hitpoint = 10
         self.diffence = 1
         self.score = 50
     }
