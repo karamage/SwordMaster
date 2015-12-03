@@ -114,6 +114,8 @@ class SMPlayerNode: SKSpriteNode {
     
     //ハート回復アイテムゲット
     func heartUp() {
+        makeHeartIcon(hitpoint)
+        hitpoint++
     }
     
     //相手の弾を被弾したときの処理
