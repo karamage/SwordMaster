@@ -120,6 +120,8 @@ class SMEnemyNode: SKSpriteNode {
     //剣が当たった時の処理
     func hitSword(sword: SMSwordNode) {
         let damage = sword.attack - diffence
+        sword.attack = damage / 2
+        sword.hitpoint--
         if damage <= 0 {
             hit.removeAllActions()
             //ダメージを与えられない
@@ -184,7 +186,9 @@ class SMEnemyNode: SKSpriteNode {
             }
         }
         
-        sword.physicsBody?.categoryBitMask = ColliderType.None
+        if sword.hitpoint <= 0 || sword.attack <= 0 {
+            sword.physicsBody?.categoryBitMask = ColliderType.None
+        }
         if hitpoint <= 0 {
             //敵が死んだ時の処理
             dead()

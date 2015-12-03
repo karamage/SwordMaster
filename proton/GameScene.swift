@@ -571,11 +571,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     bgNode.runAction(magicSound)
                 }
                 
-                let scaleAction = SKAction.scaleBy(1.1, duration: 1.0)
+                let scaleAction = SKAction.scaleBy(1.05, duration: 1.0)
                 //剣の攻撃力を上げる
                 tmpself!.sword.attack++
+                tmpself!.sword.hitpoint++
                 for oSword: SMSwordNode in tmpself!.optionSwords {
                     oSword.attack++
+                    oSword.hitpoint++
                     if oSword.attack == 2 {
                         oSword.circle.color = UIColor.blueColor()
                         oSword.circle.colorBlendFactor = 0.5
