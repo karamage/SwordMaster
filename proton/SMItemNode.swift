@@ -31,7 +31,7 @@ class SMItemNode: SKSpriteNode {
             // Fallback on earlier versions
             self.physicsBody = SKPhysicsBody(rectangleOfSize: self.texture!.size())
         }*/
-        self.physicsBody = SKPhysicsBody(circleOfRadius: 5)
+        self.physicsBody = SKPhysicsBody(circleOfRadius: 20)
         self.physicsBody?.dynamic = true
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.restitution = 0.5
