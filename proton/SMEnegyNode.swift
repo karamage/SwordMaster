@@ -61,8 +61,8 @@ class SMEnegyNode: SKSpriteNode {
         if rand % 2 == 0 {
             minus = -1
         }
-        let dx: CGFloat = CGFloat(randX/40) * CGFloat(minus)
-        let dy: CGFloat = CGFloat(randY/40) * CGFloat(-1)
+        let dx: CGFloat = CGFloat(CGFloat(randX) * 0.04) * CGFloat(minus)
+        let dy: CGFloat = CGFloat(CGFloat(randY) * 0.03) * CGFloat(-1)
         shotEnegy(dx, dy: dy)
     }
     func shotEnegyPlayer() {
