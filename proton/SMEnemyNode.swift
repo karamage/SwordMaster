@@ -121,7 +121,7 @@ class SMEnemyNode: SKSpriteNode {
     //剣が当たった時の処理
     func hitSword(sword: SMSwordNode) {
         let damage = sword.attack - diffence - (stageManager.clearNum) //周回するごとに難しくなる
-        sword.attack = damage / 2
+        sword.attack = Int(Double(damage) * 0.8)
         sword.hitpoint--
         
         //剣のパーティクル削除
