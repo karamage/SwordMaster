@@ -123,6 +123,12 @@ class SMEnemyNode: SKSpriteNode {
         let damage = sword.attack - diffence - (stageManager.clearNum) //周回するごとに難しくなる
         sword.attack = damage / 2
         sword.hitpoint--
+        
+        //剣のパーティクル削除
+        for child in sword.children {
+            child.removeFromParent()
+        }
+        
         if damage <= 0 {
             hit.removeAllActions()
             //ダメージを与えられない
