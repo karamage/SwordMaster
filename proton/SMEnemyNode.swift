@@ -54,7 +54,7 @@ class SMEnemyNode: SKSpriteNode {
             // Fallback on earlier versions
             self.physicsBody = SKPhysicsBody(rectangleOfSize: self.texture!.size())
         }*/
-        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: self.texture!.size().width/2, height:self.texture!.size().height/2 ))
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: self.texture!.size().width * 0.8, height:self.texture!.size().height/2 ))
         self.physicsBody?.dynamic = true
         self.physicsBody?.allowsRotation = true
         self.physicsBody?.restitution = 0.5

@@ -169,6 +169,10 @@ class SMPlayerNode: SKSpriteNode {
     
     //プレイヤー作成
     func makePlayer(node: SKNode, textures: [SKTexture]) {
+        if debugflg {
+            self.swordMaxNum = 10
+            self.swordNum = 10
+        }
         //self.blendMode = SKBlendMode.Add
         //self.alpha = 0.9
         self.position = CGPoint(x: node.frame.size.width * 0.5, y: 0)

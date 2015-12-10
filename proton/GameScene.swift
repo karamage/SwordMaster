@@ -12,7 +12,7 @@ import SpriteKit
 import CoreMotion
 
 //デバッグモード
-var debugflg: Bool = false
+var debugflg: Bool = true
 
 //プレイヤー
 var player: SMPlayerNode!
