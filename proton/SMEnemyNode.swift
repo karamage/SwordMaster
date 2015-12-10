@@ -46,15 +46,15 @@ class SMEnemyNode: SKSpriteNode {
     //敵の作成
     func makeEnemy() {
         //物理シミュレーションを設定
+        /*
         if #available(iOS 8.0, *) {
             self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
             self.shadowCastBitMask = 1
-            //self.shadowedBitMask = 1
-            //self.lightingBitMask = 1
         } else {
             // Fallback on earlier versions
             self.physicsBody = SKPhysicsBody(rectangleOfSize: self.texture!.size())
-        }
+        }*/
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: self.texture!.size().width/2, height:self.texture!.size().height/2 ))
         self.physicsBody?.dynamic = true
         self.physicsBody?.allowsRotation = true
         self.physicsBody?.restitution = 0.5
