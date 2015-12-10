@@ -176,12 +176,14 @@ class SMPlayerNode: SKSpriteNode {
         //self.color = SKColor(red: 1.0, green: 0, blue: 0, alpha: 1.0)
         
         //物理シミュレーション設定
+        /*
         if #available(iOS 8.0, *) {
             self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
         } else {
             // Fallback on earlier versions
             self.physicsBody = SKPhysicsBody(rectangleOfSize: texture!.size())
-        }
+        }*/
+        self.physicsBody = SKPhysicsBody(circleOfRadius: 10)
         self.physicsBody?.dynamic = false
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.categoryBitMask = ColliderType.Player

@@ -47,11 +47,13 @@ class SMSwordNode: SKSpriteNode {
         //self.runAction(magic)
         
         //物理シミュレーション設定
+        /*
         if #available(iOS 8.0, *) {
             self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
         } else {
             // Fallback on earlier versions
-        }
+        }*/
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 10, height: 50))
         self.physicsBody?.dynamic = false
         self.physicsBody?.allowsRotation = true
         self.physicsBody?.affectedByGravity = false
