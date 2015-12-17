@@ -11,6 +11,7 @@
 		9319431A1B58DB740002F1BD /* SMItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931943191B58DB740002F1BD /* SMItemNode.swift */; };
 		9319431C1B5F5C790002F1BD /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9319431B1B5F5C790002F1BD /* ItemType.swift */; };
 		9319431E1B5F724E0002F1BD /* SMItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9319431D1B5F724E0002F1BD /* SMItemFactory.swift */; };
+		9349B2BD1C2253DE009930FE /* hit013.png in Resources */ = {isa = PBXBuildFile; fileRef = 9349B2BC1C2253DE009930FE /* hit013.png */; };
 		935665021B85C19500EAE798 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935665011B85C19500EAE798 /* Social.framework */; };
 		9356C1DC1B4D00410073EBF8 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DA1B4D00410073EBF8 /* MyParticle.sks */; };
 		9356C1DD1B4D00410073EBF8 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DB1B4D00410073EBF8 /* spark.png */; };
@@ -124,6 +125,7 @@
 		9319431B1B5F5C790002F1BD /* ItemType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		9319431D1B5F724E0002F1BD /* SMItemFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMItemFactory.swift; sourceTree = "<group>"; };
 		9319431F1B661B690002F1BD /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		9349B2BC1C2253DE009930FE /* hit013.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hit013.png; sourceTree = "<group>"; };
 		935665011B85C19500EAE798 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		9356C1DA1B4D00410073EBF8 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		9356C1DB1B4D00410073EBF8 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				9356C1DE1B4D05000073EBF8 /* ice1.png */,
+				9349B2BC1C2253DE009930FE /* hit013.png */,
 				93D1D7C91B57558B000EC266 /* spark.png */,
 				9356C1DB1B4D00410073EBF8 /* spark.png */,
 				93D1D7C01B563B01000EC266 /* swordmaster.png */,
@@ -547,6 +550,7 @@
 				931943181B58BD240002F1BD /* deadParticle.sks in Resources */,
 				93D1D79D1B513933000EC266 /* nagarebosi.mp3 in Resources */,
 				93A46C071B8AFFFE002F6127 /* combo_01.mp3 in Resources */,
+				9349B2BD1C2253DE009930FE /* hit013.png in Resources */,
 				93A46C061B8AFFFE002F6127 /* choroimondane_01.mp3 in Resources */,
 				93D8CD441B67A8C80052BE67 /* kakin.mp3 in Resources */,
 				93D8CD4B1B69B9B50052BE67 /* bgm_maoudamashii_neorock33.mp3 in Resources */,
