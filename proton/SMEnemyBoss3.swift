@@ -33,6 +33,11 @@ class SMEnemyBoss3: SMEnemyNode {
     override func makeEnemy() {
         super.makeEnemy()
         //self.physicsBody?.dynamic = false
+        if #available(iOS 8.0, *) {
+            self.shadowCastBitMask = 1
+        } else {
+            // Fallback on earlier versions
+        }
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.restitution = 0.1
         self.physicsBody?.density = 1000.0
