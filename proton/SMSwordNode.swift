@@ -53,10 +53,11 @@ class SMSwordNode: SKSpriteNode {
         } else {
             // Fallback on earlier versions
         }*/
-        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 10, height: 50))
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 15, height: 65))
         self.physicsBody?.dynamic = false
         self.physicsBody?.allowsRotation = true
         self.physicsBody?.affectedByGravity = false
+        self.physicsBody?.restitution = 2.0
         
         self.physicsBody?.categoryBitMask = ColliderType.Sword
         self.physicsBody?.collisionBitMask = ColliderType.Enemy | ColliderType.Sword | ColliderType.Enegy | ColliderType.Guard
