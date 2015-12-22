@@ -44,14 +44,13 @@ class SMEnemyAKnight: SMEnemyNode {
         
         `guard`.makeGuard()
         weak var tmpself = self
-        var randX = arc4random_uniform(50)
+        var randX = arc4random_uniform(150)
         var fx:CGFloat = CGFloat(randX)
         if (randX % 2) == 0 {
             fx = fx * CGFloat(-1)
         }
         let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
             let move = SKAction.moveTo(player.position, duration: 3.0)
-            //let remove = SKAction.moveToY(frameHeight - 120, duration: 1.0)
             let removeX = SKAction.moveByX(fx, y: frameHeight - 120, duration: 1.0)
             tmpself!.runAction(SKAction.sequence([move,removeX]))
         })
