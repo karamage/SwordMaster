@@ -181,7 +181,7 @@ class SMStageFactory {
         var bossArray: [SMEnemyNode] = [SMEnemyNode]()
         
         //最初、敵CUBEが20匹
-        for i in 0..<30 {
+        for i in 0..<20 {
             let enemy = enemyFactory.create(EnemyType.CUBE)
             enemyArray0.append(enemy!)
         }
@@ -302,7 +302,7 @@ class SMStageFactory {
         var bossGroup: SMEnemyGroup!
         var bossArray: [SMEnemyNode] = [SMEnemyNode]()
         
-        for i in 0..<30 {
+        for i in 0..<20 {
             let enemy = enemyFactory.create(EnemyType.CUBE)
             enemyArray0.append(enemy!)
         }

@@ -15,7 +15,7 @@ class SMEnemyGroup: SMEnemyDelegate {
     var type: EnemyGroupType!
     weak var delegate: SMStage? //次の敵出現の通知用
     var killcount: Int = 0
-    var interval = 10.0
+    var interval = 11.0
     
     init(enemys: [SMEnemyNode], type: EnemyGroupType) {
         self.enemys = enemys

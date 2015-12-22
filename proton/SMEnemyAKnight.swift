@@ -34,7 +34,7 @@ class SMEnemyAKnight: SMEnemyNode {
         super.makeEnemy()
         self.physicsBody?.dynamic = false
         self.physicsBody?.affectedByGravity = false
-        self.physicsBody?.restitution = 0.9
+        self.physicsBody?.restitution = 1.9
         self.physicsBody?.density = 40.0
         
         //バリアを作成

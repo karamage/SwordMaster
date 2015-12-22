@@ -32,12 +32,15 @@ class SMEnemyCube: SMEnemyNode {
     override func makeEnemy() {
         super.makeEnemy()
         
+        let randY = arc4random_uniform(100)
+        
         //プレイヤーに迫って移動してくるようにする
         var vector = SMNodeUtil.makePlayerVector(self.position, player: player)
-        //self.physicsBody?.velocity = CGVector.zeroVector
-        //self.physicsBody?.applyImpulse(CGVector(dx:vector.dx / 100, dy:vector.dy / 500))
+        self.physicsBody?.density = 0.1
+        self.physicsBody?.restitution = 0.3
+        //self.physicsBody?.velocity = CGVector.zero
+        //self.physicsBody?.applyImpulse(CGVector(dx:vector.dx + CGFloat(randY) / 10000, dy:vector.dy / 50000))
         
-        let randY = arc4random_uniform(100)
         hit.alpha = 0.7
         
         //回転のアニメーションをランダム時間で付ける
