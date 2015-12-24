@@ -9,8 +9,10 @@
 import Foundation
 import SpriteKit
 import AVFoundation
+import iAd
 
 class GameTitleScene: SKScene {
+    var vc: GameViewController? = nil
     //音楽プレイヤー
     var audioPlayer:AVAudioPlayer?
     //テクスチャ
@@ -25,6 +27,7 @@ class GameTitleScene: SKScene {
     
     //画面の初期化処理
     override func didMoveToView(view: SKView) {
+        
         //音楽再生
         //self.runAction(openingSound)
         startBgm("short_song_minami_kirakira")
@@ -59,7 +62,7 @@ class GameTitleScene: SKScene {
         hiScoreLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
         hiScoreLabel.zPosition = 1000
         self.addChild(hiScoreLabel)
-        hiScoreLabel.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.size.height - 30)
+        hiScoreLabel.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.size.height - 100)
         
         //ロゴ
         var logoSize: CGSize = logoTexture.size()
@@ -158,6 +161,9 @@ class GameTitleScene: SKScene {
         }
         
         //歌付き音楽を流す
+        
+        // iAd(バナー)の自動表示
+        //self.vc!.canDisplayBannerAds = true
     }
     //タッチした時に呼び出される
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -198,8 +204,10 @@ class GameTitleScene: SKScene {
     }
     //ゲームスタート
     func gamestart() {
+        
         //ゲーム画面表示
         let scene = GameScene()
+        scene.vc = self.vc
         
         // Configure the view.
         let skView = self.view! 
@@ -222,5 +230,9 @@ class GameTitleScene: SKScene {
         skView.presentScene(scene, transition:transition)
         
         //スタートの効果音流す
+        
+        // iAd(バナー)の非表示
+        //self.vc!.canDisplayBannerAds = false
+        self.vc!.adbanner.hidden = true
     }
 }

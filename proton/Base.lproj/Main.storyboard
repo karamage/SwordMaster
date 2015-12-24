@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LVB-YS-i5n">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LVB-YS-i5n">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Game View Controller-->
@@ -15,8 +17,21 @@
                     <view key="view" contentMode="scaleToFill" id="bdc-N1-crn" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="exZ-I6-utR">
+                                <rect key="frame" x="4" y="20" width="600" height="66"/>
+                            </adBannerView>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="exZ-I6-utR" firstAttribute="width" secondItem="bdc-N1-crn" secondAttribute="width" id="3mA-qn-JW8"/>
+                            <constraint firstItem="exZ-I6-utR" firstAttribute="top" secondItem="PCf-gQ-wO7" secondAttribute="bottom" id="FQ0-Ed-0rR"/>
+                            <constraint firstItem="exZ-I6-utR" firstAttribute="leading" secondItem="bdc-N1-crn" secondAttribute="leadingMargin" constant="-16" id="HaW-Qo-rnF"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="adbanner" destination="exZ-I6-utR" id="qSF-7F-jUh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btX-cZ-eVz" sceneMemberID="firstResponder"/>
             </objects>

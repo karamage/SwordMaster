@@ -9,16 +9,17 @@
 import UIKit
 import SpriteKit
 import Social
+import iAd
 
-
-class GameViewController: UIViewController{
+class GameViewController: UIViewController, ADBannerViewDelegate{
     //var audioPlayer:AVAudioPlayer?
 
+    @IBOutlet weak var adbanner: ADBannerView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //iAd表示
-        //self.canDisplayBannerAds = true
+        self.adbanner.delegate = self
+        self.adbanner.hidden = true
         
         //ソーシャルボタン表示用のオブザーバー登録
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "showSocialShare:", name: "socialShare", object: nil)
@@ -42,6 +43,8 @@ class GameViewController: UIViewController{
         /* Set the scale mode to scale to fit the window */
         scene.scaleMode = .AspectFill
         scene.size = skView.frame.size
+        
+        scene.vc = self
         
         skView.presentScene(scene)
     }
@@ -93,5 +96,18 @@ class GameViewController: UIViewController{
 
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+    
+    //iAd関連
+    func bannerViewDidLoadAd(banner: ADBannerView!) {
+        self.adbanner?.hidden = false
+    }
+    
+    func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool {
+        return willLeave
+    }
+    
+    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
+        self.adbanner?.hidden = true
     }
 }

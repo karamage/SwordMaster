@@ -43,6 +43,7 @@
 		9371E6BE1BB241F700BA8F4D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9371E6BC1BB241F700BA8F4D /* Default@2x.png */; };
 		9380AB501B75E4C10052274E /* SMGuardNode2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380AB4F1B75E4C10052274E /* SMGuardNode2.swift */; };
 		9380AB521B78DFB20052274E /* ganbarimasu_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9380AB511B78DFB20052274E /* ganbarimasu_01.mp3 */; };
+		93812BF51C2BBC0D00030E14 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9319431F1B661B690002F1BD /* iAd.framework */; };
 		93A46BF61B8AFFFE002F6127 /* ei_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BE31B8AFFFE002F6127 /* ei_01.mp3 */; };
 		93A46BF71B8AFFFE002F6127 /* hawawa_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BE41B8AFFFE002F6127 /* hawawa_01.mp3 */; };
 		93A46BF81B8AFFFE002F6127 /* ita_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BE51B8AFFFE002F6127 /* ita_01.mp3 */; };
@@ -232,6 +233,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93812BF51C2BBC0D00030E14 /* iAd.framework in Frameworks */,
 				935665021B85C19500EAE798 /* Social.framework in Frameworks */,
 				93D1D7A31B522AB4000EC266 /* CoreMotion.framework in Frameworks */,
 			);

@@ -139,6 +139,7 @@ extension SKScene{
     }
 }
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    var vc: GameViewController? = nil
     //モーション管理
     var motionManager: CMMotionManager!
     //タッチ開始ポイント
@@ -753,6 +754,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //タイトル画面表示
         let scene = GameTitleScene()
+        scene.vc = self.vc
         
         // Configure the view.
         let skView = self.view! 
@@ -900,6 +902,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //ゲームオーバーの処理
     func gameover() {
+        // iAd(バナー)の自動表示
+        //self.vc!.canDisplayBannerAds = true
+        self.vc!.adbanner.hidden = false
+        
         //self.runAction(hawawaSound)
         //self.runAction(hawawaSound)
         //self.runAction(hawawaSound)
