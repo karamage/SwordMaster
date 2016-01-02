@@ -617,7 +617,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 //剣を作成する
                 let optrandtype = randomSwordType()
                 var positionx = tmpself!.sword.position.x
-                var appendx: Int = 50 + 50 * ((tmpself!.optionSwords.count)/2)
+                var appendx: Int = 30 + 30 * ((tmpself!.optionSwords.count)/2)
                 if (tmpself!.optionSwords.count+1) % 2 == 0 {
                     appendx = appendx * -1
                 }

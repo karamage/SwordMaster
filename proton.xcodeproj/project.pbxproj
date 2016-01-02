@@ -84,7 +84,6 @@
 		93D1D7BB1B54E240000EC266 /* SMEnemyFly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7BA1B54E240000EC266 /* SMEnemyFly.swift */; };
 		93D1D7BD1B55F228000EC266 /* bosssound1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7BC1B55F228000EC266 /* bosssound1.mp3 */; };
 		93D1D7BF1B55F37E000EC266 /* SMEnemyBoss1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7BE1B55F37E000EC266 /* SMEnemyBoss1.swift */; };
-		93D1D7C11B563B01000EC266 /* swordmaster.png in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7C01B563B01000EC266 /* swordmaster.png */; };
 		93D1D7C51B57458E000EC266 /* GameTitleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7C41B57458E000EC266 /* GameTitleScene.swift */; };
 		93D1D7CA1B57558B000EC266 /* titleParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7C81B57558B000EC266 /* titleParticle.sks */; };
 		93D1D7CB1B57558B000EC266 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7C91B57558B000EC266 /* spark.png */; };
@@ -198,7 +197,6 @@
 		93D1D7BA1B54E240000EC266 /* SMEnemyFly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyFly.swift; sourceTree = "<group>"; };
 		93D1D7BC1B55F228000EC266 /* bosssound1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bosssound1.mp3; sourceTree = "<group>"; };
 		93D1D7BE1B55F37E000EC266 /* SMEnemyBoss1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyBoss1.swift; sourceTree = "<group>"; };
-		93D1D7C01B563B01000EC266 /* swordmaster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swordmaster.png; sourceTree = "<group>"; };
 		93D1D7C41B57458E000EC266 /* GameTitleScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTitleScene.swift; sourceTree = "<group>"; };
 		93D1D7C81B57558B000EC266 /* titleParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = titleParticle.sks; sourceTree = "<group>"; };
 		93D1D7C91B57558B000EC266 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
@@ -300,7 +298,6 @@
 				9349B2BC1C2253DE009930FE /* hit013.png */,
 				93D1D7C91B57558B000EC266 /* spark.png */,
 				9356C1DB1B4D00410073EBF8 /* spark.png */,
-				93D1D7C01B563B01000EC266 /* swordmaster.png */,
 				93D8CD461B689E840052BE67 /* swordmaster2.png */,
 			);
 			path = image;
@@ -531,7 +528,6 @@
 				93D8CD451B67A8C80052BE67 /* explode2.mp3 in Resources */,
 				937056DC1B4FB750009BBAC2 /* hitParticle.sks in Resources */,
 				93E9A0701B4D4D9300B44478 /* sound.mp3 in Resources */,
-				93D1D7C11B563B01000EC266 /* swordmaster.png in Resources */,
 				93E9A06F1B4D4D9300B44478 /* sword.mp3 in Resources */,
 				93A46C041B8AFFFE002F6127 /* aha_01.mp3 in Resources */,
 				9380AB521B78DFB20052274E /* ganbarimasu_01.mp3 in Resources */,
