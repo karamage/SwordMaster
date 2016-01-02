@@ -18,7 +18,7 @@ class SMEnemyBoss3: SMEnemyNode {
         y = CGFloat(frameHeight)
         let location = CGPoint(x:x, y:y)
         super.init(texture: texture, type: EnemyType.BOSS3, location: location, parentnode: enemysNode)
-        self.isBoss = true
+        //self.isBoss = true
         self.hitpoint = 120
         if debugflg {
             self.hitpoint = 1

@@ -145,6 +145,7 @@ class SMStageFactory {
         
         //ボス作成
         let boss1: SMEnemyNode? = enemyFactory.create(EnemyType.BOSS1)
+        boss1?.isBoss = true
         bossArray.append(boss1!)
         for i in 0..<5 {
             let enemy = enemyFactory.create(EnemyType.CUBE)
@@ -267,6 +268,7 @@ class SMStageFactory {
         }
         //ボス作成
         let boss1: SMEnemyNode? = enemyFactory.create(EnemyType.BOSS2)
+        boss1?.isBoss = true
         bossArray.append(boss1!)
         for i in 0..<2 {
             let enemy = enemyFactory.create(EnemyType.LION)
@@ -391,6 +393,7 @@ class SMStageFactory {
         
         //ボス作成
         let boss1: SMEnemyNode? = enemyFactory.create(EnemyType.BOSS3)
+        boss1?.isBoss = true
         bossArray.append(boss1!)
         for i in 0..<2 {
             let enemy = enemyFactory.create(EnemyType.AKNIGHT)
