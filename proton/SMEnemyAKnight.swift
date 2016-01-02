@@ -23,6 +23,9 @@ class SMEnemyAKnight: SMEnemyNode {
         let location = CGPoint(x:x, y:y)
         super.init(texture: texture, type: EnemyType.AKNIGHT, location: location, parentnode: enemysNode)
         self.hitpoint = 20
+        if debugflg {
+            self.hitpoint = 1
+        }
         self.diffence = 2
         self.score = 100
     }

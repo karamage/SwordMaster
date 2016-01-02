@@ -22,6 +22,9 @@ class SMEnemyLion: SMEnemyNode {
         let location = CGPoint(x:x, y:y)
         super.init(texture: texture, type: EnemyType.LION, location: location, parentnode: enemysNode)
         self.hitpoint = 5
+        if debugflg {
+            self.hitpoint = 1
+        }
         self.diffence = 0
         self.score = 50
         

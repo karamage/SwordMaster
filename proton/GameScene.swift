@@ -12,7 +12,7 @@ import SpriteKit
 import CoreMotion
 
 //デバッグモード
-var debugflg: Bool = true
+var debugflg: Bool = false
 
 //プレイヤー
 var player: SMPlayerNode!
@@ -358,7 +358,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
         scoreLabel.zPosition = 1000
         self.addChild(scoreLabel)
-        scoreLabel.position = CGPoint(x: (self.frame.size.width/2) - 100, y: self.frame.size.height - 30)
+        scoreLabel.position = CGPoint(x: (self.frame.size.width/2) - 100, y: self.frame.size.height - 80)
         
         //コンボラベルの表示
         comboLabel.text = "\(combo) Combo!"
