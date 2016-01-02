@@ -29,8 +29,8 @@ class SMPlayerNode: SKSpriteNode {
     var speedup: Int = 1
     
     let SPEED_MAX = 10
-    let SWORD_NUM_MUX = 12
-    let HEART_MAX = 10
+    let SWORD_NUM_MUX = 15
+    let HEART_MAX = 15
     
     //アニメーション用ノード
     var hane: SKSpriteNode!
