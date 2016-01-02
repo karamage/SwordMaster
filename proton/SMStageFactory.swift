@@ -23,6 +23,9 @@ class SMStageFactory {
         case 3:
             stage = makeStage3()
             break
+        case 4:
+            stage = makeStage4()
+            break
         default:
             break
         }
@@ -402,7 +405,68 @@ class SMStageFactory {
         bossGroup = SMEnemyGroup(enemys:bossArray, type:EnemyGroupType.BOSS)
         
         //ステージ3作成
-        let stage = SMStage(background: stage3Background, bgSound: "bgm_stage3", enemyGroups: enemyGroups, bossEnemyGroup: bossGroup, bossSound: "short_song_minami_kirakira", bgParticle:"scrollParticle.sks")
+        let stage = SMStage(background: stage3Background, bgSound: "bgm_stage3", enemyGroups: enemyGroups, bossEnemyGroup: bossGroup, bossSound: "stage3boss", bgParticle:"scrollParticle.sks")
+        return stage
+    }
+    
+    func makeStage4() -> SMStage {
+        var enemyGroups: [SMEnemyGroup]!
+        var enemyGroup1: SMEnemyGroup!
+        var enemyArray1: [SMEnemyNode] = [SMEnemyNode]()
+        var enemyGroup2: SMEnemyGroup!
+        var enemyArray2: [SMEnemyNode] = [SMEnemyNode]()
+        var enemyGroup3: SMEnemyGroup!
+        var enemyArray3: [SMEnemyNode] = [SMEnemyNode]()
+        var bossGroup: SMEnemyGroup!
+        var bossArray: [SMEnemyNode] = [SMEnemyNode]()
+        
+        for i in 0..<2 {
+            let enemy = enemyFactory.create(EnemyType.LION)
+            enemyArray1.append(enemy!)
+        }
+        var bosst = enemyFactory.create(EnemyType.BOSS1)
+        enemyArray1.append(bosst!)
+        enemyGroup1 = SMEnemyGroup(enemys:enemyArray1, type:EnemyGroupType.ALLDEAD)
+        
+        for i in 0..<4 {
+            let enemy = enemyFactory.create(EnemyType.LION)
+            enemyArray2.append(enemy!)
+        }
+        bosst = enemyFactory.create(EnemyType.BOSS2)
+        enemyArray2.append(bosst!)
+        enemyGroup2 = SMEnemyGroup(enemys:enemyArray2, type:EnemyGroupType.ALLDEAD)
+        
+        for i in 0..<4 {
+            let enemy = enemyFactory.create(EnemyType.AKNIGHT)
+            enemyArray3.append(enemy!)
+        }
+        bosst = enemyFactory.create(EnemyType.BOSS3)
+        enemyArray3.append(bosst!)
+        enemyGroup3 = SMEnemyGroup(enemys:enemyArray3, type:EnemyGroupType.ALLDEAD)
+        
+        
+        enemyGroups = [enemyGroup1,enemyGroup2,enemyGroup3]
+        
+        if debugflg {
+            //enemyGroups = [enemyGroup1]
+        }
+        
+        //ボス作成
+        let boss1: SMEnemyNode? = enemyFactory.create(EnemyType.BOSS4)
+        boss1?.isBoss = true
+        bossArray.append(boss1!)
+        for i in 0..<2 {
+            let enemy = enemyFactory.create(EnemyType.AKNIGHT)
+            bossArray.append(enemy!)
+        }
+        for i in 0..<2 {
+            let enemy = enemyFactory.create(EnemyType.LION)
+            bossArray.append(enemy!)
+        }
+        bossGroup = SMEnemyGroup(enemys:bossArray, type:EnemyGroupType.BOSS)
+        
+        //ステージ4作成
+        let stage = SMStage(background: stage4Background, bgSound: "stage4", enemyGroups: enemyGroups, bossEnemyGroup: bossGroup, bossSound: "stage4boss", bgParticle:"scrollParticle4.sks")
         return stage
     }
 }

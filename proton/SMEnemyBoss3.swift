@@ -41,7 +41,7 @@ class SMEnemyBoss3: SMEnemyNode {
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.restitution = 0.1
         self.physicsBody?.density = 1000.0
-        makeEnegy(100)
+        makeEnegy(40)
         makeEnegy2(1.0)
         let move = SKAction.moveToY(frameHeight - 100, duration: 3.0)
         self.runAction(move)

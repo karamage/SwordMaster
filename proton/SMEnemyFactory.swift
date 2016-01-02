@@ -20,6 +20,7 @@ class SMEnemyFactory {
     var boss1Texture = SKTexture(imageNamed: "boss1")
     var boss2Texture = SKTexture(imageNamed: "boss2")
     var boss3Texture = SKTexture(imageNamed: "boss3")
+    var boss4Texture = SKTexture(imageNamed: "boss4")
     
     func create(type:EnemyType) -> SMEnemyNode? {
         var enemy:SMEnemyNode? = nil
@@ -42,6 +43,8 @@ class SMEnemyFactory {
             enemy = SMEnemyBoss2(texture: boss2Texture) as SMEnemyNode?
         case .BOSS3:
             enemy = SMEnemyBoss3(texture: boss3Texture) as SMEnemyNode?
+        case .BOSS4:
+            enemy = SMEnemyBoss4(texture: boss4Texture) as SMEnemyNode?
         default:
             break
         }

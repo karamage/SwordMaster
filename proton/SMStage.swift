@@ -112,7 +112,11 @@ class SMStage: SMEnemyGroupDelegate {
         particle!.zPosition = 0.0
         bgNode.addChild(particle!)
         
-        particle!.position = CGPoint(x: CGFloat(frameWidth / 2), y: CGFloat(frameHeight))
+        if file == "scrollParticle4.sks" {
+            particle!.position = CGPoint(x: CGFloat(frameWidth / 2), y: CGFloat(frameHeight / 2 + 100))
+        } else {
+            particle!.position = CGPoint(x: CGFloat(frameWidth / 2), y: CGFloat(frameHeight))
+        }
     }
     //敵を作成
     func makeEnemyGroup() {
@@ -152,8 +156,8 @@ class SMStage: SMEnemyGroupDelegate {
             //今のステージの後始末
             tmpself!.destroyStage()
             
-            if stageManager.currentStageNum == 3 {
-                //全３ステージ
+            if stageManager.currentStageNum == 4 {
+                //全4ステージ
                 stageManager.clearNum++
                 stageManager.currentStageNum = 0
             }

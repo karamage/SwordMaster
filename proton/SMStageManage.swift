@@ -23,6 +23,11 @@ class SMStageManage {
     
     //ステージの作成
     func makeStage() {
+        if debugflg {
+            if currentStageNum == 2 {
+                currentStageNum = 4
+            }
+        }
         //ステージ情報のインスタンスを作成
         currentStage = stageFactory.create(currentStageNum)
         

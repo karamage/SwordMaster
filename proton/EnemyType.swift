@@ -18,4 +18,5 @@ enum EnemyType {
     case BOSS1
     case BOSS2
     case BOSS3
+    case BOSS4
 }

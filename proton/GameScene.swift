@@ -12,7 +12,7 @@ import SpriteKit
 import CoreMotion
 
 //デバッグモード
-var debugflg: Bool = false
+var debugflg: Bool = true
 
 //プレイヤー
 var player: SMPlayerNode!
@@ -41,6 +41,7 @@ let stage1BgSound = SKAction.playSoundFileNamed("sound.mp3", waitForCompletion: 
 var stage1Background = SKSpriteNode(imageNamed: "background2")
 var stage2Background = SKSpriteNode(imageNamed: "background_sora2")
 var stage3Background = SKSpriteNode(imageNamed: "background3")
+var stage4Background = SKSpriteNode(imageNamed: "background4")
 
 //ヒットアニメーション
 var hitAim: [SKTexture]!
