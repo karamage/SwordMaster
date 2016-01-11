@@ -116,6 +116,22 @@ class GameTitleScene: SKScene {
         bgNode.addChild(cart)
         cart.runAction(SKAction.repeatActionForever(SKAction.sequence([fadeinAction,waitAction, fadeoutAction])))
         
+        //ショップパーティクル
+        let particlet = SKEmitterNode(fileNamed: "shopButton.sks")
+        particlet!.zPosition = -10
+        particlet!.position = CGPoint(x: -10, y: -20)
+        cart.addChild(particlet!)
+        
+        /*
+        let shopLabel = SKLabelNode()
+        shopLabel.text = "Shop"
+        shopLabel.fontSize = 12
+        shopLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
+        shopLabel.zPosition = 1000
+        cart.addChild(shopLabel)
+        shopLabel.position = CGPoint(x: 30, y: 30)
+        */
+        
         //背景パーティクル
         let particle = SKEmitterNode(fileNamed: "titleParticle.sks")
         particle!.zPosition = -10
@@ -180,8 +196,14 @@ class GameTitleScene: SKScene {
             let node: SKNode! =  self.nodeAtPoint(touchPoint)
             if let tmpnode = node {
                 if tmpnode.name == "start" {
+                    //ゲーム開始
                     audioPlayer!.stop()
                     gamestart()
+                    return
+                } else if tmpnode.name == "cart" {
+                    // ショップの画面を開く
+                    audioPlayer!.stop()
+                    showshop()
                     return
                 }
             }
@@ -242,5 +264,25 @@ class GameTitleScene: SKScene {
         // iAd(バナー)の非表示
         //self.vc!.canDisplayBannerAds = false
         self.vc!.adbanner.hidden = true
+    }
+    //店画面を表示する
+    func showshop() {
+        //ゲーム画面表示
+        let scene = GameShopScene()
+        scene.vc = self.vc
+        
+        // Configure the view.
+        let skView = self.view!
+        
+        /* Sprite Kit applies additional optimizations to improve rendering performance */
+        skView.ignoresSiblingOrder = true
+        
+        /* Set the scale mode to scale to fit the window */
+        scene.scaleMode = .AspectFill
+        scene.size = skView.frame.size
+        
+        //let transition = SKTransition.crossFadeWithDuration(2)
+        let transition = SKTransition.fadeWithDuration(1)
+        skView.presentScene(scene, transition:transition)
     }
 }
