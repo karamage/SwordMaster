@@ -97,19 +97,24 @@ class GameTitleScene: SKScene {
         logo2.runAction(fadeinAction3)
         
         //スタートボタン
-        //let start = SKSpriteNode(texture: startTexture, size: startTexture.size())
         let start = SKSpriteNode(imageNamed: "start", normalMapped: true)
         start.name = "start"
         start.position = CGPoint(x: self.frame.width/2, y:60)
         start.zPosition = 120
         start.alpha = 0.9
-        //start.color = UIColor(red: 0.4, green: 0.1, blue: 0.1, alpha: 0.7)
-        //start.colorBlendFactor = 0.65
-        //start.blendMode =  SKBlendMode.Add
         bgNode.addChild(start)
         let fadeoutAction = SKAction.fadeOutWithDuration(0.5)
         let waitAction = SKAction.waitForDuration(0.5)
         start.runAction(SKAction.repeatActionForever(SKAction.sequence([fadeinAction,waitAction, fadeoutAction])))
+        
+        //ショップボタン
+        let cart = SKSpriteNode(imageNamed: "cart", normalMapped: true)
+        cart.name = "cart"
+        cart.position = CGPoint(x: 90, y:140)
+        cart.zPosition = 130
+        cart.alpha = 0.9
+        bgNode.addChild(cart)
+        cart.runAction(SKAction.repeatActionForever(SKAction.sequence([fadeinAction,waitAction, fadeoutAction])))
         
         //背景パーティクル
         let particle = SKEmitterNode(fileNamed: "titleParticle.sks")
@@ -156,6 +161,9 @@ class GameTitleScene: SKScene {
             start.shadowedBitMask = 1
             start.shadowCastBitMask = 1
             start.lightingBitMask = 1
+            cart.shadowedBitMask = 1
+            cart.shadowCastBitMask = 1
+            cart.lightingBitMask = 1
         } else {
             // Fallback on earlier versions
         }
