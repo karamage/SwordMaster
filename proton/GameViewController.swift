@@ -10,9 +10,14 @@ import UIKit
 import SpriteKit
 import Social
 import iAd
+import StoreKit
 
-class GameViewController: UIViewController, ADBannerViewDelegate{
+class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     //var audioPlayer:AVAudioPlayer?
+    
+    // 課金アイテム
+    let productID1 = "com.karamage.proton.SwordAddItem" //剣＋２
+    let products = NSMutableArray()
 
     @IBOutlet weak var adbanner: ADBannerView!
     override func viewDidLoad() {
@@ -20,6 +25,16 @@ class GameViewController: UIViewController, ADBannerViewDelegate{
         
         self.adbanner.delegate = self
         self.adbanner.hidden = true
+        let productIdentifiers = [productID1]
+        
+        //課金アイテムの処理
+        if(SKPaymentQueue.canMakePayments()) {
+            let request: SKProductsRequest = SKProductsRequest(productIdentifiers: Set(productIdentifiers))
+            request.delegate = self
+            request.start()
+        } else {
+            NSLog("In App Purchaseが有効になっていません")
+        }
         
         //ソーシャルボタン表示用のオブザーバー登録
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "showSocialShare:", name: "socialShare", object: nil)
@@ -48,7 +63,67 @@ class GameViewController: UIViewController, ADBannerViewDelegate{
         
         skView.presentScene(scene)
     }
-
+    
+    // 課金アイテムの情報をサーバから取得
+    func productsRequest(request: SKProductsRequest!, didReceiveResponse response: SKProductsResponse!) {
+        for product in response.products {
+            products.addObject(product)
+            print("add product title=\(product.localizedTitle) price=\(product.priceLocale)")
+        }
+    }
+    // 課金リストア処理完了
+    func paymentQueueRestoreCompletedTransactionsFinished(queue: SKPaymentQueue!) {
+        for transaction in queue.transactions {
+            switch transaction.payment.productIdentifier{
+            case productID1:
+                print("リストアトランザクション完了")
+                //TODO 剣を増やす処理
+                //addCoins()
+            default:
+                print("In App Purchaseが設定されていません")
+            }
+        }
+    }
+    
+    //購入処理完了
+    func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            var trans = transaction as! SKPaymentTransaction
+            print(trans.error)
+            
+            switch trans.transactionState {
+                
+            case .Purchased:
+                
+                switch trans.payment.productIdentifier {
+                case productID1:
+                    //addCoins()
+                    //TODO 剣を増やす処理
+                    break
+                default:
+                    print("In App Purchaseが設定されていません")
+                }
+                
+                queue.finishTransaction(trans)
+                break;
+            case .Failed:
+                queue.finishTransaction(trans)
+                break;
+            default:
+                break;
+                
+            }
+        }
+    }
+    
+    func finishTransaction(trans:SKPaymentTransaction)
+    {
+    }
+    
+    func paymentQueue(queue: SKPaymentQueue, removedTransactions transactions: [SKPaymentTransaction]) {
+        SKPaymentQueue.defaultQueue().removeTransactionObserver(self)
+    }
+    
     //ソーシャルボタンの表示
     func showSocialShare(notification: NSNotification) {
         
