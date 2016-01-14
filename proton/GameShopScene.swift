@@ -20,12 +20,31 @@ class GameShopScene: SKScene {
         //ショップタイトル
         var titleLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
         titleLabel.name = "titleLabel"
-        titleLabel.text = "ショップ"
+        titleLabel.text = "ゆうすけのよろずやへようこそ！"
         titleLabel.fontSize = 20
         titleLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
         titleLabel.zPosition = 1000
         self.addChild(titleLabel)
         titleLabel.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.height-80)
+        
+        //剣+2(剣の初期保持数が+2)
+        var itemLabel1 = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
+        itemLabel1.name = "itemLabel1"
+        itemLabel1.text = "・剣+2(剣の数が2増えた状態でゲーム開始)"
+        itemLabel1.fontSize = 16
+        itemLabel1.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
+        itemLabel1.zPosition = 1000
+        self.addChild(itemLabel1)
+        itemLabel1.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.height-120)
+        
+        var buyLabel1 = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
+        buyLabel1.name = "buyLabel1"
+        buyLabel1.text = "購入する"
+        buyLabel1.fontSize = 16
+        buyLabel1.fontColor = UIColor(red: 0.8, green: 1.0, blue: 0.8, alpha: 0.9)
+        buyLabel1.zPosition = 1000
+        self.addChild(buyLabel1)
+        buyLabel1.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.height-140)
         
         // タイトルに戻るボタン作成
         var returnLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
