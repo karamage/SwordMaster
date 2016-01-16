@@ -16,22 +16,44 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
     //var audioPlayer:AVAudioPlayer?
     
     // 課金アイテム
-    let productID1 = "com.karamage.proton.SwordAddItem" //剣＋２
+    let productID1 = "com.karamage.proton.swordAdd" //剣＋２
+    let productID2 = "com.karamage.proton.swordAdd2" //剣＋２
+    static let ADD_SWORDS_UDKEY = "swords"
     let products = NSMutableArray()
 
     @IBOutlet weak var adbanner: ADBannerView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        let ud = NSUserDefaults.standardUserDefaults()
+        let swords = ud.integerForKey(GameViewController.ADD_SWORDS_UDKEY)
+        print("swords=\(swords)")
         
         self.adbanner.delegate = self
         self.adbanner.hidden = true
-        let productIdentifiers = [productID1]
+        let aproductIdentifiers = [productID1,productID2]
         
         //課金アイテムの処理
         if(SKPaymentQueue.canMakePayments()) {
-            let request: SKProductsRequest = SKProductsRequest(productIdentifiers: Set(productIdentifiers))
+            //let request: SKProductsRequest = SKProductsRequest(productIdentifiers: Set(productID1))
+            let productIdentifiers: NSSet = NSSet(array: aproductIdentifiers) // NSset might need to be mutable
+            let request : SKProductsRequest = SKProductsRequest(productIdentifiers: productIdentifiers as! Set<String>)
             request.delegate = self
             request.start()
+            /*
+            //プロダクト情報取得
+            SMProductManager.productsWithProductIdentifiers(productIdentifiers,
+                completion: { (products : [SKProduct]!, error : NSError?) -> Void in
+                    for product in products {
+                        //価格を抽出
+                        let priceString = SMProductManager.priceStringFromProduct(product)
+                        /*
+                        価格情報を使って表示を更新したり。
+                        */
+                        print("価格＝" + priceString)
+                    }
+            })
+            */
+            print("in App Purchase available")
         } else {
             NSLog("In App Purchaseが有効になっていません")
         }
@@ -66,10 +88,27 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
     
     // 課金アイテムの情報をサーバから取得
     func productsRequest(request: SKProductsRequest!, didReceiveResponse response: SKProductsResponse!) {
+        
+        print("productsRequest didREceiveResponse products.count=\(response.products.count) invalid.count \(response.invalidProductIdentifiers.count)")
         for product in response.products {
             products.addObject(product)
             print("add product title=\(product.localizedTitle) price=\(product.priceLocale)")
         }
+        for invalid in response.invalidProductIdentifiers {
+            print("invalid=" + invalid)
+        }
+    }
+    func buyAddSwords(product:SKProduct) {
+        print("buyAddSwords")
+        var pay = SKPayment(product: product)
+        SKPaymentQueue.defaultQueue().addTransactionObserver(self)
+        SKPaymentQueue.defaultQueue().addPayment(pay as SKPayment)
+    }
+    
+    func addSwords() {
+        let ud = NSUserDefaults.standardUserDefaults()
+        let swords = ud.integerForKey(GameViewController.ADD_SWORDS_UDKEY)
+        ud.setValue(swords + 2, forKey: GameViewController.ADD_SWORDS_UDKEY)
     }
     // 課金リストア処理完了
     func paymentQueueRestoreCompletedTransactionsFinished(queue: SKPaymentQueue!) {
@@ -77,8 +116,7 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
             switch transaction.payment.productIdentifier{
             case productID1:
                 print("リストアトランザクション完了")
-                //TODO 剣を増やす処理
-                //addCoins()
+                addSwords()
             default:
                 print("In App Purchaseが設定されていません")
             }
@@ -97,8 +135,8 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
                 
                 switch trans.payment.productIdentifier {
                 case productID1:
-                    //addCoins()
-                    //TODO 剣を増やす処理
+                    print("buyAddSwords")
+                    addSwords()
                     break
                 default:
                     print("In App Purchaseが設定されていません")

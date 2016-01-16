@@ -8,10 +8,12 @@
 
 import Foundation
 import SpriteKit
+import StoreKit
 
 // ショップ画面
 class GameShopScene: SKScene {
     var vc: GameViewController? = nil
+    
     //画面の初期化処理
     override func didMoveToView(view: SKView) {
         var bgNode :SKNode = SKNode()
@@ -45,6 +47,7 @@ class GameShopScene: SKScene {
         buyLabel1.zPosition = 1000
         self.addChild(buyLabel1)
         buyLabel1.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.height-140)
+        //TODO 購入済みの場合テキストや色を変える
         
         // タイトルに戻るボタン作成
         var returnLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
@@ -72,7 +75,19 @@ class GameShopScene: SKScene {
             if let tmpnode = node {
                 if tmpnode.name == "returnLabel" {
                     returnTitle()
+                } else if tmpnode.name == "buyLabel1" {
+                    addSwordsButtonTapped()
                 }
+            }
+        }
+    }
+    func addSwordsButtonTapped() {
+        print("addSwordsButtonTapped")
+        for product in vc!.products {
+            var prodID = product.productIdentifier
+            if(prodID == vc!.productID1) {
+                vc!.buyAddSwords(product as! SKProduct)
+                break
             }
         }
     }
