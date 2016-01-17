@@ -17,7 +17,6 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
     
     // 課金アイテム
     let productID1 = "com.karamage.proton.swordAdd" //剣＋２
-    let productID2 = "com.karamage.proton.swordAdd2" //剣＋２
     static let ADD_SWORDS_UDKEY = "swords"
     let products = NSMutableArray()
 
@@ -30,7 +29,7 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
         
         self.adbanner.delegate = self
         self.adbanner.hidden = true
-        let aproductIdentifiers = [productID1,productID2]
+        let aproductIdentifiers = [productID1]
         
         //課金アイテムの処理
         if(SKPaymentQueue.canMakePayments()) {
@@ -87,7 +86,7 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
     }
     
     // 課金アイテムの情報をサーバから取得
-    func productsRequest(request: SKProductsRequest!, didReceiveResponse response: SKProductsResponse!) {
+    func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
         
         print("productsRequest didREceiveResponse products.count=\(response.products.count) invalid.count \(response.invalidProductIdentifiers.count)")
         for product in response.products {
