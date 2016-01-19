@@ -175,7 +175,7 @@ class SMPlayerNode: SKSpriteNode {
             self.swordNum = 10
         } else {
             let ud = NSUserDefaults.standardUserDefaults()
-            let swords = ud.integerForKey(GameViewController.ADD_SWORDS_UDKEY)
+            let swords = ud.integerForKey(GameViewController.SWORDS_UDKEY)
             self.swordMaxNum = swords
             self.swordNum = swords
         }

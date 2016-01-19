@@ -17,14 +17,14 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
     
     // 課金アイテム
     let productID1 = "com.karamage.proton.swordAdd" //剣＋２
-    static let ADD_SWORDS_UDKEY = "swords"
+    static let SWORDS_UDKEY = "swords"
     let products = NSMutableArray()
 
     @IBOutlet weak var adbanner: ADBannerView!
     override func viewDidLoad() {
         super.viewDidLoad()
         let ud = NSUserDefaults.standardUserDefaults()
-        let swords = ud.integerForKey(GameViewController.ADD_SWORDS_UDKEY)
+        let swords = ud.integerForKey(GameViewController.SWORDS_UDKEY)
         print("swords=\(swords)")
         
         self.adbanner.delegate = self
@@ -38,20 +38,6 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
             let request : SKProductsRequest = SKProductsRequest(productIdentifiers: productIdentifiers as! Set<String>)
             request.delegate = self
             request.start()
-            /*
-            //プロダクト情報取得
-            SMProductManager.productsWithProductIdentifiers(productIdentifiers,
-                completion: { (products : [SKProduct]!, error : NSError?) -> Void in
-                    for product in products {
-                        //価格を抽出
-                        let priceString = SMProductManager.priceStringFromProduct(product)
-                        /*
-                        価格情報を使って表示を更新したり。
-                        */
-                        print("価格＝" + priceString)
-                    }
-            })
-            */
             print("in App Purchase available")
         } else {
             NSLog("In App Purchaseが有効になっていません")
@@ -89,9 +75,12 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
     func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
         
         print("productsRequest didREceiveResponse products.count=\(response.products.count) invalid.count \(response.invalidProductIdentifiers.count)")
+        let nf = NSNumberFormatter()
+        nf.numberStyle = .CurrencyStyle
         for product in response.products {
             products.addObject(product)
-            print("add product title=\(product.localizedTitle) price=\(product.priceLocale)")
+            nf.locale = product.priceLocale
+            print("add product title=\(product.localizedTitle) description=" + product.description + " price=\(nf.stringFromNumber(product.price))")
         }
         for invalid in response.invalidProductIdentifiers {
             print("invalid=" + invalid)
@@ -106,8 +95,8 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
     
     func addSwords() {
         let ud = NSUserDefaults.standardUserDefaults()
-        let swords = ud.integerForKey(GameViewController.ADD_SWORDS_UDKEY)
-        ud.setValue(swords + 2, forKey: GameViewController.ADD_SWORDS_UDKEY)
+        let swords = ud.integerForKey(GameViewController.SWORDS_UDKEY)
+        ud.setValue(swords + 2, forKey: GameViewController.SWORDS_UDKEY)
     }
     // 課金リストア処理完了
     func paymentQueueRestoreCompletedTransactionsFinished(queue: SKPaymentQueue!) {
