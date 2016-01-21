@@ -14,7 +14,9 @@ import StoreKit
 class GameShopScene: SKScene {
     var vc: GameViewController? = nil
     let buyLabel1 = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
+    let restoreLabel1 = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
     let BUY_LABEL1_NAME = "buyLabel1"
+    let RESTORE_LABEL1_NAME = "restoreLabel1"
     
     //画面の初期化処理
     override func didMoveToView(view: SKView) {
@@ -51,8 +53,8 @@ class GameShopScene: SKScene {
                 self.addChild(itemLabel1)
                 itemLabel1.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.height-150)
                 
-                buyLabel1.name = BUY_LABEL1_NAME
                 let price1 = nf.stringFromNumber(product.price)!
+                buyLabel1.name = BUY_LABEL1_NAME
                 buyLabel1.text = "購入する( \(price1) )"
                 buyLabel1.fontSize = 16
                 buyLabel1.fontColor = UIColor(red: 0.8, green: 1.0, blue: 0.8, alpha: 0.9)
@@ -70,6 +72,14 @@ class GameShopScene: SKScene {
             }
         }
         
+        restoreLabel1.name = RESTORE_LABEL1_NAME
+        restoreLabel1.text = "復元購入(リストア)"
+        restoreLabel1.fontSize = 16
+        restoreLabel1.fontColor = UIColor(red: 1.0, green: 1.0, blue: 0.8, alpha: 0.9)
+        restoreLabel1.zPosition = 1000
+        self.addChild(restoreLabel1)
+        restoreLabel1.position = CGPoint(x: (self.frame.size.width/2) + 100, y: 80)
+        
         // タイトルに戻るボタン作成
         var returnLabel = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
         returnLabel.name = "returnLabel"
@@ -78,7 +88,7 @@ class GameShopScene: SKScene {
         returnLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
         returnLabel.zPosition = 1000
         self.addChild(returnLabel)
-        returnLabel.position = CGPoint(x: (self.frame.size.width/2), y: 50)
+        returnLabel.position = CGPoint(x: (self.frame.size.width/2), y: 30)
         
         //背景パーティクル
         let particle = SKEmitterNode(fileNamed: "titleParticle.sks")
@@ -98,9 +108,18 @@ class GameShopScene: SKScene {
                     returnTitle()
                 } else if tmpnode.name == BUY_LABEL1_NAME {
                     addSwordsButtonTapped()
+                } else if tmpnode.name == RESTORE_LABEL1_NAME {
+                    //復元処理開始
+                    restoreButtonTapped()
                 }
             }
         }
+    }
+    func restoreButtonTapped() {
+        print("restoreButtonTapped")
+        restoreLabel1.text = "復元処理中"
+        restoreLabel1.name = RESTORE_LABEL1_NAME + "proc"
+        vc!.restoreStart()
     }
     func addSwordsButtonTapped() {
         print("addSwordsButtonTapped")

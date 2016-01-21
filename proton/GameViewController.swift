@@ -76,6 +76,12 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
         skView.presentScene(scene)
     }
     
+    //レストア開始
+    func restoreStart() {
+        SKPaymentQueue.defaultQueue().addTransactionObserver(self)
+        SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
+    }
+    
     // 課金アイテムの情報をサーバから取得
     func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
         
@@ -101,9 +107,12 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
     
     func addSwords() {
         let ud = NSUserDefaults.standardUserDefaults()
-        let swords = ud.integerForKey(GameViewController.SWORDS_UDKEY)
-        ud.setValue(swords + 2, forKey: GameViewController.SWORDS_UDKEY)
-        ud.setValue(1, forKey: GameViewController.ADD_SWORDS_PLUS2_UDKEY)
+        let isbuy = ud.integerForKey(GameViewController.ADD_SWORDS_PLUS2_UDKEY)
+        if isbuy == 0 {
+            let swords = ud.integerForKey(GameViewController.SWORDS_UDKEY)
+            ud.setValue(swords + 2, forKey: GameViewController.SWORDS_UDKEY)
+            ud.setValue(1, forKey: GameViewController.ADD_SWORDS_PLUS2_UDKEY)
+        }
     }
     
     // 課金リストア処理完了
@@ -113,10 +122,12 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
             case productID1:
                 print("リストアトランザクション完了")
                 addSwords()
+                shopDelegate?.buyLabel1.text = "購入完了"
             default:
                 print("In App Purchaseが設定されていません")
             }
         }
+        shopDelegate?.restoreLabel1.text = "復元完了"
     }
     
     //購入処理完了
