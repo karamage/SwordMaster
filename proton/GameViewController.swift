@@ -17,10 +17,12 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
     
     //ショップが起動できる状態かどうか？
     var isShopEnabled = false
+    weak var shopDelegate: GameShopScene? = nil
     
     // 課金アイテム
     let productID1 = "com.karamage.proton.swordAdd" //剣＋２
     static let SWORDS_UDKEY = "swords"
+    static let ADD_SWORDS_PLUS2_UDKEY = "addswordsplus2"
     let products = NSMutableArray()
 
     @IBOutlet weak var adbanner: ADBannerView!
@@ -101,7 +103,9 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
         let ud = NSUserDefaults.standardUserDefaults()
         let swords = ud.integerForKey(GameViewController.SWORDS_UDKEY)
         ud.setValue(swords + 2, forKey: GameViewController.SWORDS_UDKEY)
+        ud.setValue(1, forKey: GameViewController.ADD_SWORDS_PLUS2_UDKEY)
     }
+    
     // 課金リストア処理完了
     func paymentQueueRestoreCompletedTransactionsFinished(queue: SKPaymentQueue!) {
         for transaction in queue.transactions {
@@ -129,6 +133,7 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
                 case productID1:
                     print("buyAddSwords")
                     addSwords()
+                    shopDelegate?.buyLabel1.text = "購入完了"
                     break
                 default:
                     print("In App Purchaseが設定されていません")

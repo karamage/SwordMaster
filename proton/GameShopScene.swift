@@ -13,9 +13,13 @@ import StoreKit
 // ショップ画面
 class GameShopScene: SKScene {
     var vc: GameViewController? = nil
+    let buyLabel1 = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
+    let BUY_LABEL1_NAME = "buyLabel1"
     
     //画面の初期化処理
     override func didMoveToView(view: SKView) {
+        vc!.shopDelegate = self
+        let ud = NSUserDefaults.standardUserDefaults()
         var bgNode :SKNode = SKNode()
         self.addChild(bgNode)
         
@@ -47,8 +51,7 @@ class GameShopScene: SKScene {
                 self.addChild(itemLabel1)
                 itemLabel1.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.height-150)
                 
-                let buyLabel1 = SKLabelNode(fontNamed:"Hiragino Kaku Gothic ProN")
-                buyLabel1.name = "buyLabel1"
+                buyLabel1.name = BUY_LABEL1_NAME
                 let price1 = nf.stringFromNumber(product.price)!
                 buyLabel1.text = "購入する( \(price1) )"
                 buyLabel1.fontSize = 16
@@ -56,7 +59,14 @@ class GameShopScene: SKScene {
                 buyLabel1.zPosition = 1000
                 self.addChild(buyLabel1)
                 buyLabel1.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.height-170)
-                //TODO 購入済みの場合テキストや色を変える
+                //購入済みの場合テキストや色を変える
+                let buyflg1 = ud.integerForKey(GameViewController.ADD_SWORDS_PLUS2_UDKEY)
+                if buyflg1 != 0 {
+                    //購入済
+                    buyLabel1.text = "購入済"
+                    buyLabel1.name = BUY_LABEL1_NAME + "complete"
+                    buyLabel1.fontColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.9)
+                }
             }
         }
         
@@ -86,7 +96,7 @@ class GameShopScene: SKScene {
             if let tmpnode = node {
                 if tmpnode.name == "returnLabel" {
                     returnTitle()
-                } else if tmpnode.name == "buyLabel1" {
+                } else if tmpnode.name == BUY_LABEL1_NAME {
                     addSwordsButtonTapped()
                 }
             }
@@ -97,6 +107,9 @@ class GameShopScene: SKScene {
         for product in vc!.products {
             var prodID = product.productIdentifier
             if(prodID == vc!.productID1) {
+                buyLabel1.text = "購入処理中"
+                buyLabel1.color = UIColor.whiteColor()
+                buyLabel1.name = BUY_LABEL1_NAME + "proc"
                 vc!.buyAddSwords(product as! SKProduct)
                 break
             }
