@@ -201,10 +201,12 @@ class GameTitleScene: SKScene {
                     gamestart()
                     return
                 } else if tmpnode.name == "cart" {
-                    // ショップの画面を開く
-                    audioPlayer!.stop()
-                    showshop()
-                    return
+                    if vc!.isShopEnabled {
+                        // ショップの画面を開く
+                        audioPlayer!.stop()
+                        showshop()
+                        return
+                    }
                 }
             }
         }

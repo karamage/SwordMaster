@@ -15,6 +15,9 @@ import StoreKit
 class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     //var audioPlayer:AVAudioPlayer?
     
+    //ショップが起動できる状態かどうか？
+    var isShopEnabled = false
+    
     // 課金アイテム
     let productID1 = "com.karamage.proton.swordAdd" //剣＋２
     static let SWORDS_UDKEY = "swords"
@@ -79,6 +82,7 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
         nf.numberStyle = .CurrencyStyle
         for product in response.products {
             products.addObject(product)
+            isShopEnabled = true
             nf.locale = product.priceLocale
             print("add product title=\(product.localizedTitle) description=" + product.description + " price=\(nf.stringFromNumber(product.price))")
         }
