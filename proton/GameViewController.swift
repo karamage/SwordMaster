@@ -10,16 +10,43 @@ import UIKit
 import SpriteKit
 import Social
 import iAd
+import StoreKit
 
-class GameViewController: UIViewController, ADBannerViewDelegate{
+class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     //var audioPlayer:AVAudioPlayer?
+    
+    //ショップが起動できる状態かどうか？
+    var isShopEnabled = false
+    weak var shopDelegate: GameShopScene? = nil
+    
+    // 課金アイテム
+    let productID1 = "com.karamage.proton.swordAdd" //剣＋２
+    static let SWORDS_UDKEY = "swords"
+    static let ADD_SWORDS_PLUS2_UDKEY = "addswordsplus2"
+    let products = NSMutableArray()
 
     @IBOutlet weak var adbanner: ADBannerView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        let ud = NSUserDefaults.standardUserDefaults()
+        let swords = ud.integerForKey(GameViewController.SWORDS_UDKEY)
+        print("swords=\(swords)")
         
         self.adbanner.delegate = self
         self.adbanner.hidden = true
+        let aproductIdentifiers = [productID1]
+        
+        //課金アイテムの処理
+        if(SKPaymentQueue.canMakePayments()) {
+            //let request: SKProductsRequest = SKProductsRequest(productIdentifiers: Set(productID1))
+            let productIdentifiers: NSSet = NSSet(array: aproductIdentifiers) // NSset might need to be mutable
+            let request : SKProductsRequest = SKProductsRequest(productIdentifiers: productIdentifiers as! Set<String>)
+            request.delegate = self
+            request.start()
+            print("in App Purchase available")
+        } else {
+            NSLog("In App Purchaseが有効になっていません")
+        }
         
         //ソーシャルボタン表示用のオブザーバー登録
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "showSocialShare:", name: "socialShare", object: nil)
@@ -48,7 +75,101 @@ class GameViewController: UIViewController, ADBannerViewDelegate{
         
         skView.presentScene(scene)
     }
-
+    
+    //レストア開始
+    func restoreStart() {
+        SKPaymentQueue.defaultQueue().addTransactionObserver(self)
+        SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
+    }
+    
+    // 課金アイテムの情報をサーバから取得
+    func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
+        
+        print("productsRequest didREceiveResponse products.count=\(response.products.count) invalid.count \(response.invalidProductIdentifiers.count)")
+        let nf = NSNumberFormatter()
+        nf.numberStyle = .CurrencyStyle
+        for product in response.products {
+            products.addObject(product)
+            isShopEnabled = true
+            nf.locale = product.priceLocale
+            print("add product title=\(product.localizedTitle) description=" + product.description + " price=\(nf.stringFromNumber(product.price))")
+        }
+        for invalid in response.invalidProductIdentifiers {
+            print("invalid=" + invalid)
+        }
+    }
+    func buyAddSwords(product:SKProduct) {
+        print("buyAddSwords")
+        var pay = SKPayment(product: product)
+        SKPaymentQueue.defaultQueue().addTransactionObserver(self)
+        SKPaymentQueue.defaultQueue().addPayment(pay as SKPayment)
+    }
+    
+    func addSwords() {
+        let ud = NSUserDefaults.standardUserDefaults()
+        let isbuy = ud.integerForKey(GameViewController.ADD_SWORDS_PLUS2_UDKEY)
+        if isbuy == 0 {
+            let swords = ud.integerForKey(GameViewController.SWORDS_UDKEY)
+            ud.setValue(swords + 2, forKey: GameViewController.SWORDS_UDKEY)
+            ud.setValue(1, forKey: GameViewController.ADD_SWORDS_PLUS2_UDKEY)
+        }
+    }
+    
+    // 課金リストア処理完了
+    func paymentQueueRestoreCompletedTransactionsFinished(queue: SKPaymentQueue!) {
+        for transaction in queue.transactions {
+            switch transaction.payment.productIdentifier{
+            case productID1:
+                print("リストアトランザクション完了")
+                addSwords()
+                shopDelegate?.buyLabel1.text = "購入完了"
+            default:
+                print("In App Purchaseが設定されていません")
+            }
+        }
+        shopDelegate?.restoreLabel1.text = "復元完了"
+    }
+    
+    //購入処理完了
+    func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            var trans = transaction as! SKPaymentTransaction
+            print(trans.error)
+            
+            switch trans.transactionState {
+                
+            case .Purchased:
+                
+                switch trans.payment.productIdentifier {
+                case productID1:
+                    print("buyAddSwords")
+                    addSwords()
+                    shopDelegate?.buyLabel1.text = "購入完了"
+                    break
+                default:
+                    print("In App Purchaseが設定されていません")
+                }
+                
+                queue.finishTransaction(trans)
+                break;
+            case .Failed:
+                queue.finishTransaction(trans)
+                break;
+            default:
+                break;
+                
+            }
+        }
+    }
+    
+    func finishTransaction(trans:SKPaymentTransaction)
+    {
+    }
+    
+    func paymentQueue(queue: SKPaymentQueue, removedTransactions transactions: [SKPaymentTransaction]) {
+        SKPaymentQueue.defaultQueue().removeTransactionObserver(self)
+    }
+    
     //ソーシャルボタンの表示
     func showSocialShare(notification: NSNotification) {
         

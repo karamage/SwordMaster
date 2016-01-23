@@ -170,8 +170,14 @@ class SMPlayerNode: SKSpriteNode {
     //プレイヤー作成
     func makePlayer(node: SKNode, textures: [SKTexture]) {
         if debugflg {
+            // デバッグモード
             self.swordMaxNum = 10
             self.swordNum = 10
+        } else {
+            let ud = NSUserDefaults.standardUserDefaults()
+            let swords = ud.integerForKey(GameViewController.SWORDS_UDKEY)
+            self.swordMaxNum = swords
+            self.swordNum = swords
         }
         //self.blendMode = SKBlendMode.Add
         //self.alpha = 0.9

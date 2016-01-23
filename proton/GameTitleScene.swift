@@ -97,19 +97,40 @@ class GameTitleScene: SKScene {
         logo2.runAction(fadeinAction3)
         
         //スタートボタン
-        //let start = SKSpriteNode(texture: startTexture, size: startTexture.size())
         let start = SKSpriteNode(imageNamed: "start", normalMapped: true)
         start.name = "start"
         start.position = CGPoint(x: self.frame.width/2, y:60)
         start.zPosition = 120
         start.alpha = 0.9
-        //start.color = UIColor(red: 0.4, green: 0.1, blue: 0.1, alpha: 0.7)
-        //start.colorBlendFactor = 0.65
-        //start.blendMode =  SKBlendMode.Add
         bgNode.addChild(start)
         let fadeoutAction = SKAction.fadeOutWithDuration(0.5)
         let waitAction = SKAction.waitForDuration(0.5)
         start.runAction(SKAction.repeatActionForever(SKAction.sequence([fadeinAction,waitAction, fadeoutAction])))
+        
+        //ショップボタン
+        let cart = SKSpriteNode(imageNamed: "cart", normalMapped: true)
+        cart.name = "cart"
+        cart.position = CGPoint(x: 90, y:140)
+        cart.zPosition = 130
+        cart.alpha = 0.9
+        bgNode.addChild(cart)
+        cart.runAction(SKAction.repeatActionForever(SKAction.sequence([fadeinAction,waitAction, fadeoutAction])))
+        
+        //ショップパーティクル
+        let particlet = SKEmitterNode(fileNamed: "shopButton.sks")
+        particlet!.zPosition = -10
+        particlet!.position = CGPoint(x: -10, y: -20)
+        cart.addChild(particlet!)
+        
+        /*
+        let shopLabel = SKLabelNode()
+        shopLabel.text = "Shop"
+        shopLabel.fontSize = 12
+        shopLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
+        shopLabel.zPosition = 1000
+        cart.addChild(shopLabel)
+        shopLabel.position = CGPoint(x: 30, y: 30)
+        */
         
         //背景パーティクル
         let particle = SKEmitterNode(fileNamed: "titleParticle.sks")
@@ -156,6 +177,9 @@ class GameTitleScene: SKScene {
             start.shadowedBitMask = 1
             start.shadowCastBitMask = 1
             start.lightingBitMask = 1
+            cart.shadowedBitMask = 1
+            cart.shadowCastBitMask = 1
+            cart.lightingBitMask = 1
         } else {
             // Fallback on earlier versions
         }
@@ -172,9 +196,17 @@ class GameTitleScene: SKScene {
             let node: SKNode! =  self.nodeAtPoint(touchPoint)
             if let tmpnode = node {
                 if tmpnode.name == "start" {
+                    //ゲーム開始
                     audioPlayer!.stop()
                     gamestart()
                     return
+                } else if tmpnode.name == "cart" {
+                    if vc!.isShopEnabled {
+                        // ショップの画面を開く
+                        audioPlayer!.stop()
+                        showshop()
+                        return
+                    }
                 }
             }
         }
@@ -234,5 +266,25 @@ class GameTitleScene: SKScene {
         // iAd(バナー)の非表示
         //self.vc!.canDisplayBannerAds = false
         self.vc!.adbanner.hidden = true
+    }
+    //店画面を表示する
+    func showshop() {
+        //ゲーム画面表示
+        let scene = GameShopScene()
+        scene.vc = self.vc
+        
+        // Configure the view.
+        let skView = self.view!
+        
+        /* Sprite Kit applies additional optimizations to improve rendering performance */
+        skView.ignoresSiblingOrder = true
+        
+        /* Set the scale mode to scale to fit the window */
+        scene.scaleMode = .AspectFill
+        scene.size = skView.frame.size
+        
+        //let transition = SKTransition.crossFadeWithDuration(2)
+        let transition = SKTransition.fadeWithDuration(1)
+        skView.presentScene(scene, transition:transition)
     }
 }
