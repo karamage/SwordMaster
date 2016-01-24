@@ -31,6 +31,8 @@ class SMEnemyFactory {
             enemy = SMEnemyCube2(texture: enemy1Texture) as SMEnemyNode?
         case .CUBEGOLD:
             enemy = SMEnemyCubeGold(texture: enemy1Texture) as SMEnemyNode?
+        case .CUBEBLACK:
+            enemy = SMEnemyCubeBlack(texture: enemy1Texture) as SMEnemyNode?
         case .FLY:
             enemy = SMEnemyFly(texture: enemy2Texture) as SMEnemyNode?
         case .KNIGHT:

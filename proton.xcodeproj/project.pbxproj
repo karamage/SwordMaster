@@ -12,6 +12,7 @@
 		9319431C1B5F5C790002F1BD /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9319431B1B5F5C790002F1BD /* ItemType.swift */; };
 		9319431E1B5F724E0002F1BD /* SMItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9319431D1B5F724E0002F1BD /* SMItemFactory.swift */; };
 		93251AFF1C54AD1200F966EA /* SMEnemyCubeGold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93251AFE1C54AD1200F966EA /* SMEnemyCubeGold.swift */; };
+		93251B011C54B27F00F966EA /* SMEnemyCubeBlack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93251B001C54B27F00F966EA /* SMEnemyCubeBlack.swift */; };
 		932C91691C37B8A600313494 /* stage3boss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 932C91661C37B8A600313494 /* stage3boss.mp3 */; };
 		932C916A1C37B8A600313494 /* stage4boss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 932C91671C37B8A600313494 /* stage4boss.mp3 */; };
 		932C916B1C37B8A600313494 /* stage4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 932C91681C37B8A600313494 /* stage4.mp3 */; };
@@ -137,6 +138,7 @@
 		9319431D1B5F724E0002F1BD /* SMItemFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMItemFactory.swift; sourceTree = "<group>"; };
 		9319431F1B661B690002F1BD /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		93251AFE1C54AD1200F966EA /* SMEnemyCubeGold.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyCubeGold.swift; sourceTree = "<group>"; };
+		93251B001C54B27F00F966EA /* SMEnemyCubeBlack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyCubeBlack.swift; sourceTree = "<group>"; };
 		932C91661C37B8A600313494 /* stage3boss.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stage3boss.mp3; sourceTree = "<group>"; };
 		932C91671C37B8A600313494 /* stage4boss.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stage4boss.mp3; sourceTree = "<group>"; };
 		932C91681C37B8A600313494 /* stage4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stage4.mp3; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 				93DCA4261C438CBA005E3C0E /* GameShopScene.swift */,
 				93BE5F091C4A2041002ED552 /* SMProductManager.swift */,
 				93251AFE1C54AD1200F966EA /* SMEnemyCubeGold.swift */,
+				93251B001C54B27F00F966EA /* SMEnemyCubeBlack.swift */,
 			);
 			path = proton;
 			sourceTree = "<group>";
@@ -640,6 +643,7 @@
 				93D1D7AF1B538DC6000EC266 /* SMSwordFactory.swift in Sources */,
 				93251AFF1C54AD1200F966EA /* SMEnemyCubeGold.swift in Sources */,
 				93D1D7A71B525250000EC266 /* SMEnemyCube.swift in Sources */,
+				93251B011C54B27F00F966EA /* SMEnemyCubeBlack.swift in Sources */,
 				93DCA4271C438CBA005E3C0E /* GameShopScene.swift in Sources */,
 				93D1D7B71B54BCD7000EC266 /* EnemyGroupType.swift in Sources */,
 				93D1D7B51B54B450000EC266 /* SMEnemyGroupDelegate.swift in Sources */,
