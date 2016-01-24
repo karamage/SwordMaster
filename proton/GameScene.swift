@@ -572,18 +572,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     return
                 }
                 player.countDownSword()
-                if tmpself!.sword.attack < 4 {
+                if tmpself!.sword.count < 4 {
                     bgNode.runAction(magicSound)
                 }
                 
                 let scaleAction = SKAction.scaleBy(1.05, duration: 1.0)
                 //剣の攻撃力を上げる
                 tmpself!.sword.attack++
+                tmpself!.sword.count++
                 tmpself!.sword.hitpoint++
                 for oSword: SMSwordNode in tmpself!.optionSwords {
                     oSword.attack++
                     oSword.hitpoint++
-                    if oSword.attack == 2 {
+                    oSword.count++
+                    if oSword.count == 2 {
                         oSword.circle.color = UIColor.blueColor()
                         oSword.circle.colorBlendFactor = 0.5
                         
@@ -593,7 +595,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     oSword.runAction(scaleAction)
                 }
                 
-                if tmpself!.sword.attack == 2 {
+                if tmpself!.sword.count == 2 {
                     tmpself!.sword.circle.color = UIColor.blueColor()
                     tmpself!.sword.circle.colorBlendFactor = 0.5
                     

@@ -18,6 +18,7 @@ class SMSwordNode: SKSpriteNode {
     var circle: SKSpriteNode
     var swipex: Int = 0
     var isShot: Bool = false
+    var count = 1
     
     //攻撃力
     var attack: Int = 1

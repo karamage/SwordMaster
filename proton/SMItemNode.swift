@@ -44,13 +44,13 @@ class SMItemNode: SKSpriteNode {
         switch type {
         case .SWORDPOWERUP:
             self.color = UIColor.redColor()
-            self.colorBlendFactor = 0.9
+            self.colorBlendFactor = 0.5
         case .SWORDCHARGEUP:
             self.color = UIColor.blueColor()
-            self.colorBlendFactor = 0.9
+            self.colorBlendFactor = 0.5
         case .GOLDSHIELD:
             self.color = UIColor.yellowColor()
-            self.colorBlendFactor = 0.7
+            self.colorBlendFactor = 0.5
         default:
             break
         }
