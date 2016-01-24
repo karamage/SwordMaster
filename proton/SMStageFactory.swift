@@ -82,6 +82,9 @@ class SMStageFactory {
             let enemy = enemyFactory.create(EnemyType.CUBE)
             enemyArray2.append(enemy!)
         }
+        let gold = enemyFactory.create(EnemyType.CUBEGOLD)
+        enemyArray2.append(gold!)
+        
         //全滅させるまで次に進めない
         enemyGroup2 = SMEnemyGroup(enemys:enemyArray2, type:EnemyGroupType.INTERVAL)
         
@@ -214,6 +217,8 @@ class SMStageFactory {
             let enemy = enemyFactory.create(EnemyType.FLY)
             enemyArray2.append(enemy!)
         }
+        let gold = enemyFactory.create(EnemyType.CUBEGOLD)
+        enemyArray2.append(gold!)
         //全滅させるまで次に進めない
         enemyGroup2 = SMEnemyGroup(enemys:enemyArray2, type:EnemyGroupType.INTERVAL)
         
@@ -334,6 +339,8 @@ class SMStageFactory {
             let enemy = enemyFactory.create(EnemyType.CUBE2)
             enemyArray2.append(enemy!)
         }
+        let gold = enemyFactory.create(EnemyType.CUBEGOLD)
+        enemyArray2.append(gold!)
         enemyGroup2 = SMEnemyGroup(enemys:enemyArray2, type:EnemyGroupType.INTERVAL)
         enemyGroup2.interval = 13.0
         

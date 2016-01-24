@@ -6,7 +6,6 @@
 //  Copyright (c) 2015年 Masaaki Kakimoto. All rights reserved.
 //
 
-import Foundation
 import SpriteKit
 
 class SMEnemyCube2: SMEnemyCube {
