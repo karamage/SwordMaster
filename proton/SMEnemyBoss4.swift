@@ -26,6 +26,7 @@ class SMEnemyBoss4: SMEnemyNode {
         }
         self.diffence = 2
         self.score = 100000
+        self.itemnum = 40
     }
     required override init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -30,6 +30,9 @@ class SMEnemyNode: SKSpriteNode {
     //ボスかどうか
     var isBoss: Bool = false
     
+    //アイテムの数
+    var itemnum = 1
+    
     //初期化
     init(texture: SKTexture, type: EnemyType, location: CGPoint, parentnode:SKNode){
         self.type = type
@@ -226,13 +229,6 @@ class SMEnemyNode: SKSpriteNode {
         SMNodeUtil.makeParticleNode(self.position, filename:"hitParticle.sks", node:bgNode)
         self.physicsBody?.categoryBitMask = ColliderType.None
         self.removeAllActions()
-        
-        //ボスの場合は大量のアイテム
-        var itemnum = 1
-        if isBoss {
-            //println("boss dead")
-            itemnum = 10
-        }
         
         var itempos = self.position
         for i in 1...itemnum {
