@@ -81,6 +81,7 @@ class SMEnemyNode: SKSpriteNode {
     }
     func makeEnegy(num: Int) {
         let tmpnum = num + (num * stageManager.clearNum) // クリアする度に難しくなる
+        weak var tmpself = self
         let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
             let rand:CGFloat = CGFloat(arc4random_uniform(100))
             let custumAction2 = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
@@ -93,7 +94,7 @@ class SMEnemyNode: SKSpriteNode {
                 }
             })
             let waitAction2 = SKAction.waitForDuration(0.03 * Double(rand))
-            bgNode.runAction(SKAction.sequence([waitAction2,custumAction2]))
+            tmpself?.runAction(SKAction.sequence([waitAction2,custumAction2]))
         })
         let waitAction = SKAction.waitForDuration(1.5)
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([waitAction,custumAction])))

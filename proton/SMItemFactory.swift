@@ -19,15 +19,15 @@ class SMItemFactory {
     func createRandom(location:CGPoint) -> SMItemNode? {
         let rand = arc4random_uniform(120)
         var ret: SMItemNode?
-        if rand % 40 == 1 {
+        if rand % 50 == 1 {
             ret = create(ItemType.DAIYA, location: location)
-        } else if rand % 40 == 5 {
+        } else if rand % 50 == 5 {
             ret = create(ItemType.HEART, location: location)
-        } else if rand % 40 == 6 {
+        } else if rand % 50 == 6 {
             ret = create(ItemType.SWORDPOWERUP, location: location)
-        } else if rand % 40 == 7 {
+        } else if rand % 50 == 7 {
             ret = create(ItemType.SWORDCHARGEUP, location: location)
-        } else if rand % 40 == 8 {
+        } else if rand % 50 == 8 {
             ret = create(ItemType.GOLDSHIELD, location: location)
         } else if rand % 30 == 2 {
             ret = create(ItemType.SWORDNUMUP, location: location)

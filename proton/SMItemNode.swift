@@ -47,7 +47,7 @@ class SMItemNode: SKSpriteNode {
             self.colorBlendFactor = 0.5
         case .SWORDCHARGEUP:
             self.color = UIColor.blueColor()
-            self.colorBlendFactor = 0.5
+            self.colorBlendFactor = 0.7
         case .GOLDSHIELD:
             self.color = UIColor.yellowColor()
             self.colorBlendFactor = 0.5
