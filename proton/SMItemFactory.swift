@@ -33,6 +33,8 @@ class SMItemFactory {
             ret = create(ItemType.SWORDPOWERUP, location: location)
         } else if rand % 40 == 7 {
             ret = create(ItemType.SWORDCHARGEUP, location: location)
+        } else if rand % 40 == 8 {
+            ret = create(ItemType.GOLDSHIELD, location: location)
         } else {
             ret = create(ItemType.COIN, location: location)
         }
@@ -49,7 +51,7 @@ class SMItemFactory {
             ret = SMItemNode(texture: swordnumTexture, type: ItemType.SWORDNUMUP, location: location, parentnode: enemysNode)
         case ItemType.SPEEDUP:
             ret = SMItemNode(texture: speedTexture, type: ItemType.SPEEDUP, location: location, parentnode: enemysNode)
-        case ItemType.SHIELD:
+        case ItemType.SHIELD, ItemType.GOLDSHIELD:
             ret = SMItemNode(texture: shieldTexture, type: ItemType.SHIELD, location: location, parentnode: enemysNode)
         case ItemType.HEART:
             ret = SMItemNode(texture: heartTexture, type: ItemType.HEART, location: location, parentnode: enemysNode)

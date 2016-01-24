@@ -88,6 +88,9 @@ class SMPlayerNode: SKSpriteNode {
         case .SHIELD:
             self.`guard`()
             powerupCutin()
+        case .GOLDSHIELD:
+            self.guardGold()
+            powerupCutin()
         default:
             break
         }
@@ -108,6 +111,11 @@ class SMPlayerNode: SKSpriteNode {
     func `guard`() {
         let `guard` = SMGuardNode2(texture: guard2Texture, location: CGPoint(x:self.position.x + 10, y:100.0), parentnode: bgNode)
         `guard`.makeGuard()
+    }
+    //バリアの作成
+    func guardGold() {
+        let `guard` = SMGuardNode2(texture: guard2Texture, location: CGPoint(x:self.position.x + 10, y:100.0), parentnode: bgNode)
+        `guard`.makeGuardGold()
     }
     //スピードアップの処理
     func speedUp() {
