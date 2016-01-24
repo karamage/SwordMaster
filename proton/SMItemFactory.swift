@@ -29,6 +29,10 @@ class SMItemFactory {
             ret = create(ItemType.SHIELD, location: location)
         } else if rand % 40 == 5 {
             ret = create(ItemType.HEART, location: location)
+        } else if rand % 40 == 6 {
+            ret = create(ItemType.SWORDPOWERUP, location: location)
+        } else if rand % 40 == 7 {
+            ret = create(ItemType.SWORDCHARGEUP, location: location)
         } else {
             ret = create(ItemType.COIN, location: location)
         }
@@ -41,7 +45,7 @@ class SMItemFactory {
             ret = SMItemNode(texture: coinTexture, type: ItemType.COIN, location: location, parentnode: enemysNode)
         case ItemType.DAIYA:
             ret = SMItemNode(texture: daiyaTexture, type: ItemType.DAIYA, location: location, parentnode: enemysNode)
-        case ItemType.SWORDNUMUP:
+        case ItemType.SWORDNUMUP, ItemType.SWORDPOWERUP, ItemType.SWORDCHARGEUP:
             ret = SMItemNode(texture: swordnumTexture, type: ItemType.SWORDNUMUP, location: location, parentnode: enemysNode)
         case ItemType.SPEEDUP:
             ret = SMItemNode(texture: speedTexture, type: ItemType.SPEEDUP, location: location, parentnode: enemysNode)

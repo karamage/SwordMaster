@@ -23,6 +23,8 @@ class SMSwordNode: SKSpriteNode {
     var attack: Int = 1
     //耐久力
     var hitpoint: Int = 1
+    //チャージスピード
+    var charge: Int = 0
     
     init(texture: SKTexture, type: SwordType, shotSound:SKAction, location: CGPoint,parentnode:SKNode, startPoint: CGPoint){
         self.type = type
@@ -39,12 +41,14 @@ class SMSwordNode: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     //剣の作成
-    func makeSword(){
+    func makeSword(attack: Int, charge: Int){
         //let waitSoundAction = SKAction.waitForDuration(0.5)
         //let magic = SKAction.sequence([waitSoundAction, magicSound])
         //self.runAction(magic)
         //self.runAction(magic)
         //self.runAction(magic)
+        self.attack = attack
+        self.charge = charge
         
         //物理シミュレーション設定
         /*
@@ -136,7 +140,8 @@ class SMSwordNode: SKSpriteNode {
         
         //2秒後に消す
         let removeAction = SKAction.removeFromParent()
-        let durationAction = SKAction.waitForDuration(2.00)
+        let durationtime = 2.00 - (0.1 * Double(self.charge))
+        let durationAction = SKAction.waitForDuration(durationtime)
         let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
             if player.swordNum < player.swordMaxNum {
                 player.countUpSword()
@@ -145,7 +150,7 @@ class SMSwordNode: SKSpriteNode {
         let sequenceAction = SKAction.sequence([durationAction,custumAction,removeAction])
         self.runAction(sequenceAction)
         
-        let fadeAction = SKAction.fadeAlphaTo(0, duration: 2.0)
+        let fadeAction = SKAction.fadeAlphaTo(0, duration: durationtime)
         self.runAction(fadeAction)
         
         removeCircle()

@@ -40,6 +40,20 @@ class SMItemNode: SKSpriteNode {
         self.physicsBody?.collisionBitMask = ColliderType.Item
         self.physicsBody?.contactTestBitMask = ColliderType.Player
         
+        //色をつける
+        switch type {
+        case .SWORDPOWERUP:
+            self.color = UIColor.redColor()
+            self.colorBlendFactor = 0.3
+            break
+        case .SWORDCHARGEUP:
+            self.color = UIColor.blueColor()
+            self.colorBlendFactor = 0.3
+            break
+        default:
+            break
+        }
+        
         if let parentnode = self.parentnode {
             parentnode.addChild(self)
         }

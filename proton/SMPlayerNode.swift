@@ -28,6 +28,12 @@ class SMPlayerNode: SKSpriteNode {
     //自機のスピード
     var speedup: Int = 1
     
+    //剣の攻撃力
+    var swordPower: Int = 1
+    
+    //剣のチャージ速度
+    var swordCharge: Int = 0
+    
     let SPEED_MAX = 10
     let SWORD_NUM_MUX = 15
     let HEART_MAX = 15
@@ -44,7 +50,6 @@ class SMPlayerNode: SKSpriteNode {
     
     //アイテムを取得した時の処理
     func contactItem(item: SMItemNode) {
-        let scene = self.scene as! GameScene
         item.physicsBody?.categoryBitMask = ColliderType.None
         bgNode.runAction(kakinSound)
         switch item.type {
@@ -58,46 +63,45 @@ class SMPlayerNode: SKSpriteNode {
             totalScore += 1000
             scoreLabel.text = "\(totalScore)"
         case .SWORDNUMUP:
-            makeWarpAnim()
             if self.swordMaxNum < SWORD_NUM_MUX {
-                bgNode.runAction(powerupSound)
-                bgNode.runAction(powerupSound)
-                bgNode.runAction(powerupSound)
                 self.swordMaxNum++
                 self.countUpSword()
-                scene.cutin()
+                powerupCutin()
             }
+        case .SWORDPOWERUP:
+            self.swordPower++
+            powerupCutin()
+        case .SWORDCHARGEUP:
+            self.swordCharge++
+            powerupCutin()
         case .SPEEDUP:
-            makeWarpAnim()
             if self.speedup < SPEED_MAX {
-                bgNode.runAction(powerupSound)
-                bgNode.runAction(powerupSound)
-                bgNode.runAction(powerupSound)
                 self.speedUp()
-                scene.cutin()
+                powerupCutin()
             }
         case .HEART:
-            makeWarpAnim()
             if self.hitpoint < HEART_MAX {
-                bgNode.runAction(powerupSound)
-                bgNode.runAction(powerupSound)
-                bgNode.runAction(powerupSound)
                 //ハート回復
                 self.heartUp()
-                scene.cutin()
+                powerupCutin()
             }
         case .SHIELD:
-            makeWarpAnim()
-            bgNode.runAction(powerupSound)
-            bgNode.runAction(powerupSound)
-            bgNode.runAction(powerupSound)
             self.`guard`()
-            scene.cutin()
+            powerupCutin()
         default:
             break
         }
         item.removeFromParent()
         SMNodeUtil.makeParticleNode(CGPoint(x: self.position.x, y: self.position.y + 30), filename: "MyParticle.sks", node: bgNode)
+    }
+    
+    func powerupCutin() {
+        let scene = self.scene as! GameScene
+        makeWarpAnim()
+        bgNode.runAction(powerupSound)
+        bgNode.runAction(powerupSound)
+        bgNode.runAction(powerupSound)
+        scene.cutin()
     }
     
     //バリアの作成

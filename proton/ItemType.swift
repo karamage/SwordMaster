@@ -16,7 +16,10 @@ enum ItemType {
     case SPEEDUP
     case SWORDNUMUP
     case SHOTSWORDNUMUP
-    case OPTION
     case SHIELD
     case BOMB
+    case SWORDPOWERUP
+    case SWORDCHARGEUP
+    case GOLDSHIELD
+    case OPTION
 }
