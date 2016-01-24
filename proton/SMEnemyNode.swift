@@ -168,6 +168,7 @@ class SMEnemyNode: SKSpriteNode {
             bgNode.runAction(comboSound)
             //comboLabel.alpha = 1.0
             if comboLabel.alpha == 0.0 {
+                
                 let fadeInAction = SKAction.fadeInWithDuration(0.5)
                 let fadeInAction2 = SKAction.fadeAlphaTo(0.3, duration: 0.5)
                 let fadeOutAction = SKAction.fadeOutWithDuration(0.5)
@@ -180,9 +181,15 @@ class SMEnemyNode: SKSpriteNode {
                 let move2 = SKAction.moveToX(self.scene!.frame.width - 200.0, duration: 0.5)
                 comboLabel.runAction(SKAction.sequence([scale1, move1,move2, scale2]))
                 bgNode.runAction(koredeSound)
-                //killAimNode.runAction(kiruSound)
-                //killAimNode.runAction(kiruSound)
-                //killAimNode.runAction(kiruSound)
+                /*
+                enemysNode.speed = 0.0
+                let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
+                    enemysNode.speed = 1.0
+                })
+                let waitAction = SKAction.waitForDuration(1.0)
+                bgNode.runAction(SKAction.sequence([waitAction,custumAction]))
+                */
+                
                 let killAnimAction = SKAction.animateWithTextures(killAim, timePerFrame: 0.1, resize:false, restore:true)
                 killAimNode.runAction(killAnimAction)
                 killAimNode.runAction(SKAction.sequence([fadeInAction2,fadeOutAction]) )
