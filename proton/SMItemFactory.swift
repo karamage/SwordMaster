@@ -17,7 +17,7 @@ class SMItemFactory {
     let shieldTexture: SKTexture = SKTexture(imageNamed: "shield")
     let heartTexture: SKTexture = SKTexture(imageNamed: "heart")
     func createRandom(location:CGPoint) -> SMItemNode? {
-        let rand = arc4random_uniform(120)
+        let rand = arc4random_uniform(140)
         var ret: SMItemNode?
         if rand % 70 == 1 {
             ret = create(ItemType.DAIYA, location: location)
