@@ -26,5 +26,11 @@ class SMEnemyCubeBlack: SMEnemyCube {
         super.makeEnemy()
         self.physicsBody?.density = 200.0
         self.physicsBody?.restitution = 0
+        let randY = arc4random_uniform(100)
+        
+        //プレイヤーに迫って移動してくるようにする
+        var vector = SMNodeUtil.makePlayerVector(self.position, player: player)
+        self.physicsBody?.velocity = CGVector.zero
+        self.physicsBody?.applyImpulse(CGVector(dx:(vector.dx + CGFloat(randY))/20, dy:vector.dy/20))
     }
 }

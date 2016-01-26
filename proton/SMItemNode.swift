@@ -62,6 +62,18 @@ class SMItemNode: SKSpriteNode {
         self.alpha = 0.0
         let fadeIn = SKAction.fadeInWithDuration(0.5)
         self.runAction(fadeIn)
+        
+        let scale0 = SKAction.scaleTo(0, duration: 0)
+        let scale = SKAction.scaleTo(1.0, duration: 0.5)
+        self.runAction(SKAction.sequence([scale0,scale]))
+        
+        //プレイヤーに迫って移動してくるようにする
+        let randY = arc4random_uniform(100)
+        let vector = SMNodeUtil.makePlayerVector(self.position, player: player)
+        self.physicsBody?.velocity = CGVector.zero
+        self.physicsBody?.applyImpulse(CGVector(dx:(vector.dx + CGFloat(randY))/10, dy:vector.dy/10))
+        
+        SMNodeUtil.makeParticleNode(CGPoint(x: 0.0, y: 0.0), filename: "item.sks", hide: true, node: self)
     }
     //剣と衝突したときの処理
     func contactSword(sword: SMSwordNode) {

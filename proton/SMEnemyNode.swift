@@ -12,6 +12,9 @@ import SpriteKit
 class SMEnemyNode: SKSpriteNode {
     //敵タイプ
     var type: EnemyType!
+    var inithitpoint = 0
+    var smokecount = 0
+    
     //耐久力
     var hitpoint: Int = 1
     //防御力
@@ -134,6 +137,9 @@ class SMEnemyNode: SKSpriteNode {
     }
     //剣が当たった時の処理
     func hitSword(sword: SMSwordNode) {
+        if inithitpoint == 0 {
+            inithitpoint = hitpoint //初期HP
+        }
         let damage = sword.attack - diffence - (stageManager.clearNum) //周回するごとに難しくなる
         sword.attack = Int(Double(damage) * 0.8)
         sword.hitpoint--
@@ -229,6 +235,19 @@ class SMEnemyNode: SKSpriteNode {
             hit.alpha = 0.8
             let fadeout = SKAction.fadeOutWithDuration(1.0)
             hit.runAction(fadeout)
+            
+            var smokecountmax = 3
+            if hitpoint <= (inithitpoint/2) {
+                if hitpoint <= (inithitpoint/4) {
+                    smokecountmax = 8
+                }
+                
+                if smokecount++ <= smokecountmax {
+                    let rand:CGFloat = CGFloat(arc4random_uniform(10))
+                    let randY:CGFloat = CGFloat(arc4random_uniform(10))
+                    SMNodeUtil.makeParticleNode(CGPoint(x: CGFloat(rand), y: CGFloat(randY)), filename: "smoke.sks", hide: false, node: self)
+                }
+            }
         }
     }
     //敵が死んだ時の処理

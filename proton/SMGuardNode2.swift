@@ -34,8 +34,8 @@ class SMGuardNode2: SMGuardNode {
         self.physicsBody?.collisionBitMask = ColliderType.Enegy
         self.physicsBody?.contactTestBitMask = ColliderType.Enegy
         self.color = UIColor.yellowColor()
-        self.colorBlendFactor = 0.5
-        
+        self.colorBlendFactor = 0.7
+        self.runAction(SKAction.scaleBy(1.3, duration: 1.0))
     }
     //弾が当たった時の処理
     func hitEnegy(enegy: SMEnegyNode) {
