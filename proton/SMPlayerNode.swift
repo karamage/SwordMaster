@@ -36,6 +36,7 @@ class SMPlayerNode: SKSpriteNode {
     
     let SPEED_MAX = 10
     let SWORD_NUM_MUX = 15
+    let SWORD_CHARGE_MAX = 10
     let HEART_MAX = 15
     
     //アニメーション用ノード
@@ -72,8 +73,10 @@ class SMPlayerNode: SKSpriteNode {
             self.swordPower++
             powerupCutin()
         case .SWORDCHARGEUP:
-            self.swordCharge++
-            powerupCutin()
+            if self.swordCharge < SWORD_CHARGE_MAX {
+                self.swordCharge++
+                powerupCutin()
+            }
         case .SPEEDUP:
             if self.speedup < SPEED_MAX {
                 self.speedUp()
@@ -140,6 +143,22 @@ class SMPlayerNode: SKSpriteNode {
         countDownHeart()
         SMNodeUtil.fadeRemoveNode(enegy)
         
+        //bgNode.color = UIColor.yellowColor()
+        //self.colorBlendFactor = 0.9
+        weak var stage: SMStage? = stageManager.currentStage
+        if stage != nil {
+            stage!.background.color = UIColor.redColor()
+            stage!.background.colorBlendFactor = 0.5
+            let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
+                weak var stagetmp: SMStage? = stageManager.currentStage
+                if stagetmp != nil {
+                    stagetmp!.background.colorBlendFactor = 0.0
+                }
+            })
+            let waitAction = SKAction.waitForDuration(0.5)
+            bgNode.runAction(SKAction.sequence([waitAction,custumAction]))
+        }
+            
         //やられた効果音再生
         bgNode.runAction(explodeSound)
         bgNode.runAction(explodeSound)

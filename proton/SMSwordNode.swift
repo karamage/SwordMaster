@@ -76,6 +76,9 @@ class SMSwordNode: SKSpriteNode {
         // 円を描画.
         makeCircle(self.position)
         
+        self.color = UIColor.redColor()
+        self.colorBlendFactor = 0.05 * CGFloat(self.attack)
+        
         //透明度を徐々に上げて登場
         let fadeInAction = SKAction.fadeInWithDuration(0.5)
         self.runAction(fadeInAction)
@@ -83,7 +86,6 @@ class SMSwordNode: SKSpriteNode {
         //少し前に移動
         let frontMoveAction = SKAction.moveToY(self.startPoint.y + 10, duration: 0.5)
         self.runAction(SKAction.sequence([frontMoveAction]))
-        
     }
     
     //魔法陣を作成する

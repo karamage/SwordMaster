@@ -188,14 +188,15 @@ class SMEnemyNode: SKSpriteNode {
                 let move2 = SKAction.moveToX(self.scene!.frame.width - 200.0, duration: 0.5)
                 comboLabel.runAction(SKAction.sequence([scale1, move1,move2, scale2]))
                 bgNode.runAction(koredeSound)
-                /*
+                
                 enemysNode.speed = 0.0
+                enemysNode.scene!.physicsWorld.gravity = CGVector(dx:0.0, dy:0.50)
                 let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
                     enemysNode.speed = 1.0
+                    enemysNode.scene!.physicsWorld.gravity = CGVector(dx:0.0, dy:-0.10)
                 })
-                let waitAction = SKAction.waitForDuration(1.0)
+                let waitAction = SKAction.waitForDuration(0.5)
                 bgNode.runAction(SKAction.sequence([waitAction,custumAction]))
-                */
                 
                 let killAnimAction = SKAction.animateWithTextures(killAim, timePerFrame: 0.1, resize:false, restore:true)
                 killAimNode.runAction(killAnimAction)
