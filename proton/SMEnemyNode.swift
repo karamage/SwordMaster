@@ -297,4 +297,15 @@ class SMEnemyNode: SKSpriteNode {
     deinit {
         //println("enemy deinit")
     }
+    
+    //x座標をプレイヤーに追尾する
+    func moveXToPlayer() {
+        weak var tmpself = self
+        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
+            let moveX = SKAction.moveToX(player.position.x, duration: 2.0)
+            tmpself!.runAction(SKAction.sequence([moveX]))
+        })
+        let waitAction = SKAction.waitForDuration(5.0)
+        self.runAction(SKAction.repeatActionForever(SKAction.sequence([waitAction,custumAction])))
+    }
 }

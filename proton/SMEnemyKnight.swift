@@ -22,7 +22,7 @@ class SMEnemyKnight: SMEnemyNode {
         y = CGFloat(frameHeight - CGFloat(randY) + 50)
         let location = CGPoint(x:x, y:y)
         super.init(texture: texture, type: EnemyType.KNIGHT, location: location, parentnode: enemysNode)
-        self.hitpoint = 10
+        self.hitpoint = 20
         self.diffence = 1
         self.score = 50
         self.itemnum = 4
@@ -35,7 +35,7 @@ class SMEnemyKnight: SMEnemyNode {
         super.makeEnemy()
         self.physicsBody?.dynamic = true
         self.physicsBody?.restitution = 0.9
-        self.physicsBody?.density = 10.0
+        self.physicsBody?.density = 40.0
         
         let rand1 = Double(arc4random_uniform(40)) * 0.01
         let rand2 = Double(arc4random_uniform(40)) * 0.01

@@ -71,7 +71,7 @@ class SMItemNode: SKSpriteNode {
         let randY = arc4random_uniform(100)
         let vector = SMNodeUtil.makePlayerVector(self.position, player: player)
         self.physicsBody?.velocity = CGVector.zero
-        self.physicsBody?.applyImpulse(CGVector(dx:(vector.dx + CGFloat(randY))/10, dy:vector.dy/10))
+        self.physicsBody?.applyImpulse(CGVector(dx:(vector.dx + CGFloat(randY))/10, dy:(vector.dy + CGFloat(randY))/3))
         
         SMNodeUtil.makeParticleNode(CGPoint(x: 0.0, y: 0.0), filename: "item.sks", hide: true, node: self)
     }

@@ -19,7 +19,7 @@ class SMEnemyBoss3: SMEnemyNode {
         let location = CGPoint(x:x, y:y)
         super.init(texture: texture, type: EnemyType.BOSS3, location: location, parentnode: enemysNode)
         //self.isBoss = true
-        self.hitpoint = 120
+        self.hitpoint = 240
         if debugflg {
             self.hitpoint = 1
         }
@@ -46,10 +46,11 @@ class SMEnemyBoss3: SMEnemyNode {
         makeEnegy2(1.0)
         let move = SKAction.moveToY(frameHeight - 100, duration: 3.0)
         self.runAction(move)
+        self.moveXToPlayer()
         //バリアを作成
         var guardpos = CGPoint(x:-10, y:-80)
         `guard` = SMGuardNode(texture: guardTexture, location: guardpos, parentnode: self)
         `guard`.makeGuard()
-        `guard`.hitpoint = 80
+        `guard`.hitpoint = 160
     }
 }
