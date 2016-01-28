@@ -36,6 +36,9 @@ class SMEnemyNode: SKSpriteNode {
     //アイテムの数
     var itemnum = 1
     
+    //たいあたり中かどうか
+    var isAttack = false
+    
     //初期化
     init(texture: SKTexture, type: EnemyType, location: CGPoint, parentnode:SKNode){
         self.type = type
@@ -88,6 +91,10 @@ class SMEnemyNode: SKSpriteNode {
         let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
             let rand:CGFloat = CGFloat(arc4random_uniform(100))
             let custumAction2 = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
+                if tmpself!.isAttack {
+                    //たいあたり中は弾を出さないようにする
+                    return
+                }
                 //弾発射
                 let point = CGPoint(x: self.position.x , y: self.position.y)
                 for i in 0..<tmpnum {
@@ -323,10 +330,14 @@ class SMEnemyNode: SKSpriteNode {
             fx = fx * CGFloat(-1)
         }
         let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
+            tmpself!.isAttack = true
             let move = SKAction.moveTo(player.position, duration: 3.0)
             let removeX = SKAction.moveByX(fx, y: frameHeight - 120, duration: 1.0)
             //let removeX = SKAction.moveTo(CGPoint(x:100 + fx, y:frameHeight - 120), duration: 1.0)
-            tmpself!.runAction(SKAction.sequence([move,removeX]))
+            let custumAction2 = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
+                tmpself!.isAttack = false
+            })
+            tmpself!.runAction(SKAction.sequence([move,removeX,custumAction2]))
         })
         let waitAction = SKAction.waitForDuration(duration)
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([waitAction,custumAction])))
