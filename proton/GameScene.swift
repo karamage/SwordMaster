@@ -927,13 +927,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //ハイスコアの記録
         if totalScore > hiScore {
-            
             //"NAME"というキーで配列namesを保存
             defaults.setObject(totalScore, forKey:"hiScore")
-            
-            // シンクロを入れないとうまく動作しないときがあります
-            defaults.synchronize()
         }
+        // シンクロを入れないとうまく動作しないときがあります
+        defaults.synchronize()
         
         //敵の停止
         enemysNode.speed = 0.0

@@ -118,6 +118,7 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
             let swords = ud.integerForKey(GameViewController.SWORDS_UDKEY)
             ud.setValue(swords + 2, forKey: GameViewController.SWORDS_UDKEY)
             ud.setValue(1, forKey: GameViewController.ADD_SWORDS_PLUS2_UDKEY)
+            ud.synchronize()
         }
     }
     
@@ -265,16 +266,18 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
                     let url = NSURL(string: self.itunesURL)
                     UIApplication.sharedApplication().openURL(url!)
                     self.uds.setObject(true, forKey: "reviewed")
+                    self.uds.synchronize()
                 }
                 let yetAction = UIAlertAction(title: "あとでレビューする", style: .Default) {
                     action in
                     self.uds.setObject(false, forKey: "reviewed")
+                    self.uds.synchronize()
                 }
                 let neverAction = UIAlertAction(title: "今後レビューしない", style: .Cancel) {
                     action in
                     self.uds.setObject(true, forKey: "reviewed")
+                    self.uds.synchronize()
                 }
-                
                 alertController.addAction(reviewAction)
                 alertController.addAction(yetAction)
                 alertController.addAction(neverAction)
