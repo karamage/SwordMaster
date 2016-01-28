@@ -190,6 +190,10 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
         let shareView = SLComposeViewController(forServiceType: type)
         shareView.setInitialText(message as! String)
         
+        if let image = screenShot {
+            shareView.addImage(image)
+        }
+        
         shareView.completionHandler = {
             (result:SLComposeViewControllerResult) -> () in
             switch (result) {
@@ -230,5 +234,12 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
     
     func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
         self.adbanner?.hidden = true
+    }
+    
+    func setScreenShot() {
+        UIGraphicsBeginImageContextWithOptions(UIScreen.mainScreen().bounds.size, false, 0);
+        self.view.drawViewHierarchyInRect(view.bounds, afterScreenUpdates: true)
+        screenShot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
     }
 }

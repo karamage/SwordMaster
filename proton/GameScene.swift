@@ -10,6 +10,7 @@
 
 import SpriteKit
 import CoreMotion
+import Social
 
 //デバッグモード
 var debugflg: Bool = false
@@ -18,6 +19,8 @@ var debugflg: Bool = false
 var player: SMPlayerNode!
 
 var combo: Int = 0 //コンボ数
+
+var screenShot: UIImage? = nil
 
 //ステータス欄
 var statusNode: SKNode = SKNode()
@@ -141,6 +144,8 @@ extension SKScene{
 }
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var vc: GameViewController? = nil
+    //Facebook投稿
+    var myComposeView : SLComposeViewController!
     //モーション管理
     var motionManager: CMMotionManager!
     //タッチ開始ポイント
@@ -495,13 +500,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // share画面で表示するメッセージを格納
         var message = String()
-        //if social == "twitter" {
-            message = "score:" + String(totalScore) + " #SMYuusuke"
-        /*
-        } else {
-            message = "Facebook Share"
-        }
-*/
+        message = "score:" + String(totalScore) + " #SMYuusuke"
         
         // userinfoに情報(socialの種類とmessage)を格納
         let userInfo = ["social": social.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!,"message": message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!]
@@ -905,6 +904,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //ゲームオーバーの処理
     func gameover() {
+        //SNS投稿用スクショ撮影
+        self.vc!.setScreenShot()
         // iAd(バナー)の自動表示
         //self.vc!.canDisplayBannerAds = true
         self.vc!.adbanner.hidden = false
@@ -962,6 +963,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         returnLabel.zPosition = 1000
         self.addChild(returnLabel)
         returnLabel.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.size.height/2 - 100)
+        
+        //postToFacebook()
+        if !isSimulator() {
+            //device
+            socialButtonTapped("facebook")
+        }
+    }
+    func isSimulator() -> Bool {
+        return TARGET_OS_SIMULATOR != 0
     }
     
     //パーティクル発生
@@ -976,5 +986,4 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func fadeRemoveNode(removenode: SKNode!) {
         SMNodeUtil.fadeRemoveNode(removenode)
     }
-    
 }
