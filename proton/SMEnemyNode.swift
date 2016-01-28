@@ -173,6 +173,8 @@ class SMEnemyNode: SKSpriteNode {
         if combo > 1 {
             comboLabel.text = "\(combo) Combo!"
             bgNode.runAction(comboSound)
+            bgNode.runAction(comboSound)
+            bgNode.runAction(comboSound)
             //comboLabel.alpha = 1.0
             if comboLabel.alpha == 0.0 {
                 
@@ -183,19 +185,19 @@ class SMEnemyNode: SKSpriteNode {
                 comboLabel.runAction(fadeInAction)
                 //let x = comboLabel.position.x
                 let scale1 = SKAction.scaleTo(1.0, duration: 0.0)
-                let scale2 = SKAction.scaleTo(4.0, duration: 1.0)
+                let scale2 = SKAction.scaleTo(3.0, duration: 2.0)
                 let move1 = SKAction.moveToX(self.scene!.frame.width + 10.0, duration: 0.0)
                 let move2 = SKAction.moveToX(self.scene!.frame.width - 200.0, duration: 0.5)
                 comboLabel.runAction(SKAction.sequence([scale1, move1,move2, scale2]))
                 bgNode.runAction(koredeSound)
                 
-                enemysNode.speed = 0.0
-                enemysNode.scene!.physicsWorld.gravity = CGVector(dx:0.0, dy:0.50)
+                enemysNode.speed = 0.1
+                enemysNode.scene!.physicsWorld.gravity = CGVector(dx:0.0, dy:0.40)
                 let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
                     enemysNode.speed = 1.0
                     enemysNode.scene!.physicsWorld.gravity = CGVector(dx:0.0, dy:-0.10)
                 })
-                let waitAction = SKAction.waitForDuration(0.5)
+                let waitAction = SKAction.waitForDuration(0.7)
                 bgNode.runAction(SKAction.sequence([waitAction,custumAction]))
                 
                 let killAnimAction = SKAction.animateWithTextures(killAim, timePerFrame: 0.1, resize:false, restore:true)
@@ -255,6 +257,7 @@ class SMEnemyNode: SKSpriteNode {
     func dead() {
         SMNodeUtil.makeParticleNode(self.position, filename:"deadParticle.sks", node:bgNode)
         SMNodeUtil.makeParticleNode(self.position, filename:"hitParticle.sks", node:bgNode)
+        SMNodeUtil.makeParticleNode(self.position, filename:"shopButton.sks", node:bgNode)
         self.physicsBody?.categoryBitMask = ColliderType.None
         self.removeAllActions()
         

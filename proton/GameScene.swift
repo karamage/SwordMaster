@@ -367,12 +367,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //コンボラベルの表示
         comboLabel.text = "\(combo) Combo!"
-        comboLabel.fontSize = 30
+        comboLabel.fontSize = 36
         comboLabel.alpha = 0.0
-        comboLabel.fontColor = UIColor(red: 1.0, green: 0.5, blue: 0.5, alpha: 1.0)
+        comboLabel.fontColor = UIColor(red: 1.0, green: 0.7, blue: 0.5, alpha: 1.0)
+        comboLabel.blendMode = SKBlendMode.Add
         comboLabel.zPosition = 1000
         self.addChild(comboLabel)
-        comboLabel.position = CGPoint(x: self.frame.size.width - 150, y: self.frame.size.height - 100)
+        comboLabel.position = CGPoint(x: self.frame.size.width - 150, y: self.frame.size.height - 250)
         
         //背景管理用ノード
         bgNode.removeAllActions()
