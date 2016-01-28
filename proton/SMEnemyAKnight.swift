@@ -36,10 +36,10 @@ class SMEnemyAKnight: SMEnemyNode {
     
     override func makeEnemy() {
         super.makeEnemy()
-        self.physicsBody?.dynamic = false
+        self.physicsBody?.dynamic = true
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.restitution = 1.9
-        self.physicsBody?.density = 40.0
+        self.physicsBody?.density = 2000.0
         
         //バリアを作成
         let guardpos = CGPoint(x:-10, y:-80)
@@ -48,7 +48,7 @@ class SMEnemyAKnight: SMEnemyNode {
         
         `guard`.makeGuard()
         weak var tmpself = self
-        var randX = arc4random_uniform(150)
+        var randX = arc4random_uniform(200)
         var fx:CGFloat = CGFloat(randX)
         if (randX % 2) == 0 {
             fx = fx * CGFloat(-1)
