@@ -44,6 +44,9 @@ class SMEnegyNode: SKSpriteNode {
     func contactSword(sword:SMSwordNode) {
         //SMNodeUtil.makeParticleNode(CGPoint(x: self.position.x, y: self.position.y), filename: "MyParticle.sks", node: parentnode)
         if sword.isShot == false {
+            SMNodeUtil.makeParticleNode(CGPoint(x: 0.0, y: 0.0), filename: "item.sks", hide: true, node: self)
+            self.color = UIColor.blueColor()
+            self.colorBlendFactor = 0.7
             SMNodeUtil.fadeRemoveNode(self)
         }
     }
