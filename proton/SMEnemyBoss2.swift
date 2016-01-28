@@ -19,12 +19,13 @@ class SMEnemyBoss2: SMEnemyNode {
         let location = CGPoint(x:x, y:y)
         super.init(texture: texture, type: EnemyType.BOSS2, location: location, parentnode: enemysNode)
         //self.isBoss = true
-        self.hitpoint = 80
+        self.hitpoint = 160
         if debugflg {
             self.hitpoint = 1
         }
         self.diffence = 1
         self.score = 20000
+        self.itemnum = 20
     }
     required override init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -46,10 +47,11 @@ class SMEnemyBoss2: SMEnemyNode {
         makeEnegy2(3.0)
         let move = SKAction.moveToY(frameHeight - 100, duration: 3.0)
         self.runAction(move)
+        self.moveXToPlayer()
         //バリアを作成
         var guardpos = CGPoint(x:-10, y:-80)
         `guard` = SMGuardNode(texture: guardTexture, location: guardpos, parentnode: self)
         `guard`.makeGuard()
-        `guard`.hitpoint = 40
+        `guard`.hitpoint = 80
     }
 }

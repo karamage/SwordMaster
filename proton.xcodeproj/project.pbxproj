@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		930BE6D11C5736BB00C6C393 /* smoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = 930BE6D01C5736BB00C6C393 /* smoke.sks */; };
+		930BE6D31C57385500C6C393 /* item.sks in Resources */ = {isa = PBXBuildFile; fileRef = 930BE6D21C57385500C6C393 /* item.sks */; };
 		931943181B58BD240002F1BD /* deadParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 931943171B58BD240002F1BD /* deadParticle.sks */; };
 		9319431A1B58DB740002F1BD /* SMItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931943191B58DB740002F1BD /* SMItemNode.swift */; };
 		9319431C1B5F5C790002F1BD /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9319431B1B5F5C790002F1BD /* ItemType.swift */; };
 		9319431E1B5F724E0002F1BD /* SMItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9319431D1B5F724E0002F1BD /* SMItemFactory.swift */; };
+		93251AFF1C54AD1200F966EA /* SMEnemyCubeGold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93251AFE1C54AD1200F966EA /* SMEnemyCubeGold.swift */; };
+		93251B011C54B27F00F966EA /* SMEnemyCubeBlack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93251B001C54B27F00F966EA /* SMEnemyCubeBlack.swift */; };
 		932C91691C37B8A600313494 /* stage3boss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 932C91661C37B8A600313494 /* stage3boss.mp3 */; };
 		932C916A1C37B8A600313494 /* stage4boss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 932C91671C37B8A600313494 /* stage4boss.mp3 */; };
 		932C916B1C37B8A600313494 /* stage4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 932C91681C37B8A600313494 /* stage4.mp3 */; };
@@ -130,11 +134,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		930BE6D01C5736BB00C6C393 /* smoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = smoke.sks; sourceTree = "<group>"; };
+		930BE6D21C57385500C6C393 /* item.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = item.sks; sourceTree = "<group>"; };
 		931943171B58BD240002F1BD /* deadParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = deadParticle.sks; sourceTree = "<group>"; };
 		931943191B58DB740002F1BD /* SMItemNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMItemNode.swift; sourceTree = "<group>"; };
 		9319431B1B5F5C790002F1BD /* ItemType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		9319431D1B5F724E0002F1BD /* SMItemFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMItemFactory.swift; sourceTree = "<group>"; };
 		9319431F1B661B690002F1BD /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		93251AFE1C54AD1200F966EA /* SMEnemyCubeGold.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyCubeGold.swift; sourceTree = "<group>"; };
+		93251B001C54B27F00F966EA /* SMEnemyCubeBlack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyCubeBlack.swift; sourceTree = "<group>"; };
 		932C91661C37B8A600313494 /* stage3boss.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stage3boss.mp3; sourceTree = "<group>"; };
 		932C91671C37B8A600313494 /* stage4boss.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stage4boss.mp3; sourceTree = "<group>"; };
 		932C91681C37B8A600313494 /* stage4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stage4.mp3; sourceTree = "<group>"; };
@@ -345,6 +353,8 @@
 				932C916C1C37BBC500313494 /* scrollParticle4.sks */,
 				932C916D1C37BBC500313494 /* spark.png */,
 				93DCA4281C4399DF005E3C0E /* shopButton.sks */,
+				930BE6D01C5736BB00C6C393 /* smoke.sks */,
+				930BE6D21C57385500C6C393 /* item.sks */,
 			);
 			path = sks;
 			sourceTree = "<group>";
@@ -423,6 +433,8 @@
 				932C91701C37BFEE00313494 /* SMEnemyBoss4.swift */,
 				93DCA4261C438CBA005E3C0E /* GameShopScene.swift */,
 				93BE5F091C4A2041002ED552 /* SMProductManager.swift */,
+				93251AFE1C54AD1200F966EA /* SMEnemyCubeGold.swift */,
+				93251B001C54B27F00F966EA /* SMEnemyCubeBlack.swift */,
 			);
 			path = proton;
 			sourceTree = "<group>";
@@ -584,6 +596,7 @@
 				93EF1AB91B4BC01800B1FC93 /* Main.storyboard in Resources */,
 				93A46C081B8AFFFE002F6127 /* ehehe_01.mp3 in Resources */,
 				9356C1DC1B4D00410073EBF8 /* MyParticle.sks in Resources */,
+				930BE6D11C5736BB00C6C393 /* smoke.sks in Resources */,
 				93A46BF81B8AFFFE002F6127 /* ita_01.mp3 in Resources */,
 				932C916E1C37BBC500313494 /* scrollParticle4.sks in Resources */,
 				931943181B58BD240002F1BD /* deadParticle.sks in Resources */,
@@ -603,6 +616,7 @@
 				93A46BFF1B8AFFFE002F6127 /* motteatosukoshidesu_01.mp3 in Resources */,
 				93D1D7BD1B55F228000EC266 /* bosssound1.mp3 in Resources */,
 				9356C1DF1B4D05000073EBF8 /* ice1.png in Resources */,
+				930BE6D31C57385500C6C393 /* item.sks in Resources */,
 				93D1D7A01B513933000EC266 /* sasaru.mp3 in Resources */,
 				93A46C031B8AFFFE002F6127 /* yaa_01.mp3 in Resources */,
 			);
@@ -635,7 +649,9 @@
 				93D1D7B91B54C57A000EC266 /* SMEnemyDelegate.swift in Sources */,
 				937056D01B4F7F56009BBAC2 /* ColliderType.swift in Sources */,
 				93D1D7AF1B538DC6000EC266 /* SMSwordFactory.swift in Sources */,
+				93251AFF1C54AD1200F966EA /* SMEnemyCubeGold.swift in Sources */,
 				93D1D7A71B525250000EC266 /* SMEnemyCube.swift in Sources */,
+				93251B011C54B27F00F966EA /* SMEnemyCubeBlack.swift in Sources */,
 				93DCA4271C438CBA005E3C0E /* GameShopScene.swift in Sources */,
 				93D1D7B71B54BCD7000EC266 /* EnemyGroupType.swift in Sources */,
 				93D1D7B51B54B450000EC266 /* SMEnemyGroupDelegate.swift in Sources */,

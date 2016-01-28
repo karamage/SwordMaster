@@ -27,6 +27,7 @@ class SMEnemyLion: SMEnemyNode {
         }
         self.diffence = 0
         self.score = 50
+        self.itemnum = 3
         
     }
     required override init(coder: NSCoder) {

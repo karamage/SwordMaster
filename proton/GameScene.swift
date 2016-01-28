@@ -562,7 +562,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //剣を作成する
             let randtype = randomSwordType()
             sword = swordFactory.create(randtype, position: touchStartPoint, startPoint: touchStartPoint)
-            sword.makeSword()
+            sword.makeSword(player.swordPower, charge: player.swordCharge)
             
             //オプションの剣の作成を行う
             let waitAction = SKAction.waitForDuration(0.5)
@@ -572,18 +572,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     return
                 }
                 player.countDownSword()
-                if tmpself!.sword.attack < 4 {
+                if tmpself!.sword.count < 4 {
                     bgNode.runAction(magicSound)
                 }
                 
                 let scaleAction = SKAction.scaleBy(1.05, duration: 1.0)
                 //剣の攻撃力を上げる
                 tmpself!.sword.attack++
+                tmpself!.sword.count++
                 tmpself!.sword.hitpoint++
                 for oSword: SMSwordNode in tmpself!.optionSwords {
                     oSword.attack++
                     oSword.hitpoint++
-                    if oSword.attack == 2 {
+                    oSword.count++
+                    if oSword.count == 2 {
                         oSword.circle.color = UIColor.blueColor()
                         oSword.circle.colorBlendFactor = 0.5
                         
@@ -593,7 +595,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     oSword.runAction(scaleAction)
                 }
                 
-                if tmpself!.sword.attack == 2 {
+                if tmpself!.sword.count == 2 {
                     tmpself!.sword.circle.color = UIColor.blueColor()
                     tmpself!.sword.circle.colorBlendFactor = 0.5
                     
@@ -625,7 +627,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 positionx = positionx + CGFloat(appendx)
                 let position = CGPoint(x: positionx, y: tmpself!.sword.position.y - 20)
                 let optsword = swordFactory.create(optrandtype, position: position, startPoint: tmpself!.touchStartPoint)
-                optsword!.makeSword()
+                optsword!.makeSword(player.swordPower, charge: player.swordCharge)
                 tmpself!.optionSwords.append(optsword!)
             })
             let repeatSwordAction = SKAction.repeatActionForever(SKAction.sequence([waitAction,custumAction]))

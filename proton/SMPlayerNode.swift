@@ -28,8 +28,15 @@ class SMPlayerNode: SKSpriteNode {
     //自機のスピード
     var speedup: Int = 1
     
+    //剣の攻撃力
+    var swordPower: Int = 1
+    
+    //剣のチャージ速度
+    var swordCharge: Int = 0
+    
     let SPEED_MAX = 10
     let SWORD_NUM_MUX = 15
+    let SWORD_CHARGE_MAX = 10
     let HEART_MAX = 15
     
     //アニメーション用ノード
@@ -44,7 +51,6 @@ class SMPlayerNode: SKSpriteNode {
     
     //アイテムを取得した時の処理
     func contactItem(item: SMItemNode) {
-        let scene = self.scene as! GameScene
         item.physicsBody?.categoryBitMask = ColliderType.None
         bgNode.runAction(kakinSound)
         switch item.type {
@@ -58,41 +64,36 @@ class SMPlayerNode: SKSpriteNode {
             totalScore += 1000
             scoreLabel.text = "\(totalScore)"
         case .SWORDNUMUP:
-            makeWarpAnim()
             if self.swordMaxNum < SWORD_NUM_MUX {
-                bgNode.runAction(powerupSound)
-                bgNode.runAction(powerupSound)
-                bgNode.runAction(powerupSound)
                 self.swordMaxNum++
                 self.countUpSword()
-                scene.cutin()
+                powerupCutin()
+            }
+        case .SWORDPOWERUP:
+            self.swordPower++
+            powerupCutin()
+        case .SWORDCHARGEUP:
+            if self.swordCharge < SWORD_CHARGE_MAX {
+                self.swordCharge++
+                powerupCutin()
             }
         case .SPEEDUP:
-            makeWarpAnim()
             if self.speedup < SPEED_MAX {
-                bgNode.runAction(powerupSound)
-                bgNode.runAction(powerupSound)
-                bgNode.runAction(powerupSound)
                 self.speedUp()
-                scene.cutin()
+                powerupCutin()
             }
         case .HEART:
-            makeWarpAnim()
             if self.hitpoint < HEART_MAX {
-                bgNode.runAction(powerupSound)
-                bgNode.runAction(powerupSound)
-                bgNode.runAction(powerupSound)
                 //ハート回復
                 self.heartUp()
-                scene.cutin()
+                powerupCutin()
             }
         case .SHIELD:
-            makeWarpAnim()
-            bgNode.runAction(powerupSound)
-            bgNode.runAction(powerupSound)
-            bgNode.runAction(powerupSound)
             self.`guard`()
-            scene.cutin()
+            powerupCutin()
+        case .GOLDSHIELD:
+            self.guardGold()
+            powerupCutin()
         default:
             break
         }
@@ -100,10 +101,24 @@ class SMPlayerNode: SKSpriteNode {
         SMNodeUtil.makeParticleNode(CGPoint(x: self.position.x, y: self.position.y + 30), filename: "MyParticle.sks", node: bgNode)
     }
     
+    func powerupCutin() {
+        let scene = self.scene as! GameScene
+        makeWarpAnim()
+        bgNode.runAction(powerupSound)
+        bgNode.runAction(powerupSound)
+        bgNode.runAction(powerupSound)
+        scene.cutin()
+    }
+    
     //バリアの作成
     func `guard`() {
         let `guard` = SMGuardNode2(texture: guard2Texture, location: CGPoint(x:self.position.x + 10, y:100.0), parentnode: bgNode)
         `guard`.makeGuard()
+    }
+    //バリアの作成
+    func guardGold() {
+        let `guard` = SMGuardNode2(texture: guard2Texture, location: CGPoint(x:self.position.x + 10, y:100.0), parentnode: bgNode)
+        `guard`.makeGuardGold()
     }
     //スピードアップの処理
     func speedUp() {
@@ -128,6 +143,22 @@ class SMPlayerNode: SKSpriteNode {
         countDownHeart()
         SMNodeUtil.fadeRemoveNode(enegy)
         
+        //bgNode.color = UIColor.yellowColor()
+        //self.colorBlendFactor = 0.9
+        weak var stage: SMStage? = stageManager.currentStage
+        if stage != nil {
+            stage!.background.color = UIColor.redColor()
+            stage!.background.colorBlendFactor = 0.5
+            let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
+                weak var stagetmp: SMStage? = stageManager.currentStage
+                if stagetmp != nil {
+                    stagetmp!.background.colorBlendFactor = 0.0
+                }
+            })
+            let waitAction = SKAction.waitForDuration(0.5)
+            bgNode.runAction(SKAction.sequence([waitAction,custumAction]))
+        }
+            
         //やられた効果音再生
         bgNode.runAction(explodeSound)
         bgNode.runAction(explodeSound)

@@ -25,6 +25,7 @@ class SMEnemyFly: SMEnemyNode {
         self.hitpoint = 2
         self.diffence = 0
         self.score = 20
+        self.itemnum = 2
     }
     required override init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

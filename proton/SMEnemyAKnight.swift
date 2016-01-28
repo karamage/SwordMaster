@@ -22,12 +22,13 @@ class SMEnemyAKnight: SMEnemyNode {
         y = CGFloat(frameHeight - 120)
         let location = CGPoint(x:x, y:y)
         super.init(texture: texture, type: EnemyType.AKNIGHT, location: location, parentnode: enemysNode)
-        self.hitpoint = 20
+        self.hitpoint = 40
         if debugflg {
             self.hitpoint = 1
         }
-        self.diffence = 2
+        self.diffence = 4
         self.score = 100
+        self.itemnum = 5
     }
     required override init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

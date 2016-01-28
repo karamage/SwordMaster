@@ -12,6 +12,9 @@ import SpriteKit
 class SMEnemyNode: SKSpriteNode {
     //敵タイプ
     var type: EnemyType!
+    var inithitpoint = 0
+    var smokecount = 0
+    
     //耐久力
     var hitpoint: Int = 1
     //防御力
@@ -29,6 +32,9 @@ class SMEnemyNode: SKSpriteNode {
     
     //ボスかどうか
     var isBoss: Bool = false
+    
+    //アイテムの数
+    var itemnum = 1
     
     //初期化
     init(texture: SKTexture, type: EnemyType, location: CGPoint, parentnode:SKNode){
@@ -78,48 +84,62 @@ class SMEnemyNode: SKSpriteNode {
     }
     func makeEnegy(num: Int) {
         let tmpnum = num + (num * stageManager.clearNum) // クリアする度に難しくなる
+        weak var tmpself = self
         let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
-            //弾発射
-            let point = CGPoint(x: self.position.x , y: self.position.y)
-            for i in 0..<tmpnum {
-                let enegy = enegyFactory.create(point)
-                enegy.makeEnegy()
-                enegy.shotEnegyRandom()
-            }
+            let rand:CGFloat = CGFloat(arc4random_uniform(100))
+            let custumAction2 = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
+                //弾発射
+                let point = CGPoint(x: self.position.x , y: self.position.y)
+                for i in 0..<tmpnum {
+                    let enegy = enegyFactory.create(point)
+                    enegy.makeEnegy()
+                    enegy.shotEnegyRandom()
+                }
+            })
+            let waitAction2 = SKAction.waitForDuration(0.03 * Double(rand))
+            tmpself?.runAction(SKAction.sequence([waitAction2,custumAction2]))
         })
-        let waitAction = SKAction.waitForDuration(2.0)
+        let waitAction = SKAction.waitForDuration(1.5)
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([waitAction,custumAction])))
     }
     func makeEnegy2(interval: Double = 5.0) {
         //println("makeEnegy2()")
         let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
             //println("makeEnegy2() customAction")
-            var point = CGPoint(x: self.position.x , y: self.position.y)
-            var enegy = enegyFactory.create(point)
-            enegy.makeEnegy(10.0, den: 100.0)
-            //enegy.shotEnegyRandom()
-            enegy.shotEnegyPlayer()
-            var scale = SKAction.scaleBy(3.0, duration: 1.0)
-            enegy.runAction(scale)
-            SMNodeUtil.makeParticleNode(CGPoint(x:0,y:0), filename: "enegyParticle.sks", hide: false, node: enegy)
-            //光の演出を付ける
-            if #available(iOS 8.0, *) {
-                let light:SKLightNode = SKLightNode()
-                light.categoryBitMask = 1
-                light.falloff = 1
-                light.ambientColor = UIColor.whiteColor()
-                light.lightColor = UIColor(red: 1.0, green: 0.9, blue: 0.9, alpha: 0.9)
-                light.shadowColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
-                enegy.addChild(light)
-            } else {
-                // Fallback on earlier versions
-            }
+            let rand:CGFloat = CGFloat(arc4random_uniform(100))
+            let custumAction2 = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
+                var point = CGPoint(x: self.position.x , y: self.position.y)
+                var enegy = enegyFactory.create(point)
+                enegy.makeEnegy(10.0, den: 100.0)
+                //enegy.shotEnegyRandom()
+                enegy.shotEnegyPlayer()
+                var scale = SKAction.scaleBy(3.0, duration: 1.0)
+                enegy.runAction(scale)
+                SMNodeUtil.makeParticleNode(CGPoint(x:0,y:0), filename: "enegyParticle.sks", hide: false, node: enegy)
+                //光の演出を付ける
+                if #available(iOS 8.0, *) {
+                    let light:SKLightNode = SKLightNode()
+                    light.categoryBitMask = 1
+                    light.falloff = 1
+                    light.ambientColor = UIColor.whiteColor()
+                    light.lightColor = UIColor(red: 1.0, green: 0.9, blue: 0.9, alpha: 0.9)
+                    light.shadowColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
+                    enegy.addChild(light)
+                } else {
+                    // Fallback on earlier versions
+                }
+            })
+            let waitAction2 = SKAction.waitForDuration(0.03 * Double(rand))
+            bgNode.runAction(SKAction.sequence([waitAction2,custumAction2]))
         })
         let waitAction = SKAction.waitForDuration(interval)
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([waitAction,custumAction])))
     }
     //剣が当たった時の処理
     func hitSword(sword: SMSwordNode) {
+        if inithitpoint == 0 {
+            inithitpoint = hitpoint //初期HP
+        }
         let damage = sword.attack - diffence - (stageManager.clearNum) //周回するごとに難しくなる
         sword.attack = Int(Double(damage) * 0.8)
         sword.hitpoint--
@@ -155,6 +175,7 @@ class SMEnemyNode: SKSpriteNode {
             bgNode.runAction(comboSound)
             //comboLabel.alpha = 1.0
             if comboLabel.alpha == 0.0 {
+                
                 let fadeInAction = SKAction.fadeInWithDuration(0.5)
                 let fadeInAction2 = SKAction.fadeAlphaTo(0.3, duration: 0.5)
                 let fadeOutAction = SKAction.fadeOutWithDuration(0.5)
@@ -167,9 +188,16 @@ class SMEnemyNode: SKSpriteNode {
                 let move2 = SKAction.moveToX(self.scene!.frame.width - 200.0, duration: 0.5)
                 comboLabel.runAction(SKAction.sequence([scale1, move1,move2, scale2]))
                 bgNode.runAction(koredeSound)
-                //killAimNode.runAction(kiruSound)
-                //killAimNode.runAction(kiruSound)
-                //killAimNode.runAction(kiruSound)
+                
+                enemysNode.speed = 0.0
+                enemysNode.scene!.physicsWorld.gravity = CGVector(dx:0.0, dy:0.50)
+                let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
+                    enemysNode.speed = 1.0
+                    enemysNode.scene!.physicsWorld.gravity = CGVector(dx:0.0, dy:-0.10)
+                })
+                let waitAction = SKAction.waitForDuration(0.5)
+                bgNode.runAction(SKAction.sequence([waitAction,custumAction]))
+                
                 let killAnimAction = SKAction.animateWithTextures(killAim, timePerFrame: 0.1, resize:false, restore:true)
                 killAimNode.runAction(killAnimAction)
                 killAimNode.runAction(SKAction.sequence([fadeInAction2,fadeOutAction]) )
@@ -208,6 +236,19 @@ class SMEnemyNode: SKSpriteNode {
             hit.alpha = 0.8
             let fadeout = SKAction.fadeOutWithDuration(1.0)
             hit.runAction(fadeout)
+            
+            var smokecountmax = 3
+            if hitpoint <= (inithitpoint/2) {
+                if hitpoint <= (inithitpoint/4) {
+                    smokecountmax = 8
+                }
+                
+                if smokecount++ <= smokecountmax {
+                    let rand:CGFloat = CGFloat(arc4random_uniform(10))
+                    let randY:CGFloat = CGFloat(arc4random_uniform(10))
+                    SMNodeUtil.makeParticleNode(CGPoint(x: CGFloat(rand), y: CGFloat(randY)), filename: "smoke.sks", hide: false, node: self)
+                }
+            }
         }
     }
     //敵が死んだ時の処理
@@ -216,13 +257,6 @@ class SMEnemyNode: SKSpriteNode {
         SMNodeUtil.makeParticleNode(self.position, filename:"hitParticle.sks", node:bgNode)
         self.physicsBody?.categoryBitMask = ColliderType.None
         self.removeAllActions()
-        
-        //ボスの場合は大量のアイテム
-        var itemnum = 1
-        if isBoss {
-            //println("boss dead")
-            itemnum = 10
-        }
         
         var itempos = self.position
         for i in 1...itemnum {
@@ -262,5 +296,16 @@ class SMEnemyNode: SKSpriteNode {
     //デイニシャライザ
     deinit {
         //println("enemy deinit")
+    }
+    
+    //x座標をプレイヤーに追尾する
+    func moveXToPlayer() {
+        weak var tmpself = self
+        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
+            let moveX = SKAction.moveToX(player.position.x, duration: 2.0)
+            tmpself!.runAction(SKAction.sequence([moveX]))
+        })
+        let waitAction = SKAction.waitForDuration(5.0)
+        self.runAction(SKAction.repeatActionForever(SKAction.sequence([waitAction,custumAction])))
     }
 }
