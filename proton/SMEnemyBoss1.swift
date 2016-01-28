@@ -56,5 +56,7 @@ class SMEnemyBoss1: SMEnemyNode {
         let guardpos = CGPoint(x:-10, y:-80)
         `guard` = SMGuardNode(texture: guardTexture, location: guardpos, parentnode: self)
         `guard`.makeGuard()
+        
+        attackPlayer(20.0)
     }
 }

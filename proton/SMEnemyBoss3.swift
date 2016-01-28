@@ -52,5 +52,7 @@ class SMEnemyBoss3: SMEnemyNode {
         `guard` = SMGuardNode(texture: guardTexture, location: guardpos, parentnode: self)
         `guard`.makeGuard()
         `guard`.hitpoint = 160
+        
+        attackPlayer(20.0)
     }
 }

@@ -305,13 +305,30 @@ class SMEnemyNode: SKSpriteNode {
     }
     
     //x座標をプレイヤーに追尾する
-    func moveXToPlayer() {
+    func moveXToPlayer(duration:Double = 2.0) {
         weak var tmpself = self
         let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
-            let moveX = SKAction.moveToX(player.position.x, duration: 2.0)
+            let moveX = SKAction.moveToX(player.position.x, duration: duration)
             tmpself!.runAction(SKAction.sequence([moveX]))
         })
-        let waitAction = SKAction.waitForDuration(5.0)
+        let waitAction = SKAction.waitForDuration(1.0 + duration)
+        self.runAction(SKAction.repeatActionForever(SKAction.sequence([waitAction,custumAction])))
+    }
+    
+    func attackPlayer(duration: Double) {
+        weak var tmpself = self
+        var randX = arc4random_uniform(140)
+        var fx:CGFloat = CGFloat(randX)
+        if (randX % 2) == 0 {
+            fx = fx * CGFloat(-1)
+        }
+        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
+            let move = SKAction.moveTo(player.position, duration: 3.0)
+            let removeX = SKAction.moveByX(fx, y: frameHeight - 120, duration: 1.0)
+            //let removeX = SKAction.moveTo(CGPoint(x:100 + fx, y:frameHeight - 120), duration: 1.0)
+            tmpself!.runAction(SKAction.sequence([move,removeX]))
+        })
+        let waitAction = SKAction.waitForDuration(duration)
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([waitAction,custumAction])))
     }
 }
