@@ -945,6 +945,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         fbButton.zPosition = 100
         self.addChild(fbButton)
         
+        //パーティクル
+        let particlet = SKEmitterNode(fileNamed: "shopButton.sks")
+        particlet!.zPosition = -10
+        particlet!.position = CGPoint(x: -10, y: -20)
+        twButton.addChild(particlet!)
+        let particlef = SKEmitterNode(fileNamed: "shopButton.sks")
+        particlef!.zPosition = -10
+        particlef!.position = CGPoint(x: -10, y: -20)
+        fbButton.addChild(particlef!)
+        
         //ラベル表示
         gameoverLabel.text = "GAMEOVER"
         gameoverLabel.fontSize = 30
