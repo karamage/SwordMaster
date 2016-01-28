@@ -14,18 +14,24 @@ import StoreKit
 
 class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     //var audioPlayer:AVAudioPlayer?
+    let itunesURL:String = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1029281903"
     
     //ショップが起動できる状態かどうか？
     var isShopEnabled = false
     weak var shopDelegate: GameShopScene? = nil
+    static let PLAYCOUNT_UDKEY = "playcount"
     
     // 課金アイテム
     let productID1 = "com.karamage.proton.swordAdd" //剣＋２
     static let SWORDS_UDKEY = "swords"
     static let ADD_SWORDS_PLUS2_UDKEY = "addswordsplus2"
     let products = NSMutableArray()
+    let uds = NSUserDefaults.standardUserDefaults()
 
     @IBOutlet weak var adbanner: ADBannerView!
+    override func viewDidAppear(animated: Bool) {
+        openReview()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         let ud = NSUserDefaults.standardUserDefaults()
@@ -241,5 +247,42 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
         self.view.drawViewHierarchyInRect(view.bounds, afterScreenUpdates: true)
         screenShot = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+    }
+    
+    func openReview() {
+        let playcount = uds.integerForKey(GameViewController.PLAYCOUNT_UDKEY)
+        if playcount == 0 {
+            return
+        }
+        if !uds.boolForKey("reviewed") {
+            if #available(iOS 8.0, *) {
+                let alertController = UIAlertController(
+                    title: "ゆうすけからのおねがい",
+                    message: "いつもプレイありがとうございます。よろしければレビューを書いて頂けませんか？今後の開発の参考にいたします",
+                    preferredStyle: .Alert)
+                let reviewAction = UIAlertAction(title: "レビューする", style: .Default) {
+                    action in
+                    let url = NSURL(string: self.itunesURL)
+                    UIApplication.sharedApplication().openURL(url!)
+                    self.uds.setObject(true, forKey: "reviewed")
+                }
+                let yetAction = UIAlertAction(title: "あとでレビューする", style: .Default) {
+                    action in
+                    self.uds.setObject(false, forKey: "reviewed")
+                }
+                let neverAction = UIAlertAction(title: "今後レビューしない", style: .Cancel) {
+                    action in
+                    self.uds.setObject(true, forKey: "reviewed")
+                }
+                
+                alertController.addAction(reviewAction)
+                alertController.addAction(yetAction)
+                alertController.addAction(neverAction)
+                presentViewController(alertController, animated: true, completion: nil)
+            } else {
+                // Fallback on earlier versions
+            }
+            
+        }
     }
 }

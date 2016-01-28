@@ -919,10 +919,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //フラグをtrueにする
         gameoverflg = true
         
+        //NSUserDefaultsのインスタンスを生成
+        let defaults = NSUserDefaults.standardUserDefaults()
+        var playcount = defaults.integerForKey(GameViewController.PLAYCOUNT_UDKEY)
+        playcount++
+        defaults.setValue(playcount, forKey: GameViewController.PLAYCOUNT_UDKEY)
+        
         //ハイスコアの記録
         if totalScore > hiScore {
-            //NSUserDefaultsのインスタンスを生成
-            let defaults = NSUserDefaults.standardUserDefaults()
             
             //"NAME"というキーで配列namesを保存
             defaults.setObject(totalScore, forKey:"hiScore")

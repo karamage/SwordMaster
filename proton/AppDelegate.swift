@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         let ud = NSUserDefaults.standardUserDefaults()
+        ud.registerDefaults([GameViewController.PLAYCOUNT_UDKEY: "0"])
         ud.registerDefaults([GameViewController.SWORDS_UDKEY: "3"])
         ud.registerDefaults([GameViewController.ADD_SWORDS_PLUS2_UDKEY: "0"])
         return true
