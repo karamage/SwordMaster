@@ -241,7 +241,10 @@ class SMEnemyNode: SKSpriteNode {
             
             var smokecountmax = 3
             if hitpoint <= (inithitpoint/2) {
+                self.color = UIColor.redColor()
+                self.colorBlendFactor = 0.2
                 if hitpoint <= (inithitpoint/4) {
+                    self.colorBlendFactor = 0.5
                     smokecountmax = 8
                 }
                 
