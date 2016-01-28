@@ -100,6 +100,7 @@
 		93D1D7CB1B57558B000EC266 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7C91B57558B000EC266 /* spark.png */; };
 		93D1D7CD1B5782B8000EC266 /* SMEnegyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7CC1B5782B8000EC266 /* SMEnegyNode.swift */; };
 		93D1D7CF1B578526000EC266 /* SMEnegyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7CE1B578526000EC266 /* SMEnegyFactory.swift */; };
+		93D2C1F61C59D39B00A284BD /* scrollParticle1_2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93D2C1F51C59D39B00A284BD /* scrollParticle1_2.sks */; };
 		93D8CD1D1B679E470052BE67 /* short_song_minami_kirakira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D8CD1C1B679E470052BE67 /* short_song_minami_kirakira.mp3 */; };
 		93D8CD441B67A8C80052BE67 /* kakin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D8CD421B67A8C80052BE67 /* kakin.mp3 */; };
 		93D8CD451B67A8C80052BE67 /* explode2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D8CD431B67A8C80052BE67 /* explode2.mp3 */; };
@@ -227,6 +228,7 @@
 		93D1D7C91B57558B000EC266 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		93D1D7CC1B5782B8000EC266 /* SMEnegyNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnegyNode.swift; sourceTree = "<group>"; };
 		93D1D7CE1B578526000EC266 /* SMEnegyFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnegyFactory.swift; sourceTree = "<group>"; };
+		93D2C1F51C59D39B00A284BD /* scrollParticle1_2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = scrollParticle1_2.sks; sourceTree = "<group>"; };
 		93D8CD1C1B679E470052BE67 /* short_song_minami_kirakira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = short_song_minami_kirakira.mp3; sourceTree = "<group>"; };
 		93D8CD421B67A8C80052BE67 /* kakin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kakin.mp3; sourceTree = "<group>"; };
 		93D8CD431B67A8C80052BE67 /* explode2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explode2.mp3; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				93DCA4281C4399DF005E3C0E /* shopButton.sks */,
 				930BE6D01C5736BB00C6C393 /* smoke.sks */,
 				930BE6D21C57385500C6C393 /* item.sks */,
+				93D2C1F51C59D39B00A284BD /* scrollParticle1_2.sks */,
 			);
 			path = sks;
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 				9349B2BD1C2253DE009930FE /* hit013.png in Resources */,
 				932C91691C37B8A600313494 /* stage3boss.mp3 in Resources */,
 				93A46C061B8AFFFE002F6127 /* choroimondane_01.mp3 in Resources */,
+				93D2C1F61C59D39B00A284BD /* scrollParticle1_2.sks in Resources */,
 				93D8CD441B67A8C80052BE67 /* kakin.mp3 in Resources */,
 				93D8CD4B1B69B9B50052BE67 /* bgm_maoudamashii_neorock33.mp3 in Resources */,
 				93E9A06D1B4D4D9300B44478 /* fade.mp3 in Resources */,
