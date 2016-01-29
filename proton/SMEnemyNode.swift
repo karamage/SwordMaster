@@ -36,6 +36,9 @@ class SMEnemyNode: SKSpriteNode {
     //アイテムの数
     var itemnum = 1
     
+    //たいあたり中かどうか
+    var isAttack = false
+    
     //初期化
     init(texture: SKTexture, type: EnemyType, location: CGPoint, parentnode:SKNode){
         self.type = type
@@ -88,6 +91,10 @@ class SMEnemyNode: SKSpriteNode {
         let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
             let rand:CGFloat = CGFloat(arc4random_uniform(100))
             let custumAction2 = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
+                if tmpself!.isAttack {
+                    //たいあたり中は弾を出さないようにする
+                    return
+                }
                 //弾発射
                 let point = CGPoint(x: self.position.x , y: self.position.y)
                 for i in 0..<tmpnum {
@@ -173,6 +180,8 @@ class SMEnemyNode: SKSpriteNode {
         if combo > 1 {
             comboLabel.text = "\(combo) Combo!"
             bgNode.runAction(comboSound)
+            bgNode.runAction(comboSound)
+            bgNode.runAction(comboSound)
             //comboLabel.alpha = 1.0
             if comboLabel.alpha == 0.0 {
                 
@@ -183,19 +192,19 @@ class SMEnemyNode: SKSpriteNode {
                 comboLabel.runAction(fadeInAction)
                 //let x = comboLabel.position.x
                 let scale1 = SKAction.scaleTo(1.0, duration: 0.0)
-                let scale2 = SKAction.scaleTo(4.0, duration: 1.0)
+                let scale2 = SKAction.scaleTo(3.0, duration: 2.0)
                 let move1 = SKAction.moveToX(self.scene!.frame.width + 10.0, duration: 0.0)
                 let move2 = SKAction.moveToX(self.scene!.frame.width - 200.0, duration: 0.5)
                 comboLabel.runAction(SKAction.sequence([scale1, move1,move2, scale2]))
                 bgNode.runAction(koredeSound)
                 
-                enemysNode.speed = 0.0
-                enemysNode.scene!.physicsWorld.gravity = CGVector(dx:0.0, dy:0.50)
+                enemysNode.speed = 0.1
+                enemysNode.scene!.physicsWorld.gravity = CGVector(dx:0.0, dy:0.40)
                 let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
                     enemysNode.speed = 1.0
                     enemysNode.scene!.physicsWorld.gravity = CGVector(dx:0.0, dy:-0.10)
                 })
-                let waitAction = SKAction.waitForDuration(0.5)
+                let waitAction = SKAction.waitForDuration(0.7)
                 bgNode.runAction(SKAction.sequence([waitAction,custumAction]))
                 
                 let killAnimAction = SKAction.animateWithTextures(killAim, timePerFrame: 0.1, resize:false, restore:true)
@@ -239,7 +248,10 @@ class SMEnemyNode: SKSpriteNode {
             
             var smokecountmax = 3
             if hitpoint <= (inithitpoint/2) {
+                self.color = UIColor.redColor()
+                self.colorBlendFactor = 0.2
                 if hitpoint <= (inithitpoint/4) {
+                    self.colorBlendFactor = 0.5
                     smokecountmax = 8
                 }
                 
@@ -255,6 +267,7 @@ class SMEnemyNode: SKSpriteNode {
     func dead() {
         SMNodeUtil.makeParticleNode(self.position, filename:"deadParticle.sks", node:bgNode)
         SMNodeUtil.makeParticleNode(self.position, filename:"hitParticle.sks", node:bgNode)
+        SMNodeUtil.makeParticleNode(self.position, filename:"shopButton.sks", node:bgNode)
         self.physicsBody?.categoryBitMask = ColliderType.None
         self.removeAllActions()
         
@@ -299,13 +312,34 @@ class SMEnemyNode: SKSpriteNode {
     }
     
     //x座標をプレイヤーに追尾する
-    func moveXToPlayer() {
+    func moveXToPlayer(duration:Double = 2.0) {
         weak var tmpself = self
         let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
-            let moveX = SKAction.moveToX(player.position.x, duration: 2.0)
+            let moveX = SKAction.moveToX(player.position.x, duration: duration)
             tmpself!.runAction(SKAction.sequence([moveX]))
         })
-        let waitAction = SKAction.waitForDuration(5.0)
+        let waitAction = SKAction.waitForDuration(1.0 + duration)
+        self.runAction(SKAction.repeatActionForever(SKAction.sequence([waitAction,custumAction])))
+    }
+    
+    func attackPlayer(duration: Double) {
+        weak var tmpself = self
+        var randX = arc4random_uniform(140)
+        var fx:CGFloat = CGFloat(randX)
+        if (randX % 2) == 0 {
+            fx = fx * CGFloat(-1)
+        }
+        let custumAction = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
+            tmpself!.isAttack = true
+            let move = SKAction.moveTo(player.position, duration: 3.0)
+            let removeX = SKAction.moveByX(fx, y: frameHeight - 120, duration: 1.0)
+            //let removeX = SKAction.moveTo(CGPoint(x:100 + fx, y:frameHeight - 120), duration: 1.0)
+            let custumAction2 = SKAction.customActionWithDuration(0.0, actionBlock: { (node: SKNode, elapsedTime: CGFloat) -> Void in
+                tmpself!.isAttack = false
+            })
+            tmpself!.runAction(SKAction.sequence([move,removeX,custumAction2]))
+        })
+        let waitAction = SKAction.waitForDuration(duration)
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([waitAction,custumAction])))
     }
 }

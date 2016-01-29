@@ -115,6 +115,12 @@ class SMStage: SMEnemyGroupDelegate {
         if file == "scrollParticle4.sks" {
             particle!.position = CGPoint(x: CGFloat(frameWidth / 2), y: CGFloat(frameHeight / 2 + 100))
         } else {
+            if file == "scrollParticle.sks" {
+                let particle2 = SKEmitterNode(fileNamed: "scrollParticle1_2.sks")
+                particle2!.zPosition = 0.0
+                bgNode.addChild(particle2!)
+                particle2!.position = CGPoint(x: CGFloat(frameWidth / 2), y: CGFloat(frameHeight))
+            }
             particle!.position = CGPoint(x: CGFloat(frameWidth / 2), y: CGFloat(frameHeight))
         }
     }

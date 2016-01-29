@@ -10,6 +10,7 @@
 
 import SpriteKit
 import CoreMotion
+import Social
 
 //デバッグモード
 var debugflg: Bool = false
@@ -18,6 +19,8 @@ var debugflg: Bool = false
 var player: SMPlayerNode!
 
 var combo: Int = 0 //コンボ数
+
+var screenShot: UIImage? = nil
 
 //ステータス欄
 var statusNode: SKNode = SKNode()
@@ -141,6 +144,8 @@ extension SKScene{
 }
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var vc: GameViewController? = nil
+    //Facebook投稿
+    var myComposeView : SLComposeViewController!
     //モーション管理
     var motionManager: CMMotionManager!
     //タッチ開始ポイント
@@ -362,12 +367,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //コンボラベルの表示
         comboLabel.text = "\(combo) Combo!"
-        comboLabel.fontSize = 30
+        comboLabel.fontSize = 36
         comboLabel.alpha = 0.0
-        comboLabel.fontColor = UIColor(red: 1.0, green: 0.5, blue: 0.5, alpha: 1.0)
+        comboLabel.fontColor = UIColor(red: 1.0, green: 0.7, blue: 0.5, alpha: 1.0)
+        comboLabel.blendMode = SKBlendMode.Add
         comboLabel.zPosition = 1000
         self.addChild(comboLabel)
-        comboLabel.position = CGPoint(x: self.frame.size.width - 150, y: self.frame.size.height - 100)
+        comboLabel.position = CGPoint(x: self.frame.size.width - 150, y: self.frame.size.height - 250)
         
         //背景管理用ノード
         bgNode.removeAllActions()
@@ -495,13 +501,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // share画面で表示するメッセージを格納
         var message = String()
-        //if social == "twitter" {
-            message = "score:" + String(totalScore) + " #SMYuusuke"
-        /*
-        } else {
-            message = "Facebook Share"
-        }
-*/
+        message = "score:" + String(totalScore) + " #SMYuusuke"
         
         // userinfoに情報(socialの種類とmessage)を格納
         let userInfo = ["social": social.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!,"message": message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!]
@@ -905,6 +905,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //ゲームオーバーの処理
     func gameover() {
+        //SNS投稿用スクショ撮影
+        self.vc!.setScreenShot()
         // iAd(バナー)の自動表示
         //self.vc!.canDisplayBannerAds = true
         self.vc!.adbanner.hidden = false
@@ -917,17 +919,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //フラグをtrueにする
         gameoverflg = true
         
+        //NSUserDefaultsのインスタンスを生成
+        let defaults = NSUserDefaults.standardUserDefaults()
+        var playcount = defaults.integerForKey(GameViewController.PLAYCOUNT_UDKEY)
+        playcount++
+        defaults.setValue(playcount, forKey: GameViewController.PLAYCOUNT_UDKEY)
+        
         //ハイスコアの記録
         if totalScore > hiScore {
-            //NSUserDefaultsのインスタンスを生成
-            let defaults = NSUserDefaults.standardUserDefaults()
-            
             //"NAME"というキーで配列namesを保存
             defaults.setObject(totalScore, forKey:"hiScore")
-            
-            // シンクロを入れないとうまく動作しないときがあります
-            defaults.synchronize()
         }
+        // シンクロを入れないとうまく動作しないときがあります
+        defaults.synchronize()
         
         //敵の停止
         enemysNode.speed = 0.0
@@ -943,6 +947,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         fbButton.name = "facebook_button"
         fbButton.zPosition = 100
         self.addChild(fbButton)
+        
+        //パーティクル
+        let particlet = SKEmitterNode(fileNamed: "shopButton.sks")
+        particlet!.zPosition = -10
+        particlet!.position = CGPoint(x: -10, y: -20)
+        twButton.addChild(particlet!)
+        let particlef = SKEmitterNode(fileNamed: "shopButton.sks")
+        particlef!.zPosition = -10
+        particlef!.position = CGPoint(x: -10, y: -20)
+        fbButton.addChild(particlef!)
         
         //ラベル表示
         gameoverLabel.text = "GAMEOVER"
@@ -962,6 +976,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         returnLabel.zPosition = 1000
         self.addChild(returnLabel)
         returnLabel.position = CGPoint(x: (self.frame.size.width/2), y: self.frame.size.height/2 - 100)
+        
+        //postToFacebook()
+        if !isSimulator() {
+            //device
+            socialButtonTapped("facebook")
+        }
+    }
+    func isSimulator() -> Bool {
+        return TARGET_OS_SIMULATOR != 0
     }
     
     //パーティクル発生
@@ -976,5 +999,4 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func fadeRemoveNode(removenode: SKNode!) {
         SMNodeUtil.fadeRemoveNode(removenode)
     }
-    
 }

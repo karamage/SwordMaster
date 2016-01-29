@@ -60,14 +60,13 @@ class SMStageFactory {
             enemyArray.append(enemy!)
         }
         /*
-        let enemy = enemyFactory.create(EnemyType.KNIGHT)
-        //let enemy = enemyFactory.create(EnemyType.LION)
         let enemy = enemyFactory.create(EnemyType.AKNIGHT)
         enemyArray.append(enemy!)
-*/
+        enemyGroup = SMEnemyGroup(enemys:enemyArray, type:EnemyGroupType.ALLDEAD)
+        */
+        
         //全滅させるまで次に進めない
         enemyGroup = SMEnemyGroup(enemys:enemyArray, type:EnemyGroupType.INTERVAL)
-        //enemyGroup.interval = 20.0
         
         //最初、敵CUBEが3匹
         for i in 0..<4 {

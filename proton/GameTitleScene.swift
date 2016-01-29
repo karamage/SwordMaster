@@ -188,6 +188,7 @@ class GameTitleScene: SKScene {
         
         // iAd(バナー)の自動表示
         //self.vc!.canDisplayBannerAds = true
+        
     }
     //タッチした時に呼び出される
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
