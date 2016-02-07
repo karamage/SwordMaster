@@ -110,6 +110,7 @@
 		93DCA4251C40F772005E3C0E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DCA4241C40F772005E3C0E /* StoreKit.framework */; };
 		93DCA4271C438CBA005E3C0E /* GameShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DCA4261C438CBA005E3C0E /* GameShopScene.swift */; };
 		93DCA4291C4399DF005E3C0E /* shopButton.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93DCA4281C4399DF005E3C0E /* shopButton.sks */; };
+		93E6C0351C6712F800B82F7B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93E6C0341C6712F800B82F7B /* Images.xcassets */; };
 		93E9A0681B4D228A00B44478 /* magicParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A0671B4D228A00B44478 /* magicParticle.sks */; };
 		93E9A06D1B4D4D9300B44478 /* fade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A0691B4D4D9300B44478 /* fade.mp3 */; };
 		93E9A06E1B4D4D9300B44478 /* shot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A06A1B4D4D9300B44478 /* shot.mp3 */; };
@@ -352,6 +353,7 @@
 		93DCA4241C40F772005E3C0E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		93DCA4261C438CBA005E3C0E /* GameShopScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameShopScene.swift; sourceTree = "<group>"; };
 		93DCA4281C4399DF005E3C0E /* shopButton.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = shopButton.sks; sourceTree = "<group>"; };
+		93E6C0341C6712F800B82F7B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "proton-iPad/Images.xcassets"; sourceTree = "<group>"; };
 		93E9A0671B4D228A00B44478 /* magicParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = magicParticle.sks; sourceTree = "<group>"; };
 		93E9A0691B4D4D9300B44478 /* fade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fade.mp3; sourceTree = "<group>"; };
 		93E9A06A1B4D4D9300B44478 /* shot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shot.mp3; sourceTree = "<group>"; };
@@ -501,6 +503,7 @@
 		93EF1AA11B4BC01800B1FC93 = {
 			isa = PBXGroup;
 			children = (
+				93E6C0341C6712F800B82F7B /* Images.xcassets */,
 				93ECCCAE1C66FA680004DE8C /* Resources-iPad */,
 				93DCA4241C40F772005E3C0E /* StoreKit.framework */,
 				93EF1AAB1B4BC01800B1FC93 /* Products */,
@@ -672,6 +675,9 @@
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Masaaki Kakimoto";
 				TargetAttributes = {
+					93ECCC341C66FA680004DE8C = {
+						DevelopmentTeam = M63PA5KAC8;
+					};
 					93EF1AA91B4BC01800B1FC93 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = M63PA5KAC8;
@@ -736,6 +742,7 @@
 				93ECCC7B1C66FA680004DE8C /* shot.mp3 in Resources */,
 				93ECCC7C1C66FA680004DE8C /* magicParticle.sks in Resources */,
 				93ECCC7D1C66FA680004DE8C /* explode2.mp3 in Resources */,
+				93E6C0351C6712F800B82F7B /* Images.xcassets in Resources */,
 				93ECCC7E1C66FA680004DE8C /* hitParticle.sks in Resources */,
 				93ECCC7F1C66FA680004DE8C /* sound.mp3 in Resources */,
 				93ECCC801C66FA680004DE8C /* sword.mp3 in Resources */,
