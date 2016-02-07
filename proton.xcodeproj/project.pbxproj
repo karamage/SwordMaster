@@ -21,6 +21,14 @@
 		932C916E1C37BBC500313494 /* scrollParticle4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 932C916C1C37BBC500313494 /* scrollParticle4.sks */; };
 		932C916F1C37BBC500313494 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 932C916D1C37BBC500313494 /* spark.png */; };
 		932C91711C37BFEE00313494 /* SMEnemyBoss4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932C91701C37BFEE00313494 /* SMEnemyBoss4.swift */; };
+		9334DAAD1C671E4C00272656 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 9334DAAC1C671E4C00272656 /* Icon-72.png */; };
+		9334DAAE1C671E4C00272656 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 9334DAAC1C671E4C00272656 /* Icon-72.png */; };
+		9334DAB01C671E5A00272656 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9334DAAF1C671E5A00272656 /* Icon-72@2x.png */; };
+		9334DAB11C671E5A00272656 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9334DAAF1C671E5A00272656 /* Icon-72@2x.png */; };
+		9334DAB31C671E6B00272656 /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 9334DAB21C671E6B00272656 /* Icon-76.png */; };
+		9334DAB41C671E6B00272656 /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 9334DAB21C671E6B00272656 /* Icon-76.png */; };
+		9334DAB61C671E7800272656 /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9334DAB51C671E7800272656 /* Icon-76@2x.png */; };
+		9334DAB71C671E7800272656 /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9334DAB51C671E7800272656 /* Icon-76@2x.png */; };
 		9349B2BD1C2253DE009930FE /* hit013.png in Resources */ = {isa = PBXBuildFile; fileRef = 9349B2BC1C2253DE009930FE /* hit013.png */; };
 		935665021B85C19500EAE798 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935665011B85C19500EAE798 /* Social.framework */; };
 		9356C1DC1B4D00410073EBF8 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DA1B4D00410073EBF8 /* MyParticle.sks */; };
@@ -265,6 +273,10 @@
 		932C916C1C37BBC500313494 /* scrollParticle4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = scrollParticle4.sks; sourceTree = "<group>"; };
 		932C916D1C37BBC500313494 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		932C91701C37BFEE00313494 /* SMEnemyBoss4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyBoss4.swift; sourceTree = "<group>"; };
+		9334DAAC1C671E4C00272656 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		9334DAAF1C671E5A00272656 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		9334DAB21C671E6B00272656 /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
+		9334DAB51C671E7800272656 /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@2x.png"; sourceTree = "<group>"; };
 		9349B2BC1C2253DE009930FE /* hit013.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hit013.png; sourceTree = "<group>"; };
 		935665011B85C19500EAE798 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		9356C1DA1B4D00410073EBF8 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
@@ -495,6 +507,11 @@
 		93ECCCAE1C66FA680004DE8C /* Resources-iPad */ = {
 			isa = PBXGroup;
 			children = (
+				93E6C0341C6712F800B82F7B /* Images.xcassets */,
+				9334DAAC1C671E4C00272656 /* Icon-72.png */,
+				9334DAAF1C671E5A00272656 /* Icon-72@2x.png */,
+				9334DAB21C671E6B00272656 /* Icon-76.png */,
+				9334DAB51C671E7800272656 /* Icon-76@2x.png */,
 				93ECCCB01C66FA6A0004DE8C /* LaunchScreen.xib */,
 			);
 			name = "Resources-iPad";
@@ -503,7 +520,6 @@
 		93EF1AA11B4BC01800B1FC93 = {
 			isa = PBXGroup;
 			children = (
-				93E6C0341C6712F800B82F7B /* Images.xcassets */,
 				93ECCCAE1C66FA680004DE8C /* Resources-iPad */,
 				93DCA4241C40F772005E3C0E /* StoreKit.framework */,
 				93EF1AAB1B4BC01800B1FC93 /* Products */,
@@ -723,6 +739,7 @@
 				93ECCC681C66FA680004DE8C /* hit.mp3 in Resources */,
 				93ECCC691C66FA680004DE8C /* magic_circle.mp3 in Resources */,
 				93ECCC6A1C66FA680004DE8C /* explode.mp3 in Resources */,
+				9334DAB11C671E5A00272656 /* Icon-72@2x.png in Resources */,
 				93ECCC6B1C66FA680004DE8C /* scrollParticle.sks in Resources */,
 				93ECCC6C1C66FA680004DE8C /* tameParticle.sks in Resources */,
 				93ECCC6D1C66FA680004DE8C /* sokoda_01.mp3 in Resources */,
@@ -734,6 +751,7 @@
 				93ECCC731C66FA680004DE8C /* mataaeruyone_01.mp3 in Resources */,
 				93ECCC741C66FA680004DE8C /* bgm_stage3.mp3 in Resources */,
 				93ECCC751C66FA680004DE8C /* konomamaja_01.mp3 in Resources */,
+				9334DAB41C671E6B00272656 /* Icon-76.png in Resources */,
 				93ECCC771C66FA680004DE8C /* playerParticle.sks in Resources */,
 				93ECCC781C66FA680004DE8C /* ei_01.mp3 in Resources */,
 				93ECCC791C66FA680004DE8C /* stage4boss.mp3 in Resources */,
@@ -770,6 +788,7 @@
 				93ECCC961C66FA680004DE8C /* nagarebosi.mp3 in Resources */,
 				93ECCC971C66FA680004DE8C /* combo_01.mp3 in Resources */,
 				93ECCC981C66FA680004DE8C /* hit013.png in Resources */,
+				9334DAB71C671E7800272656 /* Icon-76@2x.png in Resources */,
 				93ECCC991C66FA680004DE8C /* stage3boss.mp3 in Resources */,
 				93ECCC9A1C66FA680004DE8C /* choroimondane_01.mp3 in Resources */,
 				93ECCC9B1C66FA680004DE8C /* scrollParticle1_2.sks in Resources */,
@@ -779,6 +798,7 @@
 				93ECCC9F1C66FA680004DE8C /* stage4.mp3 in Resources */,
 				93ECCCA01C66FA680004DE8C /* choroichoroi_01.mp3 in Resources */,
 				93ECCCA11C66FA680004DE8C /* kiru.mp3 in Resources */,
+				9334DAAE1C671E4C00272656 /* Icon-72.png in Resources */,
 				93ECCCA21C66FA680004DE8C /* korededouda_01.mp3 in Resources */,
 				93ECCCA31C66FA680004DE8C /* scrollParticle2.sks in Resources */,
 				93ECCCA41C66FA680004DE8C /* motteatosukoshidesu_01.mp3 in Resources */,
@@ -820,6 +840,7 @@
 				93D8CD451B67A8C80052BE67 /* explode2.mp3 in Resources */,
 				937056DC1B4FB750009BBAC2 /* hitParticle.sks in Resources */,
 				93E9A0701B4D4D9300B44478 /* sound.mp3 in Resources */,
+				9334DAAD1C671E4C00272656 /* Icon-72.png in Resources */,
 				93E9A06F1B4D4D9300B44478 /* sword.mp3 in Resources */,
 				93A46C041B8AFFFE002F6127 /* aha_01.mp3 in Resources */,
 				9380AB521B78DFB20052274E /* ganbarimasu_01.mp3 in Resources */,
@@ -835,9 +856,11 @@
 				937056CC1B4F63A0009BBAC2 /* sparkParticle.sks in Resources */,
 				93DCA4291C4399DF005E3C0E /* shopButton.sks in Resources */,
 				93D8CD1D1B679E470052BE67 /* short_song_minami_kirakira.mp3 in Resources */,
+				9334DAB01C671E5A00272656 /* Icon-72@2x.png in Resources */,
 				93EF1AB91B4BC01800B1FC93 /* Main.storyboard in Resources */,
 				93A46C081B8AFFFE002F6127 /* ehehe_01.mp3 in Resources */,
 				9356C1DC1B4D00410073EBF8 /* MyParticle.sks in Resources */,
+				9334DAB61C671E7800272656 /* Icon-76@2x.png in Resources */,
 				930BE6D11C5736BB00C6C393 /* smoke.sks in Resources */,
 				93A46BF81B8AFFFE002F6127 /* ita_01.mp3 in Resources */,
 				932C916E1C37BBC500313494 /* scrollParticle4.sks in Resources */,
@@ -849,6 +872,7 @@
 				93A46C061B8AFFFE002F6127 /* choroimondane_01.mp3 in Resources */,
 				93D2C1F61C59D39B00A284BD /* scrollParticle1_2.sks in Resources */,
 				93D8CD441B67A8C80052BE67 /* kakin.mp3 in Resources */,
+				9334DAB31C671E6B00272656 /* Icon-76.png in Resources */,
 				93D8CD4B1B69B9B50052BE67 /* bgm_maoudamashii_neorock33.mp3 in Resources */,
 				93E9A06D1B4D4D9300B44478 /* fade.mp3 in Resources */,
 				932C916B1C37B8A600313494 /* stage4.mp3 in Resources */,
@@ -1029,10 +1053,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "proton copy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "proton-iPad";
-				PROVISIONING_PROFILE = "0f1acfb6-4a7b-4664-9169-05da70bb6696";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -1045,10 +1069,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "proton copy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "proton-iPad";
-				PROVISIONING_PROFILE = "0f1acfb6-4a7b-4664-9169-05da70bb6696";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
@@ -1145,7 +1169,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6a058ab1-3019-4136-aacd-759eecc94b0b";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1161,7 +1185,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6a058ab1-3019-4136-aacd-759eecc94b0b";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
