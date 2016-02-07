@@ -363,7 +363,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.fontColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
         scoreLabel.zPosition = 1000
         self.addChild(scoreLabel)
-        scoreLabel.position = CGPoint(x: (self.frame.size.width/2) - 100, y: self.frame.size.height - 80)
+        scoreLabel.position = CGPoint(x: (self.frame.size.width/2) - 100, y: self.frame.size.height - 120)
         
         //コンボラベルの表示
         comboLabel.text = "\(combo) Combo!"
