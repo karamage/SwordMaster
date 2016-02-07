@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>proton copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>proton.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>93ECCC341C66FA680004DE8C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>93EF1AA91B4BC01800B1FC93</key>
 		<dict>
 			<key>primary</key>
