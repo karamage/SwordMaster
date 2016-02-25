@@ -21,6 +21,14 @@
 		932C916E1C37BBC500313494 /* scrollParticle4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 932C916C1C37BBC500313494 /* scrollParticle4.sks */; };
 		932C916F1C37BBC500313494 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 932C916D1C37BBC500313494 /* spark.png */; };
 		932C91711C37BFEE00313494 /* SMEnemyBoss4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932C91701C37BFEE00313494 /* SMEnemyBoss4.swift */; };
+		9334DAAD1C671E4C00272656 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 9334DAAC1C671E4C00272656 /* Icon-72.png */; };
+		9334DAAE1C671E4C00272656 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 9334DAAC1C671E4C00272656 /* Icon-72.png */; };
+		9334DAB01C671E5A00272656 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9334DAAF1C671E5A00272656 /* Icon-72@2x.png */; };
+		9334DAB11C671E5A00272656 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9334DAAF1C671E5A00272656 /* Icon-72@2x.png */; };
+		9334DAB31C671E6B00272656 /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 9334DAB21C671E6B00272656 /* Icon-76.png */; };
+		9334DAB41C671E6B00272656 /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 9334DAB21C671E6B00272656 /* Icon-76.png */; };
+		9334DAB61C671E7800272656 /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9334DAB51C671E7800272656 /* Icon-76@2x.png */; };
+		9334DAB71C671E7800272656 /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9334DAB51C671E7800272656 /* Icon-76@2x.png */; };
 		9349B2BD1C2253DE009930FE /* hit013.png in Resources */ = {isa = PBXBuildFile; fileRef = 9349B2BC1C2253DE009930FE /* hit013.png */; };
 		935665021B85C19500EAE798 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935665011B85C19500EAE798 /* Social.framework */; };
 		9356C1DC1B4D00410073EBF8 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DA1B4D00410073EBF8 /* MyParticle.sks */; };
@@ -110,12 +118,127 @@
 		93DCA4251C40F772005E3C0E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DCA4241C40F772005E3C0E /* StoreKit.framework */; };
 		93DCA4271C438CBA005E3C0E /* GameShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DCA4261C438CBA005E3C0E /* GameShopScene.swift */; };
 		93DCA4291C4399DF005E3C0E /* shopButton.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93DCA4281C4399DF005E3C0E /* shopButton.sks */; };
+		93E6C0351C6712F800B82F7B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93E6C0341C6712F800B82F7B /* Images.xcassets */; };
 		93E9A0681B4D228A00B44478 /* magicParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A0671B4D228A00B44478 /* magicParticle.sks */; };
 		93E9A06D1B4D4D9300B44478 /* fade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A0691B4D4D9300B44478 /* fade.mp3 */; };
 		93E9A06E1B4D4D9300B44478 /* shot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A06A1B4D4D9300B44478 /* shot.mp3 */; };
 		93E9A06F1B4D4D9300B44478 /* sword.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A06B1B4D4D9300B44478 /* sword.mp3 */; };
 		93E9A0701B4D4D9300B44478 /* sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A06C1B4D4D9300B44478 /* sound.mp3 */; };
 		93E9A0721B4D549E00B44478 /* scrollParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A0711B4D549E00B44478 /* scrollParticle.sks */; };
+		93ECCC361C66FA680004DE8C /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF1AB31B4BC01800B1FC93 /* GameScene.swift */; };
+		93ECCC371C66FA680004DE8C /* SMGuardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D909D1B71EBCA0098A2FF /* SMGuardNode.swift */; };
+		93ECCC381C66FA680004DE8C /* SMNodeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937056D31B4F8A1F009BBAC2 /* SMNodeUtil.swift */; };
+		93ECCC391C66FA680004DE8C /* SMEnemyFly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7BA1B54E240000EC266 /* SMEnemyFly.swift */; };
+		93ECCC3A1C66FA680004DE8C /* SwordType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937056D11B4F8398009BBAC2 /* SwordType.swift */; };
+		93ECCC3B1C66FA680004DE8C /* SMProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BE5F091C4A2041002ED552 /* SMProductManager.swift */; };
+		93ECCC3C1C66FA680004DE8C /* SMSwordNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937056D91B4FA933009BBAC2 /* SMSwordNode.swift */; };
+		93ECCC3D1C66FA680004DE8C /* SMEnemyCube2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D909B1B71E6F60098A2FF /* SMEnemyCube2.swift */; };
+		93ECCC3E1C66FA680004DE8C /* SMEnemyGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7AA1B534BA4000EC266 /* SMEnemyGroup.swift */; };
+		93ECCC3F1C66FA680004DE8C /* SMEnemyLion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D909F1B7336510098A2FF /* SMEnemyLion.swift */; };
+		93ECCC401C66FA680004DE8C /* SMEnemyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7B81B54C57A000EC266 /* SMEnemyDelegate.swift */; };
+		93ECCC411C66FA680004DE8C /* ColliderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937056CF1B4F7F56009BBAC2 /* ColliderType.swift */; };
+		93ECCC421C66FA680004DE8C /* SMSwordFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7AE1B538DC6000EC266 /* SMSwordFactory.swift */; };
+		93ECCC431C66FA680004DE8C /* SMEnemyCubeGold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93251AFE1C54AD1200F966EA /* SMEnemyCubeGold.swift */; };
+		93ECCC441C66FA680004DE8C /* SMEnemyCube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7A61B525250000EC266 /* SMEnemyCube.swift */; };
+		93ECCC451C66FA680004DE8C /* SMEnemyCubeBlack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93251B001C54B27F00F966EA /* SMEnemyCubeBlack.swift */; };
+		93ECCC461C66FA680004DE8C /* GameShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DCA4261C438CBA005E3C0E /* GameShopScene.swift */; };
+		93ECCC471C66FA680004DE8C /* EnemyGroupType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7B61B54BCD7000EC266 /* EnemyGroupType.swift */; };
+		93ECCC481C66FA680004DE8C /* SMEnemyGroupDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7B41B54B450000EC266 /* SMEnemyGroupDelegate.swift */; };
+		93ECCC491C66FA680004DE8C /* SMGuardNode2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380AB4F1B75E4C10052274E /* SMGuardNode2.swift */; };
+		93ECCC4A1C66FA680004DE8C /* SMEnemyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7B01B538FE3000EC266 /* SMEnemyFactory.swift */; };
+		93ECCC4B1C66FA680004DE8C /* SMItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931943191B58DB740002F1BD /* SMItemNode.swift */; };
+		93ECCC4C1C66FA680004DE8C /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9319431B1B5F5C790002F1BD /* ItemType.swift */; };
+		93ECCC4D1C66FA680004DE8C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF1AB51B4BC01800B1FC93 /* GameViewController.swift */; };
+		93ECCC4E1C66FA680004DE8C /* SMPlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937056CD1B4F75D9009BBAC2 /* SMPlayerNode.swift */; };
+		93ECCC4F1C66FA680004DE8C /* SMEnemyKnight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D90971B70797D0098A2FF /* SMEnemyKnight.swift */; };
+		93ECCC501C66FA680004DE8C /* SMStageManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7AC1B534F5D000EC266 /* SMStageManage.swift */; };
+		93ECCC511C66FA680004DE8C /* SMItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9319431D1B5F724E0002F1BD /* SMItemFactory.swift */; };
+		93ECCC521C66FA680004DE8C /* SMAnimationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937056D51B4FA28E009BBAC2 /* SMAnimationUtil.swift */; };
+		93ECCC531C66FA680004DE8C /* GameTitleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7C41B57458E000EC266 /* GameTitleScene.swift */; };
+		93ECCC541C66FA680004DE8C /* SMEnemyBoss4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932C91701C37BFEE00313494 /* SMEnemyBoss4.swift */; };
+		93ECCC551C66FA680004DE8C /* SMStageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7B21B539097000EC266 /* SMStageFactory.swift */; };
+		93ECCC561C66FA680004DE8C /* SMEnegyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7CE1B578526000EC266 /* SMEnegyFactory.swift */; };
+		93ECCC571C66FA680004DE8C /* SMEnegyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7CC1B5782B8000EC266 /* SMEnegyNode.swift */; };
+		93ECCC581C66FA680004DE8C /* SMEnemyBoss3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D90951B6F54680098A2FF /* SMEnemyBoss3.swift */; };
+		93ECCC591C66FA680004DE8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF1AAF1B4BC01800B1FC93 /* AppDelegate.swift */; };
+		93ECCC5A1C66FA680004DE8C /* EnemyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937056D71B4FA89B009BBAC2 /* EnemyType.swift */; };
+		93ECCC5B1C66FA680004DE8C /* SMEnemyAKnight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D90A31B746F420098A2FF /* SMEnemyAKnight.swift */; };
+		93ECCC5C1C66FA680004DE8C /* SMEnemyBoss1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7BE1B55F37E000EC266 /* SMEnemyBoss1.swift */; };
+		93ECCC5D1C66FA680004DE8C /* SMStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7A81B5345F5000EC266 /* SMStage.swift */; };
+		93ECCC5E1C66FA680004DE8C /* SMEnemyBoss2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D90931B6F4D1F0098A2FF /* SMEnemyBoss2.swift */; };
+		93ECCC5F1C66FA680004DE8C /* SMEnemyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1D7A41B523CCF000EC266 /* SMEnemyNode.swift */; };
+		93ECCC611C66FA680004DE8C /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9319431F1B661B690002F1BD /* iAd.framework */; };
+		93ECCC621C66FA680004DE8C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935665011B85C19500EAE798 /* Social.framework */; };
+		93ECCC631C66FA680004DE8C /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93D1D7A21B522AB4000EC266 /* CoreMotion.framework */; };
+		93ECCC641C66FA680004DE8C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DCA4241C40F772005E3C0E /* StoreKit.framework */; };
+		93ECCC661C66FA680004DE8C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9371E6BC1BB241F700BA8F4D /* Default@2x.png */; };
+		93ECCC671C66FA680004DE8C /* kurae_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BEA1B8AFFFE002F6127 /* kurae_01.mp3 */; };
+		93ECCC681C66FA680004DE8C /* hit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7981B513933000EC266 /* hit.mp3 */; };
+		93ECCC691C66FA680004DE8C /* magic_circle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7961B513933000EC266 /* magic_circle.mp3 */; };
+		93ECCC6A1C66FA680004DE8C /* explode.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D79B1B513933000EC266 /* explode.mp3 */; };
+		93ECCC6B1C66FA680004DE8C /* scrollParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A0711B4D549E00B44478 /* scrollParticle.sks */; };
+		93ECCC6C1C66FA680004DE8C /* tameParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 935D90991B7087E70098A2FF /* tameParticle.sks */; };
+		93ECCC6D1C66FA680004DE8C /* sokoda_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BEE1B8AFFFE002F6127 /* sokoda_01.mp3 */; };
+		93ECCC6E1C66FA680004DE8C /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DB1B4D00410073EBF8 /* spark.png */; };
+		93ECCC6F1C66FA680004DE8C /* powerup_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BED1B8AFFFE002F6127 /* powerup_01.mp3 */; };
+		93ECCC701C66FA680004DE8C /* torya_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BEF1B8AFFFE002F6127 /* torya_01.mp3 */; };
+		93ECCC711C66FA680004DE8C /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7C91B57558B000EC266 /* spark.png */; };
+		93ECCC721C66FA680004DE8C /* enegyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 935D90A11B7350990098A2FF /* enegyParticle.sks */; };
+		93ECCC731C66FA680004DE8C /* mataaeruyone_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BEB1B8AFFFE002F6127 /* mataaeruyone_01.mp3 */; };
+		93ECCC741C66FA680004DE8C /* bgm_stage3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 935D90A51B747C940098A2FF /* bgm_stage3.mp3 */; };
+		93ECCC751C66FA680004DE8C /* konomamaja_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BE81B8AFFFE002F6127 /* konomamaja_01.mp3 */; };
+		93ECCC771C66FA680004DE8C /* playerParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 937056C91B4E0991009BBAC2 /* playerParticle.sks */; };
+		93ECCC781C66FA680004DE8C /* ei_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BE31B8AFFFE002F6127 /* ei_01.mp3 */; };
+		93ECCC791C66FA680004DE8C /* stage4boss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 932C91671C37B8A600313494 /* stage4boss.mp3 */; };
+		93ECCC7A1C66FA680004DE8C /* hawawa_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BE41B8AFFFE002F6127 /* hawawa_01.mp3 */; };
+		93ECCC7B1C66FA680004DE8C /* shot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A06A1B4D4D9300B44478 /* shot.mp3 */; };
+		93ECCC7C1C66FA680004DE8C /* magicParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A0671B4D228A00B44478 /* magicParticle.sks */; };
+		93ECCC7D1C66FA680004DE8C /* explode2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D8CD431B67A8C80052BE67 /* explode2.mp3 */; };
+		93ECCC7E1C66FA680004DE8C /* hitParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 937056DB1B4FB750009BBAC2 /* hitParticle.sks */; };
+		93ECCC7F1C66FA680004DE8C /* sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A06C1B4D4D9300B44478 /* sound.mp3 */; };
+		93ECCC801C66FA680004DE8C /* sword.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A06B1B4D4D9300B44478 /* sword.mp3 */; };
+		93ECCC811C66FA680004DE8C /* aha_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BF11B8AFFFE002F6127 /* aha_01.mp3 */; };
+		93ECCC821C66FA680004DE8C /* ganbarimasu_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9380AB511B78DFB20052274E /* ganbarimasu_01.mp3 */; };
+		93ECCC831C66FA680004DE8C /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 932C916D1C37BBC500313494 /* spark.png */; };
+		93ECCC841C66FA680004DE8C /* itemget_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BE61B8AFFFE002F6127 /* itemget_01.mp3 */; };
+		93ECCC851C66FA680004DE8C /* titleParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7C81B57558B000EC266 /* titleParticle.sks */; };
+		93ECCC861C66FA680004DE8C /* cutinParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93D8CD481B68A9740052BE67 /* cutinParticle.sks */; };
+		93ECCC871C66FA680004DE8C /* bgm_stage2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 935D90A61B747C940098A2FF /* bgm_stage2.mp3 */; };
+		93ECCC881C66FA680004DE8C /* kono_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BE71B8AFFFE002F6127 /* kono_01.mp3 */; };
+		93ECCC891C66FA680004DE8C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 935D908F1B6F2D680098A2FF /* Images.xcassets */; };
+		93ECCC8A1C66FA680004DE8C /* swordmaster2.png in Resources */ = {isa = PBXBuildFile; fileRef = 93D8CD461B689E840052BE67 /* swordmaster2.png */; };
+		93ECCC8B1C66FA680004DE8C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9371E6BB1BB241F700BA8F4D /* Default-568h@2x.png */; };
+		93ECCC8C1C66FA680004DE8C /* sparkParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 937056CB1B4F63A0009BBAC2 /* sparkParticle.sks */; };
+		93ECCC8D1C66FA680004DE8C /* shopButton.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93DCA4281C4399DF005E3C0E /* shopButton.sks */; };
+		93ECCC8E1C66FA680004DE8C /* short_song_minami_kirakira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D8CD1C1B679E470052BE67 /* short_song_minami_kirakira.mp3 */; };
+		93ECCC8F1C66FA680004DE8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93EF1AB71B4BC01800B1FC93 /* Main.storyboard */; };
+		93ECCC901C66FA680004DE8C /* ehehe_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BF51B8AFFFE002F6127 /* ehehe_01.mp3 */; };
+		93ECCC911C66FA680004DE8C /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DA1B4D00410073EBF8 /* MyParticle.sks */; };
+		93ECCC921C66FA680004DE8C /* smoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = 930BE6D01C5736BB00C6C393 /* smoke.sks */; };
+		93ECCC931C66FA680004DE8C /* ita_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BE51B8AFFFE002F6127 /* ita_01.mp3 */; };
+		93ECCC941C66FA680004DE8C /* scrollParticle4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 932C916C1C37BBC500313494 /* scrollParticle4.sks */; };
+		93ECCC951C66FA680004DE8C /* deadParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 931943171B58BD240002F1BD /* deadParticle.sks */; };
+		93ECCC961C66FA680004DE8C /* nagarebosi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7971B513933000EC266 /* nagarebosi.mp3 */; };
+		93ECCC971C66FA680004DE8C /* combo_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BF41B8AFFFE002F6127 /* combo_01.mp3 */; };
+		93ECCC981C66FA680004DE8C /* hit013.png in Resources */ = {isa = PBXBuildFile; fileRef = 9349B2BC1C2253DE009930FE /* hit013.png */; };
+		93ECCC991C66FA680004DE8C /* stage3boss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 932C91661C37B8A600313494 /* stage3boss.mp3 */; };
+		93ECCC9A1C66FA680004DE8C /* choroimondane_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BF31B8AFFFE002F6127 /* choroimondane_01.mp3 */; };
+		93ECCC9B1C66FA680004DE8C /* scrollParticle1_2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 93D2C1F51C59D39B00A284BD /* scrollParticle1_2.sks */; };
+		93ECCC9C1C66FA680004DE8C /* kakin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D8CD421B67A8C80052BE67 /* kakin.mp3 */; };
+		93ECCC9D1C66FA680004DE8C /* bgm_maoudamashii_neorock33.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D8CD4A1B69B9B50052BE67 /* bgm_maoudamashii_neorock33.mp3 */; };
+		93ECCC9E1C66FA680004DE8C /* fade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93E9A0691B4D4D9300B44478 /* fade.mp3 */; };
+		93ECCC9F1C66FA680004DE8C /* stage4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 932C91681C37B8A600313494 /* stage4.mp3 */; };
+		93ECCCA01C66FA680004DE8C /* choroichoroi_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BF21B8AFFFE002F6127 /* choroichoroi_01.mp3 */; };
+		93ECCCA11C66FA680004DE8C /* kiru.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7991B513933000EC266 /* kiru.mp3 */; };
+		93ECCCA21C66FA680004DE8C /* korededouda_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BE91B8AFFFE002F6127 /* korededouda_01.mp3 */; };
+		93ECCCA31C66FA680004DE8C /* scrollParticle2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 935D90911B6F3A9B0098A2FF /* scrollParticle2.sks */; };
+		93ECCCA41C66FA680004DE8C /* motteatosukoshidesu_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BEC1B8AFFFE002F6127 /* motteatosukoshidesu_01.mp3 */; };
+		93ECCCA51C66FA680004DE8C /* bosssound1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D7BC1B55F228000EC266 /* bosssound1.mp3 */; };
+		93ECCCA61C66FA680004DE8C /* ice1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9356C1DE1B4D05000073EBF8 /* ice1.png */; };
+		93ECCCA71C66FA680004DE8C /* item.sks in Resources */ = {isa = PBXBuildFile; fileRef = 930BE6D21C57385500C6C393 /* item.sks */; };
+		93ECCCA81C66FA680004DE8C /* sasaru.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93D1D79A1B513933000EC266 /* sasaru.mp3 */; };
+		93ECCCA91C66FA680004DE8C /* yaa_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93A46BF01B8AFFFE002F6127 /* yaa_01.mp3 */; };
+		93ECCCB21C66FA6A0004DE8C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93ECCCB01C66FA6A0004DE8C /* LaunchScreen.xib */; };
 		93EF1AB01B4BC01800B1FC93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF1AAF1B4BC01800B1FC93 /* AppDelegate.swift */; };
 		93EF1AB41B4BC01800B1FC93 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF1AB31B4BC01800B1FC93 /* GameScene.swift */; };
 		93EF1AB61B4BC01800B1FC93 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF1AB51B4BC01800B1FC93 /* GameViewController.swift */; };
@@ -150,6 +273,10 @@
 		932C916C1C37BBC500313494 /* scrollParticle4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = scrollParticle4.sks; sourceTree = "<group>"; };
 		932C916D1C37BBC500313494 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		932C91701C37BFEE00313494 /* SMEnemyBoss4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMEnemyBoss4.swift; sourceTree = "<group>"; };
+		9334DAAC1C671E4C00272656 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		9334DAAF1C671E5A00272656 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		9334DAB21C671E6B00272656 /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
+		9334DAB51C671E7800272656 /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@2x.png"; sourceTree = "<group>"; };
 		9349B2BC1C2253DE009930FE /* hit013.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hit013.png; sourceTree = "<group>"; };
 		935665011B85C19500EAE798 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		9356C1DA1B4D00410073EBF8 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
@@ -238,12 +365,16 @@
 		93DCA4241C40F772005E3C0E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		93DCA4261C438CBA005E3C0E /* GameShopScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameShopScene.swift; sourceTree = "<group>"; };
 		93DCA4281C4399DF005E3C0E /* shopButton.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = shopButton.sks; sourceTree = "<group>"; };
+		93E6C0341C6712F800B82F7B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "proton-iPad/Images.xcassets"; sourceTree = "<group>"; };
 		93E9A0671B4D228A00B44478 /* magicParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = magicParticle.sks; sourceTree = "<group>"; };
 		93E9A0691B4D4D9300B44478 /* fade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fade.mp3; sourceTree = "<group>"; };
 		93E9A06A1B4D4D9300B44478 /* shot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shot.mp3; sourceTree = "<group>"; };
 		93E9A06B1B4D4D9300B44478 /* sword.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sword.mp3; sourceTree = "<group>"; };
 		93E9A06C1B4D4D9300B44478 /* sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound.mp3; sourceTree = "<group>"; };
 		93E9A0711B4D549E00B44478 /* scrollParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = scrollParticle.sks; sourceTree = "<group>"; };
+		93ECCCAD1C66FA680004DE8C /* proton-iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "proton-iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		93ECCCAF1C66FA680004DE8C /* proton copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "proton copy-Info.plist"; path = "/Users/kara_mage/Documents/proton/proton copy-Info.plist"; sourceTree = "<absolute>"; };
+		93ECCCB11C66FA6A0004DE8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "Resources-iPad/proton/Base.lproj/LaunchScreen.xib"; sourceTree = "<group>"; };
 		93EF1AAA1B4BC01800B1FC93 /* proton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = proton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93EF1AAE1B4BC01800B1FC93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93EF1AAF1B4BC01800B1FC93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -257,6 +388,17 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		93ECCC601C66FA680004DE8C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93ECCC611C66FA680004DE8C /* iAd.framework in Frameworks */,
+				93ECCC621C66FA680004DE8C /* Social.framework in Frameworks */,
+				93ECCC631C66FA680004DE8C /* CoreMotion.framework in Frameworks */,
+				93ECCC641C66FA680004DE8C /* StoreKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93EF1AA71B4BC01800B1FC93 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -362,9 +504,23 @@
 			path = sks;
 			sourceTree = "<group>";
 		};
+		93ECCCAE1C66FA680004DE8C /* Resources-iPad */ = {
+			isa = PBXGroup;
+			children = (
+				93E6C0341C6712F800B82F7B /* Images.xcassets */,
+				9334DAAC1C671E4C00272656 /* Icon-72.png */,
+				9334DAAF1C671E5A00272656 /* Icon-72@2x.png */,
+				9334DAB21C671E6B00272656 /* Icon-76.png */,
+				9334DAB51C671E7800272656 /* Icon-76@2x.png */,
+				93ECCCB01C66FA6A0004DE8C /* LaunchScreen.xib */,
+			);
+			name = "Resources-iPad";
+			sourceTree = "<group>";
+		};
 		93EF1AA11B4BC01800B1FC93 = {
 			isa = PBXGroup;
 			children = (
+				93ECCCAE1C66FA680004DE8C /* Resources-iPad */,
 				93DCA4241C40F772005E3C0E /* StoreKit.framework */,
 				93EF1AAB1B4BC01800B1FC93 /* Products */,
 				93EF1AAC1B4BC01800B1FC93 /* proton */,
@@ -374,6 +530,7 @@
 				9371E6BC1BB241F700BA8F4D /* Default@2x.png */,
 				935665011B85C19500EAE798 /* Social.framework */,
 				9319431F1B661B690002F1BD /* iAd.framework */,
+				93ECCCAF1C66FA680004DE8C /* proton copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -382,6 +539,7 @@
 			children = (
 				93EF1AAA1B4BC01800B1FC93 /* proton.app */,
 				93EF1AC31B4BC01800B1FC93 /* protonTests.xctest */,
+				93ECCCAD1C66FA680004DE8C /* proton-iPad.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -470,6 +628,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		93ECCC341C66FA680004DE8C /* proton-iPad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93ECCCAA1C66FA680004DE8C /* Build configuration list for PBXNativeTarget "proton-iPad" */;
+			buildPhases = (
+				93ECCC351C66FA680004DE8C /* Sources */,
+				93ECCC601C66FA680004DE8C /* Frameworks */,
+				93ECCC651C66FA680004DE8C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "proton-iPad";
+			productName = proton;
+			productReference = 93ECCCAD1C66FA680004DE8C /* proton-iPad.app */;
+			productType = "com.apple.product-type.application";
+		};
 		93EF1AA91B4BC01800B1FC93 /* proton */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 93EF1ACD1B4BC01800B1FC93 /* Build configuration list for PBXNativeTarget "proton" */;
@@ -516,6 +691,9 @@
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Masaaki Kakimoto";
 				TargetAttributes = {
+					93ECCC341C66FA680004DE8C = {
+						DevelopmentTeam = M63PA5KAC8;
+					};
 					93EF1AA91B4BC01800B1FC93 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = M63PA5KAC8;
@@ -546,11 +724,92 @@
 			targets = (
 				93EF1AA91B4BC01800B1FC93 /* proton */,
 				93EF1AC21B4BC01800B1FC93 /* protonTests */,
+				93ECCC341C66FA680004DE8C /* proton-iPad */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		93ECCC651C66FA680004DE8C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93ECCC661C66FA680004DE8C /* Default@2x.png in Resources */,
+				93ECCC671C66FA680004DE8C /* kurae_01.mp3 in Resources */,
+				93ECCC681C66FA680004DE8C /* hit.mp3 in Resources */,
+				93ECCC691C66FA680004DE8C /* magic_circle.mp3 in Resources */,
+				93ECCC6A1C66FA680004DE8C /* explode.mp3 in Resources */,
+				9334DAB11C671E5A00272656 /* Icon-72@2x.png in Resources */,
+				93ECCC6B1C66FA680004DE8C /* scrollParticle.sks in Resources */,
+				93ECCC6C1C66FA680004DE8C /* tameParticle.sks in Resources */,
+				93ECCC6D1C66FA680004DE8C /* sokoda_01.mp3 in Resources */,
+				93ECCC6E1C66FA680004DE8C /* spark.png in Resources */,
+				93ECCC6F1C66FA680004DE8C /* powerup_01.mp3 in Resources */,
+				93ECCC701C66FA680004DE8C /* torya_01.mp3 in Resources */,
+				93ECCC711C66FA680004DE8C /* spark.png in Resources */,
+				93ECCC721C66FA680004DE8C /* enegyParticle.sks in Resources */,
+				93ECCC731C66FA680004DE8C /* mataaeruyone_01.mp3 in Resources */,
+				93ECCC741C66FA680004DE8C /* bgm_stage3.mp3 in Resources */,
+				93ECCC751C66FA680004DE8C /* konomamaja_01.mp3 in Resources */,
+				9334DAB41C671E6B00272656 /* Icon-76.png in Resources */,
+				93ECCC771C66FA680004DE8C /* playerParticle.sks in Resources */,
+				93ECCC781C66FA680004DE8C /* ei_01.mp3 in Resources */,
+				93ECCC791C66FA680004DE8C /* stage4boss.mp3 in Resources */,
+				93ECCC7A1C66FA680004DE8C /* hawawa_01.mp3 in Resources */,
+				93ECCCB21C66FA6A0004DE8C /* LaunchScreen.xib in Resources */,
+				93ECCC7B1C66FA680004DE8C /* shot.mp3 in Resources */,
+				93ECCC7C1C66FA680004DE8C /* magicParticle.sks in Resources */,
+				93ECCC7D1C66FA680004DE8C /* explode2.mp3 in Resources */,
+				93E6C0351C6712F800B82F7B /* Images.xcassets in Resources */,
+				93ECCC7E1C66FA680004DE8C /* hitParticle.sks in Resources */,
+				93ECCC7F1C66FA680004DE8C /* sound.mp3 in Resources */,
+				93ECCC801C66FA680004DE8C /* sword.mp3 in Resources */,
+				93ECCC811C66FA680004DE8C /* aha_01.mp3 in Resources */,
+				93ECCC821C66FA680004DE8C /* ganbarimasu_01.mp3 in Resources */,
+				93ECCC831C66FA680004DE8C /* spark.png in Resources */,
+				93ECCC841C66FA680004DE8C /* itemget_01.mp3 in Resources */,
+				93ECCC851C66FA680004DE8C /* titleParticle.sks in Resources */,
+				93ECCC861C66FA680004DE8C /* cutinParticle.sks in Resources */,
+				93ECCC871C66FA680004DE8C /* bgm_stage2.mp3 in Resources */,
+				93ECCC881C66FA680004DE8C /* kono_01.mp3 in Resources */,
+				93ECCC891C66FA680004DE8C /* Images.xcassets in Resources */,
+				93ECCC8A1C66FA680004DE8C /* swordmaster2.png in Resources */,
+				93ECCC8B1C66FA680004DE8C /* Default-568h@2x.png in Resources */,
+				93ECCC8C1C66FA680004DE8C /* sparkParticle.sks in Resources */,
+				93ECCC8D1C66FA680004DE8C /* shopButton.sks in Resources */,
+				93ECCC8E1C66FA680004DE8C /* short_song_minami_kirakira.mp3 in Resources */,
+				93ECCC8F1C66FA680004DE8C /* Main.storyboard in Resources */,
+				93ECCC901C66FA680004DE8C /* ehehe_01.mp3 in Resources */,
+				93ECCC911C66FA680004DE8C /* MyParticle.sks in Resources */,
+				93ECCC921C66FA680004DE8C /* smoke.sks in Resources */,
+				93ECCC931C66FA680004DE8C /* ita_01.mp3 in Resources */,
+				93ECCC941C66FA680004DE8C /* scrollParticle4.sks in Resources */,
+				93ECCC951C66FA680004DE8C /* deadParticle.sks in Resources */,
+				93ECCC961C66FA680004DE8C /* nagarebosi.mp3 in Resources */,
+				93ECCC971C66FA680004DE8C /* combo_01.mp3 in Resources */,
+				93ECCC981C66FA680004DE8C /* hit013.png in Resources */,
+				9334DAB71C671E7800272656 /* Icon-76@2x.png in Resources */,
+				93ECCC991C66FA680004DE8C /* stage3boss.mp3 in Resources */,
+				93ECCC9A1C66FA680004DE8C /* choroimondane_01.mp3 in Resources */,
+				93ECCC9B1C66FA680004DE8C /* scrollParticle1_2.sks in Resources */,
+				93ECCC9C1C66FA680004DE8C /* kakin.mp3 in Resources */,
+				93ECCC9D1C66FA680004DE8C /* bgm_maoudamashii_neorock33.mp3 in Resources */,
+				93ECCC9E1C66FA680004DE8C /* fade.mp3 in Resources */,
+				93ECCC9F1C66FA680004DE8C /* stage4.mp3 in Resources */,
+				93ECCCA01C66FA680004DE8C /* choroichoroi_01.mp3 in Resources */,
+				93ECCCA11C66FA680004DE8C /* kiru.mp3 in Resources */,
+				9334DAAE1C671E4C00272656 /* Icon-72.png in Resources */,
+				93ECCCA21C66FA680004DE8C /* korededouda_01.mp3 in Resources */,
+				93ECCCA31C66FA680004DE8C /* scrollParticle2.sks in Resources */,
+				93ECCCA41C66FA680004DE8C /* motteatosukoshidesu_01.mp3 in Resources */,
+				93ECCCA51C66FA680004DE8C /* bosssound1.mp3 in Resources */,
+				93ECCCA61C66FA680004DE8C /* ice1.png in Resources */,
+				93ECCCA71C66FA680004DE8C /* item.sks in Resources */,
+				93ECCCA81C66FA680004DE8C /* sasaru.mp3 in Resources */,
+				93ECCCA91C66FA680004DE8C /* yaa_01.mp3 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93EF1AA81B4BC01800B1FC93 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -581,6 +840,7 @@
 				93D8CD451B67A8C80052BE67 /* explode2.mp3 in Resources */,
 				937056DC1B4FB750009BBAC2 /* hitParticle.sks in Resources */,
 				93E9A0701B4D4D9300B44478 /* sound.mp3 in Resources */,
+				9334DAAD1C671E4C00272656 /* Icon-72.png in Resources */,
 				93E9A06F1B4D4D9300B44478 /* sword.mp3 in Resources */,
 				93A46C041B8AFFFE002F6127 /* aha_01.mp3 in Resources */,
 				9380AB521B78DFB20052274E /* ganbarimasu_01.mp3 in Resources */,
@@ -596,9 +856,11 @@
 				937056CC1B4F63A0009BBAC2 /* sparkParticle.sks in Resources */,
 				93DCA4291C4399DF005E3C0E /* shopButton.sks in Resources */,
 				93D8CD1D1B679E470052BE67 /* short_song_minami_kirakira.mp3 in Resources */,
+				9334DAB01C671E5A00272656 /* Icon-72@2x.png in Resources */,
 				93EF1AB91B4BC01800B1FC93 /* Main.storyboard in Resources */,
 				93A46C081B8AFFFE002F6127 /* ehehe_01.mp3 in Resources */,
 				9356C1DC1B4D00410073EBF8 /* MyParticle.sks in Resources */,
+				9334DAB61C671E7800272656 /* Icon-76@2x.png in Resources */,
 				930BE6D11C5736BB00C6C393 /* smoke.sks in Resources */,
 				93A46BF81B8AFFFE002F6127 /* ita_01.mp3 in Resources */,
 				932C916E1C37BBC500313494 /* scrollParticle4.sks in Resources */,
@@ -610,6 +872,7 @@
 				93A46C061B8AFFFE002F6127 /* choroimondane_01.mp3 in Resources */,
 				93D2C1F61C59D39B00A284BD /* scrollParticle1_2.sks in Resources */,
 				93D8CD441B67A8C80052BE67 /* kakin.mp3 in Resources */,
+				9334DAB31C671E6B00272656 /* Icon-76.png in Resources */,
 				93D8CD4B1B69B9B50052BE67 /* bgm_maoudamashii_neorock33.mp3 in Resources */,
 				93E9A06D1B4D4D9300B44478 /* fade.mp3 in Resources */,
 				932C916B1C37B8A600313494 /* stage4.mp3 in Resources */,
@@ -636,6 +899,55 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		93ECCC351C66FA680004DE8C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93ECCC361C66FA680004DE8C /* GameScene.swift in Sources */,
+				93ECCC371C66FA680004DE8C /* SMGuardNode.swift in Sources */,
+				93ECCC381C66FA680004DE8C /* SMNodeUtil.swift in Sources */,
+				93ECCC391C66FA680004DE8C /* SMEnemyFly.swift in Sources */,
+				93ECCC3A1C66FA680004DE8C /* SwordType.swift in Sources */,
+				93ECCC3B1C66FA680004DE8C /* SMProductManager.swift in Sources */,
+				93ECCC3C1C66FA680004DE8C /* SMSwordNode.swift in Sources */,
+				93ECCC3D1C66FA680004DE8C /* SMEnemyCube2.swift in Sources */,
+				93ECCC3E1C66FA680004DE8C /* SMEnemyGroup.swift in Sources */,
+				93ECCC3F1C66FA680004DE8C /* SMEnemyLion.swift in Sources */,
+				93ECCC401C66FA680004DE8C /* SMEnemyDelegate.swift in Sources */,
+				93ECCC411C66FA680004DE8C /* ColliderType.swift in Sources */,
+				93ECCC421C66FA680004DE8C /* SMSwordFactory.swift in Sources */,
+				93ECCC431C66FA680004DE8C /* SMEnemyCubeGold.swift in Sources */,
+				93ECCC441C66FA680004DE8C /* SMEnemyCube.swift in Sources */,
+				93ECCC451C66FA680004DE8C /* SMEnemyCubeBlack.swift in Sources */,
+				93ECCC461C66FA680004DE8C /* GameShopScene.swift in Sources */,
+				93ECCC471C66FA680004DE8C /* EnemyGroupType.swift in Sources */,
+				93ECCC481C66FA680004DE8C /* SMEnemyGroupDelegate.swift in Sources */,
+				93ECCC491C66FA680004DE8C /* SMGuardNode2.swift in Sources */,
+				93ECCC4A1C66FA680004DE8C /* SMEnemyFactory.swift in Sources */,
+				93ECCC4B1C66FA680004DE8C /* SMItemNode.swift in Sources */,
+				93ECCC4C1C66FA680004DE8C /* ItemType.swift in Sources */,
+				93ECCC4D1C66FA680004DE8C /* GameViewController.swift in Sources */,
+				93ECCC4E1C66FA680004DE8C /* SMPlayerNode.swift in Sources */,
+				93ECCC4F1C66FA680004DE8C /* SMEnemyKnight.swift in Sources */,
+				93ECCC501C66FA680004DE8C /* SMStageManage.swift in Sources */,
+				93ECCC511C66FA680004DE8C /* SMItemFactory.swift in Sources */,
+				93ECCC521C66FA680004DE8C /* SMAnimationUtil.swift in Sources */,
+				93ECCC531C66FA680004DE8C /* GameTitleScene.swift in Sources */,
+				93ECCC541C66FA680004DE8C /* SMEnemyBoss4.swift in Sources */,
+				93ECCC551C66FA680004DE8C /* SMStageFactory.swift in Sources */,
+				93ECCC561C66FA680004DE8C /* SMEnegyFactory.swift in Sources */,
+				93ECCC571C66FA680004DE8C /* SMEnegyNode.swift in Sources */,
+				93ECCC581C66FA680004DE8C /* SMEnemyBoss3.swift in Sources */,
+				93ECCC591C66FA680004DE8C /* AppDelegate.swift in Sources */,
+				93ECCC5A1C66FA680004DE8C /* EnemyType.swift in Sources */,
+				93ECCC5B1C66FA680004DE8C /* SMEnemyAKnight.swift in Sources */,
+				93ECCC5C1C66FA680004DE8C /* SMEnemyBoss1.swift in Sources */,
+				93ECCC5D1C66FA680004DE8C /* SMStage.swift in Sources */,
+				93ECCC5E1C66FA680004DE8C /* SMEnemyBoss2.swift in Sources */,
+				93ECCC5F1C66FA680004DE8C /* SMEnemyNode.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93EF1AA61B4BC01800B1FC93 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -704,6 +1016,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		93ECCCB01C66FA6A0004DE8C /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				93ECCCB11C66FA6A0004DE8C /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
 		93EF1AB71B4BC01800B1FC93 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -725,6 +1045,38 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		93ECCCAB1C66FA680004DE8C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconIPad;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "proton copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "proton-iPad";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		93ECCCAC1C66FA680004DE8C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconIPad;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "proton copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "proton-iPad";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
 		93EF1ACB1B4BC01800B1FC93 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -818,6 +1170,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -833,6 +1186,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -873,6 +1227,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		93ECCCAA1C66FA680004DE8C /* Build configuration list for PBXNativeTarget "proton-iPad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93ECCCAB1C66FA680004DE8C /* Debug */,
+				93ECCCAC1C66FA680004DE8C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		93EF1AA51B4BC01800B1FC93 /* Build configuration list for PBXProject "proton" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

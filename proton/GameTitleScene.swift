@@ -86,7 +86,7 @@ class GameTitleScene: SKScene {
         logoSize.width *= gain
         logoSize.height *= gain
         let logo2 = SKSpriteNode(texture: logoTexture2, size: logoSize)
-        logo2.position = CGPoint(x: self.frame.width / 2 + 10, y: self.frame.height - 180)
+        logo2.position = CGPoint(x: self.frame.width / 2 + 10, y: self.frame.height/2 + 140)
         logo2.zPosition = 110
         logo2.alpha = 0.0
         logo2.color = UIColor(red: 0.9, green: 0.7, blue: 1.0, alpha: 0.8)

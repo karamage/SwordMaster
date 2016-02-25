@@ -13,6 +13,7 @@ import AVFoundation
 //, AVAudioPlayerDelegate
 //ステージ情報
 class SMStage: SMEnemyGroupDelegate {
+    static var base:CGFloat = 1.0
     //音楽プレイヤー
     var audioPlayer:AVAudioPlayer?
     //背景
@@ -70,9 +71,9 @@ class SMStage: SMEnemyGroupDelegate {
         let bgScrollRevAction = SKAction.moveToY(0, duration: 10)
         let bgScroll = SKAction.repeatActionForever(SKAction.sequence([bgScrollAction,bgScrollRevAction]))
         bg.runAction(bgScroll)
-        let scaleAction1 = SKAction.scaleTo(0.97, duration: 2)
-        let scaleAction2 = SKAction.scaleTo(1.0, duration: 2)
-        let scaleAction3 = SKAction.scaleTo(1.03, duration: 2)
+        let scaleAction1 = SKAction.scaleTo(SMStage.base - 0.03, duration: 2)
+        let scaleAction2 = SKAction.scaleTo(SMStage.base, duration: 2)
+        let scaleAction3 = SKAction.scaleTo(SMStage.base + 0.03, duration: 2)
         let scaleRepeat = SKAction.repeatActionForever(SKAction.sequence([scaleAction1,scaleAction2,scaleAction3]))
         bg.runAction(scaleRepeat)
         

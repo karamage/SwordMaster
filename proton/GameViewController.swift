@@ -42,6 +42,12 @@ class GameViewController: UIViewController, ADBannerViewDelegate, SKProductsRequ
         self.adbanner.hidden = true
         let aproductIdentifiers = [productID1]
         
+        //iPadの場合倍率
+        print("---self.frame height \(self.view.frame.height)")
+        if self.view.frame.height >= 1024 {
+            SMStage.base = 1.3
+        }
+        
         //課金アイテムの処理
         if(SKPaymentQueue.canMakePayments()) {
             //let request: SKProductsRequest = SKProductsRequest(productIdentifiers: Set(productID1))
